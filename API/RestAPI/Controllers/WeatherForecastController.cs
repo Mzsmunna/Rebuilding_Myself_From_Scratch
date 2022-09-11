@@ -1,3 +1,4 @@
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RestAPI.Controllers
@@ -12,10 +13,12 @@ namespace RestAPI.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IUserRepository _userRepository;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IUserRepository userRepository)
         {
             _logger = logger;
+            _userRepository = userRepository;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
