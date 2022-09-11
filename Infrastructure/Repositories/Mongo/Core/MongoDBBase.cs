@@ -17,14 +17,14 @@ namespace Repositories.Mongo.Core
         {
             IEntityConfiguration entityConfig = new T2();
 
-            string name = entityConfig.Register();
+            string collectionName = entityConfig.Register();
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(collectionName))
             {
                 throw new Exception("Collection Name Should Not be Null");
             }
 
-            mongoCollection = dBContext.MapEntityWithCollection<T>(name);
+            mongoCollection = dBContext.MapEntityWithCollection<T>(collectionName);
         }
 
         internal async Task<MongoDbOperationResult> SaveAsync(IEntity entity)
