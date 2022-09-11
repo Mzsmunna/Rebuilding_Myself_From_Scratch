@@ -1,16 +1,18 @@
+using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RestAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    //[Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IUserRepository _userRepository;
@@ -31,6 +33,15 @@ namespace RestAPI.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet]
+        [ActionName("GetAllUsers")]
+        //[HttpGet(Name = "GetAllUsers")]
+        public IActionResult GetAllUsers()
+        {
+            var users = _userRepository.GetAll().Result;
+            return Ok(users);
         }
     }
 }
