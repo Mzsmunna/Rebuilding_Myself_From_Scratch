@@ -12,7 +12,7 @@ namespace Repositories.Mongo.Configs
 {
     public class UserConfiguration: IEntityConfiguration
     {
-        private string _collectionName { get; set; } = "User";
+        private readonly string _collectionName = "User";
 
         public string Register()
         {

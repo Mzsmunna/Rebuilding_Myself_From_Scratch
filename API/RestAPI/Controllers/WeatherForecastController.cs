@@ -1,5 +1,6 @@
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RestAPI.Controllers
@@ -35,7 +36,7 @@ namespace RestAPI.Controllers
             .ToArray();
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [ActionName("GetAllUsers")]
         //[HttpGet(Name = "GetAllUsers")]
         public IActionResult GetAllUsers()
