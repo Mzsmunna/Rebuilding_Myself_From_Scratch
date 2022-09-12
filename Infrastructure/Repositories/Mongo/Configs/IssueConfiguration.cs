@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Repositories.Mongo.Configs
 {
-    public class UserConfiguration: IEntityConfiguration
+    public class IssueConfiguration : IEntityConfiguration
     {
-        private readonly string _collectionName = "User";
+        private readonly string _collectionName = "Issue";
 
         public string Register()
         {
@@ -32,15 +32,6 @@ namespace Repositories.Mongo.Configs
                     map.GetMemberMap(x => x.ModifiedBy).SetSerializer(new StringSerializer(BsonType.ObjectId));
                 });
             }
-
-            //if (!BsonClassMap.IsClassMapRegistered(typeof(Guide)))
-            //{
-            //    BsonClassMap.RegisterClassMap<Guide>(child1 =>
-            //    {
-            //        child1.AutoMap();
-            //        child1.SetIgnoreExtraElements(true);
-            //    });
-            //}
 
             return _collectionName;
         }

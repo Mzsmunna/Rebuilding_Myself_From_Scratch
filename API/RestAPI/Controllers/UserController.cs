@@ -33,7 +33,7 @@ namespace RestAPI.Controllers
         {
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            user.Username = request.Username;
+            user.Email = request.Email;
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
@@ -44,7 +44,7 @@ namespace RestAPI.Controllers
         [ActionName("Login")]
         public IActionResult Login(User request)
         {
-            if (user.Username != request.Username)
+            if (user.Email != request.Email)
             {
                 return BadRequest("User not found.");
             }

@@ -9,12 +9,11 @@ namespace Domain.Entities
 {
     public class User : IEntity
     {
-        public string Id { get; set; }
+        public string Id { get; set; } = string.Empty;
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Gender { get; set; } = string.Empty;
         public int? Age { get; set; }
-        public string Username { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
 
@@ -28,10 +27,10 @@ namespace Domain.Entities
         public string RefreshToken { get; set; } = string.Empty;
 
         [BsonIgnore]
-        public DateTime TokenCreated { get; set; }
+        public DateTime? TokenCreated { get; set; }
 
         [BsonIgnore]
-        public DateTime TokenExpires { get; set; }
+        public DateTime? TokenExpires { get; set; }
 
         public string Role { get; set; } = string.Empty;
         public bool? IsActive { get; set; } = false;
