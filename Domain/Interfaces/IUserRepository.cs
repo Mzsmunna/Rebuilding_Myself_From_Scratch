@@ -9,7 +9,8 @@ namespace Domain.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> GetUser(string clientId, string adminId);
+        Task<User> LoginUser(string email, string password);
+        Task<User> RegisterUser(string email);
         Task<User> GetUser(string id);
         Task<List<User>> GetAll();
         string Save(IEntity entity);

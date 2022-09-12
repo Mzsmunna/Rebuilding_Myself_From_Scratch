@@ -39,7 +39,7 @@ namespace RestAPI.Controllers
                 else
                     issue.ModifiedOn = DateTime.UtcNow;
 
-                var id = _IssueRepository.Save(issue);
+                _IssueRepository.Save(issue);
 
                 return Ok(issue);
             }
@@ -52,6 +52,22 @@ namespace RestAPI.Controllers
         [HttpGet]
         [ActionName("GetAllIssues")]
         public IActionResult GetAllIssues()
+        {
+            var Issues = _IssueRepository.GetAll().Result;
+            return Ok(Issues);
+        }
+
+        [HttpGet]
+        [ActionName("GetAllIssuesByAssigner")]
+        public IActionResult GetAllIssuesByAssigner(string assignerId)
+        {
+            var Issues = _IssueRepository.GetAll().Result;
+            return Ok(Issues);
+        }
+
+        [HttpGet]
+        [ActionName("GetAllIssuesByAssigned")]
+        public IActionResult GetAllIssuesByAssigned(string assignedId)
         {
             var Issues = _IssueRepository.GetAll().Result;
             return Ok(Issues);

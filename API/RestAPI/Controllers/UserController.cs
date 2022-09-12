@@ -15,7 +15,6 @@ namespace RestAPI.Controllers
     [Route("api/[controller]/[action]")]
     public class UserController : ControllerBase
     {
-        public static User user = new User();
         private readonly IConfiguration _configuration;
         private readonly ILogger<UserController> _logger;
         private readonly IUserRepository _userRepository;
@@ -29,59 +28,93 @@ namespace RestAPI.Controllers
 
         [HttpPost]
         [ActionName("Register")]
-        public IActionResult Register(User request)
+        public IActionResult Register(User user)
         {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            var existingUser = _userRepository.RegisterUser(user.Email).Result;
 
-            user.Email = request.Email;
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            if (existingUser == null)
+            {
+                if (string.IsNullOrEmpty(user.Id))
+                    user.CreatedOn = DateTime.UtcNow;
+                else
+                    user.ModifiedOn = DateTime.UtcNow;
 
-            return Ok(user);
+                _userRepository.Save(user);
+
+                return Ok(user);
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status409Conflict, "This email already exist");
+            }
         }
 
         [HttpPost]
         [ActionName("Login")]
-        public IActionResult Login(User request)
+        public IActionResult Login(User user)
         {
-            if (user.Email != request.Email)
+            if (user != null)
             {
-                return BadRequest("User not found.");
-            }
+                var existingUser = _userRepository.LoginUser(user.Email, user.Password).Result;
 
-            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+                if (existingUser != null)
+                {
+                    CreatePasswordHash(user.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+                    user.PasswordHash = passwordHash;
+                    user.PasswordSalt = passwordSalt;
+
+                    if (!VerifyPasswordHash(user.Password, user.PasswordHash, user.PasswordSalt))
+                    {
+                        return StatusCode(StatusCodes.Status403Forbidden, "Wrong credential.");
+                    }
+                    else
+                    {
+                        string token = CreateToken(user);
+                        var refreshToken = GenerateRefreshToken();
+                        SetRefreshToken(refreshToken, user);
+                        return Ok(token);
+                    }
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, "User doesn't exist.");
+                }
+            }
+            else
             {
-                return BadRequest("Wrong password.");
+                return BadRequest();
             }
-
-            string token = CreateToken(user);
-
-            var refreshToken = GenerateRefreshToken();
-            SetRefreshToken(refreshToken);
-
-            return Ok(token);
         }
 
         [HttpPost]
         [ActionName("RefreshToken")]
-        public IActionResult RefreshToken()
+        public IActionResult RefreshToken(string userId)
         {
             var refreshToken = Request.Cookies["refreshToken"];
+            var user = _userRepository.GetUser(userId).Result;
 
-            if (!user.RefreshToken.Equals(refreshToken))
+            if (user != null)
             {
-                return Unauthorized("Invalid Refresh Token.");
+                if (!user.RefreshToken.Equals(refreshToken))
+                {
+                    return Unauthorized("Invalid Refresh Token.");
+                }
+                else if (user.TokenExpires < DateTime.UtcNow)
+                {
+                    return Unauthorized("Token expired.");
+                }
+
+                string token = CreateToken(user);
+                var newRefreshToken = GenerateRefreshToken();
+                SetRefreshToken(newRefreshToken, user);
+
+                return Ok(token);
             }
-            else if (user.TokenExpires < DateTime.Now)
+            else
             {
-                return Unauthorized("Token expired.");
-            }
-
-            string token = CreateToken(user);
-            var newRefreshToken = GenerateRefreshToken();
-            SetRefreshToken(newRefreshToken);
-
-            return Ok(token);
+                return NotFound();
+            }        
         }
 
         private RefreshToken GenerateRefreshToken()
@@ -89,14 +122,14 @@ namespace RestAPI.Controllers
             var refreshToken = new RefreshToken
             {
                 Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
-                Expires = DateTime.Now.AddDays(7),
-                Created = DateTime.Now
+                Expires = DateTime.UtcNow.AddDays(7),
+                Created = DateTime.UtcNow
             };
 
             return refreshToken;
         }
 
-        private void SetRefreshToken(RefreshToken newRefreshToken)
+        private void SetRefreshToken(RefreshToken newRefreshToken, User user)
         {
             var cookieOptions = new CookieOptions
             {
@@ -115,8 +148,8 @@ namespace RestAPI.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, "Admin")
+                new Claim(ClaimTypes.Email, user.Email.ToLower()),
+                new Claim(ClaimTypes.Role, user.Role.ToLower())
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -126,7 +159,7 @@ namespace RestAPI.Controllers
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.UtcNow.AddDays(1),
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);

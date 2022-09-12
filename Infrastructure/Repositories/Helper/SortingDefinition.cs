@@ -10,7 +10,7 @@ namespace Repositories.Helper
 {
     public static class SortingDefinition
     {
-        public static SortDefinition<T> TableSortingFilter<T>(string sortField, string sortDirection) where T : IEntity
+        public static SortDefinition<T> TableSortingFilter<T>(string sortField = "", string sortDirection = "") where T : IEntity
         {
             var sort = Builders<T>.Sort.Descending("CreatedOn");
 

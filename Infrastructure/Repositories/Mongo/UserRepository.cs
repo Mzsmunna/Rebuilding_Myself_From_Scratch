@@ -20,14 +20,35 @@ namespace Repositories.Mongo
             _collection = mongoCollection;
         }
 
-        public async Task<User> GetUser(string clientId, string adminId)
+        public async Task<User> LoginUser(string email, string password)
         {
             var filter = Builders<User>.Filter.Empty;
-            if (!string.IsNullOrEmpty(clientId))
-                filter &= Builders<User>.Filter.Eq("ClientId", ObjectId.Parse(clientId));
-            if (!string.IsNullOrEmpty(adminId))
-                filter &= Builders<User>.Filter.Eq("AdminUserId", ObjectId.Parse(adminId));
-            return await _collection.Find(filter).FirstOrDefaultAsync();
+            filter &= Builders<User>.Filter.Eq(x => x.IsActive, true);
+
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+            {
+                filter &= Builders<User>.Filter.Eq(x => x.Email, email);
+                filter &= Builders<User>.Filter.Eq(x => x.Password, password);
+
+                return await _collection.Find(filter).FirstOrDefaultAsync();
+            }
+
+            return null;
+        }
+
+        public async Task<User> RegisterUser(string email)
+        {
+            var filter = Builders<User>.Filter.Empty;
+            filter &= Builders<User>.Filter.Eq(x => x.IsActive, true);
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                filter &= Builders<User>.Filter.Eq(x => x.Email, email);
+
+                return await _collection.Find(filter).FirstOrDefaultAsync();
+            }
+
+            return null;
         }
 
         public async Task<List<User>> GetAll()

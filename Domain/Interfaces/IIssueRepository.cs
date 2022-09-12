@@ -10,9 +10,10 @@ namespace Domain.Interfaces
     public interface IIssueRepository
     {
         List<Issue> GetAllIssues();
+        List<Issue> GetAllIssuesByAssigner(string assignerId);
+        List<Issue> GetAllIssuesByAssigned(string assignedId);
         Issue GetIssuesById(string id);
-        Issue GetByName(string name);
-        Issue GetMaxOrganizationId();
+        Issue GetByTitle(string title);
         string Save(IEntity entity);
 
         #region Common_Methods

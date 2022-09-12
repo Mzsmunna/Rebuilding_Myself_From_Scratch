@@ -24,8 +24,21 @@ namespace Repositories.Mongo
         public List<Issue> GetAllIssues()
         {
             var filter = Builders<Issue>.Filter.Empty;
-            // filter = filter & Builders<Issue>.Filter.Eq("ParentOrganizationId", BsonNull.Value);
-            var sort = Builders<Issue>.Sort.Ascending("Name");
+            var sort = SortingDefinition.TableSortingFilter<Issue>(); //Builders<Issue>.Sort.Ascending("Title");
+            return _collection.Find(filter).Sort(sort).ToList();
+        }
+
+        public List<Issue> GetAllIssuesByAssigner(string assignerId)
+        {
+            var filter = Builders<Issue>.Filter.Empty;
+            var sort = SortingDefinition.TableSortingFilter<Issue>();
+            return _collection.Find(filter).Sort(sort).ToList();
+        }
+
+        public List<Issue> GetAllIssuesByAssigned(string assignedId)
+        {
+            var filter = Builders<Issue>.Filter.Empty;
+            var sort = SortingDefinition.TableSortingFilter<Issue>();
             return _collection.Find(filter).Sort(sort).ToList();
         }
 
@@ -35,27 +48,20 @@ namespace Repositories.Mongo
             return _collection.Find(filter).FirstOrDefault();
         }
 
-        public Issue GetByName(string name)
+        public Issue GetByTitle(string title)
         {
             var filter = Builders<Issue>.Filter.Empty;
 
-            if (!string.IsNullOrEmpty(name) && name.ToLower() != "undefined")
+            if (!string.IsNullOrEmpty(title) && title.ToLower() != "undefined")
             {
-                name = name.ToLower();
-                filter = filter & Builders<Issue>.Filter.Regex("Name", new BsonRegularExpression("/^" + name.Replace("+", @"\+") + "$/i"));
+                title = title.ToLower();
+                filter = filter & Builders<Issue>.Filter.Regex("Title", new BsonRegularExpression("/^" + title.Replace("+", @"\+") + "$/i"));
                 return _collection.Find(filter).FirstOrDefault();
             }
             else
             {
                 return null;
             }
-        }
-
-        public Issue GetMaxOrganizationId()
-        {
-            var filter = Builders<Issue>.Filter.Empty;
-            var sort = SortingDefinition.TableSortingFilter<Issue>("OrganizationId", "Descending");
-            return _collection.Find(filter).Sort(sort).FirstOrDefault();
         }
 
         public string Save(IEntity entity)

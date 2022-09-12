@@ -16,12 +16,10 @@ namespace RestAPI.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IUserRepository _userRepository;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IUserRepository userRepository)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
-            _userRepository = userRepository;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -35,7 +33,5 @@ namespace RestAPI.Controllers
             })
             .ToArray();
         }
-
-
     }
 }

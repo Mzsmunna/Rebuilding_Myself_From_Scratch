@@ -23,6 +23,7 @@ builder.Services.AddTransient<MongoDBSettings>(sp => sp.GetRequiredService<IOpti
 builder.Services.AddTransient<IMongoDBContext, MongoDBContext>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IIssueRepository, IssueRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

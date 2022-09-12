@@ -24,14 +24,12 @@ namespace Domain.Entities
         public byte[]? PasswordSalt { get; set; }
 
         [BsonIgnore]
-        public string RefreshToken { get; set; } = string.Empty;
-
-        [BsonIgnore]
         public DateTime? TokenCreated { get; set; }
 
         [BsonIgnore]
         public DateTime? TokenExpires { get; set; }
 
+        public string RefreshToken { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public bool? IsActive { get; set; } = false;
         public DateTime? CreatedOn { get; set; } = DateTime.UtcNow;
