@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UiElementsRoutingModule } from './ui-elements-routing.module';
 import { ButtonComponent } from './button/button.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -43,7 +44,8 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     ReactiveFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    UiElementsRoutingModule
   ],
   exports: [
     ButtonComponent,
