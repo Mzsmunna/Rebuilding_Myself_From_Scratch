@@ -36,13 +36,6 @@ namespace RestAPI.Controllers
             .ToArray();
         }
 
-        [HttpGet, Authorize]
-        [ActionName("GetAllUsers")]
-        //[HttpGet(Name = "GetAllUsers")]
-        public IActionResult GetAllUsers()
-        {
-            var users = _userRepository.GetAll().Result;
-            return Ok(users);
-        }
+
     }
 }

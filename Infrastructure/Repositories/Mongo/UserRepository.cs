@@ -68,8 +68,8 @@ namespace Repositories.Mongo
 
             var filter = Builders<User>.Filter.Eq("Id", _id);
             var update = Builders<User>.Update
-                .Set(x => x.ClientId, User.ClientId)
-                .Set(x => x.AdminUserId, User.AdminUserId)
+                //.Set(x => x.ClientId, User.ClientId)
+                //.Set(x => x.AdminUserId, User.AdminUserId)
                 .Set(x => x.IsActive, User.IsActive)
                 //.Set(x => x.Guides, User.Guides)
                 .Set("ModifiedOn", DateTime.Now);

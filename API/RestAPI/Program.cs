@@ -12,19 +12,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-IConfiguration Configuration = builder.Configuration;
+IConfiguration _configuration = builder.Configuration;
 
 //builder.Services.AddJwtValidation();
 builder.Services.AddCors();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.Configure<MongoDBSettings>(Configuration.GetSection(nameof(MongoDBSettings)));
+builder.Services.Configure<MongoDBSettings>(_configuration.GetSection(nameof(MongoDBSettings)));
 builder.Services.AddTransient<MongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
 builder.Services.AddTransient<IMongoDBContext, MongoDBContext>();
 
-//RegisterCollectionMapping();
-
-builder.Services.AddSingleton<IMongoDBContext, MongoDBContext>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers();
@@ -51,7 +48,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(Configuration.GetValue<string>("JWTAuthSecretKey"))),
+                .GetBytes(_configuration.GetValue<string>("JWTAuthSecretKey"))),
             ValidateIssuer = false,
             ValidateAudience = false
         };
@@ -72,8 +69,10 @@ if (app.Environment.IsDevelopment())
         options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
     );
 }
-
-app.UseCors();
+else
+{
+    app.UseCors();
+}
 
 app.UseHttpsRedirection();
 
