@@ -23,17 +23,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cryptography", "Cryptography", "{A9B0B826-CF88-47B9-9EB8-ADD911F54FDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptography", "Infrastructure\Cryptography\Cryptography.csproj", "{6F30D80E-7B16-4B53-8FD8-7EB509DF6397}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptography", "Infrastructure\Cryptography\Cryptography.csproj", "{6F30D80E-7B16-4B53-8FD8-7EB509DF6397}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Infrastructure\Dependencies\Dependencies.csproj", "{F9777497-9AFA-4F28-92A9-F9E5D60E777E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dependencies", "Infrastructure\Dependencies\Dependencies.csproj", "{F9777497-9AFA-4F28-92A9-F9E5D60E777E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Infrastructure\Repositories\Repositories.csproj", "{6E6689E3-10E5-42C0-B3C1-0CCBA063D758}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Infrastructure\Repositories\Repositories.csproj", "{6E6689E3-10E5-42C0-B3C1-0CCBA063D758}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Infrastructure\Services\Services.csproj", "{681663AB-9CA4-4516-AC7E-185A4D018A22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Infrastructure\Services\Services.csproj", "{681663AB-9CA4-4516-AC7E-185A4D018A22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Infrastructure\Utilities\Utilities.csproj", "{6CBA5615-E1FF-43AD-8AFF-CF5BA3CFA027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "Infrastructure\Utilities\Utilities.csproj", "{6CBA5615-E1FF-43AD-8AFF-CF5BA3CFA027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{40295EBC-2FEC-425D-9BFB-C5DE16CEBC6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{40295EBC-2FEC-425D-9BFB-C5DE16CEBC6B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI", "AI", "{2DDEB48A-5FE4-4FD5-AF74-14DF330F937E}"
 EndProject
@@ -49,31 +49,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CP", "CP", "{467F309F-20D6-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exp", "Exp", "{78A85C82-A7AB-4F3A-B4C5-7256661284A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI", "Skills\AI\AI.csproj", "{91616F65-0633-4D34-B1C8-1859F04B2F51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AI", "Skills\AI\AI.csproj", "{91616F65-0633-4D34-B1C8-1859F04B2F51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algo", "Skills\Algo\Algo.csproj", "{25E6B53A-E397-4CB5-858A-7E715615D2A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algo", "Skills\Algo\Algo.csproj", "{25E6B53A-E397-4CB5-858A-7E715615D2A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP", "Skills\CP\CP.csproj", "{9B9E43E7-EE7B-4D81-9E99-F29A20B12DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CP", "Skills\CP\CP.csproj", "{9B9E43E7-EE7B-4D81-9E99-F29A20B12DDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSci", "Skills\DSci\DSci.csproj", "{7983FFDC-96E0-450D-8B1D-78BA1C3F27D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSci", "Skills\DSci\DSci.csproj", "{7983FFDC-96E0-450D-8B1D-78BA1C3F27D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp", "Skills\Exp\Exp.csproj", "{65B10B05-E037-46CA-9FA3-8D32391E4156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exp", "Skills\Exp\Exp.csproj", "{65B10B05-E037-46CA-9FA3-8D32391E4156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML", "Skills\ML\ML.csproj", "{30A35C27-8A97-4A74-8B59-704C839E4212}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML", "Skills\ML\ML.csproj", "{30A35C27-8A97-4A74-8B59-704C839E4212}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DP", "DP", "{732622AB-085F-4B0D-A43B-01E6B4A33157}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DP", "Skills\DP\DP.csproj", "{9E49CB20-3AD1-490C-9E96-BF1A7DE95469}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DP", "Skills\DP\DP.csproj", "{9E49CB20-3AD1-490C-9E96-BF1A7DE95469}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CC", "CC", "{2285008F-CEF6-4DA9-A4D5-9934E27B7519}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CC", "Skills\CC\CC.csproj", "{3D7051BA-0DD4-4C0C-B93F-BBB49266F00E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CC", "Skills\CC\CC.csproj", "{3D7051BA-0DD4-4C0C-B93F-BBB49266F00E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DStr", "Skills\DStr\DStr.csproj", "{294CB623-2D5F-4B0D-BBE0-2EE0579E9BBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DStr", "Skills\DStr\DStr.csproj", "{294CB623-2D5F-4B0D-BBE0-2EE0579E9BBA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RestAPI", "RestAPI", "{FF2CADF7-0D1F-4678-B1BB-5581222E9FB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAPI", "API\RestAPI\RestAPI.csproj", "{60E66C9B-90E9-418C-A034-EC58EDD984C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAPI", "API\RestAPI\RestAPI.csproj", "{60E66C9B-90E9-418C-A034-EC58EDD984C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{2F241AD1-567C-400B-A096-6F488FDC63FA}"
 EndProject
@@ -94,6 +94,27 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hybrid", "Hybrid", "{896A6DE6-A780-4080-A9A2-0FC96053BEC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{67E80B67-45BD-4913-A79A-0D40EC8A1B6B}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DemoPortfolio", "UI\Web\Angular\DemoPortfolio\", "{55560701-BB37-4706-A01E-EBA6A2200D09}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_14552"
+		Debug.AspNetCompiler.PhysicalPath = "UI\Web\Angular\DemoPortfolio\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_14552\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_14552"
+		Release.AspNetCompiler.PhysicalPath = "UI\Web\Angular\DemoPortfolio\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_14552\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "14552"
+		SlnRelativePath = "UI\Web\Angular\DemoPortfolio\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -169,6 +190,10 @@ Global
 		{60E66C9B-90E9-418C-A034-EC58EDD984C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60E66C9B-90E9-418C-A034-EC58EDD984C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60E66C9B-90E9-418C-A034-EC58EDD984C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55560701-BB37-4706-A01E-EBA6A2200D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55560701-BB37-4706-A01E-EBA6A2200D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55560701-BB37-4706-A01E-EBA6A2200D09}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{55560701-BB37-4706-A01E-EBA6A2200D09}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -214,6 +239,7 @@ Global
 		{B6C8EAC4-F5BF-4C9B-944E-008E70DB33D2} = {F705905D-722D-4AC9-AD6D-07C00993E111}
 		{896A6DE6-A780-4080-A9A2-0FC96053BEC9} = {2F241AD1-567C-400B-A096-6F488FDC63FA}
 		{67E80B67-45BD-4913-A79A-0D40EC8A1B6B} = {896A6DE6-A780-4080-A9A2-0FC96053BEC9}
+		{55560701-BB37-4706-A01E-EBA6A2200D09} = {1B02E409-EFA0-4008-9E70-C2895078A8B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2369D6A8-FE4B-4854-9B24-557EBC35B65E}
