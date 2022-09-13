@@ -3,12 +3,12 @@
   <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
     <!--href="#pills-login"-->
     <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" routerLink="/login" role="tab"
+      <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" routerLink="/auth/login" role="tab"
          aria-controls="pills-login" aria-selected="true">Login</a>
     </li>
     <!--href="#pills-register"-->
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="tab-register" data-mdb-toggle="pill" routerLink="/register" role="tab"
+      <a class="nav-link" id="tab-register" data-mdb-toggle="pill" routerLink="/auth/register" role="tab"
          aria-controls="pills-register" aria-selected="false">Register</a>
     </li>
   </ul>
@@ -62,7 +62,7 @@
 
           <div class="col-md-6 d-flex justify-content-center">
             <!-- Simple link -->
-            <a routerLink="/forget-password">Forgot password?</a>
+            <a routerLink="/auth/forget-password">Forgot password?</a>
           </div>
         </div>
 
@@ -71,7 +71,7 @@
 
         <!-- Register buttons -->
         <div class="text-center">
-          <p>Not a member? <a routerLink="/register">Register</a></p>
+          <p>Not a member? <a routerLink="/auth/register">Register</a></p>
         </div>
       </form>
     </div>

@@ -11,6 +11,9 @@ const routes: Routes = [
   { path: "about", component: AboutComponent },
   { path: "contact", component: ContactComponent },
   { path: "angular-basics", component: AngularBasicsComponent },
+
+   //lazy loading implementation
+  { path: "auth", loadChildren: () => import('./pages/user-auth/user-auth.module').then(opt => opt.UserAuthModule) }
 ];
 
 @NgModule({
