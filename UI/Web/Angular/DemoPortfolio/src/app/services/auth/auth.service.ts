@@ -8,6 +8,7 @@ import { User } from '../../view_models/auth/user.model';
 export class AuthService {
 
   private baseApiUrl: string = '';
+  private token: string | null = '';
 
   constructor(private http: HttpClient) {
 
@@ -27,5 +28,24 @@ export class AuthService {
   RefreshToken(user: User) {
 
     return this.http.post(this.baseApiUrl + 'RefreshToken', user);
+  }
+
+  GetToken() {
+
+    this.token = localStorage.getItem('token');
+
+    if (this.token) {
+
+      return this.token;
+
+    } else {
+
+      return '';
+    }
+  }
+
+  IsAuthenticated() {
+
+    return localStorage.getItem('token') != null;
   }
 }
