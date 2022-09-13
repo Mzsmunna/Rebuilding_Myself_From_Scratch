@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { AngularBasicsComponent } from './pages/angular-basics/angular-basics.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -13,7 +14,11 @@ const routes: Routes = [
   { path: "angular-basics", component: AngularBasicsComponent },
 
    //lazy loading implementation
-  { path: "auth", loadChildren: () => import('./pages/user-auth/user-auth.module').then(opt => opt.UserAuthModule) }
+  { path: "auth", loadChildren: () => import('./pages/user-auth/user-auth.module').then(opt => opt.UserAuthModule) },
+
+
+  //Not Found 404 page
+  { path: "**", component: NotFoundComponent },
 ];
 
 @NgModule({
