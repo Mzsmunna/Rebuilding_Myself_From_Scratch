@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { AngularBasicsComponent } from './pages/angular-basics/angular-basics.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AngularBasicsComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
