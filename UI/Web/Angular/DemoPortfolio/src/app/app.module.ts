@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { UiElementsModule } from './ui-elements/ui-elements.module';
 //import { UserAuthModule } from './pages/user-auth/user-auth.module'; //don't import when implementing lazy loading
@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { TokenInterceptorService } from './services/common/http-intercept/token-interceptor.service';
 
 
 @NgModule({
@@ -30,7 +31,13 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     UiElementsModule,
     //UserAuthModule //don't import when implementing lazy loading
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
