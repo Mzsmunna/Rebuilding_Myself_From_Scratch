@@ -25,11 +25,11 @@ namespace Repositories.Mongo.Configs
                     map.MapProperty(x => x.Id).SetElementName("_id");
                     map.GetMemberMap(x => x.Id).SetSerializer(new StringSerializer(BsonType.ObjectId));
 
-                    map.MapProperty(x => x.CreatedBy).SetElementName("CreatedBy");
-                    map.GetMemberMap(x => x.CreatedBy).SetSerializer(new StringSerializer(BsonType.ObjectId));
+                    //map.MapProperty(x => x.CreatedBy).SetElementName("CreatedBy");
+                    //map.GetMemberMap(x => x.CreatedBy).SetSerializer(new StringSerializer(BsonType.ObjectId));
 
-                    map.MapProperty(x => x.ModifiedBy).SetElementName("ModifiedBy");
-                    map.GetMemberMap(x => x.ModifiedBy).SetSerializer(new StringSerializer(BsonType.ObjectId));
+                    //map.MapProperty(x => x.ModifiedBy).SetElementName("ModifiedBy");
+                    //map.GetMemberMap(x => x.ModifiedBy).SetSerializer(new StringSerializer(BsonType.ObjectId));
                 });
             }
 

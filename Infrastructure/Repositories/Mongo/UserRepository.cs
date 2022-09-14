@@ -45,7 +45,12 @@ namespace Repositories.Mongo
             {
                 filter &= Builders<User>.Filter.Eq(x => x.Email, email);
 
-                return await _collection.Find(filter).FirstOrDefaultAsync();
+                var user = await _collection.Find(filter).FirstOrDefaultAsync();
+                
+                if (user != null)
+                    user.Password = string.Empty;
+
+                return user;
             }
 
             return null;
