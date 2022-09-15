@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiElementsRoutingModule } from './ui-elements-routing.module';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
+//UI-Components
 import { TileBarComponent } from './tile-bar/tile-bar.component';
 import { ImageCardComponent } from './cards/image-card/image-card.component';
 import { DefaultBarChartComponent } from './charts/bar-charts/default-bar-chart/default-bar-chart.component';
@@ -22,6 +25,10 @@ import { DefaultGenericFormComponent } from './generic-forms/default-generic-for
 import { UsMapComponent } from './maps/us-map/us-map.component';
 import { DefaultTableComponent } from './tables/default-table/default-table.component';
 import { AngularDataTableComponent } from './tables/angular-data-table/angular-data-table.component';
+import { NgSmartTableComponent } from './tables/ng-smart-table/ng-smart-table.component';
+import { MaterialTableComponent } from './tables/material-table/material-table.component';
+import { CustomTableComponent } from './tables/custom-table/custom-table.component';
+import { DefaultGraphComponent } from './graphs/default-graph/default-graph.component';
 
 @NgModule({
   declarations: [
@@ -45,10 +52,15 @@ import { AngularDataTableComponent } from './tables/angular-data-table/angular-d
     DefaultGenericFormComponent,
     UsMapComponent,
     DefaultTableComponent,
-    AngularDataTableComponent
+    AngularDataTableComponent,
+    NgSmartTableComponent,
+    MaterialTableComponent,
+    CustomTableComponent,
+    DefaultGraphComponent
   ],
   imports: [
     CommonModule,
+    Ng2SmartTableModule,
     UiElementsRoutingModule
   ],
   exports: [
@@ -72,7 +84,9 @@ import { AngularDataTableComponent } from './tables/angular-data-table/angular-d
     DefaultGenericFormComponent,
     UsMapComponent,
     DefaultTableComponent,
-    AngularDataTableComponent
+    AngularDataTableComponent,
+    NgSmartTableComponent,
+    MaterialTableComponent
   ]
 })
 export class UiElementsModule { }
