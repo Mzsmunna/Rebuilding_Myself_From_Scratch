@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { IssueService } from '../../services/features/issue/issue.service';
 import { UserService } from '../../services/features/user/user.service';
+import { User } from '../../view_models/auth/user.model';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,11 @@ import { UserService } from '../../services/features/user/user.service';
 })
 export class HomeComponent implements OnInit {
 
+  public usersList;
+
   constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService) {
 
+    this.usersList = [] as User[];
   }
 
   ngOnInit(): void {
@@ -32,9 +36,11 @@ export class HomeComponent implements OnInit {
 
     this.userService.GetAllUsers().subscribe(result => {
 
-        console.log(result);
+      console.log(result);
 
-      });
+      this.usersList = result as User[];
+
+    });
   }
 
   GetAllIssues() {
@@ -45,4 +51,37 @@ export class HomeComponent implements OnInit {
 
     });
   }
+
+  //Ng2 Smart Table Settings
+
+  public NgSmartTableSettings = {
+
+    columns: {
+
+      firstName: {
+        title: 'First Name'
+      },
+      lastName: {
+        title: 'Last Name'
+      },
+      gender: {
+        title: 'Gender'
+      },
+      birthDate: {
+        title: 'Birth Date'
+      },
+      age: {
+        title: 'Age'
+      },
+      email: {
+        title: 'Email'
+      },
+      role: {
+        title: 'Role',
+        filter: false,
+        editable: false,
+        addable: false
+      }
+    }
+  };
 }

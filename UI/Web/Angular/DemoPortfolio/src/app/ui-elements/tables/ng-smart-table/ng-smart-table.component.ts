@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LocalDataSource, ServerDataSource } from 'ng2-smart-table';
 
 @Component({
@@ -8,56 +8,71 @@ import { LocalDataSource, ServerDataSource } from 'ng2-smart-table';
 })
 export class NgSmartTableComponent implements OnInit {
 
-  public settings = {
-    columns: {
-      id: {
-        title: 'ID',
-        filter: false,
-        editable: false,
-        addable: false
-      },
-      name: {
-        title: 'Full Name'
-      },
-      username: {
-        title: 'User Name'
-      },
-      email: {
-        title: 'Email'
-      }
-    }
-  };
-
-  data = [
-    {
-      id: 1,
-      name: "Leanne Graham",
-      username: "Bret",
-      email: "Sincere@april.biz"
-    },
-    {
-      id: 2,
-      name: "Ervin Howell",
-      username: "Antonette",
-      email: "Shanna@melissa.tv"
-    },
-
-    // ... list of items
-
-    {
-      id: 11,
-      name: "Nicholas DuBuque",
-      username: "Nicholas.Stanton",
-      email: "Rey.Padberg@rosamond.biz"
-    }
-  ];
+  @Input() data: any;
+  @Input() settings: any;
 
   constructor() {
 
 
   }
 
+  //public settings = {
+
+  //  columns: {
+
+  //    firstName: {
+  //      title: 'First Name'
+  //    },
+  //    lastName: {
+  //      title: 'Last Name'
+  //    },
+  //    gender: {
+  //      title: 'Gender'
+  //    },
+  //    birthDate: {
+  //      title: 'Birth Date'
+  //    },
+  //    age: {
+  //      title: 'Age'
+  //    },
+  //    email: {
+  //      title: 'Email'
+  //    },
+  //    role: {
+  //      title: 'Role',
+  //      filter: false,
+  //      editable: false,
+  //      addable: false
+  //    }
+  //  }
+  //};
+  
+  //data = [
+  //  {
+  //    id: 1,
+  //    name: "Leanne Graham",
+  //    username: "Bret",
+  //    email: "Sincere@april.biz"
+  //  },
+  //  {
+  //    id: 2,
+  //    name: "Ervin Howell",
+  //    username: "Antonette",
+  //    email: "Shanna@melissa.tv"
+  //  },
+
+  //  // ... list of items
+
+  //  {
+  //    id: 11,
+  //    name: "Nicholas DuBuque",
+  //    username: "Nicholas.Stanton",
+  //    email: "Rey.Padberg@rosamond.biz"
+  //  }
+  //];
+
   ngOnInit(): void {
+
   }
 
 }
