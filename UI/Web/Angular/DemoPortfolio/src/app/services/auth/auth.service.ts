@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../../view_models/auth/user.model';
 
 @Injectable({
@@ -10,9 +11,14 @@ export class AuthService {
   private baseApiUrl: string = '';
   private token: string | null = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: Router) {
 
     this.baseApiUrl = "https://localhost:7074/api/User/";
+  }
+
+  Register(user: User) {
+
+    return this.http.post(this.baseApiUrl + 'Register', user);
   }
 
   Login(user: User) {
@@ -20,9 +26,11 @@ export class AuthService {
     return this.http.post(this.baseApiUrl + 'Login', user, { responseType: 'text' });
   }
 
-  Register(user: User) {
+  Logout() {
 
-    return this.http.post(this.baseApiUrl + 'Register', user);
+    //localStorage.removeItem("token");
+    localStorage.clear();
+    this.route.navigate(['auth/login']);
   }
 
   RefreshToken(user: User) {

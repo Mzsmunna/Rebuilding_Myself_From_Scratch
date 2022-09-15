@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //localStorage.removeItem("token");
-    localStorage.clear();
+    this.authService.Logout();
   }
 
   Login(isValid: boolean) {
