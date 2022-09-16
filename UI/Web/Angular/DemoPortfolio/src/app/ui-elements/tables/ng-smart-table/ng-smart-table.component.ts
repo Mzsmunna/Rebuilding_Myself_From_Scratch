@@ -17,7 +17,40 @@ export class NgSmartTableComponent implements OnInit {
   }
 
   //public settings = {
-
+  //  //mode: 'external',
+  //  pager: {
+  //    display: true,
+  //    perPage: 10
+  //  },
+  //  actions: {
+  //    columnTitle: 'Actions',
+  //    add: true,
+  //    edit: true,
+  //    delete: true,
+  //    position: 'right'
+  //  },
+  //  attr: {
+  //    class: 'table table-striped table-bordered table-hover'
+  //  },
+  //  defaultStyle: false,
+  //  add: {
+  //    addButtonContent: '<i class="fa-solid fa-square-plus"></i>',
+  //    createButtonContent: '<i class="fa-solid fa-square-check"></i>',
+  //    cancelButtonContent: '<i class="fa-solid fa-rectangle-xmark"></i>',
+  //    confirmCreate: true,
+  //  },
+  //  edit: {
+  //    editButtonContent: '<i class="fa-solid fa-pen-to-square"></i>',
+  //    saveButtonContent: '<i class="fa-solid fa-square-check"></i>',
+  //    cancelButtonContent: '<i class="fa-solid fa-rectangle-xmark"></i>',
+  //    confirmSave: true,
+  //  },
+  //  delete: {
+  //    deleteButtonContent: '<i class="fa-solid fa-trash-can"></i>',
+  //    saveButtonContent: '<i class="fa-solid fa-square-check"></i>',
+  //    cancelButtonContent: '<i class="fa-solid fa-rectangle-xmark"></i>',
+  //    confirmDelete: true,
+  //  },
   //  columns: {
 
   //    firstName: {
@@ -43,7 +76,19 @@ export class NgSmartTableComponent implements OnInit {
   //      filter: false,
   //      editable: false,
   //      addable: false
-  //    }
+  //    },
+  //    //avatar: {
+  //    //  title: 'Profile Image',
+  //    //  type: 'html',
+  //    //  valuePrepareFunction: (photo: string) => { return ``; },
+  //    //  filter: false
+  //    //},
+  //    //airline_name: {
+  //    //  title: 'Airline Name',
+  //    //  valuePrepareFunction: (idx, air) => {
+  //    //    return `${air.airline[0].name}`;
+  //    //  },
+  //    //},
   //  }
   //};
   
@@ -73,6 +118,26 @@ export class NgSmartTableComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  Create(event: any) {
+    console.log("Create Event In Console")
+    console.log(event);
+  }
+
+  Update(event: any) {
+    console.log("Edit Event In Console")
+    console.log(event);
+  }
+
+  Delete(event: any) {
+    console.log("Delete Event In Console")
+    console.log(event);
+    //if (window.confirm('Are you sure you want to delete?')) {
+    //  event.confirm.resolve();
+    //} else {
+    //  event.confirm.reject();
+    //}
   }
 
 }

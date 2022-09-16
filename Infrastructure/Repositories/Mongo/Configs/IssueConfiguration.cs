@@ -16,20 +16,14 @@ namespace Repositories.Mongo.Configs
 
         public string Register()
         {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(User)))
+            if (!BsonClassMap.IsClassMapRegistered(typeof(Issue)))
             {
-                BsonClassMap.RegisterClassMap<User>(map =>
+                BsonClassMap.RegisterClassMap<Issue>(map =>
                 {
                     map.AutoMap();
                     map.SetIgnoreExtraElements(true);
                     map.MapProperty(x => x.Id).SetElementName("_id");
                     map.GetMemberMap(x => x.Id).SetSerializer(new StringSerializer(BsonType.ObjectId));
-
-                    map.MapProperty(x => x.CreatedBy).SetElementName("CreatedBy");
-                    map.GetMemberMap(x => x.CreatedBy).SetSerializer(new StringSerializer(BsonType.ObjectId));
-
-                    map.MapProperty(x => x.ModifiedBy).SetElementName("ModifiedBy");
-                    map.GetMemberMap(x => x.ModifiedBy).SetSerializer(new StringSerializer(BsonType.ObjectId));
                 });
             }
 

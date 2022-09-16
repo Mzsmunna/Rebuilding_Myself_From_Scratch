@@ -1,1 +1,7 @@
-<ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+<ng2-smart-table
+    [settings]="settings"
+    [source]="data"
+    (createConfirm)="Create($event)"
+    (editConfirm)="Update($event)"
+    (deleteConfirm)="Delete($event)">
+</ng2-smart-table>
