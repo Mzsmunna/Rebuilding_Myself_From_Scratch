@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SearchField } from '../../../view_models/search-field.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,13 @@ export class IssueService {
     this.baseApiUrl = "https://localhost:7074/api/Issue/";
   }
 
-  GetAllIssues() {
+  GetAllIssue() {
 
-    return this.http.get(this.baseApiUrl + 'GetAllIssues');
+    return this.http.get(this.baseApiUrl + 'GetAllIssue');
+  }
+
+  GetAllIssues(currentPage: number, pageSize: number, sortField: string, sortDirection: string, searchQueries: SearchField[]) {
+
+    return this.http.get(this.baseApiUrl + "GetAllIssues?currentPage=" + currentPage + "&pageSize=" + pageSize + "&sortField=" + sortField + "&sortDirection=" + sortDirection + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries)));
   }
 }

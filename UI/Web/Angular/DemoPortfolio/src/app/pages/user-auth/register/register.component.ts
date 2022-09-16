@@ -18,15 +18,15 @@ export class RegisterComponent implements OnInit {
 
     this.user = {} as User;
     this.registerForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      gender: new FormControl(''),
-      birthDate: new FormControl(''),
-      age: new FormControl(''),
-      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required),
-      role: new FormControl(''),
+      FirstName: new FormControl('', Validators.required),
+      LastName: new FormControl('', Validators.required),
+      Gender: new FormControl(''),
+      BirthDate: new FormControl(''),
+      Age: new FormControl(''),
+      Email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      Password: new FormControl('', Validators.required),
+      ConfirmPassword: new FormControl('', Validators.required),
+      Role: new FormControl(''),
     })
   }
 
@@ -40,20 +40,20 @@ export class RegisterComponent implements OnInit {
 
     if (isValid) {
 
-      this.user.firstName = this.registerForm.value.firstName;
-      this.user.lastName = this.registerForm.value.lastName;
-      this.user.gender = this.registerForm.value.gender;
-      this.user.birthDate = new Date(this.registerForm.value.birthDate);
-      this.user.age = this.registerForm.value.age;
-      this.user.email = this.registerForm.value.email;
-      this.user.password = this.registerForm.value.password;
-      this.user.role = this.registerForm.value.role;
-      this.user.isActive = true;
+      this.user.FirstName = this.registerForm.value.FirstName;
+      this.user.LastName = this.registerForm.value.LastName;
+      this.user.Gender = this.registerForm.value.Gender;
+      this.user.BirthDate = new Date(this.registerForm.value.BirthDate);
+      this.user.Age = this.registerForm.value.Age;
+      this.user.Email = this.registerForm.value.Email;
+      this.user.Password = this.registerForm.value.Password;
+      this.user.Role = this.registerForm.value.Role;
+      this.user.IsActive = true;
 
       console.log(this.user);
       console.log(this.registerForm.value);
 
-      if (this.registerForm.value.password == this.registerForm.value.confirmPassword) {
+      if (this.registerForm.value.Password == this.registerForm.value.ConfirmPassword) {
 
         this.authService.Register(this.user).subscribe(result => {
 

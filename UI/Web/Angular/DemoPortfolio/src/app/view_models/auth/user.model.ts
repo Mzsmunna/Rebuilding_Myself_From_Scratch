@@ -1,17 +1,17 @@
 export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  gender: string;
-  birthDate: Date | null;
-  age: number | null;
-  email: string;
-  password: string;
-  refreshToken: string;
-  role: string;
-  isActive: boolean | null;
-  createdOn: Date | null;
-  modifiedOn: Date | null;
-  createdBy: string;
-  modifiedBy: string;
+  Id: string;
+  FirstName: string;
+  LastName: string;
+  Gender: string;
+  BirthDate: Date | null;
+  Age: number | null;
+  Email: string;
+  Password: string;
+  RefreshToken: string;
+  Role: string;
+  IsActive: boolean | null;
+  CreatedOn: Date | null;
+  ModifiedOn: Date | null;
+  CreatedBy: string;
+  ModifiedBy: string;
 }

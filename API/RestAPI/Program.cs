@@ -1,8 +1,10 @@
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 using Repositories.Mongo;
 using Repositories.Mongo.Core;
 using Swashbuckle.AspNetCore.Filters;
@@ -24,6 +26,15 @@ builder.Services.AddTransient<IMongoDBContext, MongoDBContext>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IIssueRepository, IssueRepository>();
+
+builder.Services.AddControllers(options =>
+{
+    options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
+
+}).AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -5,6 +5,7 @@ import { UserService } from '../../services/features/user/user.service';
 import { NgSmartTableComponent } from '../../ui-elements/tables/ng-smart-table/ng-smart-table.component';
 import { TableService } from '../../ui-elements/tables/table.service';
 import { User } from '../../view_models/auth/user.model';
+import { SearchField } from '../../view_models/search-field.model';
 
 @Component({
   selector: 'app-home',
@@ -14,37 +15,39 @@ import { User } from '../../view_models/auth/user.model';
 export class HomeComponent implements OnInit {
 
   public usersList;
+  public searchQueries;
 
   public NgSmartTableSettings: any;
 
   constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService) {
 
     this.usersList = [] as User[];
+    this.searchQueries = [] as SearchField[];
 
     //Ng2 Smart Table Configure:
     this.NgSmartTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
     this.NgSmartTableSettings.pager.perPage = 2;
     this.NgSmartTableSettings.columns = {
 
-      firstName: {
+      FirstName: {
         title: 'First Name'
       },
-      lastName: {
+      LastName: {
         title: 'Last Name'
       },
-      gender: {
+      Gender: {
         title: 'Gender'
       },
-      birthDate: {
+      BirthDate: {
         title: 'Birth Date'
       },
-      age: {
+      Age: {
         title: 'Age'
       },
-      email: {
+      Email: {
         title: 'Email'
       },
-      role: {
+      Role: {
         title: 'Role',
         filter: false,
         editable: false,
@@ -69,6 +72,7 @@ export class HomeComponent implements OnInit {
 
     this.GetToken();
     this.GetAllUsers();
+    this.GetAllIssue();
     this.GetAllIssues();
   }
 
@@ -90,9 +94,33 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  GetAllIssue() {
+
+    this.issueService.GetAllIssue().subscribe(result => {
+
+      console.log(result);
+
+    });
+  }
+
   GetAllIssues() {
 
-    this.issueService.GetAllIssues().subscribe(result => {
+    this.searchQueries.push({
+      Key: 'Summary',
+      Value: 'Learn Angular',
+      DataType: 'string',
+      DataSeparator: '',
+      IsString: true,
+      IsCaseSensitive: true,
+      IsPartialMatch: false,
+      IsBoolean: false,
+      IsDateTime: false,
+      IsAndQuery: true,
+      IsEncrypted: false,
+      QueryOrder: 1
+    });
+
+    this.issueService.GetAllIssues(1, 10, "Title", "ascending", this.searchQueries).subscribe(result => {
 
       console.log(result);
 

@@ -4,9 +4,11 @@ using Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text.Json;
 
 namespace RestAPI.Controllers
 {
@@ -16,7 +18,6 @@ namespace RestAPI.Controllers
     [Route("api/[controller]/[action]")]
     public class IssueController : ControllerBase
     {
-        public static Issue Issue = new Issue();
         private readonly IConfiguration _configuration;
         private readonly ILogger<IssueController> _logger;
         private readonly IIssueRepository _IssueRepository;
@@ -50,10 +51,28 @@ namespace RestAPI.Controllers
         }
 
         [HttpGet]
-        [ActionName("GetAllIssues")]
-        public IActionResult GetAllIssues()
+        [ActionName("GetAllIssue")]
+        public IActionResult GetAllIssue()
         {
             var Issues = _IssueRepository.GetAll().Result;
+            return Ok(Issues);
+        }
+
+        [HttpGet]
+        [ActionName("GetAllIssues")]
+        public IActionResult GetAllIssues(int currentPage, int pageSize, string sortField, string sortDirection, string searchQueries)
+        {
+            List<SearchField> queries = null;
+
+            if (!string.IsNullOrEmpty(searchQueries))
+            {
+                //var config = new JsonSerializerSettings { Error = (se, ev) => { ev.ErrorContext.Handled = true; } };
+                //queries = JsonConvert.DeserializeObject<List<SearchField>>(JsonConvert.SerializeObject(searchQueries), config);
+
+                queries = System.Text.Json.JsonSerializer.Deserialize<List<SearchField>>(searchQueries);
+            }
+                
+            var Issues = _IssueRepository.GetAll(currentPage, pageSize, sortField, sortDirection, queries).Result;
             return Ok(Issues);
         }
 
