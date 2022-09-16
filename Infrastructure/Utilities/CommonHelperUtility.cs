@@ -920,6 +920,40 @@ namespace Utilities
             return clonedObject;
         }
 
+        public static List<T> JsonListDeserialize<T>(string json) where T : class, new()
+        {
+            List<T> list = null;
+
+            if (!string.IsNullOrEmpty(json))
+            {
+                list = new List<T>();
+
+                //var config = new JsonSerializerSettings { Error = (se, ev) => { ev.ErrorContext.Handled = true; } };
+                //queries = JsonConvert.DeserializeObject<List<T>>(JsonConvert.SerializeObject(searchQueries), config);
+
+                list = System.Text.Json.JsonSerializer.Deserialize<List<T>>(json);
+            }
+
+            return list;
+        }
+
+        public static T JsonObjectDeserialize<T>(string json) where T : class, new()
+        {
+            T obj = null;
+
+            if (!string.IsNullOrEmpty(json))
+            {
+                obj = new T();
+
+                //var config = new JsonSerializerSettings { Error = (se, ev) => { ev.ErrorContext.Handled = true; } };
+                //queries = JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(searchQueries), config);
+
+                obj = System.Text.Json.JsonSerializer.Deserialize<T>(json);
+            }
+
+            return obj;
+        }
+
         public static List<string> GetIgnoredProperties<T>(T obj) where T : class, new()
         {
             var ignoreProperties = new List<string>();

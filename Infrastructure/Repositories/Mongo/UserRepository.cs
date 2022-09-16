@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Repositories.Helper;
 using Repositories.Mongo.Configs;
 using Repositories.Mongo.Core;
 using System;
@@ -18,6 +19,13 @@ namespace Repositories.Mongo
         public UserRepository(IMongoDBContext dbContext) : base(dbContext)
         {
             _collection = mongoCollection;
+        }
+
+        private FilterDefinition<User> BuildFilter(string id, List<SearchField> searchQueries = null)
+        {
+            //var filter = Builders<T>.Filter.Empty;
+            var filter = GenericFilter<User>.BuildDynamicFilter(id, searchQueries);
+            return filter;
         }
 
         public async Task<User> LoginUser(string email, string password)
@@ -56,10 +64,16 @@ namespace Repositories.Mongo
             return null;
         }
 
-        public async Task<List<User>> GetAll()
+        public async Task<long> GetAllUserCount(List<SearchField> searchQueries = null)
         {
-            var filter = Builders<User>.Filter.Empty;
-            return await _collection.Find(filter).ToListAsync();
+            var filter = BuildFilter(null, searchQueries);
+            return await _collection.Find(filter).CountAsync().ConfigureAwait(false);
+        }
+
+        public async Task<List<User>> GetAllUsers(int currentPage, int pageSize, string sortField, string sortDirection, List<SearchField> searchQueries = null)
+        {
+            var filter = BuildFilter(null, searchQueries);
+            return await _collection.Find(filter).Skip(currentPage* pageSize).Limit(pageSize).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<User> GetUser(string id)

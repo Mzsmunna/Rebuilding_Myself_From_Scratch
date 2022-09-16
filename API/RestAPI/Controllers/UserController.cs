@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Utilities;
 
 namespace RestAPI.Controllers
 {
@@ -186,11 +187,22 @@ namespace RestAPI.Controllers
         }
 
         [HttpGet, Authorize]
+        [ActionName("GetAllUserCount")]
+        //[HttpGet(Name = "GetAllUserCount")]
+        public IActionResult GetAllUserCount(string searchQueries)
+        {
+            List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
+            var users = _userRepository.GetAllUserCount(queries).Result;
+            return Ok(users);
+        }
+
+        [HttpGet, Authorize]
         [ActionName("GetAllUsers")]
         //[HttpGet(Name = "GetAllUsers")]
-        public IActionResult GetAllUsers()
+        public IActionResult GetAllUsers(int currentPage, int pageSize, string sortField, string sortDirection, string searchQueries)
         {
-            var users = _userRepository.GetAll().Result;
+            List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
+            var users = _userRepository.GetAllUsers(currentPage, pageSize, sortField, sortDirection, queries).Result;
             return Ok(users);
         }
     }

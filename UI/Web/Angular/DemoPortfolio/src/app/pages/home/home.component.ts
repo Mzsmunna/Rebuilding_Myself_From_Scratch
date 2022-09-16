@@ -5,6 +5,7 @@ import { UserService } from '../../services/features/user/user.service';
 import { NgSmartTableComponent } from '../../ui-elements/tables/ng-smart-table/ng-smart-table.component';
 import { TableService } from '../../ui-elements/tables/table.service';
 import { User } from '../../view_models/auth/user.model';
+import { Issue } from '../../view_models/issue.model';
 import { SearchField } from '../../view_models/search-field.model';
 
 @Component({
@@ -15,14 +16,22 @@ import { SearchField } from '../../view_models/search-field.model';
 export class HomeComponent implements OnInit {
 
   public usersList;
-  public searchQueries;
+  public usersListCount: number = 0;
+  public userSearchQueries;
+
+  public issueSearchQueries;
+  public issuesList;
+  public issuesListCount: number = 0;
 
   public NgSmartTableSettings: any;
 
   constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService) {
 
     this.usersList = [] as User[];
-    this.searchQueries = [] as SearchField[];
+    this.issuesList = [] as Issue[];
+
+    this.userSearchQueries = [] as SearchField[];
+    this.issueSearchQueries = [] as SearchField[];
 
     //Ng2 Smart Table Configure:
     this.NgSmartTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
@@ -70,48 +79,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.GetToken();
-    this.GetAllUsers();
-    this.GetAllIssue();
-    this.GetAllIssues();
-  }
-
-  GetToken() {
-
-    let token = this.authService.GetToken();
-
-    console.log("Token from Home :" + token);
-  }
-
-  GetAllUsers() {
-
-    this.userService.GetAllUsers().subscribe(result => {
-
-      console.log(result);
-
-      this.usersList = result as User[];
-
-    });
-  }
-
-  GetAllIssue() {
-
-    this.issueService.GetAllIssue().subscribe(result => {
-
-      console.log(result);
-
-    });
-  }
-
-  GetAllIssues() {
-
-    this.searchQueries.push({
-      Key: 'Summary',
-      Value: 'Learn Angular',
+    this.userSearchQueries.push({
+      Key: 'Email',
+      Value: 'mZamans@insightintechnology.com',
       DataType: 'string',
       DataSeparator: '',
       IsString: true,
-      IsCaseSensitive: true,
+      IsCaseSensitive: false,
       IsPartialMatch: false,
       IsBoolean: false,
       IsDateTime: false,
@@ -120,9 +94,75 @@ export class HomeComponent implements OnInit {
       QueryOrder: 1
     });
 
-    this.issueService.GetAllIssues(1, 10, "Title", "ascending", this.searchQueries).subscribe(result => {
+    this.issueSearchQueries.push({
+      Key: 'Summary',
+      Value: 'Learn Angular',
+      DataType: 'string',
+      DataSeparator: '',
+      IsString: true,
+      IsCaseSensitive: false,
+      IsPartialMatch: false,
+      IsBoolean: false,
+      IsDateTime: false,
+      IsAndQuery: true,
+      IsEncrypted: false,
+      QueryOrder: 1
+    });
+
+    this.GetToken();
+    this.GetAllUserCount();
+    this.GetAllUsers();
+    this.GetAllIssueCount();
+    this.GetAllIssues();
+  }
+
+  GetToken() {
+
+    let token = this.authService.GetToken();
+
+    console.log("Token from Home Page :" + token);
+  }
+
+  GetAllUserCount() {
+
+    this.userService.GetAllUserCount(this.userSearchQueries).subscribe(result => {
 
       console.log(result);
+
+      this.usersListCount = result as number;
+
+    });
+  }
+
+  GetAllUsers() {
+
+    this.userService.GetAllUsers(0, 10, "FirstName", "ascending", this.userSearchQueries).subscribe(result => {
+
+      console.log(result);
+
+      this.usersList = result as User[];
+
+    });
+  }
+
+  GetAllIssueCount() {
+
+    this.issueService.GetAllIssueCount(this.issueSearchQueries).subscribe(result => {
+
+      console.log(result);
+
+      this.issuesListCount = result as number;
+
+    });
+  }
+
+  GetAllIssues() {
+
+    this.issueService.GetAllIssues(0, 10, "Title", "ascending", this.issueSearchQueries).subscribe(result => {
+
+      console.log(result);
+
+      this.issuesList = result as Issue[];
 
     });
   }

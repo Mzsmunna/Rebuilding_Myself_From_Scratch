@@ -20,8 +20,8 @@ namespace Domain.Interfaces
 
         Task<Issue> GetById(string _id);
         Task<List<Issue>> GetAllByField(string fieldName, string fieldValue);
-        Task<List<Issue>> GetAll();
-        Task<List<Issue>> GetAll(int currentPage, int pageSize, string sortField, string sortDirection, List<SearchField> searchQueries = null);
+        Task<long> GetAllIssueCount(List<SearchField> searchQueries = null);
+        Task<List<Issue>> GetAllIssues(int currentPage, int pageSize, string sortField, string sortDirection, List<SearchField> searchQueries = null);
         int GetAllCount();
         string SaveMany(IEnumerable<Issue> records);
 

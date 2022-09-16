@@ -14,9 +14,9 @@ export class IssueService {
     this.baseApiUrl = "https://localhost:7074/api/Issue/";
   }
 
-  GetAllIssue() {
+  GetAllIssueCount(searchQueries: SearchField[]) {
 
-    return this.http.get(this.baseApiUrl + 'GetAllIssue');
+    return this.http.get(this.baseApiUrl + "GetAllIssueCount?searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries)));
   }
 
   GetAllIssues(currentPage: number, pageSize: number, sortField: string, sortDirection: string, searchQueries: SearchField[]) {

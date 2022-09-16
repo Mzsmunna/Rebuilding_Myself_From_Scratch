@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text.Json;
+using Utilities;
 
 namespace RestAPI.Controllers
 {
@@ -51,10 +52,11 @@ namespace RestAPI.Controllers
         }
 
         [HttpGet]
-        [ActionName("GetAllIssue")]
-        public IActionResult GetAllIssue()
+        [ActionName("GetAllIssueCount")]
+        public IActionResult GetAllIssueCount(string searchQueries)
         {
-            var Issues = _IssueRepository.GetAll().Result;
+            List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
+            var Issues = _IssueRepository.GetAllIssueCount(queries).Result;
             return Ok(Issues);
         }
 
@@ -62,17 +64,8 @@ namespace RestAPI.Controllers
         [ActionName("GetAllIssues")]
         public IActionResult GetAllIssues(int currentPage, int pageSize, string sortField, string sortDirection, string searchQueries)
         {
-            List<SearchField> queries = null;
-
-            if (!string.IsNullOrEmpty(searchQueries))
-            {
-                //var config = new JsonSerializerSettings { Error = (se, ev) => { ev.ErrorContext.Handled = true; } };
-                //queries = JsonConvert.DeserializeObject<List<SearchField>>(JsonConvert.SerializeObject(searchQueries), config);
-
-                queries = System.Text.Json.JsonSerializer.Deserialize<List<SearchField>>(searchQueries);
-            }
-                
-            var Issues = _IssueRepository.GetAll(currentPage, pageSize, sortField, sortDirection, queries).Result;
+            List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
+            var Issues = _IssueRepository.GetAllIssues(currentPage, pageSize, sortField, sortDirection, queries).Result;
             return Ok(Issues);
         }
 
@@ -80,7 +73,7 @@ namespace RestAPI.Controllers
         [ActionName("GetAllIssuesByAssigner")]
         public IActionResult GetAllIssuesByAssigner(string assignerId)
         {
-            var Issues = _IssueRepository.GetAll().Result;
+            var Issues = _IssueRepository.GetAllIssuesByAssigner(assignerId);
             return Ok(Issues);
         }
 
@@ -88,7 +81,7 @@ namespace RestAPI.Controllers
         [ActionName("GetAllIssuesByAssigned")]
         public IActionResult GetAllIssuesByAssigned(string assignedId)
         {
-            var Issues = _IssueRepository.GetAll().Result;
+            var Issues = _IssueRepository.GetAllIssuesByAssigned(assignedId);
             return Ok(Issues);
         }
     }
