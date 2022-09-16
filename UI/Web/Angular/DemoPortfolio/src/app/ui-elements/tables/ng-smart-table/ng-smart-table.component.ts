@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LocalDataSource, ServerDataSource } from 'ng2-smart-table';
 
 @Component({
@@ -11,86 +11,14 @@ export class NgSmartTableComponent implements OnInit {
   @Input() data: any;
   @Input() settings: any;
 
+  @Output() CreateEvent = new EventEmitter<any>();
+  @Output() UpdateEvent = new EventEmitter<any>();
+  @Output() DeleteEvent = new EventEmitter<any>();
+
   constructor() {
 
 
   }
-
-  //public settings = {
-  //  //mode: 'external',
-  //  pager: {
-  //    display: true,
-  //    perPage: 10
-  //  },
-  //  actions: {
-  //    columnTitle: 'Actions',
-  //    add: true,
-  //    edit: true,
-  //    delete: true,
-  //    position: 'right'
-  //  },
-  //  attr: {
-  //    class: 'table table-striped table-bordered table-hover'
-  //  },
-  //  defaultStyle: false,
-  //  add: {
-  //    addButtonContent: '<i class="fa-solid fa-square-plus"></i>',
-  //    createButtonContent: '<i class="fa-solid fa-square-check"></i>',
-  //    cancelButtonContent: '<i class="fa-solid fa-rectangle-xmark"></i>',
-  //    confirmCreate: true,
-  //  },
-  //  edit: {
-  //    editButtonContent: '<i class="fa-solid fa-pen-to-square"></i>',
-  //    saveButtonContent: '<i class="fa-solid fa-square-check"></i>',
-  //    cancelButtonContent: '<i class="fa-solid fa-rectangle-xmark"></i>',
-  //    confirmSave: true,
-  //  },
-  //  delete: {
-  //    deleteButtonContent: '<i class="fa-solid fa-trash-can"></i>',
-  //    saveButtonContent: '<i class="fa-solid fa-square-check"></i>',
-  //    cancelButtonContent: '<i class="fa-solid fa-rectangle-xmark"></i>',
-  //    confirmDelete: true,
-  //  },
-  //  columns: {
-
-  //    firstName: {
-  //      title: 'First Name'
-  //    },
-  //    lastName: {
-  //      title: 'Last Name'
-  //    },
-  //    gender: {
-  //      title: 'Gender'
-  //    },
-  //    birthDate: {
-  //      title: 'Birth Date'
-  //    },
-  //    age: {
-  //      title: 'Age'
-  //    },
-  //    email: {
-  //      title: 'Email'
-  //    },
-  //    role: {
-  //      title: 'Role',
-  //      filter: false,
-  //      editable: false,
-  //      addable: false
-  //    },
-  //    //avatar: {
-  //    //  title: 'Profile Image',
-  //    //  type: 'html',
-  //    //  valuePrepareFunction: (photo: string) => { return ``; },
-  //    //  filter: false
-  //    //},
-  //    //airline_name: {
-  //    //  title: 'Airline Name',
-  //    //  valuePrepareFunction: (idx, air) => {
-  //    //    return `${air.airline[0].name}`;
-  //    //  },
-  //    //},
-  //  }
-  //};
   
   //data = [
   //  {
@@ -121,23 +49,33 @@ export class NgSmartTableComponent implements OnInit {
   }
 
   Create(event: any) {
-    console.log("Create Event In Console")
-    console.log(event);
+
+    this.CreateEvent.emit(event);
   }
 
   Update(event: any) {
-    console.log("Edit Event In Console")
-    console.log(event);
+
+    this.UpdateEvent.emit(event);
   }
 
   Delete(event: any) {
-    console.log("Delete Event In Console")
-    console.log(event);
+
+    this.DeleteEvent.emit(event);
+
     //if (window.confirm('Are you sure you want to delete?')) {
     //  event.confirm.resolve();
     //} else {
     //  event.confirm.reject();
     //}
   }
+
+  //source = new ServerDataSource(http,
+  //  {
+  //    endPoint: 'http:localhost:xxxx/api/endpoint', //full-url-for-endpoint without any query strings 
+  //    dataKey: 'data.records' //your-list-path-from-response , 
+  //   pagerPageKey: 'page' // your backend endpoint param excpected for page number key, 
+  //   pagerLimitKey: 'pageSize, //your backend endpoint param excpected for page size
+  //   totalKey: 'data.total', //  total records returned in response path filterFieldKey: your filter keys template should set to '#field#' if you need to send params as you set, Default is '#field#_like' // ignore if no need for filteration 
+  //});
 
 }
