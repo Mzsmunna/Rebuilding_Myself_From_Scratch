@@ -81,12 +81,12 @@ export class HomeComponent implements OnInit {
 
     this.userSearchQueries.push({
       Key: 'Email',
-      Value: 'mZamans@insightintechnology.com',
+      Value: 'mZaman',
       DataType: 'string',
       DataSeparator: '',
       IsString: true,
       IsCaseSensitive: false,
-      IsPartialMatch: false,
+      IsPartialMatch: true,
       IsBoolean: false,
       IsDateTime: false,
       IsAndQuery: true,
@@ -96,12 +96,12 @@ export class HomeComponent implements OnInit {
 
     this.issueSearchQueries.push({
       Key: 'Summary',
-      Value: 'Learn Angular',
+      Value: 'Learn',
       DataType: 'string',
       DataSeparator: '',
       IsString: true,
       IsCaseSensitive: false,
-      IsPartialMatch: false,
+      IsPartialMatch: true,
       IsBoolean: false,
       IsDateTime: false,
       IsAndQuery: true,

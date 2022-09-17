@@ -15,11 +15,62 @@ export class NgSmartTableComponent implements OnInit {
   @Output() UpdateEvent = new EventEmitter<any>();
   @Output() DeleteEvent = new EventEmitter<any>();
 
+  source: LocalDataSource = new LocalDataSource();
+  currentPage: number = 0;
+  pageSize: number = 10;
+
   constructor() {
 
 
   }
-  
+
+  ngOnInit(): void {
+    //this.source.load(this.data);
+    //this.pageSize = this.settings.pager.perPage;
+    //this.source.onChanged().subscribe((change) => {
+
+    //  console.log(`ngOnInit: `);
+    //  console.log(change);
+
+    //  if (change.action === 'page') {
+
+    //    console.log(change.action);
+    //    console.log(change.paging.page);
+    //    this.currentPage = change.paging.page;
+    //  }
+
+    //});
+  }
+
+  ngOnChanges() {
+
+    console.log(`ngOnChanges: `);
+
+    this.source.load(this.data);
+    this.pageSize = this.settings.pager.perPage;
+
+    this.source.onChanged().subscribe((change: any) => {
+
+      console.log(`ng2TableOnChanges: `);
+      console.log(change);
+
+      //if (change.action === 'filter' && !_.isEmpty(change.elements)) {
+
+      //  let filters = _.compact(_.pluck(change.filter.filters, 'search'));
+      //  let filterRows = change.elements;
+      //  let totalRows = this.tables[this.selectedTableId].rows;
+
+      //  if (_.isEmpty(filters)) {
+      //    // There is no filters, it means filters were deleted, so dont do any 
+      //    return;
+      //  }
+
+      //  // Do whatever you want with the filter event
+
+      //}
+    });
+  }
+
   //data = [
   //  {
   //    id: 1,
@@ -44,10 +95,6 @@ export class NgSmartTableComponent implements OnInit {
   //  }
   //];
 
-  ngOnInit(): void {
-
-  }
-
   Create(event: any) {
 
     this.CreateEvent.emit(event);
@@ -61,6 +108,17 @@ export class NgSmartTableComponent implements OnInit {
   Delete(event: any) {
 
     this.DeleteEvent.emit(event);
+
+    //if (window.confirm('Are you sure you want to delete?')) {
+    //  event.confirm.resolve();
+    //} else {
+    //  event.confirm.reject();
+    //}
+  }
+
+  onChange(event: any) {
+
+    console.log(event);
 
     //if (window.confirm('Are you sure you want to delete?')) {
     //  event.confirm.resolve();
