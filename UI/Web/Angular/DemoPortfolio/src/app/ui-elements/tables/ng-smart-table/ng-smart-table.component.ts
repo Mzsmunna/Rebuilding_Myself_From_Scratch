@@ -16,15 +16,39 @@ export class NgSmartTableComponent implements OnInit {
   @Output() DeleteEvent = new EventEmitter<any>();
 
   source: LocalDataSource = new LocalDataSource();
-  currentPage: number = 0;
-  pageSize: number = 10;
 
   constructor() {
 
 
   }
 
+  //Custom Pagination
+  totalData: number = 100;
+  currentData: number = 0;
+  currentDataStartRange: number = 0;
+  currentDataEndRange: number = 0;
+  currentPage: number = 1;
+  totalPage: number = 10;
+  pageSize: number = 10;
+
+  onPageChange(isNext: boolean) {
+
+    if (isNext)
+      this.currentPage++;
+    else
+      this.currentPage--;
+    
+    this.currentDataEndRange = this.pageSize * this.currentPage;
+    this.currentDataStartRange = this.currentDataEndRange - this.pageSize + 1;
+  }
+
+  //End Custom Pagination
+
   ngOnInit(): void {
+
+    this.currentDataEndRange = this.pageSize * this.currentPage;
+    this.currentDataStartRange = this.currentDataEndRange - this.pageSize + 1;
+
     //this.source.load(this.data);
     //this.pageSize = this.settings.pager.perPage;
     //this.source.onChanged().subscribe((change) => {
@@ -47,7 +71,8 @@ export class NgSmartTableComponent implements OnInit {
     console.log(`ngOnChanges: `);
 
     this.source.load(this.data);
-    this.pageSize = this.settings.pager.perPage;
+    //this.pageSize = this.settings.pager.perPage;
+    //this.source.setPaging(2, 10);
 
     this.source.onChanged().subscribe((change: any) => {
 
