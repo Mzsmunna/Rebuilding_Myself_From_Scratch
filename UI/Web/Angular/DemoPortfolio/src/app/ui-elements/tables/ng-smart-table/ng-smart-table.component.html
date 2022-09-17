@@ -1,3 +1,13 @@
+<div class="pagination justify-content-end">
+  <select id="tableLength" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pageSize">
+    <option value="5">Page Size</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+  </select>
+</div>
+
 <ng2-smart-table
                  [settings]="settings"
                  [source]="source"
@@ -6,6 +16,7 @@
                  (deleteConfirm)="Delete($event)"
                  (custom)="onChange($event)">
 </ng2-smart-table>
+
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-end">
     <li class="page-item me-2">

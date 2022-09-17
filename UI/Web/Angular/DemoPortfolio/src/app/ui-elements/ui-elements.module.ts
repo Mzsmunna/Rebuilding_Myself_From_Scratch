@@ -29,6 +29,7 @@ import { NgSmartTableComponent } from './tables/ng-smart-table/ng-smart-table.co
 import { MaterialTableComponent } from './tables/material-table/material-table.component';
 import { CustomTableComponent } from './tables/custom-table/custom-table.component';
 import { DefaultGraphComponent } from './graphs/default-graph/default-graph.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,8 @@ import { DefaultGraphComponent } from './graphs/default-graph/default-graph.comp
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     Ng2SmartTableModule,
     UiElementsRoutingModule
   ],

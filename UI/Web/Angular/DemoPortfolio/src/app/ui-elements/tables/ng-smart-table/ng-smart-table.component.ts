@@ -38,16 +38,16 @@ export class NgSmartTableComponent implements OnInit {
     else
       this.currentPage--;
     
-    this.currentDataEndRange = this.pageSize * this.currentPage;
-    this.currentDataStartRange = this.currentDataEndRange - this.pageSize + 1;
+    this.currentDataEndRange = (this.data.length < this.pageSize) ? ((this.currentPage - 1) * this.pageSize) + this.data.length : this.pageSize * this.currentPage;
+    this.currentDataStartRange = (this.pageSize * this.currentPage) - this.pageSize + 1;
   }
 
   //End Custom Pagination
 
   ngOnInit(): void {
 
-    this.currentDataEndRange = this.pageSize * this.currentPage;
-    this.currentDataStartRange = this.currentDataEndRange - this.pageSize + 1;
+    this.currentDataEndRange = (this.data.length < this.pageSize) ? ((this.currentPage - 1) * this.pageSize) + this.data.length : this.pageSize * this.currentPage;
+    this.currentDataStartRange = (this.pageSize * this.currentPage) - this.pageSize + 1;
 
     //this.source.load(this.data);
     //this.pageSize = this.settings.pager.perPage;
@@ -71,7 +71,11 @@ export class NgSmartTableComponent implements OnInit {
     console.log(`ngOnChanges: `);
 
     this.source.load(this.data);
-    //this.pageSize = this.settings.pager.perPage;
+    this.pageSize = this.settings.pager.perPage;
+
+    this.currentDataEndRange = (this.data.length < this.pageSize) ? ((this.currentPage - 1) * this.pageSize) + this.data.length : this.pageSize * this.currentPage;
+    this.currentDataStartRange = (this.pageSize * this.currentPage) - this.pageSize + 1;
+    
     //this.source.setPaging(2, 10);
 
     this.source.onChanged().subscribe((change: any) => {

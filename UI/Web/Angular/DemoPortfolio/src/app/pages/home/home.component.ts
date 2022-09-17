@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
     //Ng2 Smart Table Configure:
     this.NgSmartTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
-    this.NgSmartTableSettings.pager.perPage = 2;
+    this.NgSmartTableSettings.pager.perPage = 5;
     this.NgSmartTableSettings.columns = {
 
       FirstName: {
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
 
     this.userSearchQueries.push({
       Key: 'Email',
-      Value: 'mZaman',
+      Value: '',
       DataType: 'string',
       DataSeparator: '',
       IsString: true,

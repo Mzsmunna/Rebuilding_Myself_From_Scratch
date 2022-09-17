@@ -16,8 +16,8 @@ export class TableService {
     this.NgSmartTableSettings = {
       //mode: 'external',
       pager: {
-        display: true,
-        perPage: 20
+        display: false,
+        //perPage: 20
       },
       actions: {
         columnTitle: 'Actions',
