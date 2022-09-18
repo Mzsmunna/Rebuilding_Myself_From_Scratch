@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
 import { LocalDataSource, ServerDataSource } from 'ng2-smart-table';
 
 @Component({
@@ -19,7 +19,7 @@ export class NgSmartTableComponent implements OnInit {
 
   constructor() {
 
-
+    this.data = [];
   }
 
   //Custom Pagination
@@ -66,9 +66,26 @@ export class NgSmartTableComponent implements OnInit {
     //this.pageSize = this.settings.pager.perPage;
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
 
-    console.log(`ngOnChanges: `);
+    console.log(`ngOnChanges: app-ng-smart-table`);
+
+    if (changes) {
+
+      console.log(changes);
+      //  console.log("app-ng-smart-table : updated data");
+      //  console.log(changes['data']['currentValue']);
+      //  this.data = changes['data']['currentValue'];
+      //console.log(this.data);
+
+      const currentItem: SimpleChange = changes["data"];
+      console.log('prev value: ', currentItem.previousValue);
+      console.log('got item: ', currentItem.currentValue);
+      this.data = changes['data']['currentValue'];
+      this.source.empty();
+      this.source.refresh();
+      //this.source.load(this.data);
+    }  
 
     this.source.load(this.data);
     this.pageSize = this.settings.pager.perPage;
@@ -136,16 +153,19 @@ export class NgSmartTableComponent implements OnInit {
   Create(event: any) {
 
     this.CreateEvent.emit(event);
+    this.updatePagination();
   }
 
   Update(event: any) {
 
     this.UpdateEvent.emit(event);
+    this.updatePagination();
   }
 
   Delete(event: any) {
 
     this.DeleteEvent.emit(event);
+    this.updatePagination();
 
     //if (window.confirm('Are you sure you want to delete?')) {
     //  event.confirm.resolve();

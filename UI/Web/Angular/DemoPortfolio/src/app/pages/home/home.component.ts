@@ -142,6 +142,15 @@ export class HomeComponent implements OnInit {
 
       this.usersList = result as User[];
 
+      //let timer = setTimeout(() => {
+
+      //  this.usersList.pop();
+
+      //  console.log("updated users");
+      //  console.log(this.usersList);
+
+      //}, 5000);
+
     });
   }
 
@@ -197,6 +206,14 @@ export class HomeComponent implements OnInit {
     console.log(event);
     console.log("Data:");
     console.log(event.data);
+
+    //var user = event.data as User;
+    //this.usersList.pop();
+
+    this.usersList.forEach((value, index) => {
+      if (value.Id == event.data.Id) this.usersList.splice(index, 1);
+    });
+    console.log("Updated data list :", this.usersList);
 
     event.confirm.resolve();
     //event.confirm.reject();
