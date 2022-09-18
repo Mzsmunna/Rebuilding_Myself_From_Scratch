@@ -38,32 +38,32 @@ export class NgSmartTableComponent implements OnInit {
     else
       this.currentPage--;
     
-    this.currentDataEndRange = (this.data.length < this.pageSize) ? ((this.currentPage - 1) * this.pageSize) + this.data.length : this.pageSize * this.currentPage;
-    this.currentDataStartRange = (this.pageSize * this.currentPage) - this.pageSize + 1;
+    this.updatePagination();
+  }
+
+  updatePagination(): void {
+
+    if (this.data.length > 0) {
+
+      this.currentDataEndRange = (this.data.length < this.pageSize) ? ((this.currentPage - 1) * this.pageSize) + this.data.length : this.pageSize * this.currentPage;
+      this.currentDataStartRange = (this.pageSize * this.currentPage) - this.pageSize + 1;
+
+    } else {
+
+      this.currentDataEndRange = 0;
+      this.currentDataStartRange = 0;
+    }
+    
   }
 
   //End Custom Pagination
 
   ngOnInit(): void {
 
-    this.currentDataEndRange = (this.data.length < this.pageSize) ? ((this.currentPage - 1) * this.pageSize) + this.data.length : this.pageSize * this.currentPage;
-    this.currentDataStartRange = (this.pageSize * this.currentPage) - this.pageSize + 1;
+    this.updatePagination();
 
     //this.source.load(this.data);
     //this.pageSize = this.settings.pager.perPage;
-    //this.source.onChanged().subscribe((change) => {
-
-    //  console.log(`ngOnInit: `);
-    //  console.log(change);
-
-    //  if (change.action === 'page') {
-
-    //    console.log(change.action);
-    //    console.log(change.paging.page);
-    //    this.currentPage = change.paging.page;
-    //  }
-
-    //});
   }
 
   ngOnChanges() {
@@ -73,8 +73,7 @@ export class NgSmartTableComponent implements OnInit {
     this.source.load(this.data);
     this.pageSize = this.settings.pager.perPage;
 
-    this.currentDataEndRange = (this.data.length < this.pageSize) ? ((this.currentPage - 1) * this.pageSize) + this.data.length : this.pageSize * this.currentPage;
-    this.currentDataStartRange = (this.pageSize * this.currentPage) - this.pageSize + 1;
+    this.updatePagination();
     
     //this.source.setPaging(2, 10);
 
@@ -97,6 +96,16 @@ export class NgSmartTableComponent implements OnInit {
       //  // Do whatever you want with the filter event
 
       //}
+
+      //  if (change.action === 'page') {
+
+      //    console.log(change.action);
+      //    console.log(change.paging.page);
+      //    this.currentPage = change.paging.page;
+      //  }
+
+      //});
+
     });
   }
 

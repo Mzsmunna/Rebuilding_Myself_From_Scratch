@@ -17,7 +17,7 @@ export class TableService {
       //mode: 'external',
       pager: {
         display: false,
-        //perPage: 20
+        perPage: 20
       },
       actions: {
         columnTitle: 'Actions',
