@@ -180,42 +180,72 @@ export class HomeComponent implements OnInit {
 
   NgTableOnCreate(event: any) {
 
-    console.log("Create Event Triggered:");
-    console.log(event);
-    console.log("Data:");
-    console.log(event.newData);
+    var user = event.newData as User;
+    this.userService.SaveUser(user).subscribe(result => {
 
-    event.confirm.resolve();
-    //event.confirm.reject();
+      console.log(result);
+
+      var user = result as User;
+
+      if (user) {
+
+        event.confirm.resolve();
+
+      } else {
+
+        event.confirm.reject();
+      }
+
+    });
+    
   }
 
   NgTableOnUpdate(event: any) {
 
-    console.log("Update Event Triggered:");
-    console.log(event);
-    console.log("Data:");
-    console.log(event.newData);
+    var user = event.newData as User;
+    this.userService.UpdateUser(user).subscribe(result => {
 
-    event.confirm.resolve();
-    //event.confirm.reject();
+      console.log(result);
+
+      var user = result as User;
+
+      if (user) {
+
+        event.confirm.resolve();
+
+      } else {
+
+        event.confirm.reject();
+      }
+
+    });
+
   }
 
   NgTableOnDelete(event: any) {
 
-    console.log("Delete Event Triggered:");
-    console.log(event);
-    console.log("Data:");
-    console.log(event.data);
+    var user = event.data as User;
 
-    //var user = event.data as User;
-    //this.usersList.pop();
+    //this.usersList.forEach((value, index) => {
+    //  if (value.Id == event.data.Id) this.usersList.splice(index, 1);
+    //});
 
-    this.usersList.forEach((value, index) => {
-      if (value.Id == event.data.Id) this.usersList.splice(index, 1);
+    this.userService.DeleteUser(user).subscribe(result => {
+
+      console.log(result);
+
+      var isDeleted = result as boolean;
+
+      if (isDeleted) {
+
+        event.confirm.resolve();
+
+      } else {
+
+        event.confirm.reject();
+      }
+
     });
-    console.log("Updated data list :", this.usersList);
 
-    event.confirm.resolve();
-    //event.confirm.reject();
   }
 }

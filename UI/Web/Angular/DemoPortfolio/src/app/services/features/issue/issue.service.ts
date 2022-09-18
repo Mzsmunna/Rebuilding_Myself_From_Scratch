@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Issue } from '../../../view_models/issue.model';
 import { SearchField } from '../../../view_models/search-field.model';
 
 @Injectable({
@@ -14,13 +16,17 @@ export class IssueService {
     this.baseApiUrl = "https://localhost:7074/api/Issue/";
   }
 
-  GetAllIssueCount(searchQueries: SearchField[]) {
+  GetAllIssueCount(searchQueries: SearchField[]): Observable<number> {
 
-    return this.http.get(this.baseApiUrl + "GetAllIssueCount?searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries)));
+    return this.http.get(this.baseApiUrl + "GetAllIssueCount?searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<number>;
   }
 
-  GetAllIssues(currentPage: number, pageSize: number, sortField: string, sortDirection: string, searchQueries: SearchField[]) {
+  GetAllIssues(currentPage: number, pageSize: number, sortField: string, sortDirection: string, searchQueries: SearchField[]): Observable<Issue[]> {
 
-    return this.http.get(this.baseApiUrl + "GetAllIssues?currentPage=" + currentPage + "&pageSize=" + pageSize + "&sortField=" + sortField + "&sortDirection=" + sortDirection + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries)));
+    return this.http.get(this.baseApiUrl + "GetAllIssues?currentPage=" + currentPage
+      + "&pageSize=" + pageSize
+      + "&sortField=" + sortField
+      + "&sortDirection=" + sortDirection
+      + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<Issue[]>;
   }
 }

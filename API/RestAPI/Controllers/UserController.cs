@@ -198,11 +198,34 @@ namespace RestAPI.Controllers
 
         [HttpGet, Authorize]
         [ActionName("GetAllUsers")]
-        //[HttpGet(Name = "GetAllUsers")]
         public IActionResult GetAllUsers(int currentPage, int pageSize, string sortField, string sortDirection, string searchQueries)
         {
             List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
             var users = _userRepository.GetAllUsers(currentPage, pageSize, sortField, sortDirection, queries).Result;
+            return Ok(users);
+        }
+
+        [HttpPost, Authorize]
+        [ActionName("SaveUser")]
+        public IActionResult SaveUser(User user)
+        {
+            var users = _userRepository.Save(user);
+            return Ok(users);
+        }
+
+        [HttpPut, Authorize]
+        [ActionName("UpdateUser")]
+        public IActionResult UpdateUser(User user)
+        {
+            var users = _userRepository.Save(user);
+            return Ok(users);
+        }
+
+        [HttpDelete, Authorize]
+        [ActionName("DeleteUser")]
+        public IActionResult DeleteUser(string userId)
+        {
+            var users = _userRepository.DeleteById(userId);
             return Ok(users);
         }
     }

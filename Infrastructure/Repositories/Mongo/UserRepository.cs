@@ -96,10 +96,20 @@ namespace Repositories.Mongo
             return await _collection.Find(filter).ToListAsync();
         }
 
-        public string Save(IEntity entity)
+        public User Save(IEntity entity)
         {
             MongoDbOperationResult result = SaveAsync(entity).Result;
-            return result.Id;
+            var user = GetUser(result.Id).Result;
+            return user;
+        }
+
+        public bool DeleteById(string _id)
+        {
+            var filter = BuildFilter(_id);
+            //var data = _collection.Find(filter).FirstOrDefault();
+            DeleteResult result = _collection.DeleteMany(filter);
+
+            return true;
         }
 
         public async Task<bool> UpdateUser(User User)
