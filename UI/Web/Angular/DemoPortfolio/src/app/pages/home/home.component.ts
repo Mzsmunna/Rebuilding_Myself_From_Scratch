@@ -15,12 +15,12 @@ import { SearchField } from '../../view_models/search-field.model';
 })
 export class HomeComponent implements OnInit {
 
-  public usersList;
+  public usersList: User[];
   public usersListCount: number = 0;
-  public userSearchQueries;
+  public userSearchQueries: SearchField[];
 
-  public issueSearchQueries;
-  public issuesList;
+  public issueSearchQueries: SearchField[];
+  public issuesList: Issue[];
   public issuesListCount: number = 0;
 
   public NgSmartTableSettings: any;

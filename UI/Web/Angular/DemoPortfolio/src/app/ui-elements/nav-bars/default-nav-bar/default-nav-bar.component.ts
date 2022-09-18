@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 export class DefaultNavBarComponent implements OnInit {
 
   isAuthenticated = false;
+  isAdmin = false;
 
   constructor(private authService: AuthService) { }
 
@@ -24,6 +25,7 @@ export class DefaultNavBarComponent implements OnInit {
 
     //console.log(`ngDoCheck: Nav-Bar`);
     this.isAuthenticated = this.authService.IsAuthenticated();
+    this.isAdmin = this.authService.IsAdmin();
   }
 
   Logout() {

@@ -40,6 +40,8 @@ namespace RestAPI.Controllers
                 else
                     user.ModifiedOn = DateTime.UtcNow;
 
+                user.Email = user.Email.ToLower();
+
                 _userRepository.Save(user);
 
                 return Ok(user);
@@ -71,9 +73,9 @@ namespace RestAPI.Controllers
                     }
                     else
                     {
-                        string token = CreateToken(user);
+                        string token = CreateToken(existingUser);
                         var refreshToken = GenerateRefreshToken();
-                        SetRefreshToken(refreshToken, user);
+                        SetRefreshToken(refreshToken, existingUser);
                         return Ok(token);
                     }
                 }
@@ -147,10 +149,13 @@ namespace RestAPI.Controllers
 
         private string CreateToken(User user)
         {
+            var tokenExpiredOn = DateTime.UtcNow.AddDays(1);
+
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, user.Email.ToLower()),
-                new Claim(ClaimTypes.Role, user.Role.ToLower())
+                new Claim(ClaimTypes.Role, user.Role.ToLower()),
+                new Claim(ClaimTypes.Expiration, tokenExpiredOn.ToString())
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -160,7 +165,7 @@ namespace RestAPI.Controllers
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(1),
+                expires: tokenExpiredOn,
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
