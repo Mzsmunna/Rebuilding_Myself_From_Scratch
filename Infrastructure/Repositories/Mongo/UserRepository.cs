@@ -98,8 +98,18 @@ namespace Repositories.Mongo
 
         public User Save(IEntity entity)
         {
+            var user = entity as User;
+
+            if (user == null) return null;
+
+            user.Gender = user.Gender.ToLower();
+            user.Email = user.Email.ToLower();
+            user.Role = user.Role.ToLower();
+
+            entity = user;
+
             MongoDbOperationResult result = SaveAsync(entity).Result;
-            var user = GetUser(result.Id).Result;
+            user = GetUser(result.Id).Result;
             return user;
         }
 

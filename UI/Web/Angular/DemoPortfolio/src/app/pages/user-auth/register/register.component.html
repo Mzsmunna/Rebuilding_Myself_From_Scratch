@@ -41,21 +41,22 @@
         <!-- First Name input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerFirstName">First Name:</label>
-          <input type="text" id="registerFirstName" class="form-control" name="FirstName" formControlName="FirstName" />
+          <input type="text" id="registerFirstName" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['FirstName'].errors?.['minlength']}" name="FirstName" formControlName="FirstName" />
+          <label for="registerFirstName" class="form-label text-danger" *ngIf="registerForm.controls['FirstName'].errors?.['minlength']">Minimum length should be 3</label>
         </div>
 
         <!-- Last Name input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerLastName">Last Name:</label>
-          <input type="text" id="registerLastName" class="form-control" name="LastName" formControlName="LastName" />
+          <input type="text" id="registerLastName" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['LastName'].errors?.['minlength']}" name="LastName" formControlName="LastName" />
+          <label for="registerLastName" class="form-label text-danger" *ngIf="registerForm.controls['LastName'].errors?.['minlength']">Minimum length should be 3</label>
         </div>
 
         <!-- Gender select -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerGender">Gender</label>
-          <select id="registerGender" class="form-select" aria-label="Default select example" name="Gender" formControlName="Gender">
-            <option selected>Select Gender</option>
-            <option value="male">Male</option>
+          <select id="registerGender" class="form-select" aria-label="Default select example" name="Gender" formControlName="Gender" >
+            <option selected value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
@@ -84,9 +85,9 @@
         <!-- Role select -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerGender">Role</label>
-          <select id="registerRole" class="form-select" aria-label="Default select example" name="Role" formControlName="Role">
-            <option selected>Select Role</option>
-            <option value="user">User</option>
+          <select id="registerRole" class="form-select" aria-label="Default select example" name="Role" formControlName="Role" >
+            <!--<option >Select Role</option>-->
+            <option selected value="user">User</option>
             <option value="moderator">Moderator</option>
             <option value="manager">Manager</option>
             <option value="admin">Admin</option>
@@ -103,7 +104,7 @@
         <!-- Repeat Password input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerConfirmPassword">Confirm password</label>
-          <input type="password" id="registerConfirmPassword" class="form-control" name="ConfirmPassword" formControlName="ConfirmPassword" />
+          <input type="password" id="registerConfirmPassword" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['ConfirmPassword'].touched && registerForm.controls['ConfirmPassword'].errors}" name="ConfirmPassword" formControlName="ConfirmPassword" />
           <label for="registerConfirmPassword" class="form-label text-danger" *ngIf="registerForm.controls['ConfirmPassword'].errors?.['minlength']">Minimum password length should be 5</label>
           <label for="registerConfirmPassword" class="form-label text-danger" *ngIf="registerForm.controls['ConfirmPassword'].errors?.['notmatched']">Password didn't match</label>
         </div>

@@ -40,8 +40,6 @@ namespace RestAPI.Controllers
                 else
                     user.ModifiedOn = DateTime.UtcNow;
 
-                user.Email = user.Email.ToLower();
-
                 _userRepository.Save(user);
 
                 return Ok(user);

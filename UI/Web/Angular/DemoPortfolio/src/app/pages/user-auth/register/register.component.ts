@@ -21,9 +21,9 @@ export class RegisterComponent implements OnInit {
 
     //One Way
     //this.registerForm = new FormGroup({
-    //  'FirstName': new FormControl('', Validators.required),
-    //  'LastName': new FormControl('', Validators.required),
-    //  'Gender': new FormControl(''),
+    //  'FirstName': new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+    //  'LastName': new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+    //  'Gender': new FormControl('', Validators.required),
     //  'BirthDate': new FormControl(''),
     //  'Age': new FormControl(''),
     //  'Email': new FormControl('', Validators.compose([Validators.required, Validators.email])),
@@ -34,15 +34,15 @@ export class RegisterComponent implements OnInit {
 
     //Another Way
     this.registerForm = new FormGroup({
-      FirstName: new FormControl('', Validators.required),
-      LastName: new FormControl('', Validators.required),
-      Gender: new FormControl(''),
+      FirstName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
+      LastName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
+      Gender: new FormControl('male', Validators.required),
       BirthDate: new FormControl(''),
       Age: new FormControl(''),
       Email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
       Password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
       ConfirmPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
-      Role: new FormControl(''),
+      Role: new FormControl('user', Validators.required),
     }, { validators: CustomValidation.passwordMatchValidate });
   }
 
