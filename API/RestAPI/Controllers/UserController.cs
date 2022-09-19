@@ -209,6 +209,15 @@ namespace RestAPI.Controllers
             return Ok(users);
         }
 
+        [HttpGet, Authorize]
+        [ActionName("GetUser")]
+        public IActionResult GetUser(string userId)
+        {
+            var users = _userRepository.GetUser(userId).Result;
+            users.Password = "?";
+            return Ok(users);
+        }
+
         [HttpPost, Authorize]
         [ActionName("SaveUser")]
         public IActionResult SaveUser(User user)

@@ -30,6 +30,11 @@ export class UserService {
       + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<User[]>;
   }
 
+  GetUser(userId: string): Observable<User> {
+
+    return this.http.get(this.baseApiUrl + 'GetUser?userId=' + userId) as Observable<User>;
+  }
+
   SaveUser(user: User): Observable<User> {
 
     return this.http.post(this.baseApiUrl + 'SaveUser', user) as Observable<User>;

@@ -1,12 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
-import { IssueService } from '../../services/features/issue/issue.service';
-import { UserService } from '../../services/features/user/user.service';
-import { NgSmartTableComponent } from '../../ui-elements/tables/ng-smart-table/ng-smart-table.component';
 import { TableService } from '../../ui-elements/tables/table.service';
 import { User } from '../../view_models/auth/user.model';
-import { Issue } from '../../view_models/issue.model';
-import { SearchField } from '../../view_models/search-field.model';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +14,12 @@ export class HomeComponent implements OnInit {
   public userTableSettings: any;
   public issueTableSettings: any;
 
-  constructor(private tableService: TableService) {
+  activeTab: string = "";
+  public user: User;
+
+  constructor(private authService: AuthService, private tableService: TableService, private route: Router) {
+
+    this.user = {} as User;
 
     //User Table Configure:
     this.userTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
@@ -115,6 +116,27 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.GetLoggedUser();
+  }
+
+  GetLoggedUser() {
+
+    this.authService.GetLoggedUser().subscribe(result => {
+
+      console.log("Logged user: ", result);
+
+      this.user = result as User;
+
+      if (this.user.Role.toLowerCase() == "user") {
+
+        this.route.navigate(['/home/issues']);
+
+      } else {
+
+        this.route.navigate(['/home/users']);
+      }
+
+    });
   }
 
 }

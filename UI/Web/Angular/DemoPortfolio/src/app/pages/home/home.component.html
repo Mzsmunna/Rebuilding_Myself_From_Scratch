@@ -1,4 +1,12 @@
 <h1 class="display-1 text-center">Demo To-Do Jira Portfolio</h1>
 
-<app-user-panel></app-user-panel>
-<app-issue-panel></app-issue-panel>
+<!--<app-user-panel></app-user-panel>
+<app-issue-panel></app-issue-panel>-->
+
+<nav class="nav nav-pills nav-fill">
+  <a class="nav-link active" routerLink="users">Users</a>
+  <a class="nav-link" routerLink="issues">Issues</a>
+  <!--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+</nav>
+
+<router-outlet></router-outlet>

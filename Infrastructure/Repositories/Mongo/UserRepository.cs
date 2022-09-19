@@ -56,7 +56,7 @@ namespace Repositories.Mongo
                 var user = await _collection.Find(filter).FirstOrDefaultAsync();
                 
                 if (user != null)
-                    user.Password = string.Empty;
+                    user.Password = "?";
 
                 return user;
             }

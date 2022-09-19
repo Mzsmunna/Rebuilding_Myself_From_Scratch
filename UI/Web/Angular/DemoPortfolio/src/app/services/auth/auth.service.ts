@@ -11,6 +11,7 @@ export class AuthService {
 
   private baseApiUrl: string = '';
   private token: string | null = '';
+  private userId: string = '';
 
   constructor(private http: HttpClient, private route: Router) {
 
@@ -30,6 +31,12 @@ export class AuthService {
   Login(user: User) {
 
     return this.http.post(this.baseApiUrl + 'Login', user, { responseType: 'text' });
+  }
+
+  GetLoggedUser() {
+
+    this.userId = this.GetCurrentUserId();
+    return this.http.get(this.baseApiUrl + 'GetUser?userId=' + this.userId);
   }
 
   Logout(): void {
@@ -62,6 +69,22 @@ export class AuthService {
 
       var claims = jwt_decode<any>(this.token); //JSON.parse(Buffer.from(this.token.split('.')[1], 'base64').toString());
       return claims['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] as string;
+
+    } else {
+
+      return '';
+    }
+
+  }
+
+  GetCurrentUserId(): string {
+
+    this.token = localStorage.getItem('token');
+
+    if (this.token) {
+
+      var claims = jwt_decode<any>(this.token);
+      return claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] as string;
 
     } else {
 
