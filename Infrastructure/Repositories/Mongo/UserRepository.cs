@@ -35,7 +35,7 @@ namespace Repositories.Mongo
 
             if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
             {
-                filter &= Builders<User>.Filter.Eq(x => x.Email.ToLower(), email);
+                filter &= Builders<User>.Filter.Eq(x => x.Email, email.ToLower());
                 filter &= Builders<User>.Filter.Eq(x => x.Password, password);
 
                 return await _collection.Find(filter).FirstOrDefaultAsync();

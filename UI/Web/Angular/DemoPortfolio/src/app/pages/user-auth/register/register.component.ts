@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../view_models/auth/user.model';
 
@@ -17,6 +18,21 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private route: Router) {
 
     this.user = {} as User;
+
+    //One Way
+    //this.registerForm = new FormGroup({
+    //  'FirstName': new FormControl('', Validators.required),
+    //  'LastName': new FormControl('', Validators.required),
+    //  'Gender': new FormControl(''),
+    //  'BirthDate': new FormControl(''),
+    //  'Age': new FormControl(''),
+    //  'Email': new FormControl('', Validators.compose([Validators.required, Validators.email])),
+    //  'Password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+    //  'ConfirmPassword': new FormControl('', Validators.required),
+    //  'Role': new FormControl(''),
+    //});
+
+    //Another Way
     this.registerForm = new FormGroup({
       FirstName: new FormControl('', Validators.required),
       LastName: new FormControl('', Validators.required),
@@ -24,10 +40,10 @@ export class RegisterComponent implements OnInit {
       BirthDate: new FormControl(''),
       Age: new FormControl(''),
       Email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      Password: new FormControl('', Validators.required),
-      ConfirmPassword: new FormControl('', Validators.required),
+      Password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+      ConfirmPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
       Role: new FormControl(''),
-    })
+    }, { validators: CustomValidation.passwordMatchValidate });
   }
 
   ngOnInit(): void {

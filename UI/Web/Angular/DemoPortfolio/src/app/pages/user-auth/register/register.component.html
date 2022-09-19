@@ -96,13 +96,16 @@
         <!-- Password input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerPassword">Password</label>
-          <input type="password" id="registerPassword" class="form-control" name="Password" formControlName="Password" />
+          <input type="password" id="registerPassword" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['Password'].errors?.['minlength']}" name="Password" formControlName="Password" />
+          <label for="registerPassword" class="form-label text-danger" *ngIf="registerForm.controls['Password'].errors?.['minlength']">Minimum password length should be 5</label>
         </div>
 
         <!-- Repeat Password input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerConfirmPassword">Confirm password</label>
           <input type="password" id="registerConfirmPassword" class="form-control" name="ConfirmPassword" formControlName="ConfirmPassword" />
+          <label for="registerConfirmPassword" class="form-label text-danger" *ngIf="registerForm.controls['ConfirmPassword'].errors?.['minlength']">Minimum password length should be 5</label>
+          <label for="registerConfirmPassword" class="form-label text-danger" *ngIf="registerForm.controls['ConfirmPassword'].errors?.['notmatched']">Password didn't match</label>
         </div>
 
         <!-- Checkbox -->
@@ -120,7 +123,7 @@
         </div>
 
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-3">Sign up</button>
+        <button [disabled]="!registerForm.valid" type="submit" class="btn btn-primary btn-block mb-3">Sign up</button>
       </form>
     </div>
   </div>
