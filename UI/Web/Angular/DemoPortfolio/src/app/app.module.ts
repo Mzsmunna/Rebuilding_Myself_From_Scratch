@@ -12,6 +12,8 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TokenInterceptorService } from './services/common/http-intercept/token-interceptor.service';
+import { UserPanelComponent } from './pages/home/user-panel/user-panel.component';
+import { IssuePanelComponent } from './pages/home/issue-panel/issue-panel.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { TokenInterceptorService } from './services/common/http-intercept/token-
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UserPanelComponent,
+    IssuePanelComponent
   ],
   imports: [
     BrowserModule,

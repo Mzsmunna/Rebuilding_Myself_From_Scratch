@@ -12,6 +12,7 @@ namespace Domain.Entities
         public string Value { get; set; } = string.Empty;
         public string DataType { get; set; } = string.Empty;
         public string DataSeparator { get; set; } = string.Empty;
+        public bool IsId { get; set; } = false;
         public bool IsString { get; set; } = true;
         public bool IsCaseSensitive { get; set; } = false;
         public bool IsPartialMatch { get; set; } = false;

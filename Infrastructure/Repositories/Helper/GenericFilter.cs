@@ -29,7 +29,7 @@ namespace Repositories.Helper
                 {
                     if (!string.IsNullOrEmpty(query.Key) && !string.IsNullOrEmpty(query.Value))
                     {
-                        if (query.IsEncrypted)
+                        if (query.IsEncrypted || query.IsId)
                         {
                             filter = filter & Builders<T>.Filter.Eq(query.Key, query.Value);
                         }

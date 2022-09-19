@@ -21,9 +21,37 @@ export class IssueService {
     return this.http.get(this.baseApiUrl + "GetAllIssueCount?searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<number>;
   }
 
+  GetAllIssuesByAssignerCount(searchQueries: SearchField[]): Observable<number> {
+
+    return this.http.get(this.baseApiUrl + "GetAllIssuesByAssignerCount?searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<number>;
+  }
+
+  GetAllIssuesByAssignedCount(searchQueries: SearchField[]): Observable<number> {
+
+    return this.http.get(this.baseApiUrl + "GetAllIssuesByAssignedCount?searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<number>;
+  }
+
   GetAllIssues(currentPage: number, pageSize: number, sortField: string, sortDirection: string, searchQueries: SearchField[]): Observable<Issue[]> {
 
     return this.http.get(this.baseApiUrl + "GetAllIssues?currentPage=" + currentPage
+      + "&pageSize=" + pageSize
+      + "&sortField=" + sortField
+      + "&sortDirection=" + sortDirection
+      + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<Issue[]>;
+  }
+
+  GetAllIssuesByAssigner(currentPage: number, pageSize: number, sortField: string, sortDirection: string, searchQueries: SearchField[]): Observable<Issue[]> {
+
+    return this.http.get(this.baseApiUrl + "GetAllIssuesByAssigner?currentPage=" + currentPage
+      + "&pageSize=" + pageSize
+      + "&sortField=" + sortField
+      + "&sortDirection=" + sortDirection
+      + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<Issue[]>;
+  }
+
+  GetAllIssuesByAssigned(currentPage: number, pageSize: number, sortField: string, sortDirection: string, searchQueries: SearchField[]): Observable<Issue[]> {
+
+    return this.http.get(this.baseApiUrl + "GetAllIssuesByAssigned?currentPage=" + currentPage
       + "&pageSize=" + pageSize
       + "&sortField=" + sortField
       + "&sortDirection=" + sortDirection

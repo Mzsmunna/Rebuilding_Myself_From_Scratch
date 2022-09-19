@@ -151,6 +151,7 @@ namespace RestAPI.Controllers
 
             List<Claim> claims = new List<Claim>
             {
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Email, user.Email.ToLower()),
                 new Claim(ClaimTypes.Role, user.Role.ToLower()),
                 new Claim(ClaimTypes.Expiration, tokenExpiredOn.ToString())

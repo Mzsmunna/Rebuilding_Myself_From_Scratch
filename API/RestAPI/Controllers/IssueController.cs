@@ -70,19 +70,71 @@ namespace RestAPI.Controllers
         }
 
         [HttpGet]
-        [ActionName("GetAllIssuesByAssigner")]
-        public IActionResult GetAllIssuesByAssigner(string assignerId)
+        [ActionName("GetAllIssuesByAssignerCount")]
+        public IActionResult GetAllIssuesByAssignerCount(string searchQueries)
         {
-            var Issues = _IssueRepository.GetAllIssuesByAssigner(assignerId);
-            return Ok(Issues);
+            List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
+
+            if (queries != null && queries.Count > 0 && queries.Any(x => !string.IsNullOrEmpty(x.Key) && x.Key.ToLower().Equals("assignerid")))
+            {
+                var issueCount = _IssueRepository.GetAllIssueCount(queries);
+                return Ok(issueCount);
+            }
+            else
+            {
+                return Ok(0);
+            }
+        }
+
+        [HttpGet]
+        [ActionName("GetAllIssuesByAssigner")]
+        public IActionResult GetAllIssuesByAssigner(int currentPage, int pageSize, string sortField, string sortDirection, string searchQueries)
+        {
+            List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
+
+            if (queries != null && queries.Count > 0 && queries.Any(x => !string.IsNullOrEmpty(x.Key) && x.Key.ToLower().Equals("assignerid")))
+            {
+                var Issues = _IssueRepository.GetAllIssues(currentPage, pageSize, sortField, sortDirection, queries);
+                return Ok(Issues);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
+        [ActionName("GetAllIssuesByAssignedCount")]
+        public IActionResult GetAllIssuesByAssignedCount(string searchQueries)
+        {
+            List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
+
+            if (queries != null && queries.Count > 0 && queries.Any(x => !string.IsNullOrEmpty(x.Key) && x.Key.ToLower().Equals("assignerid")))
+            {
+                var issueCount = _IssueRepository.GetAllIssueCount(queries);
+                return Ok(issueCount);
+            }
+            else
+            {
+                return Ok(0);
+            }
         }
 
         [HttpGet]
         [ActionName("GetAllIssuesByAssigned")]
-        public IActionResult GetAllIssuesByAssigned(string assignedId)
+        public IActionResult GetAllIssuesByAssigned(int currentPage, int pageSize, string sortField, string sortDirection, string searchQueries)
         {
-            var Issues = _IssueRepository.GetAllIssuesByAssigned(assignedId);
-            return Ok(Issues);
+            List<SearchField> queries = CommonHelperUtility.JsonListDeserialize<SearchField>(searchQueries);
+
+            if (queries != null && queries.Count > 0 && queries.Any(x => !string.IsNullOrEmpty(x.Key) && x.Key.ToLower().Equals("assignerid")))
+            {
+                var Issues = _IssueRepository.GetAllIssues(currentPage, pageSize, sortField, sortDirection, queries);
+                return Ok(Issues);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

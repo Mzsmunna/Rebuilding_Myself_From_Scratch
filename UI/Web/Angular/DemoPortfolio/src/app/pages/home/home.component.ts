@@ -15,28 +15,15 @@ import { SearchField } from '../../view_models/search-field.model';
 })
 export class HomeComponent implements OnInit {
 
-  public usersList: User[];
-  public usersListCount: number = 0;
-  public userSearchQueries: SearchField[];
+  public userTableSettings: any;
+  public issueTableSettings: any;
 
-  public issueSearchQueries: SearchField[];
-  public issuesList: Issue[];
-  public issuesListCount: number = 0;
+  constructor(private tableService: TableService) {
 
-  public NgSmartTableSettings: any;
-
-  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService) {
-
-    this.usersList = [] as User[];
-    this.issuesList = [] as Issue[];
-
-    this.userSearchQueries = [] as SearchField[];
-    this.issueSearchQueries = [] as SearchField[];
-
-    //Ng2 Smart Table Configure:
-    this.NgSmartTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
-    this.NgSmartTableSettings.pager.perPage = 5;
-    this.NgSmartTableSettings.columns = {
+    //User Table Configure:
+    this.userTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
+    this.userTableSettings.pager.perPage = 5;
+    this.userTableSettings.columns = {
 
       FirstName: {
         title: 'First Name'
@@ -75,177 +62,59 @@ export class HomeComponent implements OnInit {
       //  },
       //},
     }
+
+    //Issue Table Configure:
+    this.issueTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
+    this.issueTableSettings.pager.perPage = 5;
+    this.issueTableSettings.columns = {
+
+      ProjectId: {
+        title: 'Project Name'
+      },
+      Title: {
+        title: 'Title'
+      },
+      Type: {
+        title: 'Type'
+      },
+      Summary: {
+        title: 'Summary'
+      },
+      Description: {
+        title: 'Description'
+      },
+      AssignerName: {
+        title: 'AssignerName'
+      },
+      StartDate: {
+        title: 'StartDate'
+      },
+      EndDate: {
+        title: 'EndDate'
+      },
+      DueDate: {
+        title: 'DueDate'
+      },
+      Status: {
+        title: 'Status',
+        filter: false,
+        editable: false,
+        addable: false
+      },
+      Comment: {
+        title: 'Comment'
+      },
+      CreatedOn: {
+        title: 'CreatedOn'
+      },
+      ModifiedOn: {
+        title: 'ModifiedOn'
+      },
+    }
   }
 
   ngOnInit(): void {
 
-    this.userSearchQueries.push({
-      Key: 'Email',
-      Value: '',
-      DataType: 'string',
-      DataSeparator: '',
-      IsString: true,
-      IsCaseSensitive: false,
-      IsPartialMatch: true,
-      IsBoolean: false,
-      IsDateTime: false,
-      IsAndQuery: true,
-      IsEncrypted: false,
-      QueryOrder: 1
-    });
-
-    this.issueSearchQueries.push({
-      Key: 'Summary',
-      Value: 'Learn',
-      DataType: 'string',
-      DataSeparator: '',
-      IsString: true,
-      IsCaseSensitive: false,
-      IsPartialMatch: true,
-      IsBoolean: false,
-      IsDateTime: false,
-      IsAndQuery: true,
-      IsEncrypted: false,
-      QueryOrder: 1
-    });
-
-    this.GetToken();
-    this.GetAllUserCount();
-    this.GetAllUsers();
-    this.GetAllIssueCount();
-    this.GetAllIssues();
   }
 
-  GetToken() {
-
-    let token = this.authService.GetToken();
-
-    console.log("Token from Home Page :" + token);
-  }
-
-  GetAllUserCount() {
-
-    this.userService.GetAllUserCount(this.userSearchQueries).subscribe(result => {
-
-      console.log(result);
-
-      this.usersListCount = result as number;
-
-    });
-  }
-
-  GetAllUsers() {
-
-    this.userService.GetAllUsers(0, 10, "FirstName", "ascending", this.userSearchQueries).subscribe(result => {
-
-      console.log(result);
-
-      this.usersList = result as User[];
-
-      //let timer = setTimeout(() => {
-
-      //  this.usersList.pop();
-
-      //  console.log("updated users");
-      //  console.log(this.usersList);
-
-      //}, 5000);
-
-    });
-  }
-
-  GetAllIssueCount() {
-
-    this.issueService.GetAllIssueCount(this.issueSearchQueries).subscribe(result => {
-
-      console.log(result);
-
-      this.issuesListCount = result as number;
-
-    });
-  }
-
-  GetAllIssues() {
-
-    this.issueService.GetAllIssues(0, 10, "Title", "ascending", this.issueSearchQueries).subscribe(result => {
-
-      console.log(result);
-
-      this.issuesList = result as Issue[];
-
-    });
-  }
-
-  //Ng2 Smart Table Action event Trigger Methods:
-
-  NgTableOnCreate(event: any) {
-
-    var user = event.newData as User;
-    this.userService.SaveUser(user).subscribe(result => {
-
-      console.log(result);
-
-      var user = result as User;
-
-      if (user) {
-
-        event.confirm.resolve();
-
-      } else {
-
-        event.confirm.reject();
-      }
-
-    });
-    
-  }
-
-  NgTableOnUpdate(event: any) {
-
-    var user = event.newData as User;
-    this.userService.UpdateUser(user).subscribe(result => {
-
-      console.log(result);
-
-      var user = result as User;
-
-      if (user) {
-
-        event.confirm.resolve();
-
-      } else {
-
-        event.confirm.reject();
-      }
-
-    });
-
-  }
-
-  NgTableOnDelete(event: any) {
-
-    var user = event.data as User;
-
-    //this.usersList.forEach((value, index) => {
-    //  if (value.Id == event.data.Id) this.usersList.splice(index, 1);
-    //});
-
-    this.userService.DeleteUser(user).subscribe(result => {
-
-      console.log(result);
-
-      var isDeleted = result as boolean;
-
-      if (isDeleted) {
-
-        event.confirm.resolve();
-
-      } else {
-
-        event.confirm.reject();
-      }
-
-    });
-
-  }
 }

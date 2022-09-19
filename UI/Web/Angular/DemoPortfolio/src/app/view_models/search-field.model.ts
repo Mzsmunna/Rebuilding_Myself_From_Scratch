@@ -3,6 +3,7 @@ export interface SearchField {
   Value: string;
   DataType: string;
   DataSeparator: string;
+  IsId: boolean;
   IsString: boolean;
   IsCaseSensitive: boolean;
   IsPartialMatch: boolean;

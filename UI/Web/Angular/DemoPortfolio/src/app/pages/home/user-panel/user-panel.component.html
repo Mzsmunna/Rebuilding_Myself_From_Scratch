@@ -1,0 +1,8 @@
+<h1 class="display-1 text-center">Users :</h1>
+
+<app-ng-smart-table [settings]="NgSmartTableSettings"
+                    [data]="usersList"
+                    (CreateEvent)="NgTableOnCreate($event)"
+                    (UpdateEvent)="NgTableOnUpdate($event)"
+                    (DeleteEvent)="NgTableOnDelete($event)">
+</app-ng-smart-table>
