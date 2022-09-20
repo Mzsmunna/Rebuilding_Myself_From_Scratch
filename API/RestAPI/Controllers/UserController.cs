@@ -31,6 +31,7 @@ namespace RestAPI.Controllers
         [ActionName("Register")]
         public IActionResult Register(User user)
         {
+            user.IsActive = true;
             var existingUser = _userRepository.RegisterUser(user.Email).Result;
 
             if (existingUser == null)

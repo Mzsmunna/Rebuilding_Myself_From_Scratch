@@ -47,7 +47,7 @@ namespace Repositories.Mongo
         public async Task<User> RegisterUser(string email)
         {
             var filter = Builders<User>.Filter.Empty;
-            filter &= Builders<User>.Filter.Eq(x => x.IsActive, true);
+            //filter &= Builders<User>.Filter.Eq(x => x.IsActive, true);
 
             if (!string.IsNullOrEmpty(email))
             {

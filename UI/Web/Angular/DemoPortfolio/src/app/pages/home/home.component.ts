@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
@@ -20,12 +20,16 @@ export class HomeComponent implements OnInit {
   public loggedUser: User;
   public newUser: User;
 
+  @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
+
   constructor(private authService: AuthService, private tableService: TableService, private route: Router) {
 
     this.loggedUser = {} as User;
     this.newUser = {} as User;
     this.newUser.Gender = "male";
     this.newUser.Role = "user";
+
+    this.closeModal = {} as ElementRef;
 
     //User Table Configure:
     this.userTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
@@ -163,6 +167,8 @@ export class HomeComponent implements OnInit {
 
         if (result) {
 
+          this.closeModal.nativeElement.click();
+
           userForm.reset();
           this.newUser = {} as User;
           this.newUser.Gender = "male";
@@ -178,7 +184,7 @@ export class HomeComponent implements OnInit {
     } else {
 
       console.log("Invalid user info : ", this.newUser);
-    } 
+    }
   }
 
 }
