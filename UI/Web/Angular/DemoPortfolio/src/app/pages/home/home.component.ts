@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { TableService } from '../../ui-elements/tables/table.service';
@@ -15,11 +16,16 @@ export class HomeComponent implements OnInit {
   public issueTableSettings: any;
 
   activeTab: string = "";
-  public user: User;
+  loggedUserRole: string = "";
+  public loggedUser: User;
+  public newUser: User;
 
   constructor(private authService: AuthService, private tableService: TableService, private route: Router) {
 
-    this.user = {} as User;
+    this.loggedUser = {} as User;
+    this.newUser = {} as User;
+    this.newUser.Gender = "male";
+    this.newUser.Role = "user";
 
     //User Table Configure:
     this.userTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
@@ -119,7 +125,7 @@ export class HomeComponent implements OnInit {
     this.GetLoggedUser();
   }
 
-  switchTab(tabName: string): void {
+  SwitchTab(tabName: string): void {
 
     this.activeTab = tabName;
   }
@@ -130,9 +136,10 @@ export class HomeComponent implements OnInit {
 
       console.log("Logged user: ", result);
 
-      this.user = result as User;
+      this.loggedUser = result as User;
+      this.loggedUserRole = this.loggedUser.Role.toLowerCase();
 
-      if (this.user.Role.toLowerCase() == "user") {
+      if (this.loggedUser.Role.toLowerCase() == "user") {
 
         this.activeTab = "issues";
         this.route.navigate(['/home/issues']);
@@ -144,6 +151,34 @@ export class HomeComponent implements OnInit {
       }
 
     });
+  }
+
+  SaveUser(userForm: FormGroup) {
+
+    if (userForm.valid) {
+
+      this.authService.Register(this.newUser).subscribe(result => {
+
+        console.log("saved user: ", result);
+
+        if (result) {
+
+          userForm.reset();
+          this.newUser = {} as User;
+          this.newUser.Gender = "male";
+          this.newUser.Role = "user";
+
+        } else {
+
+          console.log("something went wrong while saving user: ", this.newUser);
+        }
+
+      });
+
+    } else {
+
+      console.log("Invalid user info : ", this.newUser);
+    } 
   }
 
 }

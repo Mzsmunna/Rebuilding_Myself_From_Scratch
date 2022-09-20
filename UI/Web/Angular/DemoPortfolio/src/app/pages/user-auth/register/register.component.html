@@ -79,7 +79,8 @@
         <!-- Email input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerEmail">Email</label>
-          <input type="email" id="registerEmail" class="form-control" name="Email" formControlName="Email" />
+          <input type="email" id="registerEmail" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['Email'].errors}" name="Email" formControlName="Email" />
+          <label for="registerEmail" class="form-label text-danger" *ngIf="registerForm.controls['Email'].errors?.['email']">Not a valid email</label>
         </div>
 
         <!-- Role select -->
