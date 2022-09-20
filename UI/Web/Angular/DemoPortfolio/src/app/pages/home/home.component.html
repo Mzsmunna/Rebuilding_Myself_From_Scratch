@@ -4,8 +4,8 @@
 <app-issue-panel></app-issue-panel>-->
 
 <nav class="nav nav-pills nav-fill">
-  <a class="nav-link active" routerLink="users">Users</a>
-  <a class="nav-link" routerLink="issues">Issues</a>
+  <a *ngIf="user.Role.toLowerCase() != 'user'" class="nav-link active" [ngClass]="{'active': activeTab=='users'}" (click)="switchTab('users')" routerLink="users">Users</a>
+  <a class="nav-link" [ngClass]="{'active': activeTab=='issues'}" (click)="switchTab('issues')" routerLink="issues">Issues</a>
   <!--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
 </nav>
 

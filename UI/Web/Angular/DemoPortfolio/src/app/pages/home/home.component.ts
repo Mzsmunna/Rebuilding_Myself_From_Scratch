@@ -119,6 +119,11 @@ export class HomeComponent implements OnInit {
     this.GetLoggedUser();
   }
 
+  switchTab(tabName: string): void {
+
+    this.activeTab = tabName;
+  }
+
   GetLoggedUser() {
 
     this.authService.GetLoggedUser().subscribe(result => {
@@ -129,10 +134,12 @@ export class HomeComponent implements OnInit {
 
       if (this.user.Role.toLowerCase() == "user") {
 
+        this.activeTab = "issues";
         this.route.navigate(['/home/issues']);
 
       } else {
 
+        this.activeTab = "users";
         this.route.navigate(['/home/users']);
       }
 
