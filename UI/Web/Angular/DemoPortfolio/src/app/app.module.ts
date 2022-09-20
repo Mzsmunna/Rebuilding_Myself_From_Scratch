@@ -14,6 +14,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TokenInterceptorService } from './services/common/http-intercept/token-interceptor.service';
 import { UserPanelComponent } from './pages/home/user-panel/user-panel.component';
 import { IssuePanelComponent } from './pages/home/issue-panel/issue-panel.component';
+import { UiTemplatesModule } from './ui-templates/ui-templates.module';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { IssuePanelComponent } from './pages/home/issue-panel/issue-panel.compon
     HttpClientModule,
     AppRoutingModule,
     UiElementsModule,
+    UiTemplatesModule
     //UserAuthModule //don't import when implementing lazy loading
   ],
   providers: [

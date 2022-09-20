@@ -57,4 +57,9 @@ export class IssueService {
       + "&sortDirection=" + sortDirection
       + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<Issue[]>;
   }
+
+  SaveIssue(issue: Issue): Observable<Issue>  {
+
+    return this.http.post(this.baseApiUrl + 'SaveIssue', issue) as Observable<Issue>;
+  }
 }

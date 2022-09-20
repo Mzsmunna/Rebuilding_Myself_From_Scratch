@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
-import { IssueService } from '../../../services/features/issue/issue.service';
 import { UserService } from '../../../services/features/user/user.service';
-import { NgSmartTableComponent } from '../../../ui-elements/tables/ng-smart-table/ng-smart-table.component';
 import { TableService } from '../../../ui-elements/tables/table.service';
 import { User } from '../../../view_models/auth/user.model';
-import { Issue } from '../../../view_models/issue.model';
 import { SearchField } from '../../../view_models/search-field.model';
 
 @Component({
@@ -19,19 +16,13 @@ export class UserPanelComponent implements OnInit {
   public usersListCount: number = 0;
   public userSearchQueries: SearchField[];
 
-  public issueSearchQueries: SearchField[];
-  public issuesList: Issue[];
-  public issuesListCount: number = 0;
-
   public NgSmartTableSettings: any;
 
-  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService) {
+  constructor(private authService: AuthService, private userService: UserService, private tableService: TableService) {
 
     this.usersList = [] as User[];
-    this.issuesList = [] as Issue[];
 
     this.userSearchQueries = [] as SearchField[];
-    this.issueSearchQueries = [] as SearchField[];
 
     //Ng2 Smart Table Configure:
     this.NgSmartTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
@@ -95,27 +86,9 @@ export class UserPanelComponent implements OnInit {
       QueryOrder: 1
     });
 
-    this.issueSearchQueries.push({
-      Key: 'AssignerId',
-      Value: "631e4ccd511f1f293c9bd842", //this.user.Id,
-      DataType: 'string',
-      DataSeparator: '',
-      IsId: true,
-      IsString: true,
-      IsCaseSensitive: false,
-      IsPartialMatch: true,
-      IsBoolean: false,
-      IsDateTime: false,
-      IsAndQuery: true,
-      IsEncrypted: false,
-      QueryOrder: 1
-    });
-
     this.GetToken();
     this.GetAllUserCount();
     this.GetAllUsers();
-    //this.GetAllIssuesByAssignerCount();
-    //this.GetAllIssuesByAssigner();
   }
 
   GetToken() {
@@ -152,28 +125,6 @@ export class UserPanelComponent implements OnInit {
       //  console.log(this.usersList);
 
       //}, 5000);
-
-    });
-  }
-
-  GetAllIssuesByAssignerCount() {
-
-    this.issueService.GetAllIssuesByAssignerCount(this.issueSearchQueries).subscribe(result => {
-
-      console.log(result);
-
-      this.issuesListCount = result as number;
-
-    });
-  }
-
-  GetAllIssuesByAssigner() {
-
-    this.issueService.GetAllIssuesByAssigner(0, 10, "Title", "ascending", this.issueSearchQueries).subscribe(result => {
-
-      console.log(result);
-
-      this.issuesList = result as Issue[];
 
     });
   }

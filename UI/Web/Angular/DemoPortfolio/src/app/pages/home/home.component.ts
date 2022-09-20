@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   public issueTableSettings: any;
 
   activeTab: string = "";
-  loggedUserRole: string = "";
+  public isAdmin: boolean = false;
   public loggedUser: User;
   public newUser: User;
 
@@ -141,15 +141,16 @@ export class HomeComponent implements OnInit {
       console.log("Logged user: ", result);
 
       this.loggedUser = result as User;
-      this.loggedUserRole = this.loggedUser.Role.toLowerCase();
 
       if (this.loggedUser.Role.toLowerCase() == "user") {
 
+        this.isAdmin = false;
         this.activeTab = "issues";
         this.route.navigate(['/home/issues']);
 
       } else {
 
+        this.isAdmin = true;
         this.activeTab = "users";
         this.route.navigate(['/home/users']);
       }

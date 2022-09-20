@@ -101,7 +101,7 @@ export class IssuePanelComponent implements OnInit {
 
     this.issueSearchQueries.push({
       Key: 'AssignerId',
-      Value: "631e4ccd511f1f293c9bd842", //this.user.Id,
+      Value: this.authService.GetCurrentUserId(), //"", //this.user.Id,
       DataType: 'string',
       DataSeparator: '',
       IsId: true,

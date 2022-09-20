@@ -1,0 +1,121 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#issuePopUp">
+  Add Issue
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="issuePopUp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="issuePopUpLabel" aria-hidden="true">
+  <form class="modal-dialog modal-lg modal-dialog-centered" [formGroup]="issueForm" (ngSubmit)="SaveIssue(issueForm.valid)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add Issue</h5>
+        <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Title input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueTitle">Title:</label>
+          <input type="text" id="issueTitle" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Title'].dirty && issueForm.controls['Title'].errors}" name="Title" formControlName="Title" />
+          <p for="issueTitle" class="form-label text-danger" *ngIf="issueForm.controls['Title'].errors?.['minlength']">Minimum length should be 10</p>
+          <p for="issueTitle" class="form-label text-danger" *ngIf="issueForm.controls['Title'].errors?.['pattern']">Not a valid Title</p>
+        </div>
+
+        <!-- Summary input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueSummary">Summary:</label>
+          <input type="text" id="issueSummary" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Summary'].dirty && issueForm.controls['Summary'].errors}" name="Summary" formControlName="Summary" />
+          <p for="issueSummary" class="form-label text-danger" *ngIf="issueForm.controls['Summary'].errors?.['minlength']">Minimum length should be 20</p>
+          <p for="issueSummary" class="form-label text-danger" *ngIf="issueForm.controls['Summary'].errors?.['pattern']">Not a valid Summary</p>
+        </div>
+
+        <!-- Description input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueDescription">Description:</label>
+          <input type="text" id="issueDescription" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Description'].dirty && issueForm.controls['Description'].errors}" name="Description" formControlName="Description" />
+          <p for="issueDescription" class="form-label text-danger" *ngIf="issueForm.controls['Description'].errors?.['minlength']">Minimum length should be 30</p>
+          <p for="issueDescription" class="form-label text-danger" *ngIf="issueForm.controls['Description'].errors?.['pattern']">Not a valid Description</p>
+        </div>
+
+        <!-- Type select -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueType">Type</label>
+          <select id="issueType" class="form-select" aria-label="Default select example" name="Type" formControlName="Type">
+            <option selected value="to-do">To-Do</option>
+            <option value="task">Task</option>
+            <option value="note">Note</option>
+            <option value="reminder">Reminder</option>
+          </select>
+        </div>
+
+        <!-- Assign to select (db data bind) -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueAssignTo">Assign To</label>
+          <select id="issueAssignTo" class="form-select" aria-label="Default select example" name="AssignTo" formControlName="AssignTo">
+            <option selected value="xyz">XYZ</option>
+            <option value="abc">ABC</option>
+          </select>
+        </div>
+
+        <!-- Start Date Picker -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="StartDate">Start Date:</label>
+          <div class="input-group date" id="datepicker">
+            <input type="date" class="form-control" id="issueStartDate" name="StartDate" formControlName="StartDate" />
+          </div>
+        </div>
+
+        <!-- End Date Picker -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueBirthDate">End Date:</label>
+          <div class="input-group date" id="datepicker">
+            <input type="date" class="form-control" id="issueEndDate" name="EndDate" formControlName="EndDate" />
+          </div>
+        </div>
+
+        <!-- Due Date Picker -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueBirthDate">Due Date:</label>
+          <div class="input-group date" id="datepicker">
+            <input type="date" class="form-control" id="issueDueDate" name="DueDate" formControlName="DueDate" />
+          </div>
+        </div>
+
+        <!-- IsActive select (true/false) -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueIsActive">In Progress</label>
+          <select id="issueIsActive" class="form-select" aria-label="Default select example" name="IsActive" formControlName="IsActive">
+            <option value="true">Yes</option>
+            <option selected value="false">No</option>
+          </select>
+        </div>
+
+        <!-- IsDeleted select (true/false) -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueGender">Discarded</label>
+          <select id="issueIsDeleted" class="form-select" aria-label="Default select example" name="IsDeleted" formControlName="IsDeleted">
+            <option value="true">Yes</option>
+            <option selected value="false">No</option>
+          </select>
+        </div>
+
+        <!-- IsCompleted select (true/false) -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="issueGender">Done</label>
+          <select id="issueIsCompleted" class="form-select" aria-label="Default select example" name="IsCompleted" formControlName="IsCompleted">
+            <option value="true">Yes</option>
+            <option selected value="false">No</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        <!-- Submit button -->
+        <button [disabled]="!issueForm.valid" type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+
