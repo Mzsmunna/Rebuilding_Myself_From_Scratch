@@ -5,6 +5,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { IssueService } from '../../../services/features/issue/issue.service';
 import { User } from '../../../view_models/auth/user.model';
 import { Issue } from '../../../view_models/issue.model';
+declare var window: any;
 
 @Component({
   selector: 'app-add-issue',
@@ -14,39 +15,101 @@ import { Issue } from '../../../view_models/issue.model';
 export class AddIssueComponent implements OnInit {
 
   public newIssue: Issue;
+  public existingIssue: Issue;
   issueForm: FormGroup;
 
   @Input() loggedUser: User = {} as User;
   @Output() UpdateIssueList = new EventEmitter<Issue>();
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
+  @ViewChild('issuePopUp', { static: false }) issuePopUp: any;
+
+  formModal: any;
+  actionName: string = "Add";
 
   constructor(private authService: AuthService, private issueService: IssueService) {
 
     //this.loggedUser = {} as User;
     this.newIssue = {} as Issue;
+    this.existingIssue = {} as Issue;
     this.closeModal = {} as ElementRef;
-
-    this.issueForm = new FormGroup({
-      Title: new FormControl('', Validators.compose([Validators.required, Validators.minLength(10), Validators.pattern("[a-zA-Z ]*")])),
-      Summary: new FormControl('', Validators.compose([Validators.required, Validators.minLength(20), Validators.pattern("[a-zA-Z ]*")])),
-      Description: new FormControl('', Validators.minLength(30)),
-      Type: new FormControl('to-do', Validators.required),
-      AssignTo: new FormControl(this.authService.GetCurrentUserId(), Validators.required),
-      StartDate: new FormControl(''),
-      EndDate: new FormControl(''),
-      DueDate: new FormControl(''),
-      Status: new FormControl('pending', Validators.required),
-      Comment: new FormControl('', Validators.pattern("[a-zA-Z ]*")),
-      IsActive: new FormControl('false', Validators.required),
-      IsDeleted: new FormControl('false', Validators.required),
-      IsCompleted: new FormControl('false', Validators.required)
-    }, //{ validators: CustomValidation.passwordMatchValidate }
-    );
+    this.issueForm = {} as FormGroup;
+    this.Reset();
   }
 
   ngOnInit(): void {
 
     console.log(`ngOnInit: app-add-issue`, this.loggedUser);
+  }
+
+  public EnableUpdateMode(issue: Issue): void {
+
+    console.log(`EnableUpdateMode for issue`, issue);
+
+    this.existingIssue = issue;
+
+    if (this.existingIssue) {
+
+      this.BindFormValue(this.existingIssue);
+
+      this.formModal = new window.bootstrap.Modal(
+        document.getElementById('issuePopUp')
+      );
+
+      this.actionName = "Update";
+      this.formModal.show();
+    }
+  }
+
+  Reset(): void {
+
+    this.actionName = "Add";
+
+    this.existingIssue = {} as Issue;
+
+    this.newIssue = {
+      Id: '',
+      ProjectId: '',
+      Title: '',
+      Type: 'to-do',
+      Summary: '',
+      Description: '',
+      AssignedName: '',
+      AssignedId: this.authService.GetCurrentUserId(),
+      StartDate: null,
+      EndDate: null,
+      DueDate: null,
+      Status: 'pending',
+      Comment: '',
+      IsActive: false,
+      IsDeleted: false,
+      IsCompleted: false,
+      CreatedOn: new Date(),
+      ModifiedOn: null,
+      CreatedBy: this.authService.GetCurrentUserId(),
+      ModifiedBy: ''
+    };
+
+    this.BindFormValue(this.newIssue);
+  }
+
+  BindFormValue(bindIssue: Issue) {
+
+    this.issueForm = new FormGroup({
+      Title: new FormControl(bindIssue.Title, Validators.compose([Validators.required, Validators.minLength(10), Validators.pattern("[a-zA-Z ]*")])),
+      Summary: new FormControl(bindIssue.Summary, Validators.compose([Validators.required, Validators.minLength(20), Validators.pattern("[a-zA-Z ]*")])),
+      Description: new FormControl(bindIssue.Description, Validators.minLength(30)),
+      Type: new FormControl(bindIssue.Type, Validators.required),
+      AssignTo: new FormControl(bindIssue.AssignedId, Validators.required),
+      StartDate: new FormControl(bindIssue.StartDate),
+      EndDate: new FormControl(bindIssue.EndDate),
+      DueDate: new FormControl(bindIssue.DueDate),
+      Status: new FormControl(bindIssue.Status, Validators.required),
+      Comment: new FormControl(bindIssue.Comment, Validators.pattern("[a-zA-Z ]*")),
+      //IsActive: new FormControl(bindIssue.IsActive, Validators.required),
+      //IsDeleted: new FormControl(bindIssue.IsDeleted, Validators.required),
+      //IsCompleted: new FormControl(bindIssue.IsCompleted, Validators.required)
+    }, //{ validators: CustomValidation.passwordMatchValidate }
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -56,16 +119,16 @@ export class AddIssueComponent implements OnInit {
     if (changes) {
 
       console.log(changes);
-      //  console.log("app-ng-smart-table : updated data");
-      //  console.log(changes['data']['currentValue']);
-      //  this.data = changes['data']['currentValue'];
-      //console.log(this.data);
 
-      const currentItem: SimpleChange = changes["data"];
+      //const currentItem: SimpleChange = changes["data"];
       //console.log('prev value: ', currentItem.previousValue);
       //console.log('got item: ', currentItem.currentValue);
       //this.loggedUser = changes['data']['currentValue'];
     }
+  }
+
+  ngAfterViewInit() {
+    
   }
 
   SaveIssue(isValid: boolean) {

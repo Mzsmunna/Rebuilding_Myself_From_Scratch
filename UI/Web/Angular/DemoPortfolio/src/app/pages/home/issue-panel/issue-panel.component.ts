@@ -4,6 +4,7 @@ import { IssueService } from '../../../services/features/issue/issue.service';
 import { UserService } from '../../../services/features/user/user.service';
 import { NgSmartTableComponent } from '../../../ui-elements/tables/ng-smart-table/ng-smart-table.component';
 import { TableService } from '../../../ui-elements/tables/table.service';
+import { AddIssueComponent } from '../../../ui-templates/popup-modals/add-issue/add-issue.component';
 import { User } from '../../../view_models/auth/user.model';
 import { Issue } from '../../../view_models/issue.model';
 import { SearchField } from '../../../view_models/search-field.model';
@@ -24,6 +25,8 @@ export class IssuePanelComponent implements OnInit {
   public issueSearchQueries: SearchField[];
   public issuesList: Issue[];
   public issuesListCount: number = 0;
+
+  @ViewChild(AddIssueComponent) addIssueComponent!: AddIssueComponent;
 
   public NgSmartTableSettings: any;
 
@@ -174,6 +177,8 @@ export class IssuePanelComponent implements OnInit {
       console.log(result);
 
       this.issuesList = result as Issue[];
+
+      //this.addIssueComponent.EnableUpdateMode(this.issuesList[0]);
 
     });
   }
