@@ -26,7 +26,7 @@
               </ul>
             </div>
           </div>
-          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px; overflow-y: scroll;">
+          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 650px; overflow-y: scroll;">
 
             <table class="table mb-0">
               <thead>
@@ -197,10 +197,16 @@
             </table>
 
           </div>
+
+          <app-default-pagination
+                [pager]="pager"
+                (UpdatePager)="UpdatePager($event)">
+          </app-default-pagination>
+
           <div class="card-footer position-relative p-md-4 mb-2 mt-2">
             <div class="position-absolute bottom-0 end-50">
               <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
-            </div>       
+            </div>
           </div>
 
         </div>

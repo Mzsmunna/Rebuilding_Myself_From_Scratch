@@ -30,6 +30,7 @@ import { MaterialTableComponent } from './tables/material-table/material-table.c
 import { CustomTableComponent } from './tables/custom-table/custom-table.component';
 import { DefaultGraphComponent } from './graphs/default-graph/default-graph.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DefaultPaginationComponent } from './paginations/default-pagination/default-pagination.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgSmartTableComponent,
     MaterialTableComponent,
     CustomTableComponent,
-    DefaultGraphComponent
+    DefaultGraphComponent,
+    DefaultPaginationComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +91,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DefaultTableComponent,
     AngularDataTableComponent,
     NgSmartTableComponent,
-    MaterialTableComponent
+    MaterialTableComponent,
+    CustomTableComponent,
+    DefaultGraphComponent,
+    DefaultPaginationComponent
   ]
 })
 export class UiElementsModule { }

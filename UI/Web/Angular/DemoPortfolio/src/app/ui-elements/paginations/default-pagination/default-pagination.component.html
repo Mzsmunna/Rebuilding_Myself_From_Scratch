@@ -1,0 +1,16 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item me-2">
+      <button class="btn disabled btn-outline-secondary">{{pager.CurrentDataStartRange}} - {{pager.CurrentDataEndRange}} of {{pager.TotalDataCount}}</button>
+    </li>
+    <li class="page-item " [ngClass]="{'disabled': pager.CurrentPage <= 1}">
+      <button class="page-link" (click)="onPageChange(false)">Previous</button>
+    </li>
+    <li class="page-item active"><button class="page-link">{{pager.CurrentPage}}</button></li>
+    <!--<li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+    <li class="page-item">
+      <button class="page-link" [ngClass]="{'disabled': pager.CurrentPage >= pager.TotalPage}" (click)="onPageChange(true)">Next</button>
+    </li>
+  </ul>
+</nav>

@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Pager } from '../../../helper_models/pager.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { IssueService } from '../../../services/features/issue/issue.service';
 import { UserService } from '../../../services/features/user/user.service';
+import { DefaultPaginationComponent } from '../../../ui-elements/paginations/default-pagination/default-pagination.component';
 import { NgSmartTableComponent } from '../../../ui-elements/tables/ng-smart-table/ng-smart-table.component';
 import { TableService } from '../../../ui-elements/tables/table.service';
 import { AddIssueComponent } from '../../../ui-templates/popup-modals/add-issue/add-issue.component';
@@ -26,9 +28,12 @@ export class IssuePanelComponent implements OnInit {
 
   public issueSearchQueries: SearchField[];
   public issuesList: Issue[];
-  public issuesListCount: number = 0;
+  //public issuesListCount: number = 0;
+
+  pager: Pager;
 
   @ViewChild(AddIssueComponent) addIssueComponent!: AddIssueComponent;
+  @ViewChild(DefaultPaginationComponent) defaultPaginationComponent!: DefaultPaginationComponent;
 
   public NgSmartTableSettings: any;
 
@@ -40,6 +45,23 @@ export class IssuePanelComponent implements OnInit {
 
     this.userSearchQueries = [] as SearchField[];
     this.issueSearchQueries = [] as SearchField[];
+
+    //Pagination
+    this.pager = {
+
+      TotalDataCount: 0,
+      TotalDataFetch: 0,
+      CurrentData: 0,
+      CurrentDataStartRange: 0,
+      CurrentDataEndRange: 0,
+      CurrentPage: 1,
+      TotalPage: 1,
+      PageSize: 5,
+      SortField: "CreatedOn",
+      SortDirection: 'Descending',
+      IsLoading: true
+
+    };
 
     //Ng2 Smart Table Configure:
     this.NgSmartTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
@@ -145,11 +167,14 @@ export class IssuePanelComponent implements OnInit {
     );
 
     this.GetToken();
-    //this.GetAllUserToAssign();
+    ///this.GetAllUserToAssign();
+    ///this.GetAllIssuesByAssignedCount();
+    ///this.GetAllIssuesByAssigned();
+
     //this.GetAllIssuesByAssignedCount();
     //this.GetAllIssuesByAssigned();
-    this.GetAllIssuesByAssignedCount();
-    this.GetAllIssuesByAssigned();
+
+    this.LoadTable();
   }
 
   FilterIssueType(issueType: string) {
@@ -212,7 +237,7 @@ export class IssuePanelComponent implements OnInit {
 
       console.log(result);
 
-      this.issuesListCount = result as number;
+      this.pager.TotalDataCount = result as number;
 
     });
   }
@@ -228,6 +253,39 @@ export class IssuePanelComponent implements OnInit {
     });
   }
 
+  LoadTable() {
+
+    this.pager.IsLoading = true;
+
+    this.issueService.GetAllIssueCount(this.issueSearchQueries).subscribe(result => {
+
+      console.log(result);
+
+      this.pager.TotalDataCount = result as number;
+
+      if (this.pager.TotalDataCount > 0) {
+
+        this.issueService.GetAllIssues(this.pager.CurrentPage - 1, this.pager.PageSize, this.pager.SortField, this.pager.SortDirection, this.issueSearchQueries).subscribe(result => {
+
+          console.log(result);
+
+          this.issuesList = result as Issue[];
+
+          if (this.issuesList.length >= 0) {
+
+            this.pager.TotalDataFetch = this.issuesList.length;
+            this.pager.IsLoading = false;
+
+            this.defaultPaginationComponent.syncPagination(this.pager);
+          }
+
+        });
+
+      }
+
+    });
+  }
+
   UpdateIssueList(event: Issue) {
 
     if (event) {
@@ -236,10 +294,21 @@ export class IssuePanelComponent implements OnInit {
     }
   }
 
+  UpdatePager(event: Pager) {
+
+    if (event) {
+
+      this.pager = event;
+      this.UpdateTable();
+    }
+  }
+
   UpdateTable() {
 
-      this.GetAllIssuesByAssignedCount();
-      this.GetAllIssuesByAssigned();
+    //this.GetAllIssuesByAssignedCount();
+    //this.GetAllIssuesByAssigned();
+
+    this.LoadTable();
   }
 
   OnStatusChange(issue: Issue, event: any) {
