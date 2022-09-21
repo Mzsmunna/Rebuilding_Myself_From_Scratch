@@ -18,6 +18,9 @@ export class IssuePanelComponent implements OnInit {
   public loggedUser: User;
   public userSearchQueries: SearchField[];
 
+  activeTab: string = "";
+  public isAdmin: boolean = false;
+
   public issueSearchQueries: SearchField[];
   public issuesList: Issue[];
   public issuesListCount: number = 0;
@@ -100,7 +103,7 @@ export class IssuePanelComponent implements OnInit {
     //});
 
     this.issueSearchQueries.push({
-      Key: 'AssignerId',
+      Key: (this.isAdmin) ? 'CreatedBy' : 'AssignedId',
       Value: this.authService.GetCurrentUserId(), //"", //this.user.Id,
       DataType: 'string',
       DataSeparator: '',
@@ -127,6 +130,28 @@ export class IssuePanelComponent implements OnInit {
     let token = this.authService.GetToken();
 
     console.log("Token from Home Page :" + token);
+  }
+
+  GetLoggedUser() {
+
+    this.authService.GetLoggedUser().subscribe(result => {
+
+      console.log("Logged user: ", result);
+
+      this.loggedUser = result as User;
+
+      if (this.loggedUser.Role.toLowerCase() == "user") {
+
+        this.isAdmin = false;
+        this.activeTab = "issues";
+
+      } else {
+
+        this.isAdmin = true;
+        this.activeTab = "users";
+      }
+
+    });
   }
 
   GetAllIssuesByAssignedCount() {

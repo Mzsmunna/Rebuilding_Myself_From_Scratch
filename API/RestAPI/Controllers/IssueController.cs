@@ -43,10 +43,10 @@ namespace RestAPI.Controllers
                 else
                     issue.ModifiedOn = DateTime.UtcNow;
 
-                if (!string.IsNullOrEmpty(issue.AssignerId))
+                if (!string.IsNullOrEmpty(issue.AssignedId))
                 {
-                    var user = _userRepository.GetUser(issue.AssignerId).Result;
-                    issue.AssignerName = user.FirstName + " " + user.LastName;
+                    var user = _userRepository.GetUser(issue.AssignedId).Result;
+                    issue.AssignedName = user.FirstName + " " + user.LastName;
                 }
                 
                 _IssueRepository.Save(issue);

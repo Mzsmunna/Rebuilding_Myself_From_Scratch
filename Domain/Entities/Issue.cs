@@ -15,8 +15,8 @@ namespace Domain.Entities
         public string Type { get; set; } = string.Empty;
         public string Summary { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public string AssignerName { get; set; } = string.Empty;
-        public string AssignerId { get; set; } = string.Empty;
+        public string AssignedName { get; set; } = string.Empty;
+        public string AssignedId { get; set; } = string.Empty;
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? DueDate { get; set; }

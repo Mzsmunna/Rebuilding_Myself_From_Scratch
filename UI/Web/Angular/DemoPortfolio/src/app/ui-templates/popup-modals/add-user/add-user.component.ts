@@ -53,6 +53,11 @@ export class AddUserComponent implements OnInit {
 
     if (userForm.valid) {
 
+      if (this.newUser.Id)
+        this.newUser.ModifiedBy = this.authService.GetCurrentUserId();
+      else
+        this.newUser.CreatedBy = this.authService.GetCurrentUserId();
+
       this.authService.Register(this.newUser).subscribe(result => {
 
         console.log("saved user: ", result);
