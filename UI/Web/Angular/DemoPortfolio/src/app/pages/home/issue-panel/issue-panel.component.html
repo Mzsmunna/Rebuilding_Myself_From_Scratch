@@ -22,8 +22,8 @@
               <thead>
                 <tr>
                   <th scope="col">Team Member</th>
-                  <th scope="col">Task</th>
-                  <th scope="col">Priority</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Status</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -155,8 +155,8 @@
 
           </div>
           <div class="card-footer text-end p-3">
-            <button class="me-2 btn btn-link">Cancel</button>
-            <button class="btn btn-primary">Add Task</button>
+            <!--<button class="me-2 btn btn-link">Cancel</button>-->
+            <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
           </div>
         </div>
 

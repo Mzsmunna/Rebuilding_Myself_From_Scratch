@@ -81,31 +81,22 @@
           </div>
         </div>
 
-        <!-- IsActive select (true/false) -->
+        <!-- Status select -->
         <div class="form-outline mb-4">
-          <label class="form-label" for="issueIsActive">In Progress</label>
-          <select id="issueIsActive" class="form-select" aria-label="Default select example" name="IsActive" formControlName="IsActive">
-            <option value="true">Yes</option>
-            <option selected value="false">No</option>
+          <label class="form-label" for="issueStatus">Status</label>
+          <select id="issueStatus" class="form-select" aria-label="Default select example" name="Status" formControlName="Status">
+            <option selected value="pending">Pending</option>
+            <option value="in-progress">In-Progress</option>
+            <option value="done">Done</option>
+            <option value="discarded">Discarded</option>
           </select>
         </div>
 
-        <!-- IsDeleted select (true/false) -->
+        <!-- Comment input -->
         <div class="form-outline mb-4">
-          <label class="form-label" for="issueGender">Discarded</label>
-          <select id="issueIsDeleted" class="form-select" aria-label="Default select example" name="IsDeleted" formControlName="IsDeleted">
-            <option value="true">Yes</option>
-            <option selected value="false">No</option>
-          </select>
-        </div>
-
-        <!-- IsCompleted select (true/false) -->
-        <div class="form-outline mb-4">
-          <label class="form-label" for="issueGender">Done</label>
-          <select id="issueIsCompleted" class="form-select" aria-label="Default select example" name="IsCompleted" formControlName="IsCompleted">
-            <option value="true">Yes</option>
-            <option selected value="false">No</option>
-          </select>
+          <label class="form-label" for="issueComment">Comment:</label>
+          <input type="text" id="issueComment" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Comment'].dirty && issueForm.controls['Comment'].errors}" name="Comment" formControlName="Comment" />
+          <p for="issueComment" class="form-label text-danger" *ngIf="issueForm.controls['Comment'].errors?.['pattern']">Not a valid Comment</p>
         </div>
 
       </div>

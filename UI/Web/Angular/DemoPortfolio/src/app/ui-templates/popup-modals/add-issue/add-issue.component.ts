@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -16,12 +16,13 @@ export class AddIssueComponent implements OnInit {
   public newIssue: Issue;
   issueForm: FormGroup;
 
-  @Input() loggedUser: User;
+  @Input() loggedUser: User = {} as User;
+  @Output() UpdateIssueList = new EventEmitter<Issue>();
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
-  constructor(private issueService: IssueService) {
+  constructor(private authService: AuthService, private issueService: IssueService) {
 
-    this.loggedUser = {} as User;
+    //this.loggedUser = {} as User;
     this.newIssue = {} as Issue;
     this.closeModal = {} as ElementRef;
 
@@ -30,10 +31,12 @@ export class AddIssueComponent implements OnInit {
       Summary: new FormControl('', Validators.compose([Validators.required, Validators.minLength(20), Validators.pattern("[a-zA-Z ]*")])),
       Description: new FormControl('', Validators.minLength(30)),
       Type: new FormControl('to-do', Validators.required),
-      AssignTo: new FormControl('631e4ccd511f1f293c9bd842', Validators.required),
+      AssignTo: new FormControl(this.authService.GetCurrentUserId(), Validators.required),
       StartDate: new FormControl(''),
       EndDate: new FormControl(''),
       DueDate: new FormControl(''),
+      Status: new FormControl('pending', Validators.required),
+      Comment: new FormControl('', Validators.pattern("[a-zA-Z ]*")),
       IsActive: new FormControl('false', Validators.required),
       IsDeleted: new FormControl('false', Validators.required),
       IsCompleted: new FormControl('false', Validators.required)
@@ -43,6 +46,7 @@ export class AddIssueComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log(`ngOnInit: app-add-issue`, this.loggedUser);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -71,7 +75,7 @@ export class AddIssueComponent implements OnInit {
       this.newIssue.Title = this.issueForm.value.Title;
       this.newIssue.Summary = this.issueForm.value.Summary;
       this.newIssue.Description = this.issueForm.value.Description;
-      this.newIssue.AssignedId = this.issueForm.value.AssignedId;
+      this.newIssue.AssignedId = this.issueForm.value.AssignTo;
       this.newIssue.StartDate = new Date(this.issueForm.value.StartDate);
       this.newIssue.EndDate = new Date(this.issueForm.value.EndDate);
       this.newIssue.DueDate = new Date(this.issueForm.value.DueDate);
@@ -86,6 +90,8 @@ export class AddIssueComponent implements OnInit {
         if (result) {
 
           this.closeModal.nativeElement.click();
+          this.issueForm.reset();
+          this.UpdateIssueList.emit(result);
 
         } else {
 

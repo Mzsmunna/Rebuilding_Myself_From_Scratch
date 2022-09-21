@@ -15,7 +15,7 @@ import { SearchField } from '../../../view_models/search-field.model';
 })
 export class IssuePanelComponent implements OnInit {
 
-  public user: User;
+  public loggedUser: User;
   public userSearchQueries: SearchField[];
 
   public issueSearchQueries: SearchField[];
@@ -26,7 +26,7 @@ export class IssuePanelComponent implements OnInit {
 
   constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService) {
 
-    this.user = {} as User;
+    this.loggedUser = {} as User;
     this.issuesList = [] as Issue[];
 
     this.userSearchQueries = [] as SearchField[];
@@ -153,16 +153,41 @@ export class IssuePanelComponent implements OnInit {
     });
   }
 
+  UpdateIssueList(event: Issue) {
+
+    if (event) {
+
+      this.GetAllIssuesByAssignedCount();
+      this.GetAllIssuesByAssigned();
+    }
+  }
+
+  OnUpdate(issue: Issue) {
+
+    //pass to adduser component template with view child
+
+  }
+
+  OnDelete(event: any) {
+
+    var issue = event.data as Issue;
+    issue.IsDeleted = true;
+    issue.Status = 'discarded';
+
+    //pass to adduser component template with view child
+
+  }
+
   //Ng2 Smart Table Action event Trigger Methods:
 
   NgTableOnCreate(event: any) {
 
-    var user = event.newData as User;
-    this.userService.SaveUser(user).subscribe(result => {
+    var issue = event.newData as Issue;
+    this.issueService.SaveIssue(issue).subscribe(result => {
 
       console.log(result);
 
-      var user = result as User;
+      var user = result as Issue;
 
       if (user) {
 
@@ -179,12 +204,12 @@ export class IssuePanelComponent implements OnInit {
 
   NgTableOnUpdate(event: any) {
 
-    var user = event.newData as User;
-    this.userService.UpdateUser(user).subscribe(result => {
+    var issue = event.newData as Issue;
+    this.issueService.SaveIssue(issue).subscribe(result => {
 
       console.log(result);
 
-      var user = result as User;
+      var user = result as Issue;
 
       if (user) {
 
@@ -201,19 +226,17 @@ export class IssuePanelComponent implements OnInit {
 
   NgTableOnDelete(event: any) {
 
-    var user = event.data as User;
+    var issue = event.data as Issue;
+    issue.IsDeleted = true;
+    issue.Status = 'discarded';
 
-    //this.usersList.forEach((value, index) => {
-    //  if (value.Id == event.data.Id) this.usersList.splice(index, 1);
-    //});
-
-    this.userService.DeleteUser(user).subscribe(result => {
+    this.issueService.SaveIssue(issue).subscribe(result => {
 
       console.log(result);
 
-      var isDeleted = result as boolean;
+      var deletedIssue = result as Issue;
 
-      if (isDeleted) {
+      if (deletedIssue) {
 
         event.confirm.resolve();
 
