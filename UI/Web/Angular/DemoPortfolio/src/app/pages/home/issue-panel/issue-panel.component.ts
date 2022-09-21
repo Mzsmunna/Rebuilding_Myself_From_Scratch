@@ -21,6 +21,7 @@ export class IssuePanelComponent implements OnInit {
   public userSearchQueries: SearchField[];
 
   activeTab: string = "";
+  issueFilterType: string = "";
   public isAdmin: boolean = false;
 
   public issueSearchQueries: SearchField[];
@@ -111,20 +112,37 @@ export class IssuePanelComponent implements OnInit {
     this.GetLoggedUser();
 
     this.issueSearchQueries.push({
-      Key: (this.isAdmin) ? 'CreatedBy' : 'AssignedId',
-      Value: this.authService.GetCurrentUserId(), //"", //this.user.Id,
-      DataType: 'string',
-      DataSeparator: '',
-      IsId: true,
-      IsString: true,
-      IsCaseSensitive: false,
-      IsPartialMatch: true,
-      IsBoolean: false,
-      IsDateTime: false,
-      IsAndQuery: true,
-      IsEncrypted: false,
-      QueryOrder: 1
-    });
+
+        Key: (this.isAdmin) ? 'CreatedBy' : 'AssignedId',
+        Value: this.authService.GetCurrentUserId(), //"", //this.user.Id,
+        DataType: 'string',
+        DataSeparator: '',
+        IsId: true,
+        IsString: true,
+        IsCaseSensitive: false,
+        IsPartialMatch: true,
+        IsBoolean: false,
+        IsDateTime: false,
+        IsAndQuery: true,
+        IsEncrypted: false,
+        QueryOrder: 1
+      },
+      {
+        Key: 'Type',
+        Value: this.issueFilterType,
+        DataType: 'string',
+        DataSeparator: '',
+        IsId: true,
+        IsString: true,
+        IsCaseSensitive: false,
+        IsPartialMatch: true,
+        IsBoolean: false,
+        IsDateTime: false,
+        IsAndQuery: true,
+        IsEncrypted: false,
+        QueryOrder: 1
+      }
+    );
 
     this.GetToken();
     //this.GetAllUserToAssign();
@@ -132,6 +150,19 @@ export class IssuePanelComponent implements OnInit {
     //this.GetAllIssuesByAssigned();
     this.GetAllIssuesByAssignedCount();
     this.GetAllIssuesByAssigned();
+  }
+
+  FilterIssueType(issueType: string) {
+
+    this.issueFilterType = issueType;
+
+    const first = this.issueSearchQueries.find((obj) => {
+      return obj.Key === "Type";
+    })!;
+
+    first.Value = this.issueFilterType;
+
+    this.UpdateTable();
   }
 
   GetToken() {
@@ -201,9 +232,14 @@ export class IssuePanelComponent implements OnInit {
 
     if (event) {
 
+      this.UpdateTable();
+    }
+  }
+
+  UpdateTable() {
+
       this.GetAllIssuesByAssignedCount();
       this.GetAllIssuesByAssigned();
-    }
   }
 
   OnStatusChange(issue: Issue, event: any) {

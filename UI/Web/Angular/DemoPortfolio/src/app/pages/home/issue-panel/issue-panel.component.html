@@ -11,10 +11,20 @@
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-md-12 col-xl-10">
-
         <div class="card">
           <div class="card-header p-3">
-            <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task List</h5>
+            <div class="dropdown">
+              <button type="button" class="btn dropdown-toggle fs-5 fw-bold" data-bs-toggle="dropdown" title="All Issues">
+                <i class="fas fa-tasks me-2"></i>{{issueFilterType | titlecase}} Issues
+              </button>
+              <ul class="dropdown-menu fs-5 fw-bolder">
+                <li><button class="dropdown-item" (click)="FilterIssueType('')"><i class="fas fa-tasks me-2"></i>Issues</button></li>
+                <li><button class="dropdown-item" (click)="FilterIssueType('to-do')"><i class="fas fa-tasks me-2"></i>To-do Issues</button></li>
+                <li><button class="dropdown-item" (click)="FilterIssueType('task')"><i class="fas fa-tasks me-2"></i>Task Issues</button></li>
+                <li><button class="dropdown-item" (click)="FilterIssueType('note')"><i class="fas fa-tasks me-2"></i>Note Issues</button></li>
+                <li><button class="dropdown-item" (click)="FilterIssueType('reminder')"><i class="fas fa-tasks me-2"></i>Reminder Issues</button></li>
+              </ul>
+            </div>
           </div>
           <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px; overflow-y: scroll;">
 
