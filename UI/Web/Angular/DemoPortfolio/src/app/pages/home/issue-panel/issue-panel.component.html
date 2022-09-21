@@ -31,7 +31,7 @@
             <table class="table mb-0">
               <thead>
                 <tr>
-                  <th scope="col">Team Member</th>
+                  <th scope="col">Assigned To</th>
                   <th scope="col">Type</th>
                   <th scope="col">Title</th>
                   <th scope="col">Summary</th>
@@ -45,21 +45,27 @@
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
                          class="shadow-1-strong rounded-circle" alt="avatar 1"
                          style="width: 55px; height: auto;">
-                    <span class="ms-2">{{issue.AssignedName}}</span>
+                    <span class="ms-2">{{issue.AssignedName | titlecase}}</span>
                   </th>
                   <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
-                    <span>{{issue.Type}}</span>
+                    <span>{{issue.Type | titlecase}}</span>
                   </td>
-                  <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
+                  <td class="align-middle text-capitalize" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
                     <span>{{issue.Title}}</span>
                   </td>
-                  <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
+                  <td class="align-middle text-capitalize" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
                     <span>{{issue.Summary}}</span>
                   </td>
                   <td class="align-middle">
                     <!--<h6 class="mb-0"><span class="badge bg-danger">{{issue.Status}}</span></h6>-->
-                    <div class="form-outline mb-2 mt-2">
-                      <select id="issueStatus" class="form-select form-select-lg badge bg-danger" aria-label="Default select example" name="Status" (change)="OnStatusChange(issue, $event)" >
+                    <div class="form-outline mb-2 mt-2 me-2">
+                      <select id="issueStatus"
+                              class="form-select rounded-pill fw-bold text-white"
+                              [ngClass]="{'bg-danger': issue.IsDeleted, 'bg-success': issue.IsCompleted, 'bg-primary': issue.IsActive, 'bg-secondary': issue.IsActive==false}"
+                              aria-label="Default select example"
+                              name="Status"
+                              (change)="OnStatusChange(issue, $event)"
+                              [disabled]="issue.IsCompleted" >
                         <option [selected]="issue.Status=='pending'" value="pending">Pending</option>
                         <option [selected]="issue.Status=='in-progress'" value="in-progress">In-Progress</option>
                         <option [selected]="issue.Status=='done'" value="done">Done</option>
