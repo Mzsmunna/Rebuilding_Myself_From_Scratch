@@ -56,7 +56,7 @@ export class IssuePanelComponent implements OnInit {
       CurrentDataEndRange: 0,
       CurrentPage: 1,
       TotalPage: 1,
-      PageSize: 5,
+      PageSize: 2,
       SortField: "CreatedOn",
       SortDirection: 'Descending',
       IsLoading: true
@@ -167,9 +167,6 @@ export class IssuePanelComponent implements OnInit {
     );
 
     this.GetToken();
-    ///this.GetAllUserToAssign();
-    ///this.GetAllIssuesByAssignedCount();
-    ///this.GetAllIssuesByAssigned();
 
     //this.GetAllIssuesByAssignedCount();
     //this.GetAllIssuesByAssigned();
@@ -263,7 +260,7 @@ export class IssuePanelComponent implements OnInit {
 
       this.pager.TotalDataCount = result as number;
 
-      if (this.pager.TotalDataCount > 0) {
+      if (this.pager.TotalDataCount >= 0) {
 
         this.issueService.GetAllIssues(this.pager.CurrentPage - 1, this.pager.PageSize, this.pager.SortField, this.pager.SortDirection, this.issueSearchQueries).subscribe(result => {
 

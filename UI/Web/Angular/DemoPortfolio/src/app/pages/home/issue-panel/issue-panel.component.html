@@ -25,6 +25,17 @@
                 <li><button class="dropdown-item" (click)="FilterIssueType('reminder')"><i class="fas fa-tasks me-2"></i>Reminder Issues</button></li>
               </ul>
             </div>
+            <div class="position-relative">
+              <div class="position-absolute bottom-0 end-0">
+                <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">
+                  <option [disabled]="true" [value]="pager.PageSize">Page Size ({{pager.PageSize}})</option>
+                  <option [disabled]="pager.PageSize==5" value="5">5</option>
+                  <option [disabled]="pager.PageSize==10" value="10">10</option>
+                  <option [disabled]="pager.PageSize==20" value="20">20</option>
+                  <option [disabled]="pager.PageSize==50" value="50">50</option>
+                </select>
+              </div>
+            </div>
           </div>
           <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 650px; overflow-y: scroll;">
 

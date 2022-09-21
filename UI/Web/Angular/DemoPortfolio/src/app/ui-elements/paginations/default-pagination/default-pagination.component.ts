@@ -38,6 +38,8 @@ export class DefaultPaginationComponent implements OnInit {
 
   updatePagination(): void {
 
+    this.pager.TotalPage = Math.ceil(this.pager.TotalDataCount / this.pager.PageSize);
+
     if (this.pager.TotalDataFetch > 0) {
 
       this.pager.CurrentDataEndRange = (this.pager.TotalDataFetch < this.pager.PageSize) ? ((this.pager.CurrentPage - 1) * this.pager.PageSize) + this.pager.TotalDataFetch : this.pager.PageSize * this.pager.CurrentPage;
