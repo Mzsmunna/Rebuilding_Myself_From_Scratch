@@ -58,21 +58,38 @@ export class AddIssueComponent implements OnInit {
     });
   }
 
+  ReopenIssue(): void {
+
+    this.actionName = "Update";
+    this.existingIssue.IsCompleted = false;
+    this.issueForm.enable();
+  }
+
   public EnableUpdateMode(issue: Issue): void {
 
     console.log(`EnableUpdateMode for issue`, issue);
 
     this.existingIssue = issue;
+    this.issueForm.enable();
 
     if (this.existingIssue) {
 
       this.BindFormValue(this.existingIssue);
 
+      if (this.existingIssue.IsCompleted) {
+
+        this.actionName = "Closed";
+        this.issueForm.disable();
+
+      } else {
+
+        this.actionName = "Update";
+      }
+
       this.formModal = new window.bootstrap.Modal(
         document.getElementById('issuePopUp')
       );
-
-      this.actionName = "Update";
+      
       this.formModal.show();
     }
   }

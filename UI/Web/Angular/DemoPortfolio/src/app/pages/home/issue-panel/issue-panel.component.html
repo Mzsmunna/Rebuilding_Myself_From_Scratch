@@ -47,19 +47,19 @@
                          style="width: 55px; height: auto;">
                     <span class="ms-2">{{issue.AssignedName}}</span>
                   </th>
-                  <td class="align-middle">
+                  <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
                     <span>{{issue.Type}}</span>
                   </td>
-                  <td class="align-middle">
+                  <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
                     <span>{{issue.Title}}</span>
                   </td>
-                  <td class="align-middle">
+                  <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
                     <span>{{issue.Summary}}</span>
                   </td>
                   <td class="align-middle">
                     <!--<h6 class="mb-0"><span class="badge bg-danger">{{issue.Status}}</span></h6>-->
                     <div class="form-outline mb-2 mt-2">
-                      <select id="issueStatus" class="form-select badge bg-danger" aria-label="Default select example" name="Status" (change)="OnStatusChange(issue, $event)" >
+                      <select id="issueStatus" class="form-select form-select-lg badge bg-danger" aria-label="Default select example" name="Status" (change)="OnStatusChange(issue, $event)" >
                         <option [selected]="issue.Status=='pending'" value="pending">Pending</option>
                         <option [selected]="issue.Status=='in-progress'" value="in-progress">In-Progress</option>
                         <option [selected]="issue.Status=='done'" value="done">Done</option>
