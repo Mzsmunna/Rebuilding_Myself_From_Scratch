@@ -96,6 +96,26 @@ namespace Repositories.Mongo
             return await _collection.Find(filter).ToListAsync();
         }
 
+        public List<dynamic> GetAllUserToAssign()
+        {
+            //var filter = Builders<User>.Filter.Empty;
+
+            var results = _collection.AsQueryable()
+                            //.OrderByDescending(e => e.Email)
+                            .Where(x => !string.IsNullOrEmpty(x.Email))
+                            .GroupBy(e => e.Email)
+                            .Select(g => new
+                            {
+                                Id = g.First().Id,
+                                Name = g.First().FirstName + " " + g.First().LastName,
+                                Email = g.First().Email,
+                                Role = g.First().Role,
+                              
+                            }).ToList();
+
+            return results.Cast<dynamic>().ToList();
+        }
+
         public User Save(IEntity entity)
         {
             var user = entity as User;

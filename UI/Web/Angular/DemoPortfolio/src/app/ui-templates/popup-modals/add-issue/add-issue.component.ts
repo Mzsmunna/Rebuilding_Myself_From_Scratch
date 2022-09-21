@@ -3,7 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { IssueService } from '../../../services/features/issue/issue.service';
-import { User } from '../../../view_models/auth/user.model';
+import { UserService } from '../../../services/features/user/user.service';
+import { AssignUser, User } from '../../../view_models/auth/user.model';
 import { Issue } from '../../../view_models/issue.model';
 declare var window: any;
 
@@ -18,6 +19,8 @@ export class AddIssueComponent implements OnInit {
   public existingIssue: Issue;
   issueForm: FormGroup;
 
+  public assignUserList: AssignUser[];
+
   @Input() loggedUser: User = {} as User;
   @Output() UpdateIssueList = new EventEmitter<Issue>();
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
@@ -26,9 +29,11 @@ export class AddIssueComponent implements OnInit {
   formModal: any;
   actionName: string = "Add";
 
-  constructor(private authService: AuthService, private issueService: IssueService) {
+  constructor(private authService: AuthService, private issueService: IssueService, private userService: UserService) {
 
     //this.loggedUser = {} as User;
+    this.assignUserList = [] as AssignUser[];
+
     this.newIssue = {} as Issue;
     this.existingIssue = {} as Issue;
     this.closeModal = {} as ElementRef;
@@ -39,6 +44,18 @@ export class AddIssueComponent implements OnInit {
   ngOnInit(): void {
 
     console.log(`ngOnInit: app-add-issue`, this.loggedUser);
+    this.GetAllUserToAssign();
+  }
+
+  GetAllUserToAssign() {
+
+    this.userService.GetAllUserToAssign().subscribe(result => {
+
+      console.log(result);
+
+      this.assignUserList = result as AssignUser[];
+
+    });
   }
 
   public EnableUpdateMode(issue: Issue): void {

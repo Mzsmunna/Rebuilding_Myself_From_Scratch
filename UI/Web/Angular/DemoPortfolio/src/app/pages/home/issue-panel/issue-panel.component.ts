@@ -5,7 +5,7 @@ import { UserService } from '../../../services/features/user/user.service';
 import { NgSmartTableComponent } from '../../../ui-elements/tables/ng-smart-table/ng-smart-table.component';
 import { TableService } from '../../../ui-elements/tables/table.service';
 import { AddIssueComponent } from '../../../ui-templates/popup-modals/add-issue/add-issue.component';
-import { User } from '../../../view_models/auth/user.model';
+import { AssignUser, User } from '../../../view_models/auth/user.model';
 import { Issue } from '../../../view_models/issue.model';
 import { SearchField } from '../../../view_models/search-field.model';
 
@@ -17,6 +17,7 @@ import { SearchField } from '../../../view_models/search-field.model';
 export class IssuePanelComponent implements OnInit {
 
   public loggedUser: User;
+  public assignUserList: AssignUser[];
   public userSearchQueries: SearchField[];
 
   activeTab: string = "";
@@ -33,6 +34,7 @@ export class IssuePanelComponent implements OnInit {
   constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService) {
 
     this.loggedUser = {} as User;
+    this.assignUserList = [] as AssignUser[];
     this.issuesList = [] as Issue[];
 
     this.userSearchQueries = [] as SearchField[];
@@ -125,6 +127,7 @@ export class IssuePanelComponent implements OnInit {
     });
 
     this.GetToken();
+    //this.GetAllUserToAssign();
     //this.GetAllIssuesByAssignedCount();
     //this.GetAllIssuesByAssigned();
     this.GetAllIssuesByAssignedCount();
@@ -156,6 +159,17 @@ export class IssuePanelComponent implements OnInit {
         this.isAdmin = true;
         this.activeTab = "users";
       }
+
+    });
+  }
+
+  GetAllUserToAssign() {
+
+    this.userService.GetAllUserToAssign().subscribe(result => {
+
+      console.log(result);
+
+      this.assignUserList = result as AssignUser[];
 
     });
   }

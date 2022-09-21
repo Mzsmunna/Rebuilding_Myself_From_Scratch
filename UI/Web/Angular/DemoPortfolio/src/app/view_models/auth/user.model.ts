@@ -15,3 +15,10 @@ export interface User {
   CreatedBy: string;
   ModifiedBy: string;
 }
+
+export interface AssignUser {
+  Id: string;
+  Name: string;
+  Email: string;
+  Role: string;
+}

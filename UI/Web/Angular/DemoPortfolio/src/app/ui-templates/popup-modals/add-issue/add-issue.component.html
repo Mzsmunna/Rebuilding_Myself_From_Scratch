@@ -52,8 +52,7 @@
         <div class="form-outline mb-4">
           <label class="form-label" for="issueAssignTo">Assign To</label>
           <select id="issueAssignTo" class="form-select" aria-label="Default select example" name="AssignTo" formControlName="AssignTo">
-            <option selected value="xyz">XYZ</option>
-            <option value="abc">ABC</option>
+            <option *ngFor="let user of assignUserList" [value]="user.Id">{{user.Name}}</option>
           </select>
         </div>
 

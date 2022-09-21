@@ -14,6 +14,7 @@ namespace Domain.Interfaces
         Task<User> GetUser(string id);
         Task<long> GetAllUserCount(List<SearchField> searchQueries = null);
         Task<List<User>> GetAllUsers(int currentPage, int pageSize, string sortField, string sortDirection, List<SearchField> searchQueries = null);
+        List<dynamic> GetAllUserToAssign();
         User Save(IEntity entity);
         Task<bool> UpdateUser(User user);
         bool DeleteById(string _id);

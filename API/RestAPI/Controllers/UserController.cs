@@ -192,6 +192,14 @@ namespace RestAPI.Controllers
         }
 
         [HttpGet, Authorize]
+        [ActionName("GetAllUserToAssign")]
+        public IActionResult GetAllUserToAssign()
+        {
+            var users = _userRepository.GetAllUserToAssign();
+            return Ok(users);
+        }
+
+        [HttpGet, Authorize]
         [ActionName("GetAllUserCount")]
         //[HttpGet(Name = "GetAllUserCount")]
         public IActionResult GetAllUserCount(string searchQueries)

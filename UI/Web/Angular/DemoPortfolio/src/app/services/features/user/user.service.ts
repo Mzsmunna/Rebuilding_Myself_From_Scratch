@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../../view_models/auth/user.model';
+import { AssignUser, User } from '../../../view_models/auth/user.model';
 import { SearchField } from '../../../view_models/search-field.model';
 
 @Injectable({
@@ -28,6 +28,11 @@ export class UserService {
       + "&sortField=" + sortField
       + "&sortDirection=" + sortDirection
       + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<User[]>;
+  }
+
+  GetAllUserToAssign(): Observable<AssignUser[]> {
+
+    return this.http.get(this.baseApiUrl + 'GetAllUserToAssign') as Observable<AssignUser[]>;
   }
 
   GetUser(userId: string): Observable<User> {
