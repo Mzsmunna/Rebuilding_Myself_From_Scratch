@@ -49,7 +49,7 @@ namespace RestAPI.Controllers
                     issue.AssignedName = user.FirstName + " " + user.LastName;
                 }
                 
-                _IssueRepository.Save(issue);
+                issue = _IssueRepository.Save(issue);
 
                 return Ok(issue);
             }

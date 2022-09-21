@@ -22,35 +22,52 @@
               <thead>
                 <tr>
                   <th scope="col">Team Member</th>
+                  <th scope="col">Type</th>
                   <th scope="col">Title</th>
+                  <th scope="col">Summary</th>
                   <th scope="col">Status</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="fw-normal">
+                <tr class="fw-normal" *ngFor="let issue of issuesList; let i = index">
                   <th>
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
                          class="shadow-1-strong rounded-circle" alt="avatar 1"
                          style="width: 55px; height: auto;">
-                    <span class="ms-2">Alice Mayer</span>
+                    <span class="ms-2">{{issue.AssignedName}}</span>
                   </th>
                   <td class="align-middle">
-                    <span>Call Sam For payments</span>
+                    <span>{{issue.Type}}</span>
                   </td>
                   <td class="align-middle">
-                    <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                    <span>{{issue.Title}}</span>
                   </td>
                   <td class="align-middle">
-                    <a href="#!" data-mdb-toggle="tooltip" title="Done">
-                      <i class="fas fa-check text-success me-3"></i>
-                    </a>
-                    <a href="#!" data-mdb-toggle="tooltip" title="Remove">
+                    <span>{{issue.Summary}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <!--<h6 class="mb-0"><span class="badge bg-danger">{{issue.Status}}</span></h6>-->
+                    <div class="form-outline mb-2 mt-2">
+                      <select id="issueStatus" class="form-select badge bg-danger" aria-label="Default select example" name="Status" (change)="OnStatusChange(issue, $event)" >
+                        <option [selected]="issue.Status=='pending'" value="pending">Pending</option>
+                        <option [selected]="issue.Status=='in-progress'" value="in-progress">In-Progress</option>
+                        <option [selected]="issue.Status=='done'" value="done">Done</option>
+                        <option [selected]="issue.Status=='discarded'" value="discarded">Discarded</option>
+                      </select>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <button class="btn" data-mdb-toggle="tooltip" title="Edit" (click)="OnUpdate(issue)">
+                      <i class="fas fa-edit text-success me-2"></i>
+                    </button>
+                    <button class="btn" data-mdb-toggle="tooltip" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
                       <i class="fas fa-trash-alt text-danger"></i>
-                    </a>
+                    </button>
                   </td>
                 </tr>
-                <tr class="fw-normal">
+
+                <!--<tr class="fw-normal">
                   <th>
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp"
                          class="shadow-1-strong rounded-circle" alt="avatar 1"
@@ -149,17 +166,18 @@
                       <i class="fas fa-trash-alt text-warning"></i>
                     </a>
                   </td>
-                </tr>
+                </tr>-->
               </tbody>
             </table>
 
           </div>
-          <div class="card-footer text-end p-3">
-            <!--<button class="me-2 btn btn-link">Cancel</button>-->
-            <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
+          <div class="card-footer position-relative p-md-4 mb-2 mt-2">
+            <div class="position-absolute bottom-0 end-50">
+              <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
+            </div>       
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>

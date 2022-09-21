@@ -66,10 +66,45 @@ namespace Repositories.Mongo
             }
         }
 
-        public string Save(IEntity entity)
+        public Issue Save(IEntity entity)
         {
-            var result = SaveAsync(entity).GetAwaiter().GetResult();
-            return result.Id;
+            var issue = entity as Issue;
+
+            if (issue != null)
+            {
+                if (issue.Status.ToLower().Equals("pending"))
+                {
+                    issue.IsActive = false;
+                    issue.IsDeleted = false;
+                    issue.IsCompleted = false;
+                }
+                else if (issue.Status.ToLower().Equals("in-progress"))
+                {
+                    issue.IsActive = true;
+                    issue.IsDeleted = false;
+                    issue.IsCompleted = false;
+                }
+                else if (issue.Status.ToLower().Equals("done"))
+                {
+                    issue.IsActive = true;
+                    issue.IsCompleted = true;
+                    issue.IsDeleted = false;
+                }
+                else if (issue.Status.ToLower().Equals("discarded"))
+                {
+                    issue.IsActive = false;
+                    issue.IsCompleted = false;
+                    issue.IsDeleted = true;
+                }
+
+                entity = issue;
+
+                var result = SaveAsync(entity).GetAwaiter().GetResult();
+
+                return issue;
+            }
+
+            return null;
         }
 
         #region Common_Methods

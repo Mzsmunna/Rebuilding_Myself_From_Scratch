@@ -135,6 +135,11 @@ export class AddIssueComponent implements OnInit {
 
     if (isValid) {
 
+      if (this.existingIssue) {
+
+        this.newIssue = this.existingIssue;
+      }
+
       this.newIssue.Title = this.issueForm.value.Title;
       this.newIssue.Summary = this.issueForm.value.Summary;
       this.newIssue.Description = this.issueForm.value.Description;

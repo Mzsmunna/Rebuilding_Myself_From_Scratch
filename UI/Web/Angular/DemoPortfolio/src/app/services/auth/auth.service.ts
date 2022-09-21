@@ -103,7 +103,7 @@ export class AuthService {
     var role = this.GetCurrentUserRole() as string;
     //console.log(`role:`, role);
 
-    if (role.toLowerCase() == 'admin')
+    if (role.toLowerCase() != 'user')
       return true;
     else
       return false;

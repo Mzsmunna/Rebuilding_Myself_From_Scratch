@@ -14,7 +14,7 @@ namespace Domain.Interfaces
         List<Issue> GetAllIssuesByAssigned(string assignedId);
         Issue GetIssuesById(string id);
         Issue GetByTitle(string title);
-        string Save(IEntity entity);
+        Issue Save(IEntity entity);
 
         #region Common_Methods
 

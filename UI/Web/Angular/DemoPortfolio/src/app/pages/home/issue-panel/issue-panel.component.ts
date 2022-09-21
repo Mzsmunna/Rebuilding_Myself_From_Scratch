@@ -105,6 +105,9 @@ export class IssuePanelComponent implements OnInit {
     //  QueryOrder: 1
     //});
 
+    this.isAdmin = this.authService.IsAdmin();
+    this.GetLoggedUser();
+
     this.issueSearchQueries.push({
       Key: (this.isAdmin) ? 'CreatedBy' : 'AssignedId',
       Value: this.authService.GetCurrentUserId(), //"", //this.user.Id,
@@ -177,9 +180,6 @@ export class IssuePanelComponent implements OnInit {
       console.log(result);
 
       this.issuesList = result as Issue[];
-
-      //this.addIssueComponent.EnableUpdateMode(this.issuesList[0]);
-
     });
   }
 
@@ -192,10 +192,22 @@ export class IssuePanelComponent implements OnInit {
     }
   }
 
+  OnStatusChange(issue: Issue, event: any) {
+
+    issue.Status = event.target.value;
+    console.log("Issue status updated :", issue.Status);
+    this.issueService.SaveIssue(issue).subscribe(result => {
+
+      console.log(result);
+      //this.UpdateIssueList(result);
+
+    });
+  }
+
   OnUpdate(issue: Issue) {
 
     //pass to adduser component template with view child
-
+    this.addIssueComponent.EnableUpdateMode(issue);
   }
 
   OnDelete(event: any) {
