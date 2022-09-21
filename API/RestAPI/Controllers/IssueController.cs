@@ -59,6 +59,14 @@ namespace RestAPI.Controllers
             }
         }
 
+        [HttpDelete, Authorize]
+        [ActionName("DeleteIssue")]
+        public IActionResult DeleteIssue(string issueId)
+        {
+            var users = _IssueRepository.DeleteById(issueId);
+            return Ok(users);
+        }
+
         [HttpGet]
         [ActionName("GetAllIssueCount")]
         public IActionResult GetAllIssueCount(string searchQueries)

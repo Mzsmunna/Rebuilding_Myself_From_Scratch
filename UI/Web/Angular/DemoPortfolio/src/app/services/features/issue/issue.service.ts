@@ -62,4 +62,9 @@ export class IssueService {
 
     return this.http.post(this.baseApiUrl + 'SaveIssue', issue) as Observable<Issue>;
   }
+
+  DeleteIssue(issue: Issue): Observable<boolean> {
+
+    return this.http.delete(this.baseApiUrl + 'DeleteIssue?issueId=' + issue.Id) as Observable<boolean>;
+  }
 }

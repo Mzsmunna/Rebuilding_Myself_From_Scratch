@@ -15,6 +15,7 @@ namespace Domain.Interfaces
         Issue GetIssuesById(string id);
         Issue GetByTitle(string title);
         Issue Save(IEntity entity);
+        bool DeleteById(string _id);
 
         #region Common_Methods
 

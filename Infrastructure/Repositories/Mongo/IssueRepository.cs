@@ -107,6 +107,15 @@ namespace Repositories.Mongo
             return null;
         }
 
+        public bool DeleteById(string _id)
+        {
+            var filter = BuildFilter(_id);
+            //var data = _collection.Find(filter).FirstOrDefault();
+            DeleteResult result = _collection.DeleteMany(filter);
+
+            return true;
+        }
+
         #region Common_Methods
 
         private FilterDefinition<Issue> BuildFilter(string _id, List<SearchField> searchQueries = null)

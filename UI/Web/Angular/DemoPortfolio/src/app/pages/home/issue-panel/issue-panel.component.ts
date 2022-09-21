@@ -210,11 +210,17 @@ export class IssuePanelComponent implements OnInit {
     this.addIssueComponent.EnableUpdateMode(issue);
   }
 
-  OnDelete(event: any) {
+  OnDelete(issue: Issue) {
 
-    var issue = event.data as Issue;
-    issue.IsDeleted = true;
-    issue.Status = 'discarded';
+    if (!issue.IsCompleted) {
+
+      this.issueService.DeleteIssue(issue).subscribe(result => {
+
+        console.log(result);
+        this.UpdateIssueList(issue);
+
+      });
+    }
 
     //pass to adduser component template with view child
 

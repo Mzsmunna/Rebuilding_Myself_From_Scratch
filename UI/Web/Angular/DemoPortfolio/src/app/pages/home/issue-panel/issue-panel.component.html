@@ -61,9 +61,19 @@
                     <button class="btn" data-mdb-toggle="tooltip" title="Edit" (click)="OnUpdate(issue)">
                       <i class="fas fa-edit text-success me-2"></i>
                     </button>
-                    <button class="btn" data-mdb-toggle="tooltip" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
+                    <!--<button class="btn" data-mdb-toggle="tooltip" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
                       <i class="fas fa-trash-alt text-danger"></i>
-                    </button>
+                    </button>-->
+
+                    <div class="dropdown">
+                      <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
+                        <i class="fas fa-trash-alt text-danger"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" (click)="OnDelete(issue)">Yes</button></li>
+                        <li><button class="dropdown-item" >No</button></li>
+                      </ul>
+                    </div>
                   </td>
                 </tr>
 
