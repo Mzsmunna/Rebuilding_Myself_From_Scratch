@@ -75,7 +75,7 @@ export class AddIssueComponent implements OnInit {
       this.newIssue.Title = this.issueForm.value.Title;
       this.newIssue.Summary = this.issueForm.value.Summary;
       this.newIssue.Description = this.issueForm.value.Description;
-      this.newIssue.AssignedId = this.issueForm.value.AssignTo;
+      this.newIssue.AssignerId = this.issueForm.value.AssignTo;
       this.newIssue.StartDate = new Date(this.issueForm.value.StartDate);
       this.newIssue.EndDate = new Date(this.issueForm.value.EndDate);
       this.newIssue.DueDate = new Date(this.issueForm.value.DueDate);

@@ -7,8 +7,6 @@ export interface Issue {
   Description: string;
   AssignerName: string;
   AssignerId: string;
-  AssignedName: string;
-  AssignedId: string;
   StartDate: Date | null;
   EndDate: Date | null;
   DueDate: Date | null;

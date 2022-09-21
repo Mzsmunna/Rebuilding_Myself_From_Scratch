@@ -22,12 +22,14 @@ namespace RestAPI.Controllers
         private readonly IConfiguration _configuration;
         private readonly ILogger<IssueController> _logger;
         private readonly IIssueRepository _IssueRepository;
+        private readonly IUserRepository _userRepository;
 
-        public IssueController(IConfiguration configuration, ILogger<IssueController> logger, IIssueRepository IssueRepository)
+        public IssueController(IConfiguration configuration, ILogger<IssueController> logger, IIssueRepository IssueRepository, IUserRepository userRepository)
         {
             _configuration = configuration;
             _logger = logger;
-            _IssueRepository = IssueRepository;         
+            _IssueRepository = IssueRepository;
+            _userRepository = userRepository;
         }
 
         [HttpPost]
@@ -41,6 +43,12 @@ namespace RestAPI.Controllers
                 else
                     issue.ModifiedOn = DateTime.UtcNow;
 
+                if (!string.IsNullOrEmpty(issue.AssignerId))
+                {
+                    var user = _userRepository.GetUser(issue.AssignerId).Result;
+                    issue.AssignerName = user.FirstName + " " + user.LastName;
+                }
+                
                 _IssueRepository.Save(issue);
 
                 return Ok(issue);
