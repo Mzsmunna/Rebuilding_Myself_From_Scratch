@@ -1,4 +1,4 @@
-<h1 class="display-1 text-center">Issues :</h1>
+<!--<h1 class="display-1 text-center">Issues :</h1>-->
 
 <!--<app-ng-smart-table [settings]="NgSmartTableSettings"
                     [data]="issuesList"
@@ -7,10 +7,7 @@
                     (DeleteEvent)="NgTableOnDelete($event)">
 </app-ng-smart-table>-->
 
-<section class="vh-100" style="background-color: #eee;">
-  <div class="container py-5">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-md-12 col-xl-10">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header p-3">
             <div class="dropdown">
@@ -26,6 +23,9 @@
               </ul>
             </div>
             <div class="position-relative">
+              <div class="position-absolute bottom-0 end-50">
+                <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
+              </div>
               <div class="position-absolute bottom-0 end-0">
                 <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">
                   <option [disabled]="true" [value]="pager.PageSize">Page Size ({{pager.PageSize}})</option>
@@ -54,7 +54,7 @@
                 <tr class="fw-normal" *ngFor="let issue of issuesList; let i = index">
                   <th>
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
-                         class="shadow-1-strong rounded-circle" alt="avatar 1"
+                         class="shadow-1-strong rounded-circle mt-2" alt="avatar 1"
                          style="width: 55px; height: auto;">
                     <span class="ms-2">{{issue.AssignedName | titlecase}}</span>
                   </th>
@@ -214,14 +214,11 @@
                 (UpdatePager)="UpdatePager($event)">
           </app-default-pagination>
 
-          <div class="card-footer position-relative p-md-4 mb-2 mt-2">
+          <!--<div class="card-footer position-relative p-md-4 mb-2 mt-2">
             <div class="position-absolute bottom-0 end-50">
               <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
             </div>
-          </div>
+          </div>-->
 
         </div>
       </div>
-    </div>
-  </div>
-</section>
