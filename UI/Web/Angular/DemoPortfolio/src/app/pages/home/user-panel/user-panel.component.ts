@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Pager } from '../../../helper_models/pager.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/features/user/user.service';
 import { TableService } from '../../../ui-elements/tables/table.service';
@@ -16,6 +17,8 @@ export class UserPanelComponent implements OnInit {
   public usersListCount: number = 0;
   public userSearchQueries: SearchField[];
 
+  pager: Pager;
+
   public NgSmartTableSettings: any;
 
   constructor(private authService: AuthService, private userService: UserService, private tableService: TableService) {
@@ -23,6 +26,9 @@ export class UserPanelComponent implements OnInit {
     this.usersList = [] as User[];
 
     this.userSearchQueries = [] as SearchField[];
+
+    //Pagination
+    this.pager = this.tableService.GetDefaultPagination();
 
     //Ng2 Smart Table Configure:
     this.NgSmartTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
@@ -87,8 +93,23 @@ export class UserPanelComponent implements OnInit {
     });
 
     this.GetToken();
-    this.GetAllUserCount();
-    this.GetAllUsers();
+    //this.GetAllUserCount();
+    //this.GetAllUsers();
+    this.LoadTable();
+
+    this.tableService.paginationEmitter.subscribe(result => {
+
+      //console.log("current pager user:", result);
+      this.pager = result;
+
+      if (this.pager.IsPageChanged) {
+
+        this.pager.IsPageChanged = false;
+
+        this.LoadTable();
+      }
+
+    });
   }
 
   GetToken() {
@@ -127,6 +148,44 @@ export class UserPanelComponent implements OnInit {
       //}, 5000);
 
     });
+  }
+
+  LoadTable() {
+
+    this.pager.IsLoading = true;
+
+    this.userService.GetAllUserCount(this.userSearchQueries).subscribe(result => {
+
+      console.log(result);
+
+      this.pager.TotalDataCount = result as number;
+
+      if (this.pager.TotalDataCount >= 0) {
+
+        this.userService.GetAllUsers(this.pager.CurrentPage - 1, this.pager.PageSize, this.pager.SortField, this.pager.SortDirection, this.userSearchQueries).subscribe(result => {
+
+          console.log(result);
+
+          this.usersList = result as User[];
+
+          if (this.usersList.length >= 0) {
+
+            this.pager.TotalDataFetch = this.usersList.length;
+            this.pager.IsLoading = false;
+
+            this.tableService.SyncPagination(this.pager);           
+          }
+
+        });
+
+      }
+
+    });
+  }
+
+  OnDetailsClick(user: User, isOpenDetails: boolean ) {
+
+
   }
 
   //Ng2 Smart Table Action event Trigger Methods:

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
 import { Stream } from 'stream';
 import { Pager } from '../../../helper_models/pager.model';
+import { TableService } from '../../tables/table.service';
 
 @Component({
   selector: 'app-default-pagination',
@@ -12,7 +13,7 @@ export class DefaultPaginationComponent implements OnInit {
   @Input() pager: Pager;
   @Output() UpdatePager = new EventEmitter<Pager>();
 
-  constructor() {
+  constructor(private tableService: TableService) {
 
     this.pager = {} as Pager;
   }
@@ -31,9 +32,12 @@ export class DefaultPaginationComponent implements OnInit {
     else
       this.pager.CurrentPage--;
 
+    this.pager.IsPageChanged = true;
+
     this.updatePagination();
 
     this.UpdatePager.emit(this.pager);
+    this.tableService.SyncPagination(this.pager);
   }
 
   updatePagination(): void {
@@ -55,7 +59,17 @@ export class DefaultPaginationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.updatePagination();
+    //this.pager = this.tableService.GetDefaultPagination();
+
+    this.tableService.paginationEmitter.subscribe(result => {
+
+      //console.log("current pager:", result);
+      this.pager = result;
+
+      this.updatePagination();
+
+    });
+    //this.updatePagination();
   }
 
   ngOnChanges(changes: SimpleChanges) {

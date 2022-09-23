@@ -11,4 +11,5 @@ export interface Pager {
   SortField: string;
   SortDirection: string;
   IsLoading: boolean;
+  IsPageChanged: boolean;
 }

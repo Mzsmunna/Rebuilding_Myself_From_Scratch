@@ -59,8 +59,8 @@ export class IssuePanelComponent implements OnInit {
       PageSize: 2,
       SortField: "CreatedOn",
       SortDirection: 'Descending',
-      IsLoading: true
-
+      IsLoading: true,
+      IsPageChanged: false,
     };
 
     //Ng2 Smart Table Configure:

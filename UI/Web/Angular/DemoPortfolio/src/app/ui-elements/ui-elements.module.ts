@@ -31,6 +31,7 @@ import { CustomTableComponent } from './tables/custom-table/custom-table.compone
 import { DefaultGraphComponent } from './graphs/default-graph/default-graph.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DefaultPaginationComponent } from './paginations/default-pagination/default-pagination.component';
+import { TableService } from './tables/table.service';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { DefaultPaginationComponent } from './paginations/default-pagination/def
     CustomTableComponent,
     DefaultGraphComponent,
     DefaultPaginationComponent
-  ]
+  ],
+  providers: [TableService]
 })
 export class UiElementsModule { }

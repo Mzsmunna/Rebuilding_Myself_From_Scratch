@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Pager } from '../../helper_models/pager.model';
 
 @Injectable({
   providedIn: 'root'
@@ -6,9 +7,38 @@ import { Injectable } from '@angular/core';
 export class TableService {
 
   private NgSmartTableSettings: any;
+  private pager: Pager;
+  paginationEmitter: EventEmitter<Pager>;
 
   constructor() {
 
+    this.pager = {
+
+      TotalDataCount: 0,
+      TotalDataFetch: 0,
+      CurrentData: 0,
+      CurrentDataStartRange: 0,
+      CurrentDataEndRange: 0,
+      CurrentPage: 1,
+      TotalPage: 1,
+      PageSize: 5,
+      SortField: "CreatedOn",
+      SortDirection: 'Descending',
+      IsLoading: true,
+      IsPageChanged: false,
+    };
+
+    this.paginationEmitter =  new EventEmitter<Pager>();
+  }
+
+  GetDefaultPagination(): Pager {
+
+    return this.pager;
+  }
+
+  SyncPagination(pager: Pager) {
+
+    this.paginationEmitter.emit(pager);
   }
 
   GetNgSmartTableDefaultSettings() {

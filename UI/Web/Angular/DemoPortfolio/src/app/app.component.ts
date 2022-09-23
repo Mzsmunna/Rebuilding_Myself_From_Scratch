@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TableService } from './ui-elements/tables/table.service';
 //import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
   // <h3 class="display-3">Hello World!</h3>
   // `,
   styleUrls: ['./app.component.css'],
-  providers: [] //NgbCarouselConfig
+  providers: [TableService] //NgbCarouselConfig
 })
 export class AppComponent {
 
