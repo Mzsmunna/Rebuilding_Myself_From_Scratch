@@ -76,7 +76,7 @@
             </div>
 
             <!-- Password input -->
-            <div class="form-outline mb-4">
+            <div class="form-outline mb-4" *ngIf="!currentProfile.Id">
               <label class="form-label" for="userPassword">Password:</label>
               <input type="password" class="form-control" [ngClass]="{'is-invalid': Password.errors?.['minlength']}" #Password="ngModel" name="Password" [(ngModel)]="currentProfile.Password" placeholder="Password" minlength="5" required />
               <p for="userPassword" class="form-label text-danger" *ngIf="Password.errors?.['minlength']">Minimum password length should be 5</p>

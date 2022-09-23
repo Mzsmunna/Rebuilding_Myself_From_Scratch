@@ -63,7 +63,7 @@ export class AddUserComponent implements OnInit {
       else
         this.currentProfile.CreatedBy = this.authService.GetCurrentUserId();
 
-      this.authService.Register(this.currentProfile).subscribe(result => {
+      this.userService.SaveUser(this.currentProfile).subscribe(result => {
 
         console.log("saved user: ", result);
 
@@ -71,10 +71,16 @@ export class AddUserComponent implements OnInit {
 
           this.closeModal.nativeElement.click();
 
-          userForm.reset();
-          this.currentProfile = {} as User;
-          this.currentProfile.Gender = "male";
-          this.currentProfile.Role = "user";
+          if (this.currentProfile.Id) {
+
+
+          } else {
+
+            userForm.reset();
+            this.currentProfile = {} as User;
+            this.currentProfile.Gender = "male";
+            this.currentProfile.Role = "user";
+          }
 
         } else {
 
