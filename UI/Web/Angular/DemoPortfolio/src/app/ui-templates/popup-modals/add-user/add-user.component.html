@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userPopUp">
-  Add User
+<button type="button" class="{{classNames}}" data-bs-toggle="modal" data-bs-target="#userPopUp">
+  {{buttonName}}
 </button>
 
 <!-- Modal -->
@@ -19,7 +19,7 @@
             <!-- First Name input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userFirstName">First Name:</label> <!--appForbiddenName="bob"-->
-              <input type="text" class="form-control" [ngClass]="{'is-invalid': FirstName.dirty && FirstName.errors}" #FirstName="ngModel" name="FirstName" [(ngModel)]="newUser.FirstName" pattern="[a-zA-Z ]*" minlength="3" required />
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': FirstName.dirty && FirstName.errors}" #FirstName="ngModel" name="FirstName" [(ngModel)]="currentProfile.FirstName" pattern="[a-zA-Z ]*" minlength="3" required />
               <p for="userFirstName" class="form-label text-danger" *ngIf="FirstName.errors?.['minlength']">Minimum length should be 3</p>
               <p for="userFirstName" class="form-label text-danger" *ngIf="FirstName.errors?.['pattern']">Not a valid name</p>
             </div>
@@ -27,7 +27,7 @@
             <!-- Last Name input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userLastName">Last Name:</label>
-              <input type="text" class="form-control" [ngClass]="{'is-invalid': LastName.dirty && LastName.errors}" #LastName="ngModel" name="LastName" [(ngModel)]="newUser.LastName" pattern="[a-zA-Z ]*" minlength="3" required />
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': LastName.dirty && LastName.errors}" #LastName="ngModel" name="LastName" [(ngModel)]="currentProfile.LastName" pattern="[a-zA-Z ]*" minlength="3" required />
               <p for="userLastName" class="form-label text-danger" *ngIf="LastName.errors?.['minlength']">Minimum length should be 3</p>
               <p for="userFirstName" class="form-label text-danger" *ngIf="LastName.errors?.['pattern']">Not a valid name</p>
             </div>
@@ -35,7 +35,7 @@
             <!-- Gender select -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userGender">Gender</label>
-              <select class="form-select" aria-label="Default select example" #Gender="ngModel" name="Gender" [(ngModel)]="newUser.Gender" required>
+              <select class="form-select" aria-label="Default select example" #Gender="ngModel" name="Gender" [(ngModel)]="currentProfile.Gender" required>
                 <option selected value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
@@ -46,20 +46,20 @@
             <div class="form-outline mb-4">
               <label class="form-label" for="userBirthDate">Birth Date:</label>
               <div class="input-group date" id="datepicker">
-                <input type="date" class="form-control" #BirthDate="ngModel" name="BirthDate" [(ngModel)]="newUser.BirthDate" />
+                <input type="date" class="form-control" #BirthDate="ngModel" name="BirthDate" [(ngModel)]="currentProfile.BirthDate" />
               </div>
             </div>
 
             <!-- Age input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userAge">Age</label>
-              <input type="number" class="form-control" #Age="ngModel" name="Age" [(ngModel)]="newUser.Age" />
+              <input type="number" class="form-control" #Age="ngModel" name="Age" [(ngModel)]="currentProfile.Age" />
             </div>
 
             <!-- Role select -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userGender">Role</label>
-              <select class="form-select" aria-label="Default select example" #Role="ngModel" name="Role" [(ngModel)]="newUser.Role">
+              <select class="form-select" aria-label="Default select example" #Role="ngModel" name="Role" [(ngModel)]="currentProfile.Role">
                 <!--<option >Select Role</option>-->
                 <option selected value="user">User</option>
                 <option value="moderator">Moderator</option>
@@ -71,21 +71,21 @@
             <!-- Email input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userEmail">Email:</label>
-              <input type="email" class="form-control" [ngClass]="{'is-invalid': Email.errors?.['email']}" #Email="ngModel" name="Email" [(ngModel)]="newUser.Email" [email]="true" placeholder="Email" required />
+              <input type="email" class="form-control" [ngClass]="{'is-invalid': Email.errors?.['email']}" #Email="ngModel" name="Email" [(ngModel)]="currentProfile.Email" [email]="true" placeholder="Email" required />
               <p for="userEmail" class="form-label text-danger" *ngIf="Email.errors?.['email']">Not a valid email</p>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userPassword">Password:</label>
-              <input type="password" class="form-control" [ngClass]="{'is-invalid': Password.errors?.['minlength']}" #Password="ngModel" name="Password" [(ngModel)]="newUser.Password" placeholder="Password" minlength="5" required />
+              <input type="password" class="form-control" [ngClass]="{'is-invalid': Password.errors?.['minlength']}" #Password="ngModel" name="Password" [(ngModel)]="currentProfile.Password" placeholder="Password" minlength="5" required />
               <p for="userPassword" class="form-label text-danger" *ngIf="Password.errors?.['minlength']">Minimum password length should be 5</p>
             </div>
 
             <!-- Repeat Password input -->
             <!--<div class="form-outline mb-4">
               <label class="form-label" for="userConfirmPassword">Confirm password</label>
-              <input type="password" class="form-control" [ngClass]="{'is-invalid': ConfirmPassword.dirty && ConfirmPassword.errors}" #ConfirmPassword="ngModel" name="ConfirmPassword" [(ngModel)]="newUser.ConfirmPassword"  minlength="5" required />
+              <input type="password" class="form-control" [ngClass]="{'is-invalid': ConfirmPassword.dirty && ConfirmPassword.errors}" #ConfirmPassword="ngModel" name="ConfirmPassword" [(ngModel)]="currentProfile.ConfirmPassword"  minlength="5" required />
               <label for="userConfirmPassword" class="form-label text-danger" *ngIf="ConfirmPassword.errors?.['minlength']">Minimum password length should be 5</label>
               <label for="userConfirmPassword" class="form-label text-danger" *ngIf="ConfirmPassword.touched && user.Password!=user.ConfirmPassword">Password didn't match</label>
             </div>-->

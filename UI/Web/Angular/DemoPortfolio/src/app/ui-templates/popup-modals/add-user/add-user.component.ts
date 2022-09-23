@@ -11,17 +11,22 @@ import { User } from '../../../view_models/auth/user.model';
 })
 export class AddUserComponent implements OnInit {
 
-  public newUser: User;
+  @Input() currentProfile: User;
+  @Input() classNames: string;
+  @Input() buttonName: string;
 
-  @Input() loggedUser: User;
+  //@Input() loggedUser: User;
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
   constructor(private authService: AuthService, private userService: UserService ) {
 
-    this.loggedUser = {} as User;
-    this.newUser = {} as User;
-    this.newUser.Gender = "male";
-    this.newUser.Role = "user";
+    //this.loggedUser = {} as User;
+    this.currentProfile = {} as User;
+    this.classNames = "btn btn-primary";
+    this.buttonName = "Add User";
+
+    this.currentProfile.Gender = "male";
+    this.currentProfile.Role = "user";
 
     this.closeModal = {} as ElementRef;
   }
@@ -53,12 +58,12 @@ export class AddUserComponent implements OnInit {
 
     if (userForm.valid) {
 
-      if (this.newUser.Id)
-        this.newUser.ModifiedBy = this.authService.GetCurrentUserId();
+      if (this.currentProfile.Id)
+        this.currentProfile.ModifiedBy = this.authService.GetCurrentUserId();
       else
-        this.newUser.CreatedBy = this.authService.GetCurrentUserId();
+        this.currentProfile.CreatedBy = this.authService.GetCurrentUserId();
 
-      this.authService.Register(this.newUser).subscribe(result => {
+      this.authService.Register(this.currentProfile).subscribe(result => {
 
         console.log("saved user: ", result);
 
@@ -67,20 +72,20 @@ export class AddUserComponent implements OnInit {
           this.closeModal.nativeElement.click();
 
           userForm.reset();
-          this.newUser = {} as User;
-          this.newUser.Gender = "male";
-          this.newUser.Role = "user";
+          this.currentProfile = {} as User;
+          this.currentProfile.Gender = "male";
+          this.currentProfile.Role = "user";
 
         } else {
 
-          console.log("something went wrong while saving the user: ", this.newUser);
+          console.log("something went wrong while saving the user: ", this.currentProfile);
         }
 
       });
 
     } else {
 
-      console.log("Invalid user info : ", this.newUser);
+      console.log("Invalid user info : ", this.currentProfile);
     }
   }
 

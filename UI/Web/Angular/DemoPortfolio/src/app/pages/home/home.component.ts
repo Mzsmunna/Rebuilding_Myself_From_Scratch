@@ -18,16 +18,16 @@ export class HomeComponent implements OnInit {
   activeTab: string = "";
   public isAdmin: boolean = false;
   public loggedUser: User;
-  public newUser: User;
+  public currentProfile: User;
 
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
   constructor(private authService: AuthService, private tableService: TableService, private route: Router) {
 
     this.loggedUser = {} as User;
-    this.newUser = {} as User;
-    this.newUser.Gender = "male";
-    this.newUser.Role = "user";
+    this.currentProfile = {} as User;
+    this.currentProfile.Gender = "male";
+    this.currentProfile.Role = "user";
 
     this.closeModal = {} as ElementRef;
 
@@ -141,6 +141,7 @@ export class HomeComponent implements OnInit {
       console.log("Logged user: ", result);
 
       this.loggedUser = result as User;
+      this.currentProfile = result as User;
 
       if (this.loggedUser.Role.toLowerCase() == "user") {
 
@@ -162,7 +163,7 @@ export class HomeComponent implements OnInit {
 
     if (userForm.valid) {
 
-      this.authService.Register(this.newUser).subscribe(result => {
+      this.authService.Register(this.currentProfile).subscribe(result => {
 
         console.log("saved user: ", result);
 
@@ -171,20 +172,20 @@ export class HomeComponent implements OnInit {
           this.closeModal.nativeElement.click();
 
           userForm.reset();
-          this.newUser = {} as User;
-          this.newUser.Gender = "male";
-          this.newUser.Role = "user";
+          this.currentProfile = {} as User;
+          this.currentProfile.Gender = "male";
+          this.currentProfile.Role = "user";
 
         } else {
 
-          console.log("something went wrong while saving user: ", this.newUser);
+          console.log("something went wrong while saving user: ", this.currentProfile);
         }
 
       });
 
     } else {
 
-      console.log("Invalid user info : ", this.newUser);
+      console.log("Invalid user info : ", this.currentProfile);
     }
   }
 
