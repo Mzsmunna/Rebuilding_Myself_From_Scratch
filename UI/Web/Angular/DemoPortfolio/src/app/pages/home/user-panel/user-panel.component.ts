@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Pager } from '../../../helper_models/pager.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/features/user/user.service';
@@ -97,26 +97,35 @@ export class UserPanelComponent implements OnInit {
     //this.GetAllUsers();
     this.LoadTable();
 
-    this.tableService.paginationEmitter.subscribe(result => {
+    //this.tableService.paginationEmitter.subscribe(result => {
 
-      //console.log("current pager user:", result);
-      this.pager = result;
+    //  //console.log("current pager user:", result);
+    //  this.pager = result;
 
-      if (this.pager.IsPageChanged) {
+    //  if (this.pager.IsPageChanged) {
 
-        this.pager.IsPageChanged = false;
+    //    this.pager.IsPageChanged = false;
 
-        this.LoadTable();
-      }
+    //    this.LoadTable();
+    //  }
 
-    });
+    //});
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    console.log("User Page on chnage:");
+
+    //if (changes.name != undefined) {
+    //  this.name = changes.name.currentValue
+    //}
   }
 
   GetToken() {
 
     let token = this.authService.GetToken();
 
-    console.log("Token from Home Page :" + token);
+    console.log("Token from User Page :" + token);
   }
 
   GetAllUserCount() {
@@ -148,6 +157,16 @@ export class UserPanelComponent implements OnInit {
       //}, 5000);
 
     });
+  }
+
+  UpdatePager(event: Pager) {
+
+    if (event) {
+
+      this.pager = event;
+      this.pager.IsPageChanged = false;
+      this.LoadTable();
+    }
   }
 
   LoadTable() {
