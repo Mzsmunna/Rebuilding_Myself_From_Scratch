@@ -64,4 +64,9 @@ export class UserService {
     return this.http.delete(this.baseApiUrl + 'DeleteUser?userId=' + user.Id) as Observable<boolean>;
   }
 
+  SaveMedia(file: any): Observable<string> {
+
+    return this.http.post(this.baseApiUrl + 'SaveMedia', file) as Observable<string>;
+  }
+
 }

@@ -60,9 +60,10 @@
                   </div>
                 </div>
                 <div class="d-flex pt-1">
-                  <button type="button" class="btn btn-outline-secondary me-1 flex-grow-1">Change Photo</button>
+                  <app-default-file-uploader></app-default-file-uploader>
+                  <!--<button type="button" class="btn btn-outline-secondary me-1 flex-grow-1">Change Photo</button>-->
                   <!--<button type="button" class="btn btn-outline-success flex-grow-1">Edit</button>-->
-                  <app-add-user [currentProfile]="currentProfile" [classNames]="'btn btn-outline-success flex-grow-1'" [buttonName]="'Edit User'"></app-add-user>
+                  <app-add-user class="ms-2" [currentProfile]="currentProfile" [classNames]="'btn btn-outline-success flex-grow-1'" [buttonName]="'Edit User'"></app-add-user>
                 </div>
               </div>
             </div>

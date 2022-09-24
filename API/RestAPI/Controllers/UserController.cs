@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using Utilities;
@@ -19,12 +20,14 @@ namespace RestAPI.Controllers
         private readonly IConfiguration _configuration;
         private readonly ILogger<UserController> _logger;
         private readonly IUserRepository _userRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserController(IConfiguration configuration, ILogger<UserController> logger, IUserRepository userRepository)
+        public UserController(IConfiguration configuration, ILogger<UserController> logger, IUserRepository userRepository, IHttpContextAccessor httpContextAccessor)
         {
             _configuration = configuration;
             _logger = logger;
-            _userRepository = userRepository;         
+            _userRepository = userRepository;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpPost]
@@ -249,6 +252,58 @@ namespace RestAPI.Controllers
         {
             var users = _userRepository.DeleteById(userId);
             return Ok(users);
+        }
+
+        [Consumes("multipart/form-data")]
+        [HttpPost, Authorize]
+        [ActionName("SaveMedia")]
+        public async Task<IActionResult> SaveMedia(IFormFile file)
+        {
+            if (!(!string.IsNullOrEmpty(Request.ContentType)
+                   && Request.ContentType.IndexOf("multipart/", StringComparison.OrdinalIgnoreCase) >= 0))
+            {
+                return StatusCode((int)HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string newFileName = string.Empty;
+            string path = string.Empty;
+
+            //var httpContext = _httpContextAccessor.HttpContext;
+
+            //if (httpContext.Request.Form.Files.Count > 0)
+            //{
+                //for (int i = 0; i < httpContext.Request.Form.Files.Count; i++)
+                //{
+                    //IFormFile httpPostedFile = httpContext.Request.Form.Files[i];
+                    IFormFile httpPostedFile = file;
+
+                    if (httpPostedFile != null)
+                    {
+                        var ms = new MemoryStream();
+                        await httpPostedFile.CopyToAsync(ms);
+                        var bytes = ms.ToArray();
+
+                        var fileName = httpPostedFile.FileName;
+                        newFileName = Guid.NewGuid().ToString() + "-" + fileName.Replace("\"", string.Empty);
+
+                        path = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"wwwroot/UploadedFiles"));
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        using (var fileStream = new FileStream(Path.Combine(path, newFileName), FileMode.Create))
+                        {
+                            await httpPostedFile.CopyToAsync(fileStream);
+                        }
+
+                        path = @"https://localhost:7074/UploadedFiles/" + newFileName; //Path.Combine(path, newFileName);
+                    }
+                //}
+            //}
+
+            //return Ok(ApplicationConstants.BaseUrl + relPath + provider.FileName);
+            //return Ok(ApplicationConstants.BaseUrl + relPath.Replace("wwwroot/", string.Empty) + newFileName);
+            return Ok(path);
         }
     }
 }
