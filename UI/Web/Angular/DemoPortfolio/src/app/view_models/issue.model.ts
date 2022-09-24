@@ -20,3 +20,22 @@ export interface Issue {
   CreatedBy: string;
   ModifiedBy: string;
 }
+
+export interface IssueStat {
+  //Id: string;
+  Status: string;
+  Count: string;
+}
+
+export interface IssueProgress {
+  Pending: number;
+  PendingRatio: number;
+  InProgress: number;
+  InProgressRatio: number;
+  Done: number;
+  DoneRatio: number;
+  Discarded: number;
+  DiscardedRatio: number;
+  Total: number;
+  TotalRatio: number;
+}

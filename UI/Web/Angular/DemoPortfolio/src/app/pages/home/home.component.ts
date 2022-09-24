@@ -2,9 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { IssueService } from '../../services/features/issue/issue.service';
 import { UserService } from '../../services/features/user/user.service';
 import { TableService } from '../../ui-elements/tables/table.service';
 import { User } from '../../view_models/auth/user.model';
+import { IssueProgress, IssueStat } from '../../view_models/issue.model';
 
 @Component({
   selector: 'app-home',
@@ -21,15 +23,21 @@ export class HomeComponent implements OnInit {
   public isUserSelected: boolean = false;
   public loggedUser: User;
   public currentProfile: User;
+  public userIssueStat: IssueStat[];
+  public userIssueProgress: IssueProgress;
 
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
-  constructor(private authService: AuthService, private userService: UserService, private tableService: TableService, private route: Router) {
+  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService, private route: Router) {
 
     this.loggedUser = {} as User;
     this.currentProfile = {} as User;
     this.currentProfile.Gender = "male";
     this.currentProfile.Role = "user";
+
+    this.userIssueStat = [] as IssueStat[];
+    this.userIssueProgress = {} as IssueProgress;
+    this.ResetIssueProgress();
 
     this.closeModal = {} as ElementRef;
 
@@ -135,15 +143,32 @@ export class HomeComponent implements OnInit {
       console.log("selected user:", result);
       this.currentProfile = result;
       this.isUserSelected = true;
+      this.GetIssueStatByUserId();
 
     });
+  }
+
+  ResetIssueProgress() {
+
+    this.userIssueProgress = {
+      Pending: 0,
+      PendingRatio: 0,
+      InProgress: 0,
+      InProgressRatio: 0,
+      Done: 0,
+      DoneRatio: 0,
+      Discarded: 0,
+      DiscardedRatio: 0,
+      Total: 0,
+      TotalRatio: 100
+    };
   }
 
   UndoSelectedUser() {
 
     this.isUserSelected = false;
     this.currentProfile = this.loggedUser;
-
+    this.GetIssueStatByUserId();
   }
 
   SwitchTab(tabName: string): void {
@@ -160,6 +185,8 @@ export class HomeComponent implements OnInit {
       this.loggedUser = result as User;
       this.currentProfile = result as User;
 
+      this.GetIssueStatByUserId();
+
       if (this.loggedUser.Role.toLowerCase() == "user") {
 
         this.isAdmin = false;
@@ -174,6 +201,63 @@ export class HomeComponent implements OnInit {
       }
 
     });
+  }
+
+  GetIssueStatByUserId() {
+
+    this.issueService.GetIssueStatByUserId(this.currentProfile.Id).subscribe(result => {
+
+      console.log("user's issue stats: ", result);
+
+      this.userIssueStat = result;
+
+      this.ResetIssueProgress();
+
+      if (this.userIssueStat && this.userIssueStat.length > 0) {
+
+        var pending = this.GetObjectValueFromList(this.userIssueStat, "Status", "pending");
+
+        if (pending)
+          this.userIssueProgress.Pending = pending.Count;
+
+        var inProgress = this.GetObjectValueFromList(this.userIssueStat, "Status", "in-progress");
+
+        if (inProgress)
+          this.userIssueProgress.InProgress = inProgress.Count;
+
+        var done = this.GetObjectValueFromList(this.userIssueStat, "Status", "done");
+
+        if (done)
+          this.userIssueProgress.Done = done.Count;
+
+        var discarded = this.GetObjectValueFromList(this.userIssueStat, "Status", "discarded");
+
+        if (discarded)
+          this.userIssueProgress.Discarded = discarded.Count;
+
+        this.userIssueProgress.Total = this.userIssueProgress.Pending + this.userIssueProgress.InProgress + this.userIssueProgress.Done + this.userIssueProgress.Discarded;
+        this.userIssueProgress.PendingRatio = (this.userIssueProgress.Pending / this.userIssueProgress.Total) * this.userIssueProgress.TotalRatio;
+        this.userIssueProgress.InProgressRatio = (this.userIssueProgress.InProgress / this.userIssueProgress.Total) * this.userIssueProgress.TotalRatio;
+        this.userIssueProgress.DoneRatio = (this.userIssueProgress.Done / this.userIssueProgress.Total) * this.userIssueProgress.TotalRatio;
+        this.userIssueProgress.DiscardedRatio = (this.userIssueProgress.Discarded / this.userIssueProgress.Total) * this.userIssueProgress.TotalRatio;
+
+        console.log("IssueProgress: ", this.userIssueProgress)
+
+      } else {
+
+
+      }
+
+    });
+  }
+
+  GetObjectValueFromList(list: Array<any>, key: string, value: string) {
+
+    const found = list.find((obj) => {
+      return obj[key] === value;
+    })!;
+
+    return found;
   }
 
   SaveUser(userForm: FormGroup) {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Issue } from '../../../view_models/issue.model';
+import { Issue, IssueStat } from '../../../view_models/issue.model';
 import { SearchField } from '../../../view_models/search-field.model';
 
 @Injectable({
@@ -38,6 +38,11 @@ export class IssueService {
       + "&sortField=" + sortField
       + "&sortDirection=" + sortDirection
       + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries))) as Observable<Issue[]>;
+  }
+
+  GetIssueStatByUserId(userId: string): Observable<IssueStat[]> {
+
+    return this.http.get(this.baseApiUrl + "GetIssueStatByUserId?userId=" + userId) as Observable<IssueStat[]>;
   }
 
   GetAllIssuesByAssigner(currentPage: number, pageSize: number, sortField: string, sortDirection: string, searchQueries: SearchField[]): Observable<Issue[]> {

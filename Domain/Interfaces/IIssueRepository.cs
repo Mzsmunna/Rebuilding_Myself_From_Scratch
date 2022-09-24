@@ -10,6 +10,7 @@ namespace Domain.Interfaces
     public interface IIssueRepository
     {
         List<Issue> GetAllIssues();
+        List<dynamic> GetIssueStatByUserId(string userId);
         List<Issue> GetAllIssuesByAssigner(string assignerId);
         List<Issue> GetAllIssuesByAssigned(string assignedId);
         Issue GetIssuesById(string id);

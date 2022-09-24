@@ -30,6 +30,27 @@ namespace Repositories.Mongo
             return _collection.Find(filter).Sort(sort).ToList();
         }
 
+        public List<dynamic> GetIssueStatByUserId(string userId)
+        {
+            //var filter = Builders<User>.Filter.Empty;
+
+            int totalCount = 0;
+
+            var results = _collection.AsQueryable()
+                            //.OrderByDescending(e => e.Email)
+                            .Where(x => !string.IsNullOrEmpty(x.AssignedId) && x.AssignedId.Equals(userId))
+                            .GroupBy(x => x.Status)
+                            .Select(g => new
+                            {
+                                //Id = g.First().Id,
+                                Status = g.First().Status,
+                                Count = g.Count()
+
+                            }).ToList();
+
+            return results.Cast<dynamic>().ToList();
+        }
+
         public List<Issue> GetAllIssuesByAssigner(string assignerId)
         {
             var filter = Builders<Issue>.Filter.Empty;

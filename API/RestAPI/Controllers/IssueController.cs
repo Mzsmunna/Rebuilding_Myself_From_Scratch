@@ -86,6 +86,14 @@ namespace RestAPI.Controllers
         }
 
         [HttpGet]
+        [ActionName("GetIssueStatByUserId")]
+        public IActionResult GetIssueStatByUserId(string userId)
+        {
+            var Issues = _IssueRepository.GetIssueStatByUserId(userId);
+            return Ok(Issues);
+        }
+
+        [HttpGet]
         [ActionName("GetAllIssuesByAssignerCount")]
         public IActionResult GetAllIssuesByAssignerCount(string searchQueries)
         {
