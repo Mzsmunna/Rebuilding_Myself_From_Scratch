@@ -13,6 +13,7 @@ import { SearchField } from '../../../view_models/search-field.model';
 })
 export class UserPanelComponent implements OnInit {
 
+  public newProfile: User;
   public usersList: User[];
   public usersListCount: number = 0;
   public userSearchQueries: SearchField[];
@@ -23,6 +24,7 @@ export class UserPanelComponent implements OnInit {
 
   constructor(private authService: AuthService, private userService: UserService, private tableService: TableService) {
 
+    this.newProfile = {} as User;
     this.usersList = [] as User[];
 
     this.userSearchQueries = [] as SearchField[];

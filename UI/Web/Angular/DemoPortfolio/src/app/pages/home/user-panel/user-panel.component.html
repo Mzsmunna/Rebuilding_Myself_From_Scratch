@@ -17,7 +17,7 @@
       </div>-->
       <div class="position-relative">
         <div class="position-absolute bottom-0 end-50">
-          <app-add-user [classNames]="'btn btn-primary'"></app-add-user>
+          <app-add-user [currentProfile]="newProfile" [classNames]="'btn btn-primary'"></app-add-user>
         </div>
         <div class="position-absolute bottom-0 end-0">
           <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">

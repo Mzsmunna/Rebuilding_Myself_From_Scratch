@@ -47,8 +47,16 @@ namespace RestAPI.Controllers
                 {
                     var user = _userRepository.GetUser(issue.AssignedId).Result;
                     issue.AssignedName = user.FirstName + " " + user.LastName;
+                    issue.AssignedImg = user.Img;
                 }
-                
+
+                if (!string.IsNullOrEmpty(issue.CreatedBy))
+                {
+                    var user = _userRepository.GetUser(issue.CreatedBy).Result;
+                    issue.CreatedByName = user.FirstName + " " + user.LastName;
+                    issue.CreatedByImg = user.Img;
+                }
+
                 issue = _IssueRepository.Save(issue);
 
                 return Ok(issue);

@@ -42,7 +42,16 @@
             <table class="table mb-0 align-middle bg-white">
               <thead>
                 <tr>
-                  <th scope="col">Assigned To</th>
+                  <th scope="col" *ngIf="isAdmin">
+                    Assigned To <!-- Default switch -->
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input me-1" (click)="FilterOnlyMyIssue()" [checked]="isMyIssuesOnly" id="customSwitches">
+                      <label class="custom-control-label" for="customSwitches">Me</label>
+                    </div>
+                  </th>
+                  <th scope="col" *ngIf="isAdmin==false">
+                    Assigned By
+                  </th>
                   <th scope="col">Type</th>
                   <th scope="col">Title</th>
                   <th scope="col">Summary</th>
@@ -52,11 +61,17 @@
               </thead>
               <tbody>
                 <tr class="fw-normal" *ngFor="let issue of issuesList; let i = index">
-                  <th>
+                  <th *ngIf="isAdmin">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
                          class="shadow-1-strong rounded-circle mt-2" alt="avatar 1"
                          style="width: 55px; height: auto;">
                     <span class="ms-2">{{issue.AssignedName | titlecase}}</span>
+                  </th>
+                  <th *ngIf="isAdmin==false">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
+                         class="shadow-1-strong rounded-circle mt-2" alt="avatar 1"
+                         style="width: 55px; height: auto;">
+                    <span class="ms-2">{{issue.CreatedByName | titlecase}}</span>
                   </th>
                   <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
                     <span>{{issue.Type | titlecase}}</span>
@@ -76,7 +91,7 @@
                               aria-label="Default select example"
                               name="Status"
                               (change)="OnStatusChange(issue, $event)"
-                              [disabled]="issue.IsCompleted" >
+                              [disabled]="issue.IsCompleted">
                         <option [selected]="issue.Status=='pending'" value="pending">Pending</option>
                         <option [selected]="issue.Status=='in-progress'" value="in-progress">In-Progress</option>
                         <option [selected]="issue.Status=='done'" value="done">Done</option>
@@ -89,8 +104,8 @@
                       <i class="fas fa-edit text-success me-2"></i>
                     </button>
                     <!--<button class="btn" data-mdb-toggle="tooltip" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </button>-->
+      <i class="fas fa-trash-alt text-danger"></i>
+    </button>-->
 
                     <div class="dropdown">
                       <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
@@ -98,7 +113,7 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li><button class="dropdown-item" (click)="OnDelete(issue)">Yes</button></li>
-                        <li><button class="dropdown-item" >No</button></li>
+                        <li><button class="dropdown-item">No</button></li>
                       </ul>
                     </div>
                   </td>

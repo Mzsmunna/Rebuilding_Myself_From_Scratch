@@ -6,7 +6,9 @@ export interface Issue {
   Summary: string;
   Description: string;
   AssignedName: string;
+  AssignedImg: string;
   AssignedId: string;
+  LogTime: number | null;
   StartDate: Date | null;
   EndDate: Date | null;
   DueDate: Date | null;
@@ -18,6 +20,8 @@ export interface Issue {
   CreatedOn: Date | null;
   ModifiedOn: Date | null;
   CreatedBy: string;
+  CreatedByName: string;
+  CreatedByImg: string;
   ModifiedBy: string;
 }
 

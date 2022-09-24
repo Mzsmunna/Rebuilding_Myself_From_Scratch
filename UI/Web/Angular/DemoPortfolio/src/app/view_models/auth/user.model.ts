@@ -5,6 +5,12 @@ export interface User {
   Gender: string;
   BirthDate: Date | null;
   Age: number | null;
+  Phone: string;
+  Address: string;
+  Department: string;
+  Designation: string;
+  Position: string;
+  Img: string;
   Email: string;
   Password: string;
   RefreshToken: string;

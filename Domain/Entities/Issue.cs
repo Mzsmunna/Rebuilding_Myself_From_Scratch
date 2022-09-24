@@ -16,7 +16,9 @@ namespace Domain.Entities
         public string Summary { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string AssignedName { get; set; } = string.Empty;
+        public string AssignedImg { get; set; } = string.Empty;
         public string AssignedId { get; set; } = string.Empty;
+        public int? LogTime { get; set; } = 0;
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? DueDate { get; set; }
@@ -28,6 +30,8 @@ namespace Domain.Entities
         public DateTime? CreatedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
         public string CreatedBy { get; set; } = string.Empty;
+        public string CreatedByName { get; set; } = string.Empty;
+        public string CreatedByImg { get; set; } = string.Empty;
         public string ModifiedBy { get; set; } = string.Empty;
     }
 }

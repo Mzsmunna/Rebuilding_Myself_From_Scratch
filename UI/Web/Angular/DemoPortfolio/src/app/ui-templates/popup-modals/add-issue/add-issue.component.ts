@@ -108,7 +108,9 @@ export class AddIssueComponent implements OnInit {
       Summary: '',
       Description: '',
       AssignedName: '',
+      AssignedImg: '',
       AssignedId: this.authService.GetCurrentUserId(),
+      LogTime: null,
       StartDate: null,
       EndDate: null,
       DueDate: null,
@@ -120,6 +122,8 @@ export class AddIssueComponent implements OnInit {
       CreatedOn: new Date(),
       ModifiedOn: null,
       CreatedBy: this.authService.GetCurrentUserId(),
+      CreatedByName: '',
+      CreatedByImg: '',
       ModifiedBy: ''
     };
 

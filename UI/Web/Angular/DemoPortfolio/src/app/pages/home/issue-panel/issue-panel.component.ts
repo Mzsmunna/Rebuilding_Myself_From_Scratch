@@ -25,6 +25,7 @@ export class IssuePanelComponent implements OnInit {
   activeTab: string = "";
   issueFilterType: string = "";
   public isAdmin: boolean = false;
+  public isMyIssuesOnly: boolean = false;
 
   public issueSearchQueries: SearchField[];
   public issuesList: Issue[];
@@ -185,6 +186,35 @@ export class IssuePanelComponent implements OnInit {
     first.Value = this.issueFilterType;
 
     this.UpdateTable();
+  }
+
+  FilterOnlyMyIssue() {
+
+    this.isMyIssuesOnly = !this.isMyIssuesOnly;
+
+    if (this.isAdmin) {
+
+      if (this.isMyIssuesOnly) {
+
+        const found = this.issueSearchQueries.find((obj) => {
+          return obj.Key === "CreatedBy";
+        })!;
+
+        found.Key = "AssignedId";
+        found.Value = this.loggedUser.Id;
+
+      } else {
+
+        const found = this.issueSearchQueries.find((obj) => {
+          return obj.Key === "AssignedId";
+        })!;
+
+        found.Key = "CreatedBy";
+        found.Value = this.loggedUser.Id;
+      }
+
+      this.UpdateTable();
+    }
   }
 
   GetToken() {
