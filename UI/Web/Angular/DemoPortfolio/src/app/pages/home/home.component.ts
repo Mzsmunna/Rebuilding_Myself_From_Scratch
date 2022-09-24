@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 
   activeTab: string = "";
   public isAdmin: boolean = false;
+  public isUserSelected: boolean = false;
   public loggedUser: User;
   public currentProfile: User;
 
@@ -133,8 +134,16 @@ export class HomeComponent implements OnInit {
 
       console.log("selected user:", result);
       this.currentProfile = result;
+      this.isUserSelected = true;
 
     });
+  }
+
+  UndoSelectedUser() {
+
+    this.isUserSelected = false;
+    this.currentProfile = this.loggedUser;
+
   }
 
   SwitchTab(tabName: string): void {
