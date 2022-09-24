@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { UserService } from '../../services/features/user/user.service';
 import { TableService } from '../../ui-elements/tables/table.service';
 import { User } from '../../view_models/auth/user.model';
 
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
-  constructor(private authService: AuthService, private tableService: TableService, private route: Router) {
+  constructor(private authService: AuthService, private userService: UserService, private tableService: TableService, private route: Router) {
 
     this.loggedUser = {} as User;
     this.currentProfile = {} as User;
@@ -127,6 +128,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.GetLoggedUser();
+
+    this.userService.selectedProfile$.subscribe(result => {
+
+      console.log("selected user:", result);
+      this.currentProfile = result;
+
+    });
   }
 
   SwitchTab(tabName: string): void {

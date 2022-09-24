@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AssignUser, User } from '../../../view_models/auth/user.model';
 import { SearchField } from '../../../view_models/search-field.model';
 
@@ -11,9 +11,18 @@ export class UserService {
 
   private baseApiUrl: string = '';
 
+  selectedProfile$: Subject<User>;
+
   constructor(private http: HttpClient) {
 
     this.baseApiUrl = "https://localhost:7074/api/User/";
+
+    this.selectedProfile$ = new Subject<User>();
+  }
+
+  SyncSelectedUser(user: User) {
+
+    this.selectedProfile$.next(user);
   }
 
   GetAllUserCount(searchQueries: SearchField[]): Observable<number> {

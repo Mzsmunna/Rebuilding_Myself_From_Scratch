@@ -128,6 +128,11 @@ export class UserPanelComponent implements OnInit {
     console.log("Token from User Page :" + token);
   }
 
+  ShowUserDetails(user: User) {
+
+    this.userService.SyncSelectedUser(user);
+  }
+
   GetAllUserCount() {
 
     this.userService.GetAllUserCount(this.userSearchQueries).subscribe(result => {
