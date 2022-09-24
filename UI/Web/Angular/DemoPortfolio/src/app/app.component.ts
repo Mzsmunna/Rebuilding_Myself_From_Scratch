@@ -10,7 +10,7 @@ import { TableService } from './ui-elements/tables/table.service';
   // <h3 class="display-3">Hello World!</h3>
   // `,
   styleUrls: ['./app.component.css'],
-  providers: [TableService] //NgbCarouselConfig
+  providers: [] //TableService, NgbCarouselConfig
 })
 export class AppComponent {
 

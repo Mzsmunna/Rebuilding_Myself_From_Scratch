@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Pager } from '../../helper_models/pager.model';
 
 @Injectable({
@@ -9,10 +10,19 @@ export class TableService {
   private NgSmartTableSettings: any;
   private pager: Pager;
   paginationEmitter: EventEmitter<Pager>;
+  //paginationEmitter: Subject<Pager>;
 
   constructor() {
 
-    this.pager = {
+    this.pager = {} as Pager;
+
+    this.paginationEmitter =  new EventEmitter<Pager>();
+    //this.paginationEmitter =  new Subject<Pager>();
+  }
+
+  GetDefaultPagination(): Pager {
+
+    return this.pager = {
 
       TotalDataCount: 0,
       TotalDataFetch: 0,
@@ -27,18 +37,12 @@ export class TableService {
       IsLoading: true,
       IsPageChanged: false,
     };
-
-    this.paginationEmitter =  new EventEmitter<Pager>();
-  }
-
-  GetDefaultPagination(): Pager {
-
-    return this.pager;
   }
 
   SyncPagination(pager: Pager) {
 
     this.paginationEmitter.emit(pager);
+    //this.paginationEmitter.next(pager);
   }
 
   GetNgSmartTableDefaultSettings() {

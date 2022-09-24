@@ -296,6 +296,7 @@ export class IssuePanelComponent implements OnInit {
     if (event) {
 
       this.pager = event;
+      this.pager.IsPageChanged = false;
       this.UpdateTable();
     }
   }
