@@ -316,7 +316,7 @@ export class IssuePanelComponent implements OnInit {
     this.issueService.SaveIssue(issue).subscribe(result => {
 
       console.log(result);
-      //this.UpdateIssueList(result);
+      this.UpdateIssueList(result);
 
     });
   }

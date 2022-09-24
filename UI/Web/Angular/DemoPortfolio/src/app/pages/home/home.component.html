@@ -140,22 +140,22 @@
             </p>
             <p class="mb-1" style="font-size: .77rem;">Pending: {{userIssueProgress.PendingRatio}}%</p>
             <div class="progress rounded" style="height: 5px;">
-              <div class="progress-bar" role="progressbar" [ngStyle]="{'width': userIssueProgress.PendingRatio + '%'}" attr.aria-valuenow="{{userIssueProgress.PendingRatio}}"
+              <div class="progress-bar bg-secondary" role="progressbar" [ngStyle]="{'width': userIssueProgress.PendingRatio + '%'}" attr.aria-valuenow="{{userIssueProgress.PendingRatio}}"
                    aria-valuemin="0" [attr.aria-valuemax]="userIssueProgress.TotalRatio"></div>
             </div>
             <p class="mt-4 mb-1" style="font-size: .77rem;">In-Progress: {{userIssueProgress.InProgressRatio}}%</p>
             <div class="progress rounded" style="height: 5px;">
-              <div class="progress-bar" role="progressbar" [ngStyle]="{'width': userIssueProgress.InProgressRatio + '%'}" attr.aria-valuenow="{{userIssueProgress.InProgressRatio}}"
+              <div class="progress-bar bg-primary" role="progressbar" [ngStyle]="{'width': userIssueProgress.InProgressRatio + '%'}" attr.aria-valuenow="{{userIssueProgress.InProgressRatio}}"
                    aria-valuemin="0" [attr.aria-valuemax]="userIssueProgress.TotalRatio"></div>
             </div>
             <p class="mt-4 mb-1" style="font-size: .77rem;">Done: {{userIssueProgress.DoneRatio}}%</p>
             <div class="progress rounded" style="height: 5px;">
-              <div class="progress-bar" role="progressbar" [ngStyle]="{'width': userIssueProgress.DoneRatio + '%'}" attr.aria-valuenow="{{userIssueProgress.DoneRatio}}"
+              <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': userIssueProgress.DoneRatio + '%'}" attr.aria-valuenow="{{userIssueProgress.DoneRatio}}"
                    aria-valuemin="0" [attr.aria-valuemax]="userIssueProgress.TotalRatio"></div>
             </div>
             <p class="mt-4 mb-1" style="font-size: .77rem;">Discarded: {{userIssueProgress.DiscardedRatio}}%</p>
             <div class="progress rounded" style="height: 5px;">
-              <div class="progress-bar" role="progressbar" [ngStyle]="{'width': userIssueProgress.DiscardedRatio + '%'}" attr.aria-valuenow="{{userIssueProgress.DiscardedRatio}}"
+              <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': userIssueProgress.DiscardedRatio + '%'}" attr.aria-valuenow="{{userIssueProgress.DiscardedRatio}}"
                    aria-valuemin="0" [attr.aria-valuemax]="userIssueProgress.TotalRatio"></div>
             </div>
           </div>
