@@ -15,9 +15,10 @@
           <li><button class="dropdown-item" (click)="FilterIssueType('reminder')"><i class="fas fa-tasks me-2"></i>Reminder Issues</button></li>
         </ul>
       </div>-->
+
       <div class="position-relative">
         <div class="position-absolute bottom-0 end-50">
-          <app-add-user [currentProfile]="newProfile" [classNames]="'btn btn-primary'"></app-add-user>
+          <app-add-user [currentProfile]="newProfile" [classNames]="'btn btn-primary'" [buttonName]="'Add User'"></app-add-user>
         </div>
         <div class="position-absolute bottom-0 end-0">
           <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">
@@ -57,13 +58,13 @@
               </div>
             </td>
             <td>
-              <p class="fw-normal mb-1">Software engineer</p>
-              <p class="text-muted mb-0">IT department</p>
+              <p class="fw-normal mb-1">{{user.Designation}}</p>
+              <p class="text-muted mb-0">{{user.Department}} <span *ngIf="user.Department"> department</span> </p>
             </td>
             <td>
               <span class="badge bg-secondary rounded-pill d-inline">Active</span>
             </td>
-            <td>Senior</td>
+            <td>{{user.Position | titlecase}}</td>
             <td>
               <button type="button" class="btn btn-secondary btn-sm btn-rounded" (click)="ShowUserDetails(user)">
                 <i class="fa-solid fa-eye"></i>

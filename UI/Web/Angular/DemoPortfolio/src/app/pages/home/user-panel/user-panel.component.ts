@@ -3,6 +3,7 @@ import { Pager } from '../../../helper_models/pager.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/features/user/user.service';
 import { TableService } from '../../../ui-elements/tables/table.service';
+import { AddUserComponent } from '../../../ui-templates/popup-modals/add-user/add-user.component';
 import { User } from '../../../view_models/auth/user.model';
 import { SearchField } from '../../../view_models/search-field.model';
 

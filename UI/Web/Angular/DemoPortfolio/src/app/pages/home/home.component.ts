@@ -140,10 +140,17 @@ export class HomeComponent implements OnInit {
 
     this.userService.selectedProfile$.subscribe(result => {
 
-      console.log("selected user:", result);
-      this.currentProfile = result;
-      this.isUserSelected = true;
-      this.GetIssueStatByUserId();
+      if (Object.keys(result).length > 0) {
+
+        console.log("selected user:", result);
+        this.currentProfile = result;
+        this.isUserSelected = true;
+        this.GetIssueStatByUserId();
+
+      } else {
+
+        this.isUserSelected = false;
+      }
 
     });
   }

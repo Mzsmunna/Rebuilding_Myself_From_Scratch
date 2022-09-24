@@ -27,6 +27,8 @@ export class AddUserComponent implements OnInit {
 
     this.currentProfile.Gender = "male";
     this.currentProfile.Role = "user";
+    this.currentProfile.Department = "";
+    this.currentProfile.Position = "";
 
     this.closeModal = {} as ElementRef;
   }
@@ -80,6 +82,8 @@ export class AddUserComponent implements OnInit {
             this.currentProfile = {} as User;
             this.currentProfile.Gender = "male";
             this.currentProfile.Role = "user";
+            this.currentProfile.Department = "";
+            this.currentProfile.Position = "";
           }
 
         } else {

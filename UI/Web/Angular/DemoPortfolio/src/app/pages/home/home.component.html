@@ -33,8 +33,9 @@
                      style="width: 180px; border-radius: 10px;">
               </div>
               <div class="flex-grow-1 ms-3">
-                <h5 class="mb-1">{{currentProfile.FirstName + ' ' + currentProfile.LastName}}</h5>
-                <p class="mb-2 pb-1" style="color: #2b2a2a;">Mid(Position) Software Engineer(Designation)</p>
+                <h5 class="mb-1">{{currentProfile.FirstName + ' ' + currentProfile.LastName | titlecase}}</h5>
+                <p class="mb-2 pb-1" style="color: #2b2a2a;">{{currentProfile.Department | titlecase}}  <span *ngIf="currentProfile.Department"> Department</span></p>
+                <p class="mb-2 pb-1" style="color: #2b2a2a;">{{currentProfile.Position | titlecase}} {{currentProfile.Designation| titlecase}}</p>
                 <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
                      style="background-color: #efefef;">
                   <div>
@@ -110,25 +111,17 @@
                 <p class="mb-0">Phone</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
+                <p class="text-muted mb-0">{{currentProfile.Phone}}</p>
               </div>
             </div>
             <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Mobile</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">(098) 765-4321</p>
-              </div>
-            </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Address</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                <p class="text-muted mb-0">{{currentProfile.Address}}</p>
               </div>
             </div>
           </div>

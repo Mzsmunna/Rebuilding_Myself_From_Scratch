@@ -8,7 +8,7 @@
   <form class="modal-dialog modal-lg modal-dialog-centered" #userForm="ngForm" (ngSubmit)="SaveUser(userForm.form)">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Add User</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">{{buttonName}}</h5>
         <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -56,9 +56,56 @@
               <input type="number" class="form-control" #Age="ngModel" name="Age" [(ngModel)]="currentProfile.Age" />
             </div>
 
+            <!-- Phone input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="userPhone">Phone:</label>
+              <input type="text" class="form-control" #Phone="ngModel" name="Phone" [(ngModel)]="currentProfile.Phone" />
+            </div>
+
+            <!-- Address input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="userAddress">Address:</label>
+              <input type="text" class="form-control" #Address="ngModel" name="Phone" [(ngModel)]="currentProfile.Address" />
+            </div>
+
+            <!-- Department select -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="userDepartment">Department</label>
+              <select class="form-select" aria-label="Default select example" #Role="ngModel" name="Department" [(ngModel)]="currentProfile.Department">
+                <option selected value="">None</option>
+                <option value="it">IT</option>
+                <option value="qa">QA</option>
+                <option value="engineer">Engineer</option>
+                <option value="data-science">Data Science</option>
+                <option value="ui-ux">UI / UX</option>
+                <option value="marketing">Marketing</option>
+                <option value="human-resource">Human Resource</option>
+              </select>
+            </div>
+
+            <!-- Designation input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="userDesignation">Designation:</label>
+              <input type="text" class="form-control" #Designation="ngModel" name="Designation" [(ngModel)]="currentProfile.Designation" />
+            </div>
+
+            <!-- Position select -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="userPosition">Position</label>
+              <select class="form-select" aria-label="Default select example" #Role="ngModel" name="Position" [(ngModel)]="currentProfile.Position">
+                <option selected value="">Unknown</option>
+                <option value="internship">Internship</option>
+                <option value="fresher">Fresher</option>
+                <option value="junior">Junior</option>
+                <option value="mid">Mid</option>
+                <option value="senior">Senior</option>
+                <option value="vp">VP</option>
+              </select>
+            </div>
+
             <!-- Role select -->
             <div class="form-outline mb-4">
-              <label class="form-label" for="userGender">Role</label>
+              <label class="form-label" for="userRole">Role</label>
               <select class="form-select" aria-label="Default select example" #Role="ngModel" name="Role" [(ngModel)]="currentProfile.Role">
                 <!--<option >Select Role</option>-->
                 <option selected value="user">User</option>
@@ -81,14 +128,6 @@
               <input type="password" class="form-control" [ngClass]="{'is-invalid': Password.errors?.['minlength']}" #Password="ngModel" name="Password" [(ngModel)]="currentProfile.Password" placeholder="Password" minlength="5" required />
               <p for="userPassword" class="form-label text-danger" *ngIf="Password.errors?.['minlength']">Minimum password length should be 5</p>
             </div>
-
-            <!-- Repeat Password input -->
-            <!--<div class="form-outline mb-4">
-              <label class="form-label" for="userConfirmPassword">Confirm password</label>
-              <input type="password" class="form-control" [ngClass]="{'is-invalid': ConfirmPassword.dirty && ConfirmPassword.errors}" #ConfirmPassword="ngModel" name="ConfirmPassword" [(ngModel)]="currentProfile.ConfirmPassword"  minlength="5" required />
-              <label for="userConfirmPassword" class="form-label text-danger" *ngIf="ConfirmPassword.errors?.['minlength']">Minimum password length should be 5</label>
-              <label for="userConfirmPassword" class="form-label text-danger" *ngIf="ConfirmPassword.touched && user.Password!=user.ConfirmPassword">Password didn't match</label>
-            </div>-->
 
           </div>
         </div>
