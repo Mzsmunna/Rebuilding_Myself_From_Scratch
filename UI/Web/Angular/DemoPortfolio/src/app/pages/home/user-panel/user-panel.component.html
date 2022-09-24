@@ -1,109 +1,146 @@
 <!--<h1 class="display-1 text-center">Users :</h1>-->
 
-<table class="table align-middle mb-4 bg-white">
-  <thead class="bg-light">
-    <tr>
-      <th>Name</th>
-      <th>Designation</th>
-      <th>Status</th>
-      <th>Position</th>
-      <!--<th>Actions</th>-->
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of usersList; let i = index">
-      <td>
-        <div class="d-flex align-items-center">
-          <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-               alt=""
-               style="width: 45px; height: 45px"
-               class="rounded-circle" />
-          <div class="ms-3">
-            <p class="fw-bold mb-1">{{user.FirstName + ' ' + user.LastName}}</p>
-            <p class="text-muted mb-0">{{user.Email}}</p>
-          </div>
-        </div>
-      </td>
-      <td>
-        <p class="fw-normal mb-1">Software engineer</p>
-        <p class="text-muted mb-0">IT department</p>
-      </td>
-      <td>
-        <span class="badge bg-secondary rounded-pill d-inline">Active</span>
-      </td>
-      <td>Senior</td>
-      <td>
-        <button type="button" class="btn btn-secondary btn-sm btn-rounded" (click)="ShowUserDetails(user)">
-          <i class="fa-solid fa-eye"></i>
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header p-5">
+      <!--<div class="dropdown">
+        <button type="button" class="btn dropdown-toggle fs-5 fw-bold" data-bs-toggle="dropdown" title="All Issues">
+          <i class="fas fa-tasks me-2"></i>{{issueFilterType | titlecase}} Issues
         </button>
-      </td>
-    </tr>
-    <!--<tr>
-      <td>
-        <div class="d-flex align-items-center">
-          <img src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-               class="rounded-circle"
-               alt=""
-               style="width: 45px; height: 45px" />
-          <div class="ms-3">
-            <p class="fw-bold mb-1">Alex Ray</p>
-            <p class="text-muted mb-0">alex.ray@gmail.com</p>
-          </div>
+        <ul class="dropdown-menu fs-5 fw-bolder">
+          <li><button class="dropdown-item" (click)="FilterIssueType('')"><i class="fas fa-tasks me-2"></i>Issues</button></li>
+          <li><button class="dropdown-item" (click)="FilterIssueType('to-do')"><i class="fas fa-tasks me-2"></i>To-do Issues</button></li>
+          <li><button class="dropdown-item" (click)="FilterIssueType('task')"><i class="fas fa-tasks me-2"></i>Task Issues</button></li>
+          <li><button class="dropdown-item" (click)="FilterIssueType('note')"><i class="fas fa-tasks me-2"></i>Note Issues</button></li>
+          <li><button class="dropdown-item" (click)="FilterIssueType('reminder')"><i class="fas fa-tasks me-2"></i>Reminder Issues</button></li>
+        </ul>
+      </div>-->
+      <div class="position-relative">
+        <div class="position-absolute bottom-0 end-50">
+          <app-add-user [classNames]="'btn btn-primary'"></app-add-user>
         </div>
-      </td>
-      <td>
-        <p class="fw-normal mb-1">Consultant</p>
-        <p class="text-muted mb-0">Finance</p>
-      </td>
-      <td>
-        <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-      </td>
-      <td>Junior</td>
-      <td>
-        <button type="button"
-                class="btn btn-link btn-rounded btn-sm fw-bold"
-                data-mdb-ripple-color="dark">
-          Edit
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex align-items-center">
-          <img src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-               class="rounded-circle"
-               alt=""
-               style="width: 45px; height: 45px" />
-          <div class="ms-3">
-            <p class="fw-bold mb-1">Kate Hunington</p>
-            <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-          </div>
+        <div class="position-absolute bottom-0 end-0">
+          <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">
+            <option [disabled]="true" [value]="pager.PageSize">Page Size ({{pager.PageSize}})</option>
+            <option [disabled]="pager.PageSize==5" value="5">5</option>
+            <option [disabled]="pager.PageSize==10" value="10">10</option>
+            <option [disabled]="pager.PageSize==20" value="20">20</option>
+            <option [disabled]="pager.PageSize==50" value="50">50</option>
+          </select>
         </div>
-      </td>
-      <td>
-        <p class="fw-normal mb-1">Designer</p>
-        <p class="text-muted mb-0">UI/UX</p>
-      </td>
-      <td>
-        <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-      </td>
-      <td>Senior</td>
-      <td>
-        <button type="button"
-                class="btn btn-link btn-rounded btn-sm fw-bold"
-                data-mdb-ripple-color="dark">
-          Edit
-        </button>
-      </td>
-    </tr>-->
-  </tbody>
-</table>
+      </div>
+    </div>
+    <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 650px; overflow-y: scroll;">
 
-<app-default-pagination (UpdatePager)="UpdatePager($event)"></app-default-pagination>
+      <table class="table mb-0 align-middle bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Status</th>
+            <th>Position</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usersList; let i = index">
+            <td>
+              <div class="d-flex align-items-center">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                     alt=""
+                     style="width: 45px; height: 45px"
+                     class="rounded-circle" />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">{{user.FirstName + ' ' + user.LastName}}</p>
+                  <p class="text-muted mb-0">{{user.Email}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Software engineer</p>
+              <p class="text-muted mb-0">IT department</p>
+            </td>
+            <td>
+              <span class="badge bg-secondary rounded-pill d-inline">Active</span>
+            </td>
+            <td>Senior</td>
+            <td>
+              <button type="button" class="btn btn-secondary btn-sm btn-rounded" (click)="ShowUserDetails(user)">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+          <!--<tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <img src="https://mdbootstrap.com/img/new/avatars/6.jpg"
+                     class="rounded-circle"
+                     alt=""
+                     style="width: 45px; height: 45px" />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Alex Ray</p>
+                  <p class="text-muted mb-0">alex.ray@gmail.com</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Consultant</p>
+              <p class="text-muted mb-0">Finance</p>
+            </td>
+            <td>
+              <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+            </td>
+            <td>Junior</td>
+            <td>
+              <button type="button"
+                      class="btn btn-link btn-rounded btn-sm fw-bold"
+                      data-mdb-ripple-color="dark">
+                Edit
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <img src="https://mdbootstrap.com/img/new/avatars/7.jpg"
+                     class="rounded-circle"
+                     alt=""
+                     style="width: 45px; height: 45px" />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Kate Hunington</p>
+                  <p class="text-muted mb-0">kate.hunington@gmail.com</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Designer</p>
+              <p class="text-muted mb-0">UI/UX</p>
+            </td>
+            <td>
+              <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+            </td>
+            <td>Senior</td>
+            <td>
+              <button type="button"
+                      class="btn btn-link btn-rounded btn-sm fw-bold"
+                      data-mdb-ripple-color="dark">
+                Edit
+              </button>
+            </td>
+          </tr>-->
+        </tbody>
+      </table>
 
-<!--<app-ng-smart-table [settings]="NgSmartTableSettings"
-                    [data]="usersList"
-                    (CreateEvent)="NgTableOnCreate($event)"
-                    (UpdateEvent)="NgTableOnUpdate($event)"
-                    (DeleteEvent)="NgTableOnDelete($event)">
-</app-ng-smart-table>-->
+    </div>
+
+    <app-default-pagination (UpdatePager)="UpdatePager($event)"></app-default-pagination>
+
+    <!--<app-ng-smart-table [settings]="NgSmartTableSettings"
+                        [data]="usersList"
+                        (CreateEvent)="NgTableOnCreate($event)"
+                        (UpdateEvent)="NgTableOnUpdate($event)"
+                        (DeleteEvent)="NgTableOnDelete($event)">
+    </app-ng-smart-table>-->
+
+  </div>
+</div>
