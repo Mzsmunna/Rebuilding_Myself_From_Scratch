@@ -19,6 +19,26 @@ export class UserPanelComponent implements OnInit {
   public usersListCount: number = 0;
   public userSearchQueries: SearchField[];
 
+  _searchEmail: string = '';
+
+  get searchEmail() {
+
+    return this._searchEmail;
+  }
+
+  set searchEmail(email: string) {
+
+    this._searchEmail = email;
+
+    const found = this.userSearchQueries.find((obj) => {
+      return obj.Key === "Email";
+    })!;
+
+    found.Value = this._searchEmail;
+
+    this.LoadTable();
+  }
+
   pager: Pager;
 
   public NgSmartTableSettings: any;

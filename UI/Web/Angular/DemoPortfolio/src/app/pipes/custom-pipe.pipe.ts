@@ -12,7 +12,8 @@ export class CustomPipePipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'customCapitalize'
+  name: 'customCapitalize',
+  //pure: true
 })
 export class CustomCapitalize implements PipeTransform {
 

@@ -2,23 +2,22 @@
 
 <div class="col-md-12">
   <div class="card">
-    <div class="card-header p-5">
-      <!--<div class="dropdown">
-        <button type="button" class="btn dropdown-toggle fs-5 fw-bold" data-bs-toggle="dropdown" title="All Issues">
-          <i class="fas fa-tasks me-2"></i>{{issueFilterType | titlecase}} Issues
-        </button>
-        <ul class="dropdown-menu fs-5 fw-bolder">
-          <li><button class="dropdown-item" (click)="FilterIssueType('')"><i class="fas fa-tasks me-2"></i>Issues</button></li>
-          <li><button class="dropdown-item" (click)="FilterIssueType('to-do')"><i class="fas fa-tasks me-2"></i>To-do Issues</button></li>
-          <li><button class="dropdown-item" (click)="FilterIssueType('task')"><i class="fas fa-tasks me-2"></i>Task Issues</button></li>
-          <li><button class="dropdown-item" (click)="FilterIssueType('note')"><i class="fas fa-tasks me-2"></i>Note Issues</button></li>
-          <li><button class="dropdown-item" (click)="FilterIssueType('reminder')"><i class="fas fa-tasks me-2"></i>Reminder Issues</button></li>
-        </ul>
-      </div>-->
-
+    <div class="card-header p-3">
       <div class="position-relative">
-        <div class="position-absolute bottom-0 end-50">
-          <app-add-user [currentProfile]="newProfile" [classNames]="'btn btn-primary'" [buttonName]="'Add User'"></app-add-user>
+        <!--<div class="position-absolute bottom-0 end-100">-->
+          <div class="row">
+            <div class="col-md-5 mx-auto">
+              <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="search" [(ngModel)]="searchEmail" placeholder="search email" id="example-search-input">
+                <span class="input-group-append">
+                  <button class="btn btn-outline-secondary bg-white border rounded-pill ms-n5" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                  <app-add-user class="ms-2" [currentProfile]="newProfile" [classNames]="'btn btn-primary'" [buttonName]="'Add User'"></app-add-user>
+                </span>
+              </div>
+            </div>
+          <!--</div>-->
         </div>
         <div class="position-absolute bottom-0 end-0">
           <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">
