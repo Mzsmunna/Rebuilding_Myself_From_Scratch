@@ -149,7 +149,7 @@ export class UserPanelComponent implements OnInit {
   OnAddUser() {
 
     console.log("On click Add user pop-up modal");
-    //this.ShowUserDetails(this.newProfile);
+    this.ShowUserDetails(this.newProfile);
   }
 
   GetToken() {

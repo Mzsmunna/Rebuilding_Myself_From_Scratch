@@ -15,7 +15,6 @@ export class AddUserComponent implements OnInit {
   @Input() classNames: string;
   @Input() buttonName: string;
 
-  //@Input() loggedUser: User;
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
   constructor(private authService: AuthService, private userService: UserService ) {
@@ -35,6 +34,11 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.userService.selectedProfile$.subscribe(result => {
+
+        console.log("modal user:", result);
+        this.currentProfile = result;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
