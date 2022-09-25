@@ -118,32 +118,12 @@ export class UserPanelComponent implements OnInit {
     });
 
     this.GetToken();
-    //this.GetAllUserCount();
-    //this.GetAllUsers();
     this.LoadTable();
-
-    //this.tableService.paginationEmitter.subscribe(result => {
-
-    //  //console.log("current pager user:", result);
-    //  this.pager = result;
-
-    //  if (this.pager.IsPageChanged) {
-
-    //    this.pager.IsPageChanged = false;
-
-    //    this.LoadTable();
-    //  }
-
-    //});
   }
 
   ngOnChanges(changes: SimpleChanges) {
 
-    console.log("User Page on chnage:", changes);
-
-    //if (changes.name != undefined) {
-    //  this.name = changes.name.currentValue
-    //}
+    console.log("User Panel on change:", changes);
   }
 
   OnAddUser() {
@@ -155,7 +135,6 @@ export class UserPanelComponent implements OnInit {
   GetToken() {
 
     let token = this.authService.GetToken();
-
     console.log("Token from User Page :" + token);
   }
 
@@ -170,7 +149,6 @@ export class UserPanelComponent implements OnInit {
     this.userService.GetAllUserCount(this.userSearchQueries).subscribe(result => {
 
       console.log(result);
-
       this.usersListCount = result as number;
 
     });
@@ -181,17 +159,7 @@ export class UserPanelComponent implements OnInit {
     this.userService.GetAllUsers(0, 10, "FirstName", "ascending", this.userSearchQueries).subscribe(result => {
 
       console.log(result);
-
       this.usersList = result as User[];
-
-      //let timer = setTimeout(() => {
-
-      //  this.usersList.pop();
-
-      //  console.log("updated users");
-      //  console.log(this.usersList);
-
-      //}, 5000);
 
     });
   }

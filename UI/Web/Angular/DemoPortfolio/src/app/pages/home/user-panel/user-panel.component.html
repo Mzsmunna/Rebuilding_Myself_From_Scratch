@@ -4,7 +4,6 @@
   <div class="card">
     <div class="card-header p-3">
       <div class="position-relative">
-        <!--<div class="position-absolute bottom-0 end-100">-->
           <div class="row">
             <div class="col-md-5 mx-auto">
               <div class="input-group">
@@ -17,7 +16,6 @@
                 </span>
               </div>
             </div>
-          <!--</div>-->
         </div>
         <div class="position-absolute bottom-0 end-0">
           <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">
@@ -38,14 +36,13 @@
             <th>Name</th>
             <th>Designation</th>
             <th>Status</th>
-            <th>Position</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let user of usersList; let i = index">
             <td>
-              <div class="d-flex align-items-center" customHostListener>
+              <div class="d-flex align-items-center">
                 <img src="{{user.Img}}"
                      onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
                      alt=""
@@ -58,80 +55,20 @@
               </div>
             </td>
             <td customRender2>
-              <p class="fw-normal mb-1">{{user.Designation}}</p>
+              <p class="fw-normal mb-1">{{user.Position | titlecase}} {{user.Designation}}</p>
               <p class="text-muted mb-0">{{user.Department}} <span *ngIf="user.Department"> department</span> </p>
             </td>
-            <td [customHostListener]="user.IsActive">
-              <span class="badge bg-secondary rounded-pill d-inline">Active</span>
+            <td>
+              <span class="badge rounded-pill d-inline" [ngClass]="{'bg-success': user.IsActive, 'bg-danger': !user.IsActive}">{{(user.IsActive) ? 'Active' : 'Inactive'}}</span>
             </td>
-            <td customBackground>{{user.Position | titlecase}}</td>
             <td>
               <button type="button" class="btn btn-secondary btn-sm btn-rounded" (click)="ShowUserDetails(user)">
                 <i class="fa-solid fa-eye"></i>
               </button>
             </td>
           </tr>
-          <!--<tr>
-            <td>
-              <div class="d-flex align-items-center">
-                <img src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-                     class="rounded-circle"
-                     alt=""
-                     style="width: 45px; height: 45px" />
-                <div class="ms-3">
-                  <p class="fw-bold mb-1">Alex Ray</p>
-                  <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p class="fw-normal mb-1">Consultant</p>
-              <p class="text-muted mb-0">Finance</p>
-            </td>
-            <td>
-              <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-            </td>
-            <td>Junior</td>
-            <td>
-              <button type="button"
-                      class="btn btn-link btn-rounded btn-sm fw-bold"
-                      data-mdb-ripple-color="dark">
-                Edit
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="d-flex align-items-center">
-                <img src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-                     class="rounded-circle"
-                     alt=""
-                     style="width: 45px; height: 45px" />
-                <div class="ms-3">
-                  <p class="fw-bold mb-1">Kate Hunington</p>
-                  <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p class="fw-normal mb-1">Designer</p>
-              <p class="text-muted mb-0">UI/UX</p>
-            </td>
-            <td>
-              <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-            </td>
-            <td>Senior</td>
-            <td>
-              <button type="button"
-                      class="btn btn-link btn-rounded btn-sm fw-bold"
-                      data-mdb-ripple-color="dark">
-                Edit
-              </button>
-            </td>
-          </tr>-->
         </tbody>
       </table>
-
     </div>
 
     <app-default-pagination (UpdatePager)="UpdatePager($event)"></app-default-pagination>

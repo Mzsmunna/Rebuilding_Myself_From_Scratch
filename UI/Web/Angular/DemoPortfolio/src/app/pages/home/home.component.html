@@ -25,7 +25,7 @@
               </div>
             </div>         
           </div>
-          <div class="card-body">
+          <div class="card-body">  <!--customBackground-->
             <div class="d-flex text-black">
               <div class="flex-shrink-0">
                 <img src="{{currentProfile.Img}}"
@@ -71,7 +71,7 @@
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
-          <div class="card-body">
+          <div class="card-body"> <!--customHostListener-->
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Email</p>
@@ -129,7 +129,7 @@
           </div>
         </div>
         <div class="card mt-4 mb-lg-0">
-          <div class="card-body">
+          <div class="card-body">  <!--[customHostListener]="currentProfile.IsActive"-->
             <p class="mb-4">
               <span class="text-primary font-italic me-1">Assiged</span> Issue Status
             </p>
@@ -163,11 +163,7 @@
             <nav class="nav nav-pills nav-fill mb-2">
               <a *ngIf="isAdmin" class="nav-link active" [ngClass]="{'active': activeTab=='users'}" (click)="SwitchTab('users')" routerLink="users">Users</a>
               <a class="nav-link" [ngClass]="{'active': activeTab=='issues'}" (click)="SwitchTab('issues')" routerLink="issues">Issues</a>
-              <!--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
             </nav>
-
-            <!--<app-add-user [loggedUser]="loggedUser" *ngIf="isAdmin"></app-add-user>-->
-            <!--<app-add-user [loggedUser]="loggedUser"></app-add-user>-->
 
             <router-outlet></router-outlet>
 
@@ -177,5 +173,3 @@
     </div>
   </div>
 </section>
-
-
