@@ -24,7 +24,7 @@ export class IssuePanelComponent implements OnInit {
 
   activeTab: string = "";
   issueFilterType: string = "";
-  issueFilterName: string = "";
+  issueFilterName: string = "Assigned To";
   public isAdmin: boolean = false;
   public isMyIssuesOnly: boolean = false;
 
@@ -190,10 +190,34 @@ export class IssuePanelComponent implements OnInit {
     this.UpdateTable();
   }
 
-  FilterIssueById(assignedId: string) {
+  FilterIssueById(assignedId: string, assignedName: string) {
 
-    if (!assignedId)
-      this.isMyIssuesOnly = !this.isMyIssuesOnly;
+    if (assignedName.includes('all')) {
+
+      //this.issueFilterName =
+
+    } else {
+
+      if (this.loggedUser.Id == assignedId) {
+
+        this.isMyIssuesOnly = !this.isMyIssuesOnly;
+
+        if (!this.isMyIssuesOnly) {
+
+          assignedId = "";
+          assignedName = "Assigned To";
+        }
+
+      }
+
+      if (this.isMyIssuesOnly) {
+
+        assignedId = this.loggedUser.Id;
+        assignedName = this.loggedUser.FirstName + ' ' + this.loggedUser.LastName;
+      }
+              
+      this.issueFilterName = assignedName;
+    }
 
     if (this.isAdmin) {
 
@@ -213,7 +237,7 @@ export class IssuePanelComponent implements OnInit {
       } else {
 
         const found = this.issueSearchQueries.find((obj) => {
-          return obj.Key === "AssignedId";
+          return obj.Key === "AssignedId" || obj.Key === "CreatedBy";
         })!;
 
         found.Key = "CreatedBy";

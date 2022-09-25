@@ -15,7 +15,7 @@ import { TokenInterceptorService } from './services/common/http-intercept/token-
 import { UserPanelComponent } from './pages/home/user-panel/user-panel.component';
 import { IssuePanelComponent } from './pages/home/issue-panel/issue-panel.component';
 import { UiTemplatesModule } from './ui-templates/ui-templates.module';
-import { CustomCapitalize, CustomPipePipe } from './pipes/custom-pipe.pipe';
+import { ArraySortPipe, CustomCapitalize, CustomPipePipe } from './pipes/custom-pipe.pipe';
 import { CustomBackgroundDirective, CustomDirective, CustomHostListenerDirective, CustomRender2Directive } from './directives/custom.directive';
 
 
@@ -33,6 +33,7 @@ import { CustomBackgroundDirective, CustomDirective, CustomHostListenerDirective
     //Custom Pipes
     CustomPipePipe,
     CustomCapitalize,
+    ArraySortPipe,
 
     //Custom Directives
     CustomDirective,
