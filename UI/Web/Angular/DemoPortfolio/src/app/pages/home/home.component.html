@@ -29,11 +29,9 @@
             <div class="d-flex text-black">
               <div class="flex-shrink-0">
                 <img src="{{currentProfile.Img}}"
+                     onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
                      alt="Generic placeholder image" class="img-fluid"
-                     style="width: 180px; border-radius: 10px;" *ngIf="currentProfile.Img">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                     alt="Generic placeholder image" class="img-fluid"
-                     style="width: 180px; border-radius: 10px;" *ngIf="!currentProfile.Img">
+                     style="width: 180px; border-radius: 10px;">
               </div>
               <div class="flex-grow-1 ms-3">
                 <h5 class="mb-1">{{currentProfile.FirstName + ' ' + currentProfile.LastName | titlecase}}</h5>

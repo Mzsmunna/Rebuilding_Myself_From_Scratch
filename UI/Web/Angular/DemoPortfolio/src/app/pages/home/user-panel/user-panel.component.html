@@ -47,7 +47,8 @@
           <tr *ngFor="let user of usersList; let i = index">
             <td>
               <div class="d-flex align-items-center">
-                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                <img src="{{user.Img}}"
+                     onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
                      alt=""
                      style="width: 45px; height: 45px"
                      class="rounded-circle" />
