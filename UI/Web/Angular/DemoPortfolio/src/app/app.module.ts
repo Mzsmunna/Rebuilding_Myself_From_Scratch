@@ -15,6 +15,7 @@ import { TokenInterceptorService } from './services/common/http-intercept/token-
 import { UserPanelComponent } from './pages/home/user-panel/user-panel.component';
 import { IssuePanelComponent } from './pages/home/issue-panel/issue-panel.component';
 import { UiTemplatesModule } from './ui-templates/ui-templates.module';
+import { CustomCapitalize, CustomPipePipe } from './pipes/custom-pipe.pipe';
 
 
 @NgModule({
@@ -26,7 +27,11 @@ import { UiTemplatesModule } from './ui-templates/ui-templates.module';
     ContactComponent,
     NotFoundComponent,
     UserPanelComponent,
-    IssuePanelComponent
+    IssuePanelComponent,
+
+    //Custom Pipes
+    CustomPipePipe,
+    CustomCapitalize
   ],
   imports: [
     BrowserModule,

@@ -81,8 +81,8 @@
                   <td class="align-middle text-capitalize" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
                     <span>{{issue.Title}}</span>
                   </td>
-                  <td class="align-middle text-capitalize" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
-                    <span>{{issue.Summary}}</span>
+                  <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
+                    <span>{{issue.Summary | customCapitalize: false}}</span>
                   </td>
                   <td class="align-middle">
                     <!--<h6 class="mb-0"><span class="badge bg-danger">{{issue.Status}}</span></h6>-->
