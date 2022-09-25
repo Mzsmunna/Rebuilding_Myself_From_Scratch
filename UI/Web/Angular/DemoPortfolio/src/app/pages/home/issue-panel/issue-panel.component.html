@@ -22,6 +22,21 @@
                 <li><button class="dropdown-item" (click)="FilterIssueType('reminder')"><i class="fas fa-tasks me-2"></i>Reminder Issues</button></li>
               </ul>
             </div>
+            <div class="dropdown" *ngIf="isAdmin">
+              <!-- Assign to select (db data bind) -->
+              <button type="button" class="btn dropdown-toggle fs-6 fw-bold" data-bs-toggle="dropdown" title="All Assigned">
+                <i class="fas fa-tasks me-2"></i>{{issueFilterName | titlecase}} All Assigned
+              </button>
+              <ul class="dropdown-menu fs-6 fw-bolder">
+                <li *ngFor="let user of assignUserList"><button class="dropdown-item" (click)="FilterIssueById(user.Id)"><i class="fas fa-tasks me-2"></i>{{user.Name}}</button></li>
+              </ul>
+              <!--<div class="form-outline mb-4">
+                <label class="form-label" for="issueAssignTo">Assign To</label>
+                <select id="issueAssignTo" class="form-select" aria-label="Default select example" name="AssignTo">
+                  <option *ngFor="let user of assignUserList" [value]="user.Id">{{user.Name}}</option>
+                </select>
+              </div>-->
+            </div>
             <div class="position-relative">
               <div class="position-absolute bottom-0 end-50">
                 <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
@@ -45,7 +60,7 @@
                   <th scope="col" *ngIf="isAdmin">
                     Assigned To <!-- Default switch -->
                     <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input me-1" (click)="FilterOnlyMyIssue()" [checked]="isMyIssuesOnly" id="customSwitches">
+                      <input type="checkbox" class="custom-control-input me-1" (click)="FilterIssueById('')" [checked]="isMyIssuesOnly" id="customSwitches">
                       <label class="custom-control-label" for="customSwitches">Me</label>
                     </div>
                   </th>

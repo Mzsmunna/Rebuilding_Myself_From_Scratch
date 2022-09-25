@@ -24,6 +24,7 @@ export class IssuePanelComponent implements OnInit {
 
   activeTab: string = "";
   issueFilterType: string = "";
+  issueFilterName: string = "";
   public isAdmin: boolean = false;
   public isMyIssuesOnly: boolean = false;
 
@@ -172,6 +173,7 @@ export class IssuePanelComponent implements OnInit {
     //this.GetAllIssuesByAssignedCount();
     //this.GetAllIssuesByAssigned();
 
+    this.GetAllUserToAssign();
     this.LoadTable();
   }
 
@@ -188,20 +190,25 @@ export class IssuePanelComponent implements OnInit {
     this.UpdateTable();
   }
 
-  FilterOnlyMyIssue() {
+  FilterIssueById(assignedId: string) {
 
-    this.isMyIssuesOnly = !this.isMyIssuesOnly;
+    if (!assignedId)
+      this.isMyIssuesOnly = !this.isMyIssuesOnly;
 
     if (this.isAdmin) {
 
-      if (this.isMyIssuesOnly) {
+      if (this.isMyIssuesOnly || assignedId) {
 
         const found = this.issueSearchQueries.find((obj) => {
-          return obj.Key === "CreatedBy";
+          return obj.Key === "CreatedBy" || obj.Key === "AssignedId";
         })!;
 
         found.Key = "AssignedId";
-        found.Value = this.loggedUser.Id;
+
+        if (assignedId)
+          found.Value = assignedId;
+        else
+          found.Value = this.loggedUser.Id;
 
       } else {
 
