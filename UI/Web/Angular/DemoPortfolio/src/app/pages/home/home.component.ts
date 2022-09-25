@@ -150,6 +150,8 @@ export class HomeComponent implements OnInit {
         console.log("selected user:", result);
         this.currentProfile = result;
 
+        this.isChangingPhoto = false;
+
         if (result.Id.includes(this.loggedUser.Id))
           this.isUserSelected = false;
         else
@@ -169,19 +171,19 @@ export class HomeComponent implements OnInit {
 
         if (this.fileInfo.To == "https://localhost:7074/api/User/") {
 
-          this.currentProfile.Img = this.fileInfo.Url;
-          this.userService.SaveUser(this.currentProfile).subscribe(result => {
+          this.loggedUser.Img = this.fileInfo.Url;
+          this.userService.SaveUser(this.loggedUser).subscribe(result => {
 
             console.log("saved user with file link: ", result);
 
             if (result) {
 
-              this.currentProfile = result;
+              this.loggedUser = result;
               this.isChangingPhoto = false;
 
             } else {
 
-              console.log("something went wrong while changing Profile pic: ", this.currentProfile);
+              console.log("something went wrong while changing Profile pic: ", this.loggedUser);
             }
 
           });

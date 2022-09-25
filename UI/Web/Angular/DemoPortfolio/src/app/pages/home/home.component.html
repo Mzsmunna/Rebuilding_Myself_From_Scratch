@@ -62,7 +62,7 @@
                 </div>
                 <div class="d-flex pt-1">
                   <app-default-file-uploader [to]="'https://localhost:7074/api/User/'" *ngIf="isChangingPhoto"></app-default-file-uploader>
-                  <button type="button" class="btn btn-outline-secondary me-1 flex-grow-1" *ngIf="isChangingPhoto==false" (click)="ChangePhoto()">Change Photo</button>
+                  <button type="button" class="btn btn-outline-secondary me-1 flex-grow-1" [disabled]="loggedUser.Id!=currentProfile.Id" *ngIf="isChangingPhoto==false" (click)="ChangePhoto()">Change Photo</button>
                   <!--<button type="button" class="btn btn-outline-success flex-grow-1">Edit</button>-->
                   <app-add-user class="ms-2" [currentProfile]="currentProfile" [classNames]="'btn btn-outline-success flex-grow-1'" [buttonName]="'Edit User'"></app-add-user>
                 </div>

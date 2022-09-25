@@ -225,33 +225,33 @@ namespace RestAPI.Controllers
         [ActionName("GetUser")]
         public IActionResult GetUser(string userId)
         {
-            var users = _userRepository.GetUser(userId).Result;
-            users.Password = "?";
-            return Ok(users);
+            var user = _userRepository.GetUser(userId).Result;
+            //users.Password = "?";
+            return Ok(user);
         }
 
         [HttpPost, Authorize]
         [ActionName("SaveUser")]
         public IActionResult SaveUser(User user)
         {
-            var users = _userRepository.Save(user);
-            return Ok(users);
+            user = _userRepository.Save(user);
+            return Ok(user);
         }
 
         [HttpPut, Authorize]
         [ActionName("UpdateUser")]
         public IActionResult UpdateUser(User user)
         {
-            var users = _userRepository.Save(user);
-            return Ok(users);
+            user = _userRepository.Save(user);
+            return Ok(user);
         }
 
         [HttpDelete, Authorize]
         [ActionName("DeleteUser")]
         public IActionResult DeleteUser(string userId)
         {
-            var users = _userRepository.DeleteById(userId);
-            return Ok(users);
+            var isDeleted = _userRepository.DeleteById(userId);
+            return Ok(isDeleted);
         }
 
         [Consumes("multipart/form-data")]
