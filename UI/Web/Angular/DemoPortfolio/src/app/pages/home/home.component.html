@@ -28,9 +28,12 @@
           <div class="card-body">
             <div class="d-flex text-black">
               <div class="flex-shrink-0">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                <img src="{{currentProfile.Img}}"
                      alt="Generic placeholder image" class="img-fluid"
-                     style="width: 180px; border-radius: 10px;">
+                     style="width: 180px; border-radius: 10px;" *ngIf="currentProfile.Img">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                     alt="Generic placeholder image" class="img-fluid"
+                     style="width: 180px; border-radius: 10px;" *ngIf="!currentProfile.Img">
               </div>
               <div class="flex-grow-1 ms-3">
                 <h5 class="mb-1">{{currentProfile.FirstName + ' ' + currentProfile.LastName | titlecase}}</h5>
@@ -60,8 +63,8 @@
                   </div>
                 </div>
                 <div class="d-flex pt-1">
-                  <app-default-file-uploader></app-default-file-uploader>
-                  <!--<button type="button" class="btn btn-outline-secondary me-1 flex-grow-1">Change Photo</button>-->
+                  <app-default-file-uploader [to]="'https://localhost:7074/api/User/'" *ngIf="isChangingPhoto"></app-default-file-uploader>
+                  <button type="button" class="btn btn-outline-secondary me-1 flex-grow-1" *ngIf="isChangingPhoto==false" (click)="ChangePhoto()">Change Photo</button>
                   <!--<button type="button" class="btn btn-outline-success flex-grow-1">Edit</button>-->
                   <app-add-user class="ms-2" [currentProfile]="currentProfile" [classNames]="'btn btn-outline-success flex-grow-1'" [buttonName]="'Edit User'"></app-add-user>
                 </div>

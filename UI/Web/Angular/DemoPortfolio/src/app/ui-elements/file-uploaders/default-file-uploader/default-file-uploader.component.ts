@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FileUploaderService } from '../../../services/common/file-uploader/file-uploader.service';
+import { FileInfo } from '../../../view_models/common/file-info.model';
 
 @Component({
   selector: 'app-default-file-uploader',
@@ -12,13 +13,18 @@ export class DefaultFileUploaderComponent implements OnInit {
   shortLink: string = "";
   loading: boolean = false; // Flag variable
   file: File | null = null; // Variable to store file
+  fileInfo: FileInfo;
+
+  @Input() to: string = '';
 
   // Inject service 
   constructor(private fileUploadService: FileUploaderService) {
 
+    this.fileInfo = {} as FileInfo;
   }
 
   ngOnInit(): void {
+
   }
 
   // On file Select
@@ -30,14 +36,19 @@ export class DefaultFileUploaderComponent implements OnInit {
   onUpload() {
     this.loading = !this.loading;
     console.log(this.file);
-    this.fileUploadService.upload(this.file).subscribe(
+    this.fileUploadService.upload(this.file, this.to).subscribe(
       (event: any) => {
         //if (typeof (event) === 'object') {
 
           // Short link via api response
         this.shortLink = event;//event.link;
 
-          this.loading = false; // Flag variable 
+        this.loading = false; // Flag variable
+
+        this.fileInfo.To = this.to;
+        this.fileInfo.Url = this.shortLink;
+
+        this.fileUploadService.BroadcastFileUrl(this.fileInfo);
         //}
       }
     );

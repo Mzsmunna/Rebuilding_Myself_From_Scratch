@@ -2,10 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { FileUploaderService } from '../../services/common/file-uploader/file-uploader.service';
 import { IssueService } from '../../services/features/issue/issue.service';
 import { UserService } from '../../services/features/user/user.service';
 import { TableService } from '../../ui-elements/tables/table.service';
 import { User } from '../../view_models/auth/user.model';
+import { FileInfo } from '../../view_models/common/file-info.model';
 import { IssueProgress, IssueStat } from '../../view_models/issue.model';
 
 @Component({
@@ -21,16 +23,19 @@ export class HomeComponent implements OnInit {
   activeTab: string = "";
   public isAdmin: boolean = false;
   public isUserSelected: boolean = false;
+  public isChangingPhoto: boolean = false;
   public loggedUser: User;
   public currentProfile: User;
+  fileInfo: FileInfo;
   public userIssueStat: IssueStat[];
   public userIssueProgress: IssueProgress;
 
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
-  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService, private route: Router) {
+  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService, private fileUploadService: FileUploaderService, private route: Router) {
 
     this.loggedUser = {} as User;
+    this.fileInfo = {} as FileInfo;
     this.currentProfile = {} as User;
     this.currentProfile.Gender = "male";
     this.currentProfile.Role = "user";
@@ -153,6 +158,42 @@ export class HomeComponent implements OnInit {
       }
 
     });
+
+    this.fileUploadService.uploadedFileInfo$.subscribe(result => {
+
+      if (Object.keys(result).length > 0) {
+
+        console.log("uploaded file:", result);
+        this.fileInfo = result;
+
+        if (this.fileInfo.To == "https://localhost:7074/api/User/") {
+
+          this.currentProfile.Img = this.fileInfo.Url;
+          this.userService.SaveUser(this.currentProfile).subscribe(result => {
+
+            console.log("saved user with file link: ", result);
+
+            if (result) {
+
+              this.currentProfile = result;
+              this.isChangingPhoto = false;
+
+            } else {
+
+              console.log("something went wrong while changing Profile pic: ", this.currentProfile);
+            }
+
+          });
+        }
+
+      }
+
+    });
+  }
+
+  ChangePhoto() {
+
+    this.isChangingPhoto = true;
   }
 
   ResetIssueProgress() {
