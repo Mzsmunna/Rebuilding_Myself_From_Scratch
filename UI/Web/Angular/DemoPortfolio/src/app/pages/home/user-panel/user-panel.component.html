@@ -46,7 +46,7 @@
                 <img src="{{user.Img}}"
                      onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
                      alt=""
-                     style="width: 45px; height: 45px"
+                     style="width: 55px; height: 55px"
                      class="rounded-circle" />
                 <div class="ms-3">
                   <p class="fw-bold mb-1">{{user.FirstName + ' ' + user.LastName}}</p>
@@ -62,8 +62,8 @@
               <span class="badge rounded-pill d-inline" [ngClass]="{'bg-success': user.IsActive, 'bg-danger': !user.IsActive}">{{(user.IsActive) ? 'Active' : 'Inactive'}}</span>
             </td>
             <td>
-              <button type="button" class="btn btn-secondary btn-sm btn-rounded" (click)="ShowUserDetails(user)">
-                <i class="fa-solid fa-eye"></i>
+              <button type="button" class="btn btn-outline-primary btn-sm btn-rounded" (click)="ShowUserDetails(user)">
+                <i class="fa-solid fa-user-gear"></i>
               </button>
             </td>
           </tr>
