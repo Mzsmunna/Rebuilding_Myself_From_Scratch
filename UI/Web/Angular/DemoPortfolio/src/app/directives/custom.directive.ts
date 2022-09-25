@@ -48,12 +48,17 @@ export class CustomRender2Directive implements OnInit {
 })
 export class CustomHostListenerDirective implements OnInit {
 
-  //@Input() setColor: string = 'LightSteelBlue';
-  @Input('customHostListener') setColor: string = 'AliceBlue';
+  //@Input() color: string = 'AliceBlue';
+  @Input('customHostListener') set setColor(condition: boolean | null | "") {
+
+    console.log("con dir:", condition);
+
+    if (condition)
+      this.element.nativeElement.style.backgroundColor = "#C8E6C9";
+  }
 
   constructor(private element: ElementRef, private renderer: Renderer2) {
 
-    this.setColor = 'LightSteelBlue';
   }
 
   ngOnInit() {
@@ -78,7 +83,7 @@ export class CustomHostListenerDirective implements OnInit {
     this.renderer.setStyle(this.element.nativeElement, 'transition', '0.5s');
   }
 
-  @HostBinding('style.backgroundColor') background: string = this.setColor; //'#C8E6C9';
+  @HostBinding('style.backgroundColor') background: string = 'AliceBlue';
   //@HostBinding('style.border') border: string = '#C8E6C9 2px solid';
 
 }

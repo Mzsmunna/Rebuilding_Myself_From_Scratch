@@ -61,10 +61,10 @@
               <p class="fw-normal mb-1">{{user.Designation}}</p>
               <p class="text-muted mb-0">{{user.Department}} <span *ngIf="user.Department"> department</span> </p>
             </td>
-            <td customBackground>
+            <td [customHostListener]="user.IsActive">
               <span class="badge bg-secondary rounded-pill d-inline">Active</span>
             </td>
-            <td [customHostListener]="'#C8E6C9'">{{user.Position | titlecase}}</td>
+            <td customBackground>{{user.Position | titlecase}}</td>
             <td>
               <button type="button" class="btn btn-secondary btn-sm btn-rounded" (click)="ShowUserDetails(user)">
                 <i class="fa-solid fa-eye"></i>
