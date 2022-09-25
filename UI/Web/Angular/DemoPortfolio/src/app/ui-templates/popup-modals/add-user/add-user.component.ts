@@ -11,6 +11,8 @@ import { User } from '../../../view_models/auth/user.model';
 })
 export class AddUserComponent implements OnInit {
 
+  previousUser = {} as User;
+
   @Input() currentProfile: User;
   @Input() classNames: string;
   @Input() buttonName: string;
@@ -19,7 +21,7 @@ export class AddUserComponent implements OnInit {
 
   constructor(private authService: AuthService, private userService: UserService ) {
 
-    //this.loggedUser = {} as User;
+    this.previousUser = {} as User;
     this.currentProfile = {} as User;
     this.classNames = "btn btn-primary";
     this.buttonName = "Add User";
@@ -36,8 +38,18 @@ export class AddUserComponent implements OnInit {
 
     this.userService.selectedProfile$.subscribe(result => {
 
-        console.log("modal user:", result);
+      console.log("Add modal user:", result);
+
+      if (Object.keys(result).length <= 0) {
+
+        this.previousUser = this.currentProfile;
         this.currentProfile = result;
+
+      } else {
+
+        this.previousUser = result;
+      }
+
     });
   }
 
@@ -58,6 +70,15 @@ export class AddUserComponent implements OnInit {
       //console.log('got item: ', currentItem.currentValue);
       //this.loggedUser = changes['data']['currentValue'];
     }
+  }
+
+  OnModalClose() {
+
+    console.log("OnModal preserve user: ", this.previousUser);
+
+    if (this.previousUser.Id)
+      this.currentProfile = this.previousUser;
+
   }
 
   SaveUser(userForm: FormGroup) {

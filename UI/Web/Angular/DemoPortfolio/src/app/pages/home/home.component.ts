@@ -149,12 +149,13 @@ export class HomeComponent implements OnInit {
 
         console.log("selected user:", result);
         this.currentProfile = result;
-        this.isUserSelected = true;
+
+        if (result.Id.includes(this.loggedUser.Id))
+          this.isUserSelected = false;
+        else
+          this.isUserSelected = true;
+
         this.GetIssueStatByUserId();
-
-      } else {
-
-        this.isUserSelected = false;
       }
 
     });
