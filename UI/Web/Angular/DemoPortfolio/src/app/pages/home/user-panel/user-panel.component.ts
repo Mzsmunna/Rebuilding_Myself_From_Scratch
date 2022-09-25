@@ -15,6 +15,7 @@ import { SearchField } from '../../../view_models/search-field.model';
 export class UserPanelComponent implements OnInit {
 
   public newProfile: User;
+  public selectedProfile: User;
   public usersList: User[];
   public usersListCount: number = 0;
   public userSearchQueries: SearchField[];
@@ -46,6 +47,7 @@ export class UserPanelComponent implements OnInit {
   constructor(private authService: AuthService, private userService: UserService, private tableService: TableService) {
 
     this.newProfile = {} as User;
+    this.selectedProfile = {} as User;
     this.usersList = [] as User[];
 
     this.userSearchQueries = [] as SearchField[];
@@ -137,11 +139,17 @@ export class UserPanelComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    console.log("User Page on chnage:");
+    console.log("User Page on chnage:", changes);
 
     //if (changes.name != undefined) {
     //  this.name = changes.name.currentValue
     //}
+  }
+
+  OnAddUser() {
+
+    console.log("On click Add user pop-up modal");
+    //this.ShowUserDetails(this.newProfile);
   }
 
   GetToken() {
@@ -153,6 +161,7 @@ export class UserPanelComponent implements OnInit {
 
   ShowUserDetails(user: User) {
 
+    this.selectedProfile = user;
     this.userService.SyncSelectedUser(user);
   }
 

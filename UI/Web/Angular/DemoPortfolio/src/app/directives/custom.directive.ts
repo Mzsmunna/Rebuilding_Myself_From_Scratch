@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appCustom]'
@@ -46,9 +46,17 @@ export class CustomRender2Directive implements OnInit {
 @Directive({
   selector: '[customHostListener]'
 })
-export class CustomHostListenerDirective {
+export class CustomHostListenerDirective implements OnInit {
+
+  //@Input() setColor: string = 'LightSteelBlue';
+  @Input('customHostListener') setColor: string = 'AliceBlue';
 
   constructor(private element: ElementRef, private renderer: Renderer2) {
+
+    this.setColor = 'LightSteelBlue';
+  }
+
+  ngOnInit() {
 
   }
 
@@ -69,5 +77,8 @@ export class CustomHostListenerDirective {
     this.renderer.setStyle(this.element.nativeElement, 'padding', '-40px -40px');
     this.renderer.setStyle(this.element.nativeElement, 'transition', '0.5s');
   }
+
+  @HostBinding('style.backgroundColor') background: string = this.setColor; //'#C8E6C9';
+  //@HostBinding('style.border') border: string = '#C8E6C9 2px solid';
 
 }

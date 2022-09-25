@@ -13,7 +13,7 @@
                   <button class="btn btn-outline-secondary bg-white border rounded-pill ms-n5" type="button">
                     <i class="fa fa-search"></i>
                   </button>
-                  <app-add-user class="ms-2" [currentProfile]="newProfile" [classNames]="'btn btn-primary'" [buttonName]="'Add User'"></app-add-user>
+                  <app-add-user class="ms-2" [currentProfile]="newProfile" [classNames]="'btn btn-primary'" [buttonName]="'Add User'" (click)="OnAddUser()"></app-add-user>
                 </span>
               </div>
             </div>
@@ -64,7 +64,7 @@
             <td customBackground>
               <span class="badge bg-secondary rounded-pill d-inline">Active</span>
             </td>
-            <td>{{user.Position | titlecase}}</td>
+            <td [customHostListener]="'#C8E6C9'">{{user.Position | titlecase}}</td>
             <td>
               <button type="button" class="btn btn-secondary btn-sm btn-rounded" (click)="ShowUserDetails(user)">
                 <i class="fa-solid fa-eye"></i>
