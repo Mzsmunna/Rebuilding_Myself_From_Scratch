@@ -145,7 +145,7 @@ export class HomeComponent implements OnInit {
 
     this.userService.selectedProfile$.subscribe(result => {
 
-      if (Object.keys(result).length > 0) {
+      if (result.Id) {
 
         console.log("selected user:", result);
         this.currentProfile = result;

@@ -117,21 +117,6 @@ export class IssuePanelComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.userSearchQueries.push({
-    //  Key: 'Email',
-    //  Value: '',
-    //  DataType: 'string',
-    //  DataSeparator: '',
-    //  IsString: true,
-    //  IsCaseSensitive: false,
-    //  IsPartialMatch: true,
-    //  IsBoolean: false,
-    //  IsDateTime: false,
-    //  IsAndQuery: true,
-    //  IsEncrypted: false,
-    //  QueryOrder: 1
-    //});
-
     this.isAdmin = this.authService.IsAdmin();
     this.GetLoggedUser();
 
@@ -169,10 +154,6 @@ export class IssuePanelComponent implements OnInit {
     );
 
     this.GetToken();
-
-    //this.GetAllIssuesByAssignedCount();
-    //this.GetAllIssuesByAssigned();
-
     this.GetAllUserToAssign();
     this.LoadTable();
   }
@@ -288,9 +269,8 @@ export class IssuePanelComponent implements OnInit {
     });
   }
 
-  GetAllIssuesByAssignedCount() {
+  GetAllIssuesCount() {
 
-    //this.issueService.GetAllIssuesByAssignedCount(this.issueSearchQueries).subscribe(result => {
     this.issueService.GetAllIssueCount(this.issueSearchQueries).subscribe(result => {
 
       console.log(result);
@@ -300,9 +280,8 @@ export class IssuePanelComponent implements OnInit {
     });
   }
 
-  GetAllIssuesByAssigned() {
+  GetAllIssues() {
 
-    //this.issueService.GetAllIssuesByAssigned(0, 10, "Title", "ascending", this.issueSearchQueries).subscribe(result => {
     this.issueService.GetAllIssues(0, 10, "Title", "ascending", this.issueSearchQueries).subscribe(result => {
 
       console.log(result);
@@ -364,9 +343,6 @@ export class IssuePanelComponent implements OnInit {
 
   UpdateTable() {
 
-    //this.GetAllIssuesByAssignedCount();
-    //this.GetAllIssuesByAssigned();
-
     this.LoadTable();
   }
 
@@ -401,7 +377,6 @@ export class IssuePanelComponent implements OnInit {
     }
 
     //pass to adduser component template with view child
-
   }
 
   //Ng2 Smart Table Action event Trigger Methods:

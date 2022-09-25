@@ -26,10 +26,7 @@ export class AddUserComponent implements OnInit {
     this.classNames = "btn btn-primary";
     this.buttonName = "Add User";
 
-    this.currentProfile.Gender = "male";
-    this.currentProfile.Role = "user";
-    this.currentProfile.Department = "";
-    this.currentProfile.Position = "";
+    this.ResetUser();
 
     this.closeModal = {} as ElementRef;
   }
@@ -40,11 +37,13 @@ export class AddUserComponent implements OnInit {
 
       console.log("Add modal user:", result);
 
-      if (Object.keys(result).length <= 0) {
+      if (!result.Id) {
 
         this.buttonName = "Add User";
         this.previousUser = this.currentProfile;
+
         this.currentProfile = result;
+        this.ResetUser();
 
       } else {
 
@@ -61,15 +60,8 @@ export class AddUserComponent implements OnInit {
     if (changes) {
 
       console.log(changes);
-      //  console.log("app-ng-smart-table : updated data");
-      //  console.log(changes['data']['currentValue']);
-      //  this.data = changes['data']['currentValue'];
-      //console.log(this.data);
 
       const currentItem: SimpleChange = changes["data"];
-      ///console.log('prev value: ', currentItem.previousValue);
-      //console.log('got item: ', currentItem.currentValue);
-      //this.loggedUser = changes['data']['currentValue'];
     }
   }
 
@@ -81,8 +73,7 @@ export class AddUserComponent implements OnInit {
 
       this.currentProfile = this.previousUser;
       this.buttonName = "Edit User";
-    }
-      
+    }    
   }
 
   SaveUser(userForm: FormGroup) {
@@ -108,11 +99,7 @@ export class AddUserComponent implements OnInit {
           } else {
 
             userForm.reset();
-            this.currentProfile = {} as User;
-            this.currentProfile.Gender = "male";
-            this.currentProfile.Role = "user";
-            this.currentProfile.Department = "";
-            this.currentProfile.Position = "";
+            this.ResetUser();
           }
 
         } else {
@@ -126,6 +113,15 @@ export class AddUserComponent implements OnInit {
 
       console.log("Invalid user info : ", this.currentProfile);
     }
+  }
+
+  ResetUser() {
+
+    this.currentProfile = {} as User;
+    this.currentProfile.Gender = "male";
+    this.currentProfile.Role = "user";
+    this.currentProfile.Department = "";
+    this.currentProfile.Position = "";
   }
 
 }

@@ -7,245 +7,131 @@
                     (DeleteEvent)="NgTableOnDelete($event)">
 </app-ng-smart-table>-->
 
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header p-3">
-            <div class="dropdown">
-              <button type="button" class="btn dropdown-toggle fs-5 fw-bold" data-bs-toggle="dropdown" title="All Issues">
-                <i class="fas fa-tasks me-2"></i>{{issueFilterType | titlecase}} Issues
-              </button>
-              <ul class="dropdown-menu fs-5 fw-bolder">
-                <li><button class="dropdown-item" (click)="FilterIssueType('')"><i class="fas fa-tasks me-2"></i>Issues</button></li>
-                <li><button class="dropdown-item" (click)="FilterIssueType('to-do')"><i class="fas fa-tasks me-2"></i>To-do Issues</button></li>
-                <li><button class="dropdown-item" (click)="FilterIssueType('task')"><i class="fas fa-tasks me-2"></i>Task Issues</button></li>
-                <li><button class="dropdown-item" (click)="FilterIssueType('note')"><i class="fas fa-tasks me-2"></i>Note Issues</button></li>
-                <li><button class="dropdown-item" (click)="FilterIssueType('reminder')"><i class="fas fa-tasks me-2"></i>Reminder Issues</button></li>
-              </ul>
-            </div>
-            <div class="dropdown" *ngIf="isAdmin">
-              <!-- Assign to select (db data bind) -->
-              <button type="button" class="btn dropdown-toggle fs-6 fw-bold" data-bs-toggle="dropdown" title="Assigned To">
-                <i class="fas fa-tasks me-2"></i>{{issueFilterName | titlecase}}
-              </button>
-              <ul class="dropdown-menu fs-6 fw-bolder">
-                <li><button class="dropdown-item" (click)="FilterIssueById('', 'Assigned To')"><i class="fas fa-tasks me-2"></i>Assigned To</button></li>
-                <li *ngFor="let user of assignUserList | sortArray:'Name'"><button class="dropdown-item" (click)="FilterIssueById(user.Id, user.Name)"><i class="fas fa-tasks me-2"></i>{{user.Name}}</button></li>
-              </ul>
-            </div>
-            <div class="position-relative">
-              <div class="position-absolute bottom-0 end-50">
-                <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
-              </div>
-              <div class="position-absolute bottom-0 end-0">
-                <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">
-                  <option [disabled]="true" [value]="pager.PageSize">Page Size ({{pager.PageSize}})</option>
-                  <option [disabled]="pager.PageSize==5" value="5">5</option>
-                  <option [disabled]="pager.PageSize==10" value="10">10</option>
-                  <option [disabled]="pager.PageSize==20" value="20">20</option>
-                  <option [disabled]="pager.PageSize==50" value="50">50</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 650px; overflow-y: scroll;">
-
-            <table class="table mb-0 align-middle bg-white">
-              <thead>
-                <tr>
-                  <th scope="col" *ngIf="isAdmin">
-                    Assigned To <!-- Default switch -->
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input me-1" (click)="FilterIssueById(loggedUser.Id, loggedUser.FirstName + ' ' + loggedUser.LastName)" [checked]="isMyIssuesOnly" id="customSwitches">
-                      <label class="custom-control-label" for="customSwitches">Me</label>
-                    </div>
-                  </th>
-                  <th scope="col" *ngIf="isAdmin==false">
-                    Assigned By
-                  </th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Summary</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="fw-normal" *ngFor="let issue of issuesList; let i = index">
-                  <th *ngIf="isAdmin">
-                    <img src="{{issue.AssignedImg}}"
-                         onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
-                         class="shadow-1-strong rounded-circle mt-2" alt="avatar 1"
-                         style="width: 60px; height: 60px;">
-                    <span class="ms-2">{{issue.AssignedName | titlecase}}</span>
-                  </th>
-                  <th *ngIf="isAdmin==false">
-                    <img src="{{issue.CreatedByImg}}"
-                         onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
-                         class="shadow-1-strong rounded-circle mt-2" alt="avatar 1"
-                         style="width: 60px; height: 60px;">
-                    <span class="ms-2">{{issue.CreatedByName | titlecase}}</span>
-                  </th>
-                  <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
-                    <span>{{issue.Type | titlecase}}</span>
-                  </td>
-                  <td class="align-middle text-capitalize" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
-                    <span>{{issue.Title}}</span>
-                  </td>
-                  <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
-                    <span>{{issue.Summary | customCapitalize: false}}</span>
-                  </td>
-                  <td class="align-middle">
-                    <!--<h6 class="mb-0"><span class="badge bg-danger">{{issue.Status}}</span></h6>-->
-                    <div class="form-outline mb-2 mt-2 me-2">
-                      <select id="issueStatus"
-                              class="form-select rounded-pill fw-bold text-white"
-                              [ngClass]="{'bg-danger': issue.IsDeleted, 'bg-success': issue.IsCompleted, 'bg-primary': issue.IsActive, 'bg-secondary': issue.IsActive==false}"
-                              aria-label="Default select example"
-                              name="Status"
-                              (change)="OnStatusChange(issue, $event)"
-                              [disabled]="issue.IsCompleted">
-                        <option [selected]="issue.Status=='pending'" value="pending">Pending</option>
-                        <option [selected]="issue.Status=='in-progress'" value="in-progress">In-Progress</option>
-                        <option [selected]="issue.Status=='done'" value="done">Done</option>
-                        <option [selected]="issue.Status=='discarded'" value="discarded">Discarded</option>
-                      </select>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn" data-mdb-toggle="tooltip" title="Edit" (click)="OnUpdate(issue)">
-                      <i class="fas fa-edit text-success me-2"></i>
-                    </button>
-                    <!--<button class="btn" data-mdb-toggle="tooltip" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
-      <i class="fas fa-trash-alt text-danger"></i>
-    </button>-->
-
-                    <div class="dropdown">
-                      <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
-                        <i class="fas fa-trash-alt text-danger"></i>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><button class="dropdown-item" (click)="OnDelete(issue)">Yes</button></li>
-                        <li><button class="dropdown-item">No</button></li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-
-                <!--<tr class="fw-normal">
-                  <th>
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp"
-                         class="shadow-1-strong rounded-circle" alt="avatar 1"
-                         style="width: 55px; height: auto;">
-                    <span class="ms-2">Kate Moss</span>
-                  </th>
-                  <td class="align-middle">Make payment to Bluedart</td>
-                  <td class="align-middle">
-                    <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
-                  </td>
-                  <td class="align-middle">
-                    <a href="#!" data-mdb-toggle="tooltip" title="Done">
-                      <i class="fas fa-check text-success me-3"></i>
-                    </a>
-                    <a href="#!" data-mdb-toggle="tooltip" title="Remove">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr class="fw-normal">
-                  <th>
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                         class="shadow-1-strong rounded-circle" alt="avatar 1"
-                         style="width: 55px; height: auto;">
-                    <span class="ms-2">Danny McChain</span>
-                  </th>
-                  <td class="align-middle">Office rent</td>
-                  <td class="align-middle">
-                    <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
-                  </td>
-                  <td class="align-middle">
-                    <a href="#!" data-mdb-toggle="tooltip" title="Done">
-                      <i class="fas fa-check text-success me-3"></i>
-                    </a>
-                    <a href="#!" data-mdb-toggle="tooltip" title="Remove">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr class="fw-normal">
-                  <th>
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp"
-                         class="shadow-1-strong rounded-circle" alt="avatar 1"
-                         style="width: 55px; height: auto;">
-                    <span class="ms-2">Alexa Chung</span>
-                  </th>
-                  <td class="align-middle">Office grocery shopping</td>
-                  <td class="align-middle">
-                    <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
-                  </td>
-                  <td class="align-middle">
-                    <a href="#!" data-mdb-toggle="tooltip" title="Done">
-                      <i class="fas fa-check text-success me-3"></i>
-                    </a>
-                    <a href="#!" data-mdb-toggle="tooltip" title="Remove">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr class="fw-normal">
-                  <th class="">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
-                         class="shadow-1-strong rounded-circle" alt="avatar 1"
-                         style="width: 55px; height: auto;">
-                    <span class="ms-2">Ben Smith</span>
-                  </th>
-                  <td class="align-middle">Ask for Lunch to Clients</td>
-                  <td class="align-middle">
-                    <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
-                  </td>
-                  <td class="align-middle">
-                    <a href="#!" data-mdb-toggle="tooltip" title="Done">
-                      <i class="fas fa-check text-success me-3"></i>
-                    </a>
-                    <a href="#!" data-mdb-toggle="tooltip" title="Remove">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr class="fw-normal">
-                  <th class="border-0">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp"
-                         class="shadow-1-strong rounded-circle" alt="avatar 1"
-                         style="width: 55px; height: auto;">
-                    <span class="ms-2">Annie Hall</span>
-                  </th>
-                  <td class="border-0 align-middle">Create weekly tasks plan</td>
-                  <td class="border-0 align-middle">
-                    <h6 class="mb-0"><span class="badge bg-warning">Medium priority</span></h6>
-                  </td>
-                  <td class="border-0 align-middle">
-                    <a href="#!" data-mdb-toggle="tooltip" title="Done">
-                      <i class="fas fa-check text-success me-3"></i>
-                    </a>
-                    <a href="#!" data-mdb-toggle="tooltip" title="Remove">
-                      <i class="fas fa-trash-alt text-warning"></i>
-                    </a>
-                  </td>
-                </tr>-->
-              </tbody>
-            </table>
-
-          </div>
-
-          <app-default-pagination
-                [pager]="pager"
-                (UpdatePager)="UpdatePager($event)">
-          </app-default-pagination>
-
-          <!--<div class="card-footer position-relative p-md-4 mb-2 mt-2">
-            <div class="position-absolute bottom-0 end-50">
-              <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
-            </div>
-          </div>-->
-
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header p-3">
+      <div class="dropdown">
+        <button type="button" class="btn dropdown-toggle fs-5 fw-bold" data-bs-toggle="dropdown" title="All Issues">
+          <i class="fas fa-tasks me-2"></i>{{issueFilterType | titlecase}} Issues
+        </button>
+        <ul class="dropdown-menu fs-5 fw-bolder">
+          <li><button class="dropdown-item" (click)="FilterIssueType('')"><i class="fas fa-tasks me-2"></i>Issues</button></li>
+          <li><button class="dropdown-item" (click)="FilterIssueType('to-do')"><i class="fas fa-tasks me-2"></i>To-do Issues</button></li>
+          <li><button class="dropdown-item" (click)="FilterIssueType('task')"><i class="fas fa-tasks me-2"></i>Task Issues</button></li>
+          <li><button class="dropdown-item" (click)="FilterIssueType('note')"><i class="fas fa-tasks me-2"></i>Note Issues</button></li>
+          <li><button class="dropdown-item" (click)="FilterIssueType('reminder')"><i class="fas fa-tasks me-2"></i>Reminder Issues</button></li>
+        </ul>
+      </div>
+      <div class="dropdown" *ngIf="isAdmin">
+        <!-- Assign to select (db data bind) -->
+        <button type="button" class="btn dropdown-toggle fs-6 fw-bold" data-bs-toggle="dropdown" title="Assigned To">
+          <i class="fas fa-tasks me-2"></i>{{issueFilterName | titlecase}}
+        </button>
+        <ul class="dropdown-menu fs-6 fw-bolder">
+          <li><button class="dropdown-item" (click)="FilterIssueById('', 'Assigned To')"><i class="fas fa-tasks me-2"></i>Assigned To</button></li>
+          <li *ngFor="let user of assignUserList | sortArray:'Name'"><button class="dropdown-item" (click)="FilterIssueById(user.Id, user.Name)"><i class="fas fa-tasks me-2"></i>{{user.Name}}</button></li>
+        </ul>
+      </div>
+      <div class="position-relative">
+        <div class="position-absolute bottom-0 end-50">
+          <app-add-issue [loggedUser]="loggedUser" (UpdateIssueList)="UpdateIssueList($event)"></app-add-issue>
+        </div>
+        <div class="position-absolute bottom-0 end-0">
+          <select id="pageSize" class="form-select" aria-label="Default select example" name="pageSize" [(ngModel)]="pager.PageSize" (change)="LoadTable()">
+            <option [disabled]="true" [value]="pager.PageSize">Page Size ({{pager.PageSize}})</option>
+            <option [disabled]="pager.PageSize==5" value="5">5</option>
+            <option [disabled]="pager.PageSize==10" value="10">10</option>
+            <option [disabled]="pager.PageSize==20" value="20">20</option>
+            <option [disabled]="pager.PageSize==50" value="50">50</option>
+          </select>
         </div>
       </div>
+    </div>
+    <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 650px; overflow-y: scroll;">
+      <table class="table mb-0 align-middle bg-white">
+        <thead>
+          <tr>
+            <th scope="col" *ngIf="isAdmin">
+              Assigned To
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input me-1" (click)="FilterIssueById(loggedUser.Id, loggedUser.FirstName + ' ' + loggedUser.LastName)" [checked]="isMyIssuesOnly" id="customSwitches">
+                <label class="custom-control-label" for="customSwitches">Me</label>
+              </div>
+            </th>
+            <th scope="col" *ngIf="isAdmin==false">
+              Assigned By
+            </th>
+            <th scope="col">Type</th>
+            <th scope="col">Title</th>
+            <th scope="col">Summary</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="fw-normal" *ngFor="let issue of issuesList; let i = index">
+            <th *ngIf="isAdmin">
+              <img src="{{issue.AssignedImg}}"
+                    onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
+                    class="shadow-1-strong rounded-circle mt-2" alt="avatar 1"
+                    style="width: 60px; height: 60px;">
+              <span class="ms-2">{{issue.AssignedName | titlecase}}</span>
+            </th>
+            <th *ngIf="isAdmin==false">
+              <img src="{{issue.CreatedByImg}}"
+                    onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
+                    class="shadow-1-strong rounded-circle mt-2" alt="avatar 1"
+                    style="width: 60px; height: 60px;">
+              <span class="ms-2">{{issue.CreatedByName | titlecase}}</span>
+            </th>
+            <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
+              <span>{{issue.Type | titlecase}}</span>
+            </td>
+            <td class="align-middle text-capitalize" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
+              <span>{{issue.Title}}</span>
+            </td>
+            <td class="align-middle" [ngClass]="{'text-decoration-line-through': issue.IsCompleted}">
+              <span>{{issue.Summary | customCapitalize: false}}</span>
+            </td>
+            <td class="align-middle">
+              <div class="form-outline mb-2 mt-2 me-2">
+                <select id="issueStatus"
+                        class="form-select rounded-pill fw-bold text-white"
+                        [ngClass]="{'bg-danger': issue.IsDeleted, 'bg-success': issue.IsCompleted, 'bg-primary': issue.IsActive, 'bg-secondary': issue.IsActive==false}"
+                        aria-label="Default select example"
+                        name="Status"
+                        (change)="OnStatusChange(issue, $event)"
+                        [disabled]="issue.IsCompleted">
+                  <option [selected]="issue.Status=='pending'" value="pending">Pending</option>
+                  <option [selected]="issue.Status=='in-progress'" value="in-progress">In-Progress</option>
+                  <option [selected]="issue.Status=='done'" value="done">Done</option>
+                  <option [selected]="issue.Status=='discarded'" value="discarded">Discarded</option>
+                </select>
+              </div>
+            </td>
+            <td class="align-middle">
+              <button class="btn" data-mdb-toggle="tooltip" title="Edit" (click)="OnUpdate(issue)">
+                <i class="fas fa-edit text-success me-2"></i>
+              </button>
+              <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" title="Remove" [disabled]="issue.CreatedBy!=loggedUser.Id">
+                  <i class="fas fa-trash-alt text-danger"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" (click)="OnDelete(issue)">Yes</button></li>
+                  <li><button class="dropdown-item">No</button></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <app-default-pagination
+          [pager]="pager"
+          (UpdatePager)="UpdatePager($event)">
+    </app-default-pagination>
+
+  </div>
+</div>
