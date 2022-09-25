@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appCustom]'
@@ -39,6 +39,35 @@ export class CustomRender2Directive implements OnInit {
     //this.renderer.setStyle(this.element.nativeElement, 'backgroundColor', '#F1948A');
     this.renderer.addClass(this.element.nativeElement, 'bg-light');
     this.renderer.setAttribute(this.element.nativeElement, 'title', 'Designation');
+  }
+
+}
+
+@Directive({
+  selector: '[customHostListener]'
+})
+export class CustomHostListenerDirective {
+
+  constructor(private element: ElementRef, private renderer: Renderer2) {
+
+  }
+
+  @HostListener('mouseenter') mouseHover() {
+
+    //this.renderer.setAttribute(this.element.nativeElement, 'data-mdb-toggle', 'animation');
+    //this.renderer.setAttribute(this.element.nativeElement, 'data-mdb-animation-reset', 'true');
+    //this.renderer.setAttribute(this.element.nativeElement, 'data-mdb-animation', 'tada');
+
+    this.renderer.setStyle(this.element.nativeElement, 'margin', '5px 10px');
+    this.renderer.setStyle(this.element.nativeElement, 'padding', '30px 30px');
+    this.renderer.setStyle(this.element.nativeElement, 'transition', '0.5s');
+  }
+
+  @HostListener('mouseleave') mouseOut() {
+
+    this.renderer.setStyle(this.element.nativeElement, 'margin', '-22px -35px');
+    this.renderer.setStyle(this.element.nativeElement, 'padding', '-40px -40px');
+    this.renderer.setStyle(this.element.nativeElement, 'transition', '0.5s');
   }
 
 }
