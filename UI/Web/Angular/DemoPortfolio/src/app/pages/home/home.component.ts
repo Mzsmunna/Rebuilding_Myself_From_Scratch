@@ -217,7 +217,7 @@ export class HomeComponent implements OnInit {
 
     this.isUserSelected = false;
     this.currentProfile = this.loggedUser;
-    this.GetIssueStatByUserId();
+    this.userService.SyncSelectedUser(this.currentProfile);
   }
 
   SwitchTab(tabName: string): void {

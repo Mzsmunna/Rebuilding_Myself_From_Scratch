@@ -42,6 +42,7 @@ export class AddUserComponent implements OnInit {
 
       if (Object.keys(result).length <= 0) {
 
+        this.buttonName = "Add User";
         this.previousUser = this.currentProfile;
         this.currentProfile = result;
 
@@ -76,9 +77,12 @@ export class AddUserComponent implements OnInit {
 
     console.log("OnModal preserve user: ", this.previousUser);
 
-    if (this.previousUser.Id)
-      this.currentProfile = this.previousUser;
+    if (this.previousUser.Id) {
 
+      this.currentProfile = this.previousUser;
+      this.buttonName = "Edit User";
+    }
+      
   }
 
   SaveUser(userForm: FormGroup) {
