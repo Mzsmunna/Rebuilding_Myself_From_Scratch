@@ -16,6 +16,7 @@ import { UserPanelComponent } from './pages/home/user-panel/user-panel.component
 import { IssuePanelComponent } from './pages/home/issue-panel/issue-panel.component';
 import { UiTemplatesModule } from './ui-templates/ui-templates.module';
 import { CustomCapitalize, CustomPipePipe } from './pipes/custom-pipe.pipe';
+import { CustomBackgroundDirective, CustomDirective, CustomRender2Directive } from './directives/custom.directive';
 
 
 @NgModule({
@@ -31,7 +32,12 @@ import { CustomCapitalize, CustomPipePipe } from './pipes/custom-pipe.pipe';
 
     //Custom Pipes
     CustomPipePipe,
-    CustomCapitalize
+    CustomCapitalize,
+
+    //Custom Directives
+    CustomDirective,
+    CustomBackgroundDirective,
+    CustomRender2Directive
   ],
   imports: [
     BrowserModule,
