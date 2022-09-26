@@ -360,6 +360,7 @@ export class IssuePanelComponent implements OnInit {
 
     if (event) {
 
+      this.issueService.RequestReload(event);
       this.UpdateTable();
     }
   }

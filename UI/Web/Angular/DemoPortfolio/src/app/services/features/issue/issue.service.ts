@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Issue, IssueStat } from '../../../view_models/issue.model';
 import { SearchField } from '../../../view_models/search-field.model';
 
@@ -10,10 +10,18 @@ import { SearchField } from '../../../view_models/search-field.model';
 export class IssueService {
 
   private baseApiUrl: string = '';
+  issueReload$: Subject<boolean>;
 
   constructor(private http: HttpClient) {
 
     this.baseApiUrl = "https://localhost:7074/api/Issue/";
+    this.issueReload$ = new Subject<boolean>();
+  }
+
+  RequestReload(issue: Issue) {
+
+    if (issue.Id)
+      this.issueReload$.next(true);
   }
 
   GetAllIssueCount(searchQueries: SearchField[]): Observable<number> {

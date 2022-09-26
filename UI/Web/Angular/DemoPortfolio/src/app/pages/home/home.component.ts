@@ -192,6 +192,16 @@ export class HomeComponent implements OnInit {
       }
 
     });
+
+    this.issueService.issueReload$.subscribe(result => {
+
+      if (result) {
+
+        console.log("issue reload requested to home: ", result);
+        this.GetIssueStatByUserId();
+      }
+
+    });
   }
 
   ChangePhoto() {
