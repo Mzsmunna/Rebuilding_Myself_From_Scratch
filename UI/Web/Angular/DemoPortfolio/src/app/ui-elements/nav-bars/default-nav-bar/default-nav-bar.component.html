@@ -1,18 +1,20 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" *ngIf="isAuthenticated">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="home">Home</a>
-        </li>
+        <ng-container *ngIf="isAuthenticated">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="home">Home</a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin">
+            <a class="nav-link" routerLink="angular-basics">Angular Basics</a>
+          </li>
+        </ng-container>
         <li class="nav-item">
           <a class="nav-link" routerLink="about">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="contact">Contact</a>
-        </li>
-        <li class="nav-item" *ngIf="isAdmin">
-          <a class="nav-link" routerLink="angular-basics">Angular Basics</a>
         </li>
       </ul>
     </div>

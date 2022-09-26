@@ -20,8 +20,8 @@ const routes: Routes = [
       { path: "issues", component: IssuePanelComponent, canActivate: [AuthGuard] }
     ]
   },
-  { path: "about", component: AboutComponent, canActivate: [AuthGuard] },
-  { path: "contact", component: ContactComponent, canActivate: [AuthGuard] },
+  { path: "about", component: AboutComponent },
+  { path: "contact", component: ContactComponent },
   { path: "angular-basics", component: AngularBasicsComponent, canActivate: [RoleGuard] },
 
   //lazy loading implementation
