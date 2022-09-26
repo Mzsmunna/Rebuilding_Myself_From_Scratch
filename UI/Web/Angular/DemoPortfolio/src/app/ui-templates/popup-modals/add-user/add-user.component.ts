@@ -128,7 +128,7 @@ export class AddUserComponent implements OnInit {
 
           if (error.status === 409) {
 
-            this.alertService.ErrorDetails(this.action + " User failed", "Opps!! Email already exist!", "Please try again!!", true);
+            this.alertService.WarningDetails(this.action + " User failed", "Opps!! Email already exist!", "Please try again!!", true);
 
           } else {
 

@@ -118,6 +118,7 @@ namespace Repositories.Mongo
                                 Name = g.First().FirstName + " " + g.First().LastName,
                                 Email = g.First().Email,
                                 Role = g.First().Role,
+                                Img = g.First().Img,
                               
                             }).ToList();
 

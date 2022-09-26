@@ -158,6 +158,39 @@ export class IssuePanelComponent implements OnInit {
     this.LoadTable();
   }
 
+  GetUserImg(issue: Issue, assigner: string) {
+
+    var userId = "";
+
+    if (assigner == "Assigned")
+      userId = issue.AssignedId;
+    else if (assigner == "CreatedBy")
+      userId = issue.CreatedBy;
+
+    const found = this.assignUserList.find((obj) => {
+      return obj.Id == userId;
+    })!;
+
+    if (found) {
+
+      if (assigner == "Assigned") {
+
+        issue.AssignedImg = found.Img;
+
+      }
+      else if (assigner == "CreatedBy") {
+
+        issue.CreatedByImg = found.Img;
+      }
+
+    }
+
+    if (assigner == "Assigned")
+      return issue.AssignedImg;
+    else
+      return issue.CreatedByImg;
+  }
+
   FilterIssueType(issueType: string) {
 
     this.issueFilterType = issueType;

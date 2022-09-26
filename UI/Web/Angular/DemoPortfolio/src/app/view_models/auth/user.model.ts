@@ -27,4 +27,5 @@ export interface AssignUser {
   Name: string;
   Email: string;
   Role: string;
+  Img: string;
 }
