@@ -83,7 +83,7 @@ namespace RestAPI.Controllers
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status404NotFound, "User doesn't exist.");
+                    return StatusCode(StatusCodes.Status204NoContent, "User doesn't exist.");
                 }
             }
             else

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
+import { AlertService } from '../../../services/common/alert/alert.service';
 import { User } from '../../../view_models/auth/user.model';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   user: User;
 
-  constructor(private authService: AuthService, private route: Router) {
+  constructor(private authService: AuthService, private alertService: AlertService, private route: Router) {
 
     this.user = {} as User;
   }
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
         if (result) {
 
           localStorage.setItem('token', result);
+          this.alertService.Success("Login Successful!!", "Yay!!", true);
           this.route.navigate(['/home']);
 
         } else {

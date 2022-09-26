@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
 import { AuthService } from '../../../services/auth/auth.service';
+import { AlertService } from '../../../services/common/alert/alert.service';
 import { User } from '../../../view_models/auth/user.model';
 
 @Component({
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   user: User;
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private route: Router) {
+  constructor(private authService: AuthService, private alertService: AlertService, private route: Router) {
 
     this.user = {} as User;
 
@@ -87,6 +88,7 @@ export class RegisterComponent implements OnInit {
 
           if (result) {
 
+            this.alertService.SuccessDetails("Registration Successful!!", "Hola!!", "You will be redirected to Home page.", true);
             this.user = result as User;
             this.Login();
 

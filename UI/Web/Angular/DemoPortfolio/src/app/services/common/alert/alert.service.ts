@@ -34,7 +34,7 @@ export class AlertService {
       IsShort: true,
       IsDismissable: true,
       IsVisible: false,
-      TimeOut: 3000
+      TimeOut: 5000
     }
   }
 
@@ -42,82 +42,118 @@ export class AlertService {
 
     this.alert = alert;
     this.alertSubject$.next(this.alert);
-    this.alert = this.GetDefaultAlert();
+    //this.alert = this.GetDefaultAlert();
   }
 
-  Success(message: string) {
+  Success(message: string, headline: string, broadcast: boolean) {
 
     this.alert = this.GetDefaultAlert();
     this.alert.Message = message;
+    this.alert.Headline = headline;
     this.alert.IsSuccess = true;
     this.alert.IsShort = true;
     this.alert.IsVisible = true;
     this.alert.IsDismissable = true;
 
+    if (broadcast)
+      this.ShowAlert(this.alert);
+
     return this.alert;
   }
 
-  SuccessDetails(message: string, saying: string) {
+  SuccessDetails(message: string, headline: string, saying: string, broadcast: boolean) {
 
-    this.alert = this.Success(message);
+    this.alert = this.Success(message, headline, false);
     this.alert.Saying = saying;
     this.alert.IsShort = false;
+
+    if (broadcast)
+      this.ShowAlert(this.alert);
+
+    return this.alert;
   }
 
-  Error(message: string) {
+  Error(message: string, headline: string, broadcast: boolean) {
 
     this.alert = this.GetDefaultAlert();
     this.alert.Message = message;
+    this.alert.Headline = headline;
     this.alert.IsError = true;
     this.alert.IsShort = true;
     this.alert.IsVisible = true;
     this.alert.IsDismissable = true;
 
+    if (broadcast)
+      this.ShowAlert(this.alert);
+
     return this.alert;
   }
 
-  ErrorDetails(message: string, saying: string) {
+  ErrorDetails(message: string, headline: string, saying: string, broadcast: boolean) {
 
-    this.alert = this.Error(message);
+    this.alert = this.Error(message, headline, false);
     this.alert.Saying = saying;
     this.alert.IsShort = false;
+
+    if (broadcast)
+      this.ShowAlert(this.alert);
+
+    return this.alert;
   }
 
-  Warning(message: string) {
+  Warning(message: string, headline: string, broadcast: boolean) {
 
     this.alert = this.GetDefaultAlert();
     this.alert.Message = message;
+    this.alert.Headline = headline;
     this.alert.IsWarning = true;
     this.alert.IsShort = true;
     this.alert.IsVisible = true;
     this.alert.IsDismissable = true;
 
+    if (broadcast)
+      this.ShowAlert(this.alert);
+
     return this.alert;
   }
 
-  WarningDetails(message: string, saying: string) {
+  WarningDetails(message: string, headline: string, saying: string, broadcast: boolean) {
 
-    this.alert = this.Warning(message);
+    this.alert = this.Warning(message, headline, false);
     this.alert.Saying = saying;
     this.alert.IsShort = false;
+
+    if (broadcast)
+      this.ShowAlert(this.alert);
+
+    return this.alert;
   }
 
-  Info(message: string) {
+  Info(message: string, headline: string, broadcast: boolean) {
 
     this.alert = this.GetDefaultAlert();
     this.alert.Message = message;
+    this.alert.Headline = headline;
     this.alert.IsInfo = true;
     this.alert.IsShort = true;
     this.alert.IsVisible = true;
     this.alert.IsDismissable = true;
 
+    if (broadcast)
+      this.ShowAlert(this.alert);
+
     return this.alert;
   }
 
-  InfoDetails(message: string, saying: string) {
+  InfoDetails(message: string, headline: string, saying: string, broadcast: boolean) {
 
-    this.alert = this.Info(message);
+    this.alert = this.Info(message, headline, false);
     this.alert.Saying = saying;
     this.alert.IsShort = false;
+
+    if (broadcast)
+      this.ShowAlert(this.alert);
+
+    return this.alert;
   }
 }

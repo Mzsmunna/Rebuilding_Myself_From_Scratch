@@ -17,23 +17,6 @@ export class DefaultAlertComponent implements OnInit {
   constructor(private alertService: AlertService) {
 
     this.alert = this.alertService.GetDefaultAlert();
-    //{
-    //  Headline: "HOLA!!",
-    //  Message: "This is an Alert",
-    //  Saying: "This is an additional Alert details",
-    //  Url: "",
-    //  Classes: "",
-    //  Id: "",
-    //  IsSuccess: false,
-    //  IsWarning: false,
-    //  IsError: false,
-    //  IsInfo: false,
-    //  IsOther: false,
-    //  IsShort: false,
-    //  IsDismissable: true,
-    //  IsVisible: false,
-    //  TimeOut: 3000
-    //}
 
     //this.successBID = {} as ElementRef;
   }
