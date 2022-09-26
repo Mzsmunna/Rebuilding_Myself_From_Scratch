@@ -33,7 +33,7 @@ import { CustomBackgroundDirective, CustomDirective, CustomHostListenerDirective
     //Custom Pipes
     CustomPipePipe,
     CustomCapitalize,
-    ArraySortPipe,
+    //ArraySortPipe,
 
     //Custom Directives
     CustomDirective,

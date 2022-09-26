@@ -19,7 +19,7 @@
             <!-- First Name input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userFirstName">First Name:</label> <!--appForbiddenName="bob"-->
-              <input type="text" class="form-control" [ngClass]="{'is-invalid': FirstName.dirty && FirstName.errors}" #FirstName="ngModel" name="FirstName" [(ngModel)]="currentProfile.FirstName" pattern="[a-zA-Z ]*" minlength="3" required />
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': FirstName.dirty && FirstName.errors}" #FirstName="ngModel" name="FirstName" placeholder="FirstName" [(ngModel)]="currentProfile.FirstName" pattern="[a-zA-Z ]*" minlength="3" required />
               <p for="userFirstName" class="form-label text-danger" *ngIf="FirstName.errors?.['minlength']">Minimum length should be 3</p>
               <p for="userFirstName" class="form-label text-danger" *ngIf="FirstName.errors?.['pattern']">Not a valid name</p>
             </div>
@@ -27,7 +27,7 @@
             <!-- Last Name input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userLastName">Last Name:</label>
-              <input type="text" class="form-control" [ngClass]="{'is-invalid': LastName.dirty && LastName.errors}" #LastName="ngModel" name="LastName" [(ngModel)]="currentProfile.LastName" pattern="[a-zA-Z ]*" minlength="3" required />
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': LastName.dirty && LastName.errors}" #LastName="ngModel" name="LastName" placeholder="LastName" [(ngModel)]="currentProfile.LastName" pattern="[a-zA-Z ]*" minlength="3" required />
               <p for="userLastName" class="form-label text-danger" *ngIf="LastName.errors?.['minlength']">Minimum length should be 3</p>
               <p for="userFirstName" class="form-label text-danger" *ngIf="LastName.errors?.['pattern']">Not a valid name</p>
             </div>
@@ -46,32 +46,32 @@
             <div class="form-outline mb-4">
               <label class="form-label" for="userBirthDate">Birth Date:</label>
               <div class="input-group date" id="datepicker">
-                <input type="date" class="form-control" #BirthDate="ngModel" name="BirthDate" [(ngModel)]="currentProfile.BirthDate" />
+                <input type="date" class="form-control" #BirthDate="ngModel" name="BirthDate" [ngModel]="currentProfile.BirthDate | date:'yyyy-MM-dd'" (ngModelChange)="currentProfile.BirthDate = $event" [value]="currentProfile.BirthDate | date:'yyyy-MM-dd'" />
               </div>
             </div>
 
             <!-- Age input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userAge">Age</label>
-              <input type="number" class="form-control" #Age="ngModel" name="Age" [(ngModel)]="currentProfile.Age" />
+              <input type="number" class="form-control" #Age="ngModel" name="Age" placeholder="Age" [(ngModel)]="currentProfile.Age" />
             </div>
 
             <!-- Phone input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userPhone">Phone:</label>
-              <input type="text" class="form-control" #Phone="ngModel" name="Phone" [(ngModel)]="currentProfile.Phone" />
+              <input type="text" class="form-control" #Phone="ngModel" name="Phone" placeholder="Phone" [(ngModel)]="currentProfile.Phone" />
             </div>
 
             <!-- Address input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userAddress">Address:</label>
-              <input type="text" class="form-control" #Address="ngModel" name="Phone" [(ngModel)]="currentProfile.Address" />
+              <input type="text" class="form-control" #Address="ngModel" name="Address" placeholder="Address" [(ngModel)]="currentProfile.Address" />
             </div>
 
             <!-- Department select -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userDepartment">Department</label>
-              <select class="form-select" aria-label="Default select example" #Role="ngModel" name="Department" [(ngModel)]="currentProfile.Department">
+              <select class="form-select" aria-label="Default select example" #Department="ngModel" name="Department" [(ngModel)]="currentProfile.Department">
                 <option selected value="">None</option>
                 <option value="it">IT</option>
                 <option value="qa">QA</option>
@@ -86,7 +86,7 @@
             <!-- Designation input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userDesignation">Designation:</label>
-              <input type="text" class="form-control" #Designation="ngModel" name="Designation" [(ngModel)]="currentProfile.Designation" />
+              <input type="text" class="form-control" #Designation="ngModel" name="Designation" placeholder="Designation" [(ngModel)]="currentProfile.Designation" />
             </div>
 
             <!-- Position select -->
@@ -118,15 +118,24 @@
             <!-- Email input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userEmail">Email:</label>
-              <input type="email" class="form-control" [ngClass]="{'is-invalid': Email.errors?.['email']}" #Email="ngModel" name="Email" [(ngModel)]="currentProfile.Email" [email]="true" placeholder="Email" required />
+              <input type="email" class="form-control" [ngClass]="{'is-invalid': Email.errors?.['email']}" #Email="ngModel" name="Email" placeholder="Email" [(ngModel)]="currentProfile.Email" [email]="true" required />
               <p for="userEmail" class="form-label text-danger" *ngIf="Email.errors?.['email']">Not a valid email</p>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4" *ngIf="!currentProfile.Id">
               <label class="form-label" for="userPassword">Password:</label>
-              <input type="password" class="form-control" [ngClass]="{'is-invalid': Password.errors?.['minlength']}" #Password="ngModel" name="Password" [(ngModel)]="currentProfile.Password" placeholder="Password" minlength="5" required />
+              <input type="password" class="form-control" [ngClass]="{'is-invalid': Password.errors?.['minlength']}" #Password="ngModel" name="Password" placeholder="Password" [(ngModel)]="currentProfile.Password" minlength="5" required />
               <p for="userPassword" class="form-label text-danger" *ngIf="Password.errors?.['minlength']">Minimum password length should be 5</p>
+            </div>
+
+            <!-- Gender select -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="userStatus">Status</label>
+              <select class="form-select" aria-label="Default select example" #Status="ngModel" name="Status" [(ngModel)]="currentProfile.IsActive" required>
+                <option selected value="true">Active</option>
+                <option value="false">Inactive</option>
+              </select>
             </div>
 
           </div>

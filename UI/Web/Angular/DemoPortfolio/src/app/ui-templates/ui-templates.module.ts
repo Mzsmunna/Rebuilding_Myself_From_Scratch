@@ -4,11 +4,15 @@ import { AddUserComponent } from './popup-modals/add-user/add-user.component';
 import { AddIssueComponent } from './popup-modals/add-issue/add-issue.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiTemplatesRoutingModule } from './ui-templates-routing.module';
+import { ArraySortPipe } from '../pipes/custom-pipe.pipe';
 
 @NgModule({
   declarations: [
     AddUserComponent,
-    AddIssueComponent
+    AddIssueComponent,
+
+    //Custom Pipes
+    ArraySortPipe
   ],
   imports: [
     CommonModule,
@@ -18,7 +22,10 @@ import { UiTemplatesRoutingModule } from './ui-templates-routing.module';
   ],
   exports: [
     AddUserComponent,
-    AddIssueComponent
+    AddIssueComponent,
+
+    //Custom Pipes
+    ArraySortPipe
   ]
 })
 export class UiTemplatesModule { }

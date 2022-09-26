@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
@@ -29,6 +30,8 @@ export class AddIssueComponent implements OnInit {
   formModal: any;
   actionName: string = "Add";
 
+  isAdmin: boolean = false;
+
   constructor(private authService: AuthService, private issueService: IssueService, private userService: UserService) {
 
     //this.loggedUser = {} as User;
@@ -45,6 +48,7 @@ export class AddIssueComponent implements OnInit {
 
     console.log(`ngOnInit: app-add-issue`, this.loggedUser);
     this.GetAllUserToAssign();
+    this.isAdmin = this.authService.IsAdmin();
   }
 
   GetAllUserToAssign() {
@@ -134,20 +138,30 @@ export class AddIssueComponent implements OnInit {
 
     this.issueForm = new FormGroup({
       Title: new FormControl(bindIssue.Title, Validators.compose([Validators.required, Validators.minLength(10), Validators.pattern("[a-zA-Z ]*")])),
-      Summary: new FormControl(bindIssue.Summary, Validators.compose([Validators.required, Validators.minLength(20), Validators.pattern("[a-zA-Z ]*")])),
-      Description: new FormControl(bindIssue.Description, Validators.minLength(30)),
+      Summary: new FormControl(bindIssue.Summary, Validators.compose([Validators.required, Validators.minLength(20), Validators.pattern("^([^0-9]*)$")])),
+      Description: new FormControl(bindIssue.Description, Validators.compose([Validators.minLength(30), Validators.pattern(".*?[^0-9].*")])),
       Type: new FormControl(bindIssue.Type, Validators.required),
       AssignTo: new FormControl(bindIssue.AssignedId, Validators.required),
-      StartDate: new FormControl(bindIssue.StartDate),
-      EndDate: new FormControl(bindIssue.EndDate),
-      DueDate: new FormControl(bindIssue.DueDate),
+      StartDate: new FormControl(this.FormateDate(bindIssue.StartDate)),
+      EndDate: new FormControl(this.FormateDate(bindIssue.EndDate)),
+      DueDate: new FormControl(this.FormateDate(bindIssue.DueDate)),
       Status: new FormControl(bindIssue.Status, Validators.required),
-      Comment: new FormControl(bindIssue.Comment, Validators.pattern("[a-zA-Z ]*")),
+      Comment: new FormControl(bindIssue.Comment, Validators.pattern(".*?[^0-9].*")),
       //IsActive: new FormControl(bindIssue.IsActive, Validators.required),
       //IsDeleted: new FormControl(bindIssue.IsDeleted, Validators.required),
       //IsCompleted: new FormControl(bindIssue.IsCompleted, Validators.required)
     }, //{ validators: CustomValidation.passwordMatchValidate }
     );
+  }
+
+  FormateDate(date: Date | null) {
+
+    if (date) {
+
+      return formatDate(date, "yyyy-MM-dd", "en");
+    }
+    else
+      return date;
   }
 
   ngOnChanges(changes: SimpleChanges) {

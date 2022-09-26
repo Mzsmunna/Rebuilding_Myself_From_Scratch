@@ -16,7 +16,7 @@
         <!-- Title input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="issueTitle">Title:</label>
-          <input type="text" id="issueTitle" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Title'].dirty && issueForm.controls['Title'].errors}" name="Title" formControlName="Title" />
+          <input type="text" id="issueTitle" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Title'].dirty && issueForm.controls['Title'].errors}" name="Title" placeholder="Title" formControlName="Title" />
           <p for="issueTitle" class="form-label text-danger" *ngIf="issueForm.controls['Title'].errors?.['minlength']">Minimum length should be 10</p>
           <p for="issueTitle" class="form-label text-danger" *ngIf="issueForm.controls['Title'].errors?.['pattern']">Not a valid Title</p>
         </div>
@@ -24,7 +24,7 @@
         <!-- Summary input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="issueSummary">Summary:</label>
-          <input type="text" id="issueSummary" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Summary'].dirty && issueForm.controls['Summary'].errors}" name="Summary" formControlName="Summary" />
+          <input type="text" id="issueSummary" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Summary'].dirty && issueForm.controls['Summary'].errors}" name="Summary" placeholder="Summary" formControlName="Summary" />
           <p for="issueSummary" class="form-label text-danger" *ngIf="issueForm.controls['Summary'].errors?.['minlength']">Minimum length should be 20</p>
           <p for="issueSummary" class="form-label text-danger" *ngIf="issueForm.controls['Summary'].errors?.['pattern']">Not a valid Summary</p>
         </div>
@@ -32,7 +32,7 @@
         <!-- Description input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="issueDescription">Description:</label>
-          <input type="text" id="issueDescription" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Description'].dirty && issueForm.controls['Description'].errors}" name="Description" formControlName="Description" />
+          <input type="text" id="issueDescription" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Description'].dirty && issueForm.controls['Description'].errors}" name="Description" placeholder="Description" formControlName="Description" />
           <p for="issueDescription" class="form-label text-danger" *ngIf="issueForm.controls['Description'].errors?.['minlength']">Minimum length should be 30</p>
           <p for="issueDescription" class="form-label text-danger" *ngIf="issueForm.controls['Description'].errors?.['pattern']">Not a valid Description</p>
         </div>
@@ -49,10 +49,10 @@
         </div>
 
         <!-- Assign to select (db data bind) -->
-        <div class="form-outline mb-4">
+        <div class="form-outline mb-4" *ngIf="isAdmin">
           <label class="form-label" for="issueAssignTo">Assign To</label>
           <select id="issueAssignTo" class="form-select" aria-label="Default select example" name="AssignTo" formControlName="AssignTo">
-            <option *ngFor="let user of assignUserList" [value]="user.Id">{{user.Name}}</option>
+            <option *ngFor="let user of assignUserList | sortArray:'Name'" [value]="user.Id">{{user.Name}}</option>
           </select>
         </div>
 
@@ -94,7 +94,7 @@
         <!-- Comment input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="issueComment">Comment:</label>
-          <input type="text" id="issueComment" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Comment'].dirty && issueForm.controls['Comment'].errors}" name="Comment" formControlName="Comment" />
+          <input type="text" id="issueComment" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Comment'].dirty && issueForm.controls['Comment'].errors}" name="Comment" placeholder="Comment" formControlName="Comment" />
           <p for="issueComment" class="form-label text-danger" *ngIf="issueForm.controls['Comment'].errors?.['pattern']">Not a valid Comment</p>
         </div>
 

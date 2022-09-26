@@ -39,10 +39,15 @@ export class RegisterComponent implements OnInit {
       Gender: new FormControl('male', Validators.required),
       BirthDate: new FormControl(''),
       Age: new FormControl(''),
+      Phone: new FormControl(''),
+      Address: new FormControl(''),
+      Department: new FormControl(''),
+      Designation: new FormControl(''),
+      Position: new FormControl(''),
       Email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
       Password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
       ConfirmPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
-      Role: new FormControl('user', Validators.required),
+      //Role: new FormControl('user', Validators.required),
     }, { validators: CustomValidation.passwordMatchValidate });
   }
 
@@ -61,9 +66,14 @@ export class RegisterComponent implements OnInit {
       this.user.Gender = this.registerForm.value.Gender;
       this.user.BirthDate = new Date(this.registerForm.value.BirthDate);
       this.user.Age = this.registerForm.value.Age;
+      this.user.Phone = this.registerForm.value.Phone;
+      this.user.Address = this.registerForm.value.Address;
+      this.user.Department = this.registerForm.value.Department;
+      this.user.Designation = this.registerForm.value.Designation;
+      this.user.Position = this.registerForm.value.Position;
       this.user.Email = this.registerForm.value.Email;
       this.user.Password = this.registerForm.value.Password;
-      this.user.Role = this.registerForm.value.Role;
+      this.user.Role = 'user'; //this.registerForm.value.Role;
       this.user.IsActive = true;
 
       console.log(this.user);

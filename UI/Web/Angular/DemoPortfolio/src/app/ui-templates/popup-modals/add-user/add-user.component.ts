@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -122,6 +123,17 @@ export class AddUserComponent implements OnInit {
     this.currentProfile.Role = "user";
     this.currentProfile.Department = "";
     this.currentProfile.Position = "";
+    this.currentProfile.IsActive = true;
+  }
+
+  FormateDate(date: Date | null) {
+
+    if (date) {
+
+      return formatDate(date, "yyyy-MM-dd", "en");
+    }
+    else
+      return date;
   }
 
 }

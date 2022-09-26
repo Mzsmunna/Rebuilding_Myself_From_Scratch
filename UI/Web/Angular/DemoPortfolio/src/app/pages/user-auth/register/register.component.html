@@ -41,7 +41,7 @@
         <!-- First Name input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerFirstName">First Name:</label>
-          <input type="text" id="registerFirstName" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['FirstName'].dirty && registerForm.controls['FirstName'].errors}" name="FirstName" formControlName="FirstName" />
+          <input type="text" id="registerFirstName" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['FirstName'].dirty && registerForm.controls['FirstName'].errors}" name="FirstName" placeholder="FirstName" formControlName="FirstName" />
           <p for="registerFirstName" class="form-label text-danger" *ngIf="registerForm.controls['FirstName'].errors?.['minlength']">Minimum length should be 3</p>
           <p for="registerFirstName" class="form-label text-danger" *ngIf="registerForm.controls['FirstName'].errors?.['pattern']">Not a valid name</p>
         </div>
@@ -49,7 +49,7 @@
         <!-- Last Name input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerLastName">Last Name:</label>
-          <input type="text" id="registerLastName" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['LastName'].dirty && registerForm.controls['LastName'].errors}" name="LastName" formControlName="LastName" />
+          <input type="text" id="registerLastName" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['LastName'].dirty && registerForm.controls['LastName'].errors}" name="LastName" placeholder="LastName" formControlName="LastName" />
           <p for="registerLastName" class="form-label text-danger" *ngIf="registerForm.controls['LastName'].errors?.['minlength']">Minimum length should be 3</p>
           <p for="registerLastName" class="form-label text-danger" *ngIf="registerForm.controls['LastName'].errors?.['pattern']">Not a valid name</p>
         </div>
@@ -57,7 +57,7 @@
         <!-- Gender select -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerGender">Gender</label>
-          <select id="registerGender" class="form-select" aria-label="Default select example" name="Gender" formControlName="Gender" >
+          <select id="registerGender" class="form-select" aria-label="Default select example" name="Gender" formControlName="Gender">
             <option selected value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
@@ -75,27 +75,74 @@
         <!-- Age input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerAge">Age</label>
-          <input type="number" id="registerAge" class="form-control" name="Age" formControlName="Age" />
+          <input type="number" id="registerAge" class="form-control" name="Age" placeholder="Age" formControlName="Age" />
+        </div>
+
+        <!-- Phone input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="registerPhone">Phone:</label>
+          <input type="text" class="form-control" id="registerPhone" name="Phone" placeholder="Phone" formControlName="Phone" />
+        </div>
+
+        <!-- Address input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="registerAddress">Address:</label>
+          <input type="text" class="form-control" id="registerAddress" name="Address" placeholder="Address" formControlName="Address" />
+        </div>
+
+        <!-- Department select -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="registerDepartment">Department</label>
+          <select class="form-select" aria-label="Default select example" id="registerDepartment" name="Department" formControlName="Department">
+            <option selected value="">None</option>
+            <option value="it">IT</option>
+            <option value="qa">QA</option>
+            <option value="engineer">Engineer</option>
+            <option value="data-science">Data Science</option>
+            <option value="ui-ux">UI / UX</option>
+            <option value="marketing">Marketing</option>
+            <option value="human-resource">Human Resource</option>
+          </select>
+        </div>
+
+        <!-- Designation input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="registerDesignation">Designation:</label>
+          <input type="text" class="form-control" id="registerDesignation" name="Designation" placeholder="Designation" formControlName="Designation" />
+        </div>
+
+        <!-- Position select -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="registerPosition">Position</label>
+          <select class="form-select" aria-label="Default select example" id="registerPosition" name="Position" formControlName="Position">
+            <option selected value="">Unknown</option>
+            <option value="internship">Internship</option>
+            <option value="fresher">Fresher</option>
+            <option value="junior">Junior</option>
+            <option value="mid">Mid</option>
+            <option value="senior">Senior</option>
+            <option value="vp">VP</option>
+          </select>
         </div>
 
         <!-- Email input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerEmail">Email</label>
-          <input type="email" id="registerEmail" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['Email'].dirty && registerForm.controls['Email'].errors}" name="Email" formControlName="Email" />
+          <input type="email" id="registerEmail" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['Email'].dirty && registerForm.controls['Email'].errors}" name="Email" placeholder="Email" formControlName="Email" />
           <label for="registerEmail" class="form-label text-danger" *ngIf="registerForm.controls['Email'].errors?.['email']">Not a valid email</label>
         </div>
 
         <!-- Password input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerPassword">Password</label>
-          <input type="password" id="registerPassword" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['Password'].errors?.['minlength']}" name="Password" formControlName="Password" />
+          <input type="password" id="registerPassword" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['Password'].errors?.['minlength']}" name="Password" placeholder="Password" formControlName="Password" />
           <label for="registerPassword" class="form-label text-danger" *ngIf="registerForm.controls['Password'].errors?.['minlength']">Minimum password length should be 5</label>
         </div>
 
         <!-- Repeat Password input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="registerConfirmPassword">Confirm password</label>
-          <input type="password" id="registerConfirmPassword" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['ConfirmPassword'].dirty && registerForm.controls['ConfirmPassword'].errors}" name="ConfirmPassword" formControlName="ConfirmPassword" />
+          <input type="password" id="registerConfirmPassword" class="form-control" [ngClass]="{'is-invalid': registerForm.controls['ConfirmPassword'].dirty && registerForm.controls['ConfirmPassword'].errors}" name="ConfirmPassword" placeholder="ConfirmPassword" formControlName="ConfirmPassword" />
           <label for="registerConfirmPassword" class="form-label text-danger" *ngIf="registerForm.controls['ConfirmPassword'].errors?.['minlength']">Minimum password length should be 5</label>
           <label for="registerConfirmPassword" class="form-label text-danger" *ngIf="registerForm.controls['ConfirmPassword'].dirty && registerForm.controls['ConfirmPassword'].errors?.['notmatched']">Password didn't match</label>
         </div>
