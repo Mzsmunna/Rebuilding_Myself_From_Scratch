@@ -64,6 +64,14 @@ namespace Repositories.Mongo
             return null;
         }
 
+        public async Task<List<User>> GetAllByField(string fieldName, string fieldValue)
+        {
+            var filter = Builders<User>.Filter.Eq(fieldName, fieldValue);
+            var result = await _collection.Find(filter).ToListAsync().ConfigureAwait(false);
+            //var result = await _collection.Find(filter).FirstOrDefaultAsync().ConfigureAwait(false);
+            return result;
+        }
+
         public async Task<long> GetAllUserCount(List<SearchField> searchQueries = null)
         {
             var filter = BuildFilter(null, searchQueries);

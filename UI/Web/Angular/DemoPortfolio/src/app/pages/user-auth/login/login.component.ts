@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
 
-        console.log("server error:", error);
+        console.log("login server error:", error);
         this.alertService.Error("Please try again!!", "Login failed!!", true);
       },
       () => console.log('yay'));

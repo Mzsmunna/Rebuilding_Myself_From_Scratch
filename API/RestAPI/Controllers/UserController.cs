@@ -234,6 +234,16 @@ namespace RestAPI.Controllers
         [ActionName("SaveUser")]
         public IActionResult SaveUser(User user)
         {
+            var existingUsers = _userRepository.GetAllByField("Email", user.Email.ToLower()).Result;
+
+            if (existingUsers != null && existingUsers.Count > 0)
+            {
+                var exist = existingUsers.Where(x => !x.Id.Equals(user.Id)).FirstOrDefault();
+
+                if (exist != null)
+                    return StatusCode(StatusCodes.Status409Conflict, "This email already exist");
+            }
+
             user = _userRepository.Save(user);
             return Ok(user);
         }
@@ -242,6 +252,16 @@ namespace RestAPI.Controllers
         [ActionName("UpdateUser")]
         public IActionResult UpdateUser(User user)
         {
+            var existingUsers = _userRepository.GetAllByField("Email", user.Email.ToLower()).Result;
+
+            if (existingUsers != null && existingUsers.Count > 0)
+            {
+                var exist = existingUsers.Where(x => !x.Id.Equals(user.Id)).FirstOrDefault();
+
+                if (exist != null)
+                    return StatusCode(StatusCodes.Status409Conflict, "This email already exist");
+            }
+
             user = _userRepository.Save(user);
             return Ok(user);
         }

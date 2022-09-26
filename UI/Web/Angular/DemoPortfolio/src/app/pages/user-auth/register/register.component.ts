@@ -101,7 +101,7 @@ export class RegisterComponent implements OnInit {
         },
         error => {
 
-          console.log("server error:", error);
+          console.log("registration server error:", error);
 
           if (error.status === 409) {
 

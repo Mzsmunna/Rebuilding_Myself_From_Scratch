@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
+import { AlertService } from '../../../services/common/alert/alert.service';
 import { UserService } from '../../../services/features/user/user.service';
 import { User } from '../../../view_models/auth/user.model';
 
@@ -18,14 +19,17 @@ export class AddUserComponent implements OnInit {
   @Input() classNames: string;
   @Input() buttonName: string;
 
+  action: string;
+
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
-  constructor(private authService: AuthService, private userService: UserService ) {
+  constructor(private authService: AuthService, private alertService: AlertService, private userService: UserService ) {
 
     this.previousUser = {} as User;
     this.currentProfile = {} as User;
     this.classNames = "btn btn-primary";
     this.buttonName = "Add User";
+    this.action = "Adding";
 
     this.ResetUser();
 
@@ -81,14 +85,22 @@ export class AddUserComponent implements OnInit {
 
     if (userForm.valid) {
 
-      if (this.currentProfile.Id)
+      if (this.currentProfile.Id) {
+
         this.currentProfile.ModifiedBy = this.authService.GetCurrentUserId();
-      else
+        this.action = "Updating";
+      }
+
+      else {
+
         this.currentProfile.CreatedBy = this.authService.GetCurrentUserId();
+        this.action = "Adding";
+      }      
 
       this.userService.SaveUser(this.currentProfile).subscribe(result => {
 
         console.log("saved user: ", result);
+        this.alertService.Success(this.action + " User: '" + this.currentProfile.Email + "' has been Successful!", "Yay!!", true);
 
         if (result) {
 
@@ -106,13 +118,30 @@ export class AddUserComponent implements OnInit {
         } else {
 
           console.log("something went wrong while saving the user: ", this.currentProfile);
+          this.alertService.ErrorDetails("Something went wrong!!", "Opps!! " + this.action + " User failed", "Please try again!!", true);
         }
 
-      });
+      },
+      error => {
+
+          console.log("add / update user server error:", error);
+
+          if (error.status === 409) {
+
+            this.alertService.ErrorDetails(this.action + " User failed", "Opps!! Email already exist!", "Please try again!!", true);
+
+          } else {
+
+            this.alertService.ErrorDetails("Something went wrong!!", "Opps!! " + this.action + " User failed", "Please try again!!", true);
+          }
+
+      },
+      () => console.log('yay'));
 
     } else {
 
       console.log("Invalid user info : ", this.currentProfile);
+      this.alertService.Error("User Form is invalid", "Opps!!", true);
     }
   }
 

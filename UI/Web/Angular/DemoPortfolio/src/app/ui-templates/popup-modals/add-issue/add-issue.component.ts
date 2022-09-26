@@ -3,6 +3,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChang
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
 import { AuthService } from '../../../services/auth/auth.service';
+import { AlertService } from '../../../services/common/alert/alert.service';
 import { IssueService } from '../../../services/features/issue/issue.service';
 import { UserService } from '../../../services/features/user/user.service';
 import { AssignUser, User } from '../../../view_models/auth/user.model';
@@ -30,9 +31,13 @@ export class AddIssueComponent implements OnInit {
   formModal: any;
   actionName: string = "Add";
 
+  action: string;
+
   isAdmin: boolean = false;
 
-  constructor(private authService: AuthService, private issueService: IssueService, private userService: UserService) {
+  constructor(private authService: AuthService, private issueService: IssueService, private userService: UserService, private alertService: AlertService) {
+
+    this.action = "Adding";
 
     //this.loggedUser = {} as User;
     this.assignUserList = [] as AssignUser[];
@@ -279,14 +284,21 @@ export class AddIssueComponent implements OnInit {
       this.newIssue.IsDeleted = this.issueForm.value.IsDeleted;
       this.newIssue.IsCompleted = this.issueForm.value.IsCompleted;
 
-      if (this.newIssue.Id)
-        this.newIssue.ModifiedBy = this.authService.GetCurrentUserId();
-      else
-        this.newIssue.CreatedBy = this.authService.GetCurrentUserId();
+      if (this.newIssue.Id) {
 
+        this.newIssue.ModifiedBy = this.authService.GetCurrentUserId();
+        this.action = "Updating";
+      }
+      else {
+
+        this.newIssue.CreatedBy = this.authService.GetCurrentUserId();
+        this.action = "Adding";
+      }
+        
       this.issueService.SaveIssue(this.newIssue).subscribe(result => {
 
         console.log("saved issue: ", result);
+        this.alertService.Success(this.action + " Issue: '" + this.newIssue.Title + "' has been Successful!", "Yay!!", true);
 
         if (result) {
 
@@ -297,6 +309,7 @@ export class AddIssueComponent implements OnInit {
         } else {
 
           console.log("something went wrong while saving the Issue: ", this.newIssue);
+          this.alertService.Error("something went wrong while " + this.action + " the Issue: " + this.newIssue.Title, "Opps!!", true);
         }
 
       });
@@ -304,6 +317,7 @@ export class AddIssueComponent implements OnInit {
     } else {
 
       console.log("Invalid issue info : ", this.newIssue);
+      this.alertService.Error("Issue Form is invalid", "Opps!!", true);
     }
   }
 }
