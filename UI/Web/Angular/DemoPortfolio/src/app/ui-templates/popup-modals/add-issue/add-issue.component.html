@@ -40,7 +40,7 @@
         <!-- Type select -->
         <div class="form-outline mb-4">
           <label class="form-label" for="issueType">Type</label>
-          <select id="issueType" class="form-select" aria-label="Default select example" name="Type" formControlName="Type">
+          <select id="issueType" class="form-select" aria-label="Default select example" name="Type" formControlName="Type" (change)="ConditionalFormValidation('Type', $event)">
             <option selected value="to-do">To-Do</option>
             <option value="task">Task</option>
             <option value="note">Note</option>
@@ -60,24 +60,27 @@
         <div class="form-outline mb-4">
           <label class="form-label" for="StartDate">Start Date:</label>
           <div class="input-group date" id="datepicker">
-            <input type="date" class="form-control" id="issueStartDate" name="StartDate" formControlName="StartDate" />
+            <input type="date" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['StartDate'].errors}" id="issueStartDate" name="StartDate" formControlName="StartDate" />
           </div>
+          <p for="issueStartDate" class="form-label text-danger" *ngIf="issueForm.controls['StartDate'].errors?.['required']">Required</p>
         </div>
 
         <!-- End Date Picker -->
         <div class="form-outline mb-4">
           <label class="form-label" for="issueBirthDate">End Date:</label>
           <div class="input-group date" id="datepicker">
-            <input type="date" class="form-control" id="issueEndDate" name="EndDate" formControlName="EndDate" />
+            <input type="date" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['EndDate'].errors}" id="issueEndDate" name="EndDate" formControlName="EndDate" />
           </div>
+          <p for="issueEndDate" class="form-label text-danger" *ngIf="issueForm.controls['EndDate'].errors?.['required']">Required</p>
         </div>
 
         <!-- Due Date Picker -->
         <div class="form-outline mb-4">
           <label class="form-label" for="issueBirthDate">Due Date:</label>
           <div class="input-group date" id="datepicker">
-            <input type="date" class="form-control" id="issueDueDate" name="DueDate" formControlName="DueDate" />
+            <input type="date" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['DueDate'].errors}" id="issueDueDate" name="DueDate" formControlName="DueDate" />
           </div>
+          <p for="issueDueDate" class="form-label text-danger" *ngIf="issueForm.controls['DueDate'].errors?.['required']">Required</p>
         </div>
 
         <!-- Status select -->
@@ -94,8 +97,9 @@
         <!-- Comment input -->
         <div class="form-outline mb-4">
           <label class="form-label" for="issueComment">Comment:</label>
-          <input type="text" id="issueComment" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Comment'].dirty && issueForm.controls['Comment'].errors}" name="Comment" placeholder="Comment" formControlName="Comment" />
-          <p for="issueComment" class="form-label text-danger" *ngIf="issueForm.controls['Comment'].errors?.['pattern']">Not a valid Comment</p>
+          <input type="text" id="issueComment" class="form-control" [ngClass]="{'is-invalid': issueForm.controls['Comment'].errors}" name="Comment" placeholder="Comment" formControlName="Comment" />
+          <p for="issueComment" class="form-label text-danger" *ngIf="issueForm.controls['Comment'].dirty && issueForm.controls['Comment'].errors?.['pattern']">Not a valid Comment</p>
+          <p for="issueComment" class="form-label text-danger" *ngIf="issueForm.controls['Comment'].errors?.['required']">Required</p>
         </div>
 
       </div>

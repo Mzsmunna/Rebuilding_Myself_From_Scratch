@@ -51,6 +51,99 @@ export class AddIssueComponent implements OnInit {
     this.isAdmin = this.authService.IsAdmin();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+
+    console.log(`ngOnChanges: app-add-issue`);
+
+    if (changes) {
+
+      console.log(changes);
+
+      //const currentItem: SimpleChange = changes["data"];
+      //console.log('prev value: ', currentItem.previousValue);
+      //console.log('got item: ', currentItem.currentValue);
+      //this.loggedUser = changes['data']['currentValue'];
+    }
+
+    this.issueForm.get('Type')?.valueChanges
+      .subscribe(value => {
+
+      //this.ConditionalFormValidation("Type", value);
+    });
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  ConditionalFormValidation(key: string, $event: any) {
+
+    var value = $event.target?.value;
+    let formControl = null;
+
+    if (key && value) {
+
+      if (key.toLowerCase() == "type") {
+
+        if (value.toLowerCase().includes("to-do")) {
+
+          //this.issueForm.get('myEmailField')?.setValidators(this.emailValidators.concat(Validators.required));
+
+        } else {
+
+          //this.issueForm.get('myEmailField')?.clearValidators();
+        }
+
+        if (value.toLowerCase().includes("task")) {
+
+          formControl = this.issueForm.get('StartDate');
+          formControl?.setValidators(Validators.required);
+          formControl?.updateValueAndValidity();
+
+          formControl = this.issueForm.get('EndDate')
+          formControl?.setValidators(Validators.required);
+          formControl?.updateValueAndValidity();
+
+        } else {
+
+          formControl = this.issueForm.get('StartDate');
+          formControl?.clearValidators();
+          formControl?.updateValueAndValidity();
+
+          formControl = this.issueForm.get('EndDate');
+          formControl?.clearValidators();
+          formControl?.updateValueAndValidity();
+        }
+
+        if (value.toLowerCase().includes("note")) {
+
+          formControl = this.issueForm.get('Comment');
+          formControl?.setValidators(Validators.required);
+          formControl?.updateValueAndValidity();
+
+        } else {
+
+          formControl = this.issueForm.get('Comment');
+          formControl?.clearValidators();
+          formControl?.updateValueAndValidity();
+        }
+
+        if (value.toLowerCase().includes("reminder")) {
+
+          formControl = this.issueForm.get('DueDate');
+          formControl?.setValidators(Validators.required);
+          formControl?.updateValueAndValidity();
+
+        } else {
+
+          formControl = this.issueForm.get('DueDate');
+          formControl?.clearValidators();
+          formControl?.updateValueAndValidity();
+        }
+      }
+    }
+  }
+
   GetAllUserToAssign() {
 
     this.userService.GetAllUserToAssign().subscribe(result => {
@@ -162,25 +255,6 @@ export class AddIssueComponent implements OnInit {
     }
     else
       return date;
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-
-    console.log(`ngOnChanges: app-add-issue`);
-
-    if (changes) {
-
-      console.log(changes);
-
-      //const currentItem: SimpleChange = changes["data"];
-      //console.log('prev value: ', currentItem.previousValue);
-      //console.log('got item: ', currentItem.currentValue);
-      //this.loggedUser = changes['data']['currentValue'];
-    }
-  }
-
-  ngAfterViewInit() {
-    
   }
 
   SaveIssue(isValid: boolean) {
