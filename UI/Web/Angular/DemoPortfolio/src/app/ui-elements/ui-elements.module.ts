@@ -32,6 +32,7 @@ import { DefaultGraphComponent } from './graphs/default-graph/default-graph.comp
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DefaultPaginationComponent } from './paginations/default-pagination/default-pagination.component';
 import { TableService } from './tables/table.service';
+import { DefaultAlertComponent } from './alerts/default-alert/default-alert.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { TableService } from './tables/table.service';
     MaterialTableComponent,
     CustomTableComponent,
     DefaultGraphComponent,
-    DefaultPaginationComponent
+    DefaultPaginationComponent,
+    DefaultAlertComponent
   ],
   imports: [
     CommonModule,
@@ -95,7 +97,8 @@ import { TableService } from './tables/table.service';
     MaterialTableComponent,
     CustomTableComponent,
     DefaultGraphComponent,
-    DefaultPaginationComponent
+    DefaultPaginationComponent,
+    DefaultAlertComponent
   ],
   providers: [TableService]
 })

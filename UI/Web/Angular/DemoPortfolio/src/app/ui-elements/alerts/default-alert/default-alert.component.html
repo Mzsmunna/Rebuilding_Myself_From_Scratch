@@ -1,0 +1,87 @@
+<!--<p>default-alert works!</p>-->
+
+<div class="container py-3">
+
+  <!-- Short Alerts-->
+  <ng-container *ngIf="alert.IsShort && alert.IsVisible">
+
+    <!-- Short Success Alert -->
+    <div class="alert alert-success alert-dismissible d-flex align-items-center fade show" role="alert" *ngIf="alert.IsSuccess">
+      <i class="fa-solid fa-circle-check"></i>
+      <strong class="mx-2"> {{alert.Headline}} </strong> {{alert.Message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" *ngIf="alert.IsDismissable"></button>
+    </div>
+
+    <!-- Short Error Alert -->
+    <div class="alert alert-danger alert-dismissible d-flex align-items-center fade show" role="alert" *ngIf="alert.IsError">
+      <i class="fa-solid fa-bug"></i>
+      <strong class="mx-2"> {{alert.Headline}} </strong> {{alert.Message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" *ngIf="alert.IsDismissable"></button>
+    </div>
+
+    <!-- Short Warning Alert -->
+    <div class="alert alert-warning alert-dismissible d-flex align-items-center fade show" role="alert" *ngIf="alert.IsWarning">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <strong class="mx-2"> {{alert.Headline}} </strong> {{alert.Message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" *ngIf="alert.IsDismissable"></button>
+    </div>
+
+    <!-- Short Info Alert -->
+    <div class="alert alert-info alert-dismissible d-flex align-items-center fade show" role="alert" *ngIf="alert.IsInfo">
+      <i class="fa-solid fa-circle-info"></i>
+      <strong class="mx-2"> {{alert.Headline}} </strong> {{alert.Message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" *ngIf="alert.IsDismissable"></button>
+    </div>
+
+  </ng-container>
+
+
+  <!-- Additional Content inside Alerts-->  <!--fade show-->
+  <ng-container *ngIf="!alert.IsShort && alert.IsVisible">
+
+    <!-- Additional Success Alert -->
+    <div #successBID class="alert alert-success alert-dismissible" role="alert" *ngIf="alert.IsSuccess">
+      <h4 class="alert-heading"><i class="fa-solid fa-circle-check"></i> {{alert.Headline}} </h4>
+      <p> {{alert.Message}} </p>
+      <hr>
+      <p class="mb-0"> {{alert.Saying}} </p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" *ngIf="alert.IsDismissable"></button>
+    </div>
+
+    <!-- Additional Error Alert -->
+    <div class="alert alert-danger alert-dismissible" role="alert" *ngIf="alert.IsError">
+      <h4 class="alert-heading"><i class="fa-solid fa-bug"></i> {{alert.Headline}} </h4>
+      <p> {{alert.Message}} </p>
+      <hr>
+      <p class="mb-0"> {{alert.Saying}} </p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" *ngIf="alert.IsDismissable"></button>
+    </div>
+
+    <!-- Additional Warning Alert -->
+    <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="alert.IsWarning">
+      <h4 class="alert-heading"><i class="fa-solid fa-triangle-exclamation"></i> {{alert.Headline}} </h4>
+      <p> {{alert.Message}} </p>
+      <hr>
+      <p class="mb-0"> {{alert.Saying}} </p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" *ngIf="alert.IsDismissable"></button>
+    </div>
+
+    <!-- Additional Info Alert -->
+    <div class="alert alert-info alert-dismissible" role="alert" *ngIf="alert.IsInfo">
+      <h4 class="alert-heading"><i class="fa-solid fa-circle-info"></i> {{alert.Headline}} </h4>
+      <p> {{alert.Message}} </p>
+      <hr>
+      <p class="mb-0"> {{alert.Saying}} </p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" *ngIf="alert.IsDismissable"></button>
+    </div>
+
+  </ng-container>
+
+</div>
+
+
+
+
+
+
+
