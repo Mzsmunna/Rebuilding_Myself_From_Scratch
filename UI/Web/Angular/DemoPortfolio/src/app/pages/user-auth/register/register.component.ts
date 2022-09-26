@@ -95,9 +95,25 @@ export class RegisterComponent implements OnInit {
           } else {
 
             console.log("Registration Failed!");
+            this.alertService.ErrorDetails("Something went wrong!!", "Opps!! Registration failed!", "Please try again!!", true);
           }
 
-        });
+        },
+        error => {
+
+          console.log("server error:", error);
+
+          if (error.status === 409) {
+
+            this.alertService.ErrorDetails("Try a different email!!", "Opps!! Email already exist!", "Or Login if already registered!", true);
+
+          } else {
+
+            this.alertService.ErrorDetails("Something went wrong!!", "Opps!! Registration failed!", "Please try again!!", true);
+          }
+
+        },
+        () => console.log('yay'));
 
       } else {
 

@@ -34,7 +34,7 @@ export class AlertService {
       IsShort: true,
       IsDismissable: true,
       IsVisible: false,
-      TimeOut: 5000
+      TimeOut: 8000
     }
   }
 
