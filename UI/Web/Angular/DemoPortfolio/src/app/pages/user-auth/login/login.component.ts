@@ -44,7 +44,13 @@ export class LoginComponent implements OnInit {
           console.log("Login Failed!");
         }
 
-      });
+      },
+      error => {
+
+        console.log(error);
+        this.alertService.Error("Please try again!!", "Login failed!!", true);
+      },
+      () => console.log('yay'));
     }
   }
 }

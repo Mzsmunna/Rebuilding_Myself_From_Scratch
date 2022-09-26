@@ -1,9 +1,9 @@
 <!--<p>default-alert works!</p>-->
 
-<div class="container py-5">
+<div class="container py-2">
 
   <!-- Short Alerts-->
-  <ng-container *ngIf="alert.IsShort && alert.IsVisible">
+  <ng-container class="mt-4" *ngIf="alert.IsShort && alert.IsVisible">
 
     <!-- Short Success Alert -->
     <div class="alert alert-success alert-dismissible d-flex align-items-center fade show" role="alert" *ngIf="alert.IsSuccess">
@@ -37,7 +37,7 @@
 
 
   <!-- Additional Content inside Alerts-->  <!--fade show-->
-  <ng-container *ngIf="!alert.IsShort && alert.IsVisible">
+  <ng-container class="mt-4" *ngIf="!alert.IsShort && alert.IsVisible">
 
     <!-- Additional Success Alert -->
     <div #successBID class="alert alert-success alert-dismissible" role="alert" *ngIf="alert.IsSuccess">
