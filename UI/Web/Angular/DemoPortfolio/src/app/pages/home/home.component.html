@@ -149,7 +149,7 @@
           <div class="card-body">
 
             <nav class="nav nav-pills nav-fill mb-2">
-              <a *ngIf="isAdmin" class="nav-link active" [ngClass]="{'active': activeTab=='users'}" (click)="SwitchTab('users')" routerLink="users">Users</a>
+              <a *ngIf="isAdmin" class="nav-link" [ngClass]="{'active': activeTab=='users'}" (click)="SwitchTab('users')" routerLink="users">Users</a>
               <a class="nav-link" [ngClass]="{'active': activeTab=='issues'}" (click)="SwitchTab('issues')" routerLink="issues">Issues</a>
             </nav>
 

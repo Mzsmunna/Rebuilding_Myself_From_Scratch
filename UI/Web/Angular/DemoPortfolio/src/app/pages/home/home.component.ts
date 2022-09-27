@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { FileUploaderService } from '../../services/common/file-uploader/file-uploader.service';
 import { IssueService } from '../../services/features/issue/issue.service';
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
 
-  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService, private fileUploadService: FileUploaderService, private route: Router) {
+  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService, private fileUploadService: FileUploaderService, private router: Router, private route: ActivatedRoute) {
 
     this.loggedUser = {} as User;
     this.fileInfo = {} as FileInfo;
@@ -143,6 +143,12 @@ export class HomeComponent implements OnInit {
 
     this.GetLoggedUser();
 
+    //this.router.events.subscribe((val) => {
+
+    //  console.log("router val: ", val);
+    //  console.log("router val navigation end: ", val instanceof NavigationEnd);
+    //});
+
     this.userService.selectedProfile$.subscribe(result => {
 
       if (result.Id) {
@@ -204,6 +210,38 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+
+    console.log(`ngOnChanges: app-home`);
+
+    if (changes) {
+
+      console.log(changes);
+    } 
+  }
+
+  ngDoCheck() {
+
+    console.log(`ngDoCheck: app-home`);
+
+    const requestedUrl = this.router.url;
+    console.log("requestedUrl: ", requestedUrl);
+
+    if (requestedUrl === '/home/issues') {
+
+      this.activeTab = "issues";
+
+    } else if (requestedUrl === '/home/users') {
+
+      this.activeTab = "users";
+    }
+    else {
+
+      this.activeTab = "";
+    }
+
+  }
+
   ChangePhoto() {
 
     this.isChangingPhoto = true;
@@ -243,6 +281,12 @@ export class HomeComponent implements OnInit {
 
       console.log("Logged user: ", result);
 
+      const requestedUrl = this.router.url;
+      console.log("requestedUrl: ", requestedUrl);
+
+      const routeParam = this.route.snapshot.paramMap.get('home');
+      console.log("routeParam: ", routeParam);
+
       this.loggedUser = result as User;
       this.currentProfile = result as User;
 
@@ -252,13 +296,23 @@ export class HomeComponent implements OnInit {
 
         this.isAdmin = false;
         this.activeTab = "issues";
-        this.route.navigate(['/home/issues']);
+        this.router.navigate(['/home/issues']);
 
       } else {
 
         this.isAdmin = true;
-        this.activeTab = "users";
-        this.route.navigate(['/home/users']);
+        
+        if (requestedUrl === '/home/issues') {
+
+          //this.activeTab = "issues";
+          this.router.navigate([requestedUrl]);
+
+        } else {
+
+          //this.activeTab = "users";
+          this.router.navigate(['/home/users']);
+        }
+          
       }
 
     });
