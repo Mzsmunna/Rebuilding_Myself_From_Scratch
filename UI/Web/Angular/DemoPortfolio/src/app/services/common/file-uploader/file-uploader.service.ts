@@ -19,7 +19,7 @@ export class FileUploaderService {
   }
 
   // Returns an observable
-  upload(file: any, to: string | null): Observable<any> {
+  upload(file: any, to: string | null): Observable<string> {
 
     if (to)
       this.baseApiUrl = to;
@@ -32,7 +32,7 @@ export class FileUploaderService {
 
     // Make http post request over api
     // with formData as req
-    return this.http.post(this.baseApiUrl + 'SaveMedia', formData, { responseType: 'text' });
+    return this.http.post(this.baseApiUrl + 'SaveMedia', formData, { responseType: 'text' }) as Observable<string>;
   }
 
   BroadcastFileUrl(fileInfo: FileInfo) {

@@ -37,11 +37,11 @@ export class DefaultFileUploaderComponent implements OnInit {
     this.loading = !this.loading;
     console.log(this.file);
     this.fileUploadService.upload(this.file, this.to).subscribe(
-      (event: any) => {
+      (result: string) => {
         //if (typeof (event) === 'object') {
 
           // Short link via api response
-        this.shortLink = event;//event.link;
+        this.shortLink = result;//event.link;
 
         this.loading = false; // Flag variable
 

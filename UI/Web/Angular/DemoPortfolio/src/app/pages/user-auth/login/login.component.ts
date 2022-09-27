@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
 
         if (result) {
 
+          localStorage.removeItem("token");
+          localStorage.clear();
           localStorage.setItem('token', result);
           this.alertService.Success("Login Successful!!", "Yay!!", true);
           this.route.navigate(['/home']);

@@ -170,31 +170,33 @@ export class HomeComponent implements OnInit {
 
     this.fileUploadService.uploadedFileInfo$.subscribe(result => {
 
-      if (Object.keys(result).length > 0) {
+      if (result.Url) {
 
         console.log("uploaded file:", result);
         this.fileInfo = result;
 
         if (this.fileInfo.To == "https://localhost:7074/api/User/") {
 
-          this.loggedUser.Img = this.fileInfo.Url;
-          this.userService.SaveUser(this.loggedUser).subscribe(result => {
+          if (this.loggedUser.Id == this.currentProfile.Id) {
 
-            console.log("saved user with file link: ", result);
+            this.loggedUser.Img = this.fileInfo.Url;
+            this.userService.SaveUser(this.loggedUser).subscribe(result => {
 
-            if (result) {
+              console.log("saved user with file link: ", result);
 
-              this.loggedUser = result;
-              this.isChangingPhoto = false;
+              if (result) {
 
-            } else {
+                this.loggedUser = result;
+                this.isChangingPhoto = false;
 
-              console.log("something went wrong while changing Profile pic: ", this.loggedUser);
-            }
+              } else {
 
-          });
+                console.log("something went wrong while changing Profile pic: ", this.loggedUser);
+              }
+
+            });
+          }
         }
-
       }
 
     });
