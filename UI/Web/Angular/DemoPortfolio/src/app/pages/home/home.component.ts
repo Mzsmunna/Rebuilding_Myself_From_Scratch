@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { FileUploaderService } from '../../services/common/file-uploader/file-uploader.service';
+import { AlertService } from '../../services/common/alert/alert.service';
 import { IssueService } from '../../services/features/issue/issue.service';
 import { UserService } from '../../services/features/user/user.service';
 import { TableService } from '../../ui-elements/tables/table.service';
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService, private fileUploadService: FileUploaderService, private router: Router, private route: ActivatedRoute) {
+  constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService, private fileUploadService: FileUploaderService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) {
 
     this.loggedUser = {} as User;
     this.fileInfo = {} as FileInfo;
@@ -189,6 +190,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
               if (result) {
 
+                this.alertService.Success("Your profile pic has been changed Successfully!", "Yay!!", true);
+
                 this.loggedUser = result;
                 this.isChangingPhoto = false;
 
@@ -197,7 +200,13 @@ export class HomeComponent implements OnInit, OnDestroy {
                 console.log("something went wrong while changing Profile pic: ", this.loggedUser);
               }
 
-            });
+            },
+            error => {
+
+              console.log("change profile pic server error:", error);
+              this.alertService.Error("something went wrong while changing Profile pic!", "Opps!!", true);
+            },
+            () => console.log('yay'));
           }
         }
       }
@@ -378,36 +387,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     })!;
 
     return found;
-  }
-
-  SaveUser(userForm: FormGroup) {
-
-    if (userForm.valid) {
-
-      this.authService.Register(this.currentProfile).subscribe(result => {
-
-        console.log("saved user: ", result);
-
-        if (result) {
-
-          this.closeModal.nativeElement.click();
-
-          userForm.reset();
-          this.currentProfile = {} as User;
-          this.currentProfile.Gender = "male";
-          this.currentProfile.Role = "user";
-
-        } else {
-
-          console.log("something went wrong while saving user: ", this.currentProfile);
-        }
-
-      });
-
-    } else {
-
-      console.log("Invalid user info : ", this.currentProfile);
-    }
   }
 
   ngOnDestroy() {

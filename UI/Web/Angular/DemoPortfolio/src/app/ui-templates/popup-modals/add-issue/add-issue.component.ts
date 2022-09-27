@@ -298,9 +298,10 @@ export class AddIssueComponent implements OnInit {
       this.issueService.SaveIssue(this.newIssue).subscribe(result => {
 
         console.log("saved issue: ", result);
-        this.alertService.Success(this.action + " Issue: '" + this.newIssue.Title + "' has been Successful!", "Yay!!", true);
 
         if (result) {
+
+          this.alertService.Success(this.action + " Issue: '" + this.newIssue.Title + "' has been Successful!", "Yay!!", true);
 
           this.closeModal.nativeElement.click();
           this.issueForm.reset();
@@ -312,7 +313,13 @@ export class AddIssueComponent implements OnInit {
           this.alertService.Error("something went wrong while " + this.action + " the Issue: " + this.newIssue.Title, "Opps!!", true);
         }
 
-      });
+      },
+      error => {
+
+        console.log("add / update ISSUE server error:", error);
+        this.alertService.Error("something went wrong while " + this.action + " the Issue: " + this.newIssue.Title, "Opps!!", true);
+      },
+      () => console.log('yay'));
 
     } else {
 
