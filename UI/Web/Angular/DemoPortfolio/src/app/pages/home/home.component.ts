@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { FileUploaderService } from '../../services/common/file-uploader/file-uploader.service';
 import { IssueService } from '../../services/features/issue/issue.service';
@@ -15,7 +16,7 @@ import { IssueProgress, IssueStat } from '../../view_models/issue.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   public userTableSettings: any;
   public issueTableSettings: any;
@@ -31,6 +32,8 @@ export class HomeComponent implements OnInit {
   public userIssueProgress: IssueProgress;
 
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef<HTMLButtonElement>;
+
+  private unsubscribe$ = new Subject<void>();
 
   constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService, private fileUploadService: FileUploaderService, private router: Router, private route: ActivatedRoute) {
 
@@ -149,7 +152,7 @@ export class HomeComponent implements OnInit {
     //  console.log("router val navigation end: ", val instanceof NavigationEnd);
     //});
 
-    this.userService.selectedProfile$.subscribe(result => {
+    this.userService.selectedProfile$.pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       if (result.Id) {
 
@@ -168,7 +171,7 @@ export class HomeComponent implements OnInit {
 
     });
 
-    this.fileUploadService.uploadedFileInfo$.subscribe(result => {
+    this.fileUploadService.uploadedFileInfo$.pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       if (result.Url) {
 
@@ -201,7 +204,7 @@ export class HomeComponent implements OnInit {
 
     });
 
-    this.issueService.issueReload$.subscribe(result => {
+    this.issueService.issueReload$.pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       if (result) {
 
@@ -405,6 +408,12 @@ export class HomeComponent implements OnInit {
 
       console.log("Invalid user info : ", this.currentProfile);
     }
+  }
+
+  ngOnDestroy() {
+
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }
