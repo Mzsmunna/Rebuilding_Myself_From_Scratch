@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
 import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { AlertService } from '../../../services/common/alert/alert.service';
+import { UnsubscribeService } from '../../../services/common/unsubscribe/unsubscribe.service';
 import { User } from '../../../view_models/auth/user.model';
 
 @Component({
@@ -11,13 +13,14 @@ import { User } from '../../../view_models/auth/user.model';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends UnsubscribeService implements OnInit {
 
   user: User;
   registerForm: FormGroup;
 
   constructor(private authService: AuthService, private alertService: AlertService, private route: Router) {
 
+    super();
     this.user = {} as User;
 
     //One Way
@@ -82,7 +85,7 @@ export class RegisterComponent implements OnInit {
 
       if (this.registerForm.value.Password == this.registerForm.value.ConfirmPassword) {
 
-        this.authService.Register(this.user).subscribe(result => {
+        this.authService.Register(this.user).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
           console.log(result);
 
@@ -128,7 +131,7 @@ export class RegisterComponent implements OnInit {
 
     if (this.user != null) {
 
-      this.authService.Login(this.user).subscribe(result => {
+      this.authService.Login(this.user).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
         console.log(result);
 

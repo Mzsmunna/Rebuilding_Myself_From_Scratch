@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
 import { AuthService } from '../../../services/auth/auth.service';
 import { AlertService } from '../../../services/common/alert/alert.service';
+import { UnsubscribeService } from '../../../services/common/unsubscribe/unsubscribe.service';
 import { User } from '../../../view_models/auth/user.model';
 
 @Component({
@@ -9,12 +11,13 @@ import { User } from '../../../view_models/auth/user.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends UnsubscribeService implements OnInit, OnDestroy {
 
   user: User;
 
   constructor(private authService: AuthService, private alertService: AlertService, private route: Router) {
 
+    super();
     this.user = {} as User;
   }
 
@@ -29,7 +32,7 @@ export class LoginComponent implements OnInit {
 
     if (isValid) {
 
-      this.authService.Login(this.user).subscribe(result => {
+      this.authService.Login(this.user).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
         console.log(result);
 
