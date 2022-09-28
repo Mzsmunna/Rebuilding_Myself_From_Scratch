@@ -1,6 +1,8 @@
-import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { takeUntil } from 'rxjs';
 import { Pager } from '../../../helper_models/pager.model';
 import { AuthService } from '../../../services/auth/auth.service';
+import { UnsubscribeService } from '../../../services/common/unsubscribe/unsubscribe.service';
 import { UserService } from '../../../services/features/user/user.service';
 import { TableService } from '../../../ui-elements/tables/table.service';
 import { AddUserComponent } from '../../../ui-templates/popup-modals/add-user/add-user.component';
@@ -12,7 +14,7 @@ import { SearchField } from '../../../view_models/search-field.model';
   templateUrl: './user-panel.component.html',
   styleUrls: ['./user-panel.component.css']
 })
-export class UserPanelComponent implements OnInit {
+export class UserPanelComponent extends UnsubscribeService implements OnInit, OnDestroy {
 
   public newProfile: User;
   public selectedProfile: User;
@@ -46,6 +48,7 @@ export class UserPanelComponent implements OnInit {
 
   constructor(private authService: AuthService, private userService: UserService, private tableService: TableService) {
 
+    super();
     this.newProfile = {} as User;
     this.selectedProfile = {} as User;
     this.usersList = [] as User[];
@@ -146,7 +149,7 @@ export class UserPanelComponent implements OnInit {
 
   GetAllUserCount() {
 
-    this.userService.GetAllUserCount(this.userSearchQueries).subscribe(result => {
+    this.userService.GetAllUserCount(this.userSearchQueries).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
       this.usersListCount = result as number;
@@ -156,7 +159,7 @@ export class UserPanelComponent implements OnInit {
 
   GetAllUsers() {
 
-    this.userService.GetAllUsers(0, 10, "FirstName", "ascending", this.userSearchQueries).subscribe(result => {
+    this.userService.GetAllUsers(0, 10, "FirstName", "ascending", this.userSearchQueries).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
       this.usersList = result as User[];
@@ -178,7 +181,7 @@ export class UserPanelComponent implements OnInit {
 
     this.pager.IsLoading = true;
 
-    this.userService.GetAllUserCount(this.userSearchQueries).subscribe(result => {
+    this.userService.GetAllUserCount(this.userSearchQueries).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -186,7 +189,7 @@ export class UserPanelComponent implements OnInit {
 
       if (this.pager.TotalDataCount >= 0) {
 
-        this.userService.GetAllUsers(this.pager.CurrentPage - 1, this.pager.PageSize, this.pager.SortField, this.pager.SortDirection, this.userSearchQueries).subscribe(result => {
+        this.userService.GetAllUsers(this.pager.CurrentPage - 1, this.pager.PageSize, this.pager.SortField, this.pager.SortDirection, this.userSearchQueries).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
           console.log(result);
 
@@ -217,7 +220,7 @@ export class UserPanelComponent implements OnInit {
   NgTableOnCreate(event: any) {
 
     var user = event.newData as User;
-    this.userService.SaveUser(user).subscribe(result => {
+    this.userService.SaveUser(user).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -239,7 +242,7 @@ export class UserPanelComponent implements OnInit {
   NgTableOnUpdate(event: any) {
 
     var user = event.newData as User;
-    this.userService.UpdateUser(user).subscribe(result => {
+    this.userService.UpdateUser(user).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -266,7 +269,7 @@ export class UserPanelComponent implements OnInit {
     //  if (value.Id == event.data.Id) this.usersList.splice(index, 1);
     //});
 
-    this.userService.DeleteUser(user).subscribe(result => {
+    this.userService.DeleteUser(user).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 

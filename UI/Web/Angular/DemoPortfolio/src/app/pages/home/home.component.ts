@@ -291,7 +291,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   GetLoggedUser() {
 
-    this.authService.GetLoggedUser().subscribe(result => {
+    this.authService.GetLoggedUser().pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log("Logged user: ", result);
 
@@ -334,7 +334,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   GetIssueStatByUserId() {
 
-    this.issueService.GetIssueStatByUserId(this.currentProfile.Id).subscribe(result => {
+    this.issueService.GetIssueStatByUserId(this.currentProfile.Id).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log("user's issue stats: ", result);
 

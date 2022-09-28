@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { takeUntil } from 'rxjs';
 import { Pager } from '../../../helper_models/pager.model';
 import { AuthService } from '../../../services/auth/auth.service';
+import { UnsubscribeService } from '../../../services/common/unsubscribe/unsubscribe.service';
 import { IssueService } from '../../../services/features/issue/issue.service';
 import { UserService } from '../../../services/features/user/user.service';
 import { DefaultPaginationComponent } from '../../../ui-elements/paginations/default-pagination/default-pagination.component';
@@ -16,7 +18,7 @@ import { SearchField } from '../../../view_models/search-field.model';
   templateUrl: './issue-panel.component.html',
   styleUrls: ['./issue-panel.component.css']
 })
-export class IssuePanelComponent implements OnInit {
+export class IssuePanelComponent extends UnsubscribeService implements OnInit, OnDestroy {
 
   public loggedUser: User;
   public assignUserList: AssignUser[];
@@ -41,6 +43,7 @@ export class IssuePanelComponent implements OnInit {
 
   constructor(private authService: AuthService, private userService: UserService, private issueService: IssueService, private tableService: TableService) {
 
+    super();
     this.loggedUser = {} as User;
     this.assignUserList = [] as AssignUser[];
     this.issuesList = [] as Issue[];
@@ -271,7 +274,7 @@ export class IssuePanelComponent implements OnInit {
 
   GetLoggedUser() {
 
-    this.authService.GetLoggedUser().subscribe(result => {
+    this.authService.GetLoggedUser().pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log("Logged user: ", result);
 
@@ -293,7 +296,7 @@ export class IssuePanelComponent implements OnInit {
 
   GetAllUserToAssign() {
 
-    this.userService.GetAllUserToAssign().subscribe(result => {
+    this.userService.GetAllUserToAssign().pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -304,7 +307,7 @@ export class IssuePanelComponent implements OnInit {
 
   GetAllIssuesCount() {
 
-    this.issueService.GetAllIssueCount(this.issueSearchQueries).subscribe(result => {
+    this.issueService.GetAllIssueCount(this.issueSearchQueries).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -315,7 +318,7 @@ export class IssuePanelComponent implements OnInit {
 
   GetAllIssues() {
 
-    this.issueService.GetAllIssues(0, 10, "Title", "ascending", this.issueSearchQueries).subscribe(result => {
+    this.issueService.GetAllIssues(0, 10, "Title", "ascending", this.issueSearchQueries).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -327,7 +330,7 @@ export class IssuePanelComponent implements OnInit {
 
     this.pager.IsLoading = true;
 
-    this.issueService.GetAllIssueCount(this.issueSearchQueries).subscribe(result => {
+    this.issueService.GetAllIssueCount(this.issueSearchQueries).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -335,7 +338,7 @@ export class IssuePanelComponent implements OnInit {
 
       if (this.pager.TotalDataCount >= 0) {
 
-        this.issueService.GetAllIssues(this.pager.CurrentPage - 1, this.pager.PageSize, this.pager.SortField, this.pager.SortDirection, this.issueSearchQueries).subscribe(result => {
+        this.issueService.GetAllIssues(this.pager.CurrentPage - 1, this.pager.PageSize, this.pager.SortField, this.pager.SortDirection, this.issueSearchQueries).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
           console.log(result);
 
@@ -384,7 +387,7 @@ export class IssuePanelComponent implements OnInit {
 
     issue.Status = event.target.value;
     console.log("Issue status updated :", issue.Status);
-    this.issueService.SaveIssue(issue).subscribe(result => {
+    this.issueService.SaveIssue(issue).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
       this.UpdateIssueList(result);
@@ -402,7 +405,7 @@ export class IssuePanelComponent implements OnInit {
 
     if (!issue.IsCompleted) {
 
-      this.issueService.DeleteIssue(issue).subscribe(result => {
+      this.issueService.DeleteIssue(issue).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
         console.log(result);
         this.UpdateIssueList(issue);
@@ -418,7 +421,7 @@ export class IssuePanelComponent implements OnInit {
   NgTableOnCreate(event: any) {
 
     var issue = event.newData as Issue;
-    this.issueService.SaveIssue(issue).subscribe(result => {
+    this.issueService.SaveIssue(issue).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -440,7 +443,7 @@ export class IssuePanelComponent implements OnInit {
   NgTableOnUpdate(event: any) {
 
     var issue = event.newData as Issue;
-    this.issueService.SaveIssue(issue).subscribe(result => {
+    this.issueService.SaveIssue(issue).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
@@ -465,7 +468,7 @@ export class IssuePanelComponent implements OnInit {
     issue.IsDeleted = true;
     issue.Status = 'discarded';
 
-    this.issueService.SaveIssue(issue).subscribe(result => {
+    this.issueService.SaveIssue(issue).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
 
       console.log(result);
 
