@@ -52,7 +52,8 @@
         <div class="form-outline mb-4" *ngIf="isAdmin">
           <label class="form-label" for="issueAssignTo">Assign To</label>
           <select id="issueAssignTo" class="form-select" aria-label="Default select example" name="AssignTo" formControlName="AssignTo">
-            <option *ngFor="let user of assignUserList | sortArray:'Name'" [value]="user.Id">{{user.Name}}</option>
+            <!--<option *ngFor="let user of assignUserList | sortArray:'Name'" [value]="user.Id">{{user.Name}}</option>-->
+            <option *ngFor="let user of assignUser$ | async | sortArray:'Name'" [value]="user.Id">{{user.Name}}</option>
           </select>
         </div>
 

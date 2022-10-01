@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { AlertService } from '../../../services/common/alert/alert.service';
@@ -22,6 +23,7 @@ export class AddIssueComponent implements OnInit {
   issueForm: FormGroup;
 
   public assignUserList: AssignUser[];
+  public assignUser$: Observable<AssignUser[]>;
 
   @Input() loggedUser: User = {} as User;
   @Output() UpdateIssueList = new EventEmitter<Issue>();
@@ -41,6 +43,7 @@ export class AddIssueComponent implements OnInit {
 
     //this.loggedUser = {} as User;
     this.assignUserList = [] as AssignUser[];
+    this.assignUser$ = {} as Observable<AssignUser[]>;
 
     this.newIssue = {} as Issue;
     this.existingIssue = {} as Issue;
@@ -151,13 +154,16 @@ export class AddIssueComponent implements OnInit {
 
   GetAllUserToAssign() {
 
-    this.userService.GetAllUserToAssign().subscribe(result => {
+    this.assignUser$ = this.userService.GetAllUserToAssign();
 
-      console.log(result);
+    //this.userService.GetAllUserToAssign();
+    //  .subscribe(result => {
 
-      this.assignUserList = result as AssignUser[];
+    //  console.log(result);
 
-    });
+    //  this.assignUserList = result as AssignUser[];
+
+    //});
   }
 
   ReopenIssue(): void {
