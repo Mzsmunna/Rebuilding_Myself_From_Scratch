@@ -5,6 +5,7 @@ import { AddIssueComponent } from './popup-modals/add-issue/add-issue.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiTemplatesRoutingModule } from './ui-templates-routing.module';
 import { ArraySortPipe } from '../pipes/custom-pipe.pipe';
+import { CustomPhoneMask } from '../directives/custom.directive';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,10 @@ import { ArraySortPipe } from '../pipes/custom-pipe.pipe';
     AddIssueComponent,
 
     //Custom Pipes
-    ArraySortPipe
+    ArraySortPipe,
+
+    //Custom Directives
+    CustomPhoneMask
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,10 @@ import { ArraySortPipe } from '../pipes/custom-pipe.pipe';
     AddIssueComponent,
 
     //Custom Pipes
-    ArraySortPipe
+    ArraySortPipe,
+
+    //Custom Directives
+    CustomPhoneMask
   ]
 })
 export class UiTemplatesModule { }
