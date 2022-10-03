@@ -26,6 +26,7 @@ const routes: Routes = [
 
   //lazy loading implementation
   { path: "auth", loadChildren: () => import('./pages/user-auth/user-auth.module').then(opt => opt.UserAuthModule), canActivate: [UnAuthGuard] },
+  //{ path: "notfound", loadChildren: () => import('./pages/not-found/not-found.component').then(opt => opt.NotFoundComponent) },
 
   //Not Found 404 page
   { path: "**", component: NotFoundComponent },

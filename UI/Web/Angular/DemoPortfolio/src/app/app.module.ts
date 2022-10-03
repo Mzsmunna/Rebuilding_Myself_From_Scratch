@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { UiElementsModule } from './ui-elements/ui-elements.module';
-//import { UserAuthModule } from './pages/user-auth/user-auth.module'; //don't import when implementing lazy loading
+//import { UserAuthModule } from './pages/user-auth/user-auth.module'; // Don't import when implementing lazy loading
 import { AppComponent } from './app.component';
 import { AngularBasicsComponent } from './pages/angular-basics/angular-basics.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -26,7 +26,7 @@ import { CustomBackgroundDirective, CustomDirective, CustomHostListenerDirective
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    NotFoundComponent,
+    //NotFoundComponent, // Standalone component should be imported as Module
     UserPanelComponent,
     IssuePanelComponent,
 
@@ -47,8 +47,11 @@ import { CustomBackgroundDirective, CustomDirective, CustomHostListenerDirective
     HttpClientModule,
     AppRoutingModule,
     UiElementsModule,
-    UiTemplatesModule
-    //UserAuthModule //don't import when implementing lazy loading
+    UiTemplatesModule,
+    
+    //UserAuthModule // Don't import when implementing lazy loading
+
+    NotFoundComponent, // Standalone component should be imported as Module
   ],
   providers: [
     {
