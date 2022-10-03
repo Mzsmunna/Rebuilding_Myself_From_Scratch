@@ -1,1 +1,54 @@
-<p>default-generic-form works!</p>
+<!--<p>default-generic-form works!</p>-->
+
+<form [formGroup]="dynamicFormGroup" (ngSubmit)="OnSubmit(dynamicFormGroup.valid)">
+
+  <!-- First Name input -->
+  <ng-container *ngFor="let control of dynamicFormModel.Controls">
+
+    <div class="form-outline mb-4">
+
+      <!-- Label -->
+      <label *ngIf="control.Label" class="form-label" for="{{control.Name}}">{{control.Label}}</label>
+
+      <!-- Text Input -->
+      <input *ngIf="control.IsText" type="text" id="{{control.Name}}" class="form-control" [ngClass]="{'is-invalid': dynamicFormGroup.controls[control.Name].dirty && dynamicFormGroup.controls[control.Name].errors}" name="{{control.Name}}" placeholder="{{control.PlaceHolder}}" formControlName="{{control.Name}}" />
+
+      <!-- Number Input -->
+      <input *ngIf="control.IsNumber" type="number" id="{{control.Name}}" class="form-control" [ngClass]="{'is-invalid': dynamicFormGroup.controls[control.Name].dirty && dynamicFormGroup.controls[control.Name].errors}" name="{{control.Name}}" placeholder="{{control.PlaceHolder}}" formControlName="{{control.Name}}" />
+
+      <!-- Textarea Input -->
+      <textarea *ngIf="control.IsTextarea" id="{{control.Name}}" class="form-control" [ngClass]="{'is-invalid': dynamicFormGroup.controls[control.Name].dirty && dynamicFormGroup.controls[control.Name].errors}" placeholder="{{control.PlaceHolder}}" formControlName="{{control.Name}}"></textarea>
+
+      <!-- Email Input -->
+      <input *ngIf="control.IsEmail" type="email" id="{{control.Name}}" class="form-control" [ngClass]="{'is-invalid': dynamicFormGroup.controls[control.Name].dirty && dynamicFormGroup.controls[control.Name].errors}" name="{{control.Name}}" placeholder="{{control.PlaceHolder}}" formControlName="{{control.Name}}" />
+
+      <!-- Password Input -->
+      <input *ngIf="control.IsPassword" type="password" id="{{control.Name}}" class="form-control" [ngClass]="{'is-invalid': dynamicFormGroup.controls[control.Name].dirty && dynamicFormGroup.controls[control.Name].errors}" name="{{control.Name}}" placeholder="{{control.PlaceHolder}}" formControlName="{{control.Name}}" />
+
+      <!-- Select -->
+      <select *ngIf="control.IsDropdown" id="{{control.Name}}" class="form-select" aria-label="Default select example" name="{{control.Name}}" formControlName="{{control.Name}}">
+        <option *ngFor="let option of control.Options" [value]="option.Value" [selected]="option.IsSelected">{{option.Key}}</option>
+      </select>
+
+      <!-- Checkbox -->
+      <!--<div *ngIf="control.IsCheckBox" class="form-check d-flex justify-content-center mb-4" *ngFor="let option of control.Options">
+        <input class="form-check-input me-2" type="checkbox" [value]="option.Value" id="{{control.Name}}{{option.Key}}" [checked]="option.IsSelected" />
+        <label class="form-check-label" for="{{control.Name}}{{option.Key}}">
+          {{option.Key}}
+        </label>
+      </div>-->
+
+      <!-- Validation errors -->
+      <p class="form-label text-danger" *ngIf="control.IsRequired && dynamicFormGroup.controls[control.Name].dirty && dynamicFormGroup.controls[control.Name].errors?.['required']">{{control.Label}} is required</p>
+      <p class="form-label text-danger" *ngIf="control.MinLength && dynamicFormGroup.controls[control.Name].errors?.['minlength']">Minimum length should be {{control.MinLength}}</p>
+      <p class="form-label text-danger" *ngIf="control.MaxLength && dynamicFormGroup.controls[control.Name].errors?.['maxlength']">Maximum length should be {{control.MaxLength}}</p>
+      <p class="form-label text-danger" *ngIf="control.Pattern && dynamicFormGroup.controls[control.Name].errors?.['pattern']">Not a valid {{control.Label}}</p>
+      <p class="form-label text-danger" *ngIf="control.IsEmail && dynamicFormGroup.controls[control.Name].errors?.['email']">Invalid {{control.Label}}</p>
+    </div>
+
+  </ng-container>
+
+  <!-- Submit button -->
+  <button [disabled]="!dynamicFormGroup.valid" type="submit" class="btn btn-primary btn-block mb-3">Submit</button>
+
+</form>
