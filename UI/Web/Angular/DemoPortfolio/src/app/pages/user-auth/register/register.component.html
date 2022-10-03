@@ -82,6 +82,7 @@
         <div class="form-outline mb-4">
           <label class="form-label" for="registerPhone">Phone:</label>
           <input type="text" class="form-control" id="registerPhone" name="Phone" placeholder="Phone" formControlName="Phone" />
+          <label for="registerPhone" class="form-label text-danger" *ngIf="registerForm.controls['Phone'].dirty && registerForm.controls['Phone'].errors?.['pattern']">Not a valid Phone number</label>
         </div>
 
         <!-- Address input -->

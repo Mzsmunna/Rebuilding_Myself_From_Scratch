@@ -43,7 +43,7 @@ export class RegisterComponent extends UnsubscribeService implements OnInit {
       Gender: new FormControl('male', Validators.required),
       BirthDate: new FormControl(''),
       Age: new FormControl(''),
-      Phone: new FormControl(''),
+      Phone: new FormControl('', Validators.pattern('(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})')),
       Address: new FormControl(''),
       Department: new FormControl(''),
       Designation: new FormControl(''),

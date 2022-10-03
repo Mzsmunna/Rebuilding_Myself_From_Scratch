@@ -59,7 +59,8 @@
             <!-- Phone input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="userPhone">Phone:</label>
-              <input type="text" class="form-control" #Phone="ngModel" name="Phone" placeholder="Phone" [(ngModel)]="currentProfile.Phone" />
+              <input type="text" class="form-control" #Phone="ngModel" name="Phone" placeholder="Phone" [(ngModel)]="currentProfile.Phone" pattern="(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})" />
+              <label for="registerPhone" class="form-label text-danger" *ngIf="Phone.dirty && Phone.errors?.['pattern']">Not a valid Phone number</label>
             </div>
 
             <!-- Address input -->
