@@ -2,7 +2,6 @@ import { formatDate } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { CustomValidation } from '../../../helpers/validations/custom-validation.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { AlertService } from '../../../services/common/alert/alert.service';
 import { IssueService } from '../../../services/features/issue/issue.service';
@@ -40,8 +39,6 @@ export class AddIssueComponent implements OnInit {
   constructor(private authService: AuthService, private issueService: IssueService, private userService: UserService, private alertService: AlertService) {
 
     this.action = "Adding";
-
-    //this.loggedUser = {} as User;
     this.assignUserList = [] as AssignUser[];
     this.assignUser$ = {} as Observable<AssignUser[]>;
 
@@ -54,23 +51,18 @@ export class AddIssueComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(`ngOnInit: app-add-issue`, this.loggedUser);
+    console.log(`ngOnInit: add-issue`, this.loggedUser);
     this.GetAllUserToAssign();
     this.isAdmin = this.authService.IsAdmin();
   }
 
   ngOnChanges(changes: SimpleChanges) {
 
-    console.log(`ngOnChanges: app-add-issue`);
+    console.log(`ngOnChanges: add-issue`);
 
     if (changes) {
 
       console.log(changes);
-
-      //const currentItem: SimpleChange = changes["data"];
-      //console.log('prev value: ', currentItem.previousValue);
-      //console.log('got item: ', currentItem.currentValue);
-      //this.loggedUser = changes['data']['currentValue'];
     }
 
     this.issueForm.get('Type')?.valueChanges

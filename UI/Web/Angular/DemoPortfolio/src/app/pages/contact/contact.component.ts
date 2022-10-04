@@ -28,17 +28,11 @@ export class ContactComponent implements OnInit {
           //IsDropdown?: boolean,
           //IsCheck?: boolean,
           //IsRadio?: boolean,
+          //IsRange?: boolean,
           IsRequired: true,
           MinLength: 10,
           MaxLength: 20,
           Pattern: ""
-          //Validators: {
-          //  IsRequired: true,
-          //  MinLength: 10,
-          //  MaxLength: 20,
-          //  Pattern: "",           
-          //}
-
         },
         {
           Name: "Gender",
@@ -128,6 +122,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

@@ -59,8 +59,6 @@ export class DefaultPaginationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.pager = this.tableService.GetDefaultPagination();
-
     this.tableService.paginationEmitter.subscribe(result => {
 
       //console.log("current pager:", result);
@@ -69,7 +67,6 @@ export class DefaultPaginationComponent implements OnInit {
       this.updatePagination();
 
     });
-    //this.updatePagination();
   }
 
   ngOnChanges(changes: SimpleChanges) {

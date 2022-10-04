@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
@@ -49,98 +48,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.ResetIssueProgress();
 
     this.closeModal = {} as ElementRef;
-
-    //User Table Configure:
-    this.userTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
-    this.userTableSettings.pager.perPage = 5;
-    this.userTableSettings.columns = {
-
-      FirstName: {
-        title: 'First Name'
-      },
-      LastName: {
-        title: 'Last Name'
-      },
-      Gender: {
-        title: 'Gender'
-      },
-      BirthDate: {
-        title: 'Birth Date'
-      },
-      Age: {
-        title: 'Age'
-      },
-      Email: {
-        title: 'Email'
-      },
-      Role: {
-        title: 'Role',
-        filter: false,
-        editable: false,
-        addable: false
-      },
-      //avatar: {
-      //  title: 'Profile Image',
-      //  type: 'html',
-      //  valuePrepareFunction: (photo: string) => { return ``; },
-      //  filter: false
-      //},
-      //airline_name: {
-      //  title: 'Airline Name',
-      //  valuePrepareFunction: (idx, air) => {
-      //    return `${air.airline[0].name}`;
-      //  },
-      //},
-    }
-
-    //Issue Table Configure:
-    this.issueTableSettings = this.tableService.GetNgSmartTableDefaultSettings();
-    this.issueTableSettings.pager.perPage = 5;
-    this.issueTableSettings.columns = {
-
-      ProjectId: {
-        title: 'Project Name'
-      },
-      Title: {
-        title: 'Title'
-      },
-      Type: {
-        title: 'Type'
-      },
-      Summary: {
-        title: 'Summary'
-      },
-      Description: {
-        title: 'Description'
-      },
-      AssignerName: {
-        title: 'AssignerName'
-      },
-      StartDate: {
-        title: 'StartDate'
-      },
-      EndDate: {
-        title: 'EndDate'
-      },
-      DueDate: {
-        title: 'DueDate'
-      },
-      Status: {
-        title: 'Status',
-        filter: false,
-        editable: false,
-        addable: false
-      },
-      Comment: {
-        title: 'Comment'
-      },
-      CreatedOn: {
-        title: 'CreatedOn'
-      },
-      ModifiedOn: {
-        title: 'ModifiedOn'
-      },
-    }
   }
 
   ngOnInit(): void {
@@ -198,6 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
               } else {
 
                 console.log("something went wrong while changing Profile pic: ", this.loggedUser);
+                this.alertService.Error("something went wrong while changing Profile pic!", "Opps!!", true);
               }
 
             },
@@ -236,7 +144,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngDoCheck() {
 
-    console.log(`ngDoCheck: app-home`);
+    console.log(`ngDoCheck: home`);
 
     const requestedUrl = this.router.url;
     console.log("requestedUrl: ", requestedUrl);

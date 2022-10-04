@@ -12,7 +12,6 @@ export abstract class UnsubscribeService implements OnDestroy {
 
   constructor() {
 
-    //this.unsubscribe$ = new Subject<void>();
   }
 
   ngOnDestroy() {

@@ -29,18 +29,20 @@ export class DefaultFileUploaderComponent implements OnInit {
 
   // On file Select
   onChange(event: any) {
+
     this.file = event.target.files[0];
   }
 
   // OnClick of button Upload
   onUpload() {
+
     this.loading = !this.loading;
     console.log(this.file);
     this.fileUploadService.upload(this.file, this.to).subscribe(
-      (result: string) => {
-        //if (typeof (event) === 'object') {
 
-          // Short link via api response
+      (result: string) => {
+
+        // Short link via api response
         this.shortLink = result;//event.link;
 
         this.loading = false; // Flag variable
@@ -49,7 +51,6 @@ export class DefaultFileUploaderComponent implements OnInit {
         this.fileInfo.Url = this.shortLink;
 
         this.fileUploadService.BroadcastFileUrl(this.fileInfo);
-        //}
       }
     );
   }

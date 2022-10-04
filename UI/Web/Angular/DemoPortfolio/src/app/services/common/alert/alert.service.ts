@@ -42,7 +42,6 @@ export class AlertService {
 
     this.alert = alert;
     this.alertSubject$.next(this.alert);
-    //this.alert = this.GetDefaultAlert();
   }
 
   Success(message: string, headline: string, broadcast: boolean) {

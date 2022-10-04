@@ -60,7 +60,7 @@ export class AddUserComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    console.log(`ngOnChanges: app-add-user`);
+    console.log(`ngOnChanges: add-user`);
 
     if (changes) {
 

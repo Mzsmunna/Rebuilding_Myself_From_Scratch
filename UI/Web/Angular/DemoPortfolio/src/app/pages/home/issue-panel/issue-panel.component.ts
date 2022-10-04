@@ -32,7 +32,6 @@ export class IssuePanelComponent extends UnsubscribeService implements OnInit, O
 
   public issueSearchQueries: SearchField[];
   public issuesList: Issue[];
-  //public issuesListCount: number = 0;
 
   pager: Pager;
 
@@ -171,7 +170,9 @@ export class IssuePanelComponent extends UnsubscribeService implements OnInit, O
       userId = issue.CreatedBy;
 
     const found = this.assignUserList.find((obj) => {
+
       return obj.Id == userId;
+
     })!;
 
     if (found) {
@@ -179,7 +180,6 @@ export class IssuePanelComponent extends UnsubscribeService implements OnInit, O
       if (assigner == "Assigned") {
 
         issue.AssignedImg = found.Img;
-
       }
       else if (assigner == "CreatedBy") {
 
@@ -199,7 +199,9 @@ export class IssuePanelComponent extends UnsubscribeService implements OnInit, O
     this.issueFilterType = issueType;
 
     const first = this.issueSearchQueries.find((obj) => {
+
       return obj.Key === "Type";
+
     })!;
 
     first.Value = this.issueFilterType;
@@ -211,7 +213,6 @@ export class IssuePanelComponent extends UnsubscribeService implements OnInit, O
 
     if (assignedName.includes('all')) {
 
-      //this.issueFilterName =
 
     } else {
 
@@ -397,7 +398,7 @@ export class IssuePanelComponent extends UnsubscribeService implements OnInit, O
 
   OnUpdate(issue: Issue) {
 
-    //pass to adduser component template with view child
+    //pass to add-issue component template with view child
     this.addIssueComponent.EnableUpdateMode(issue);
   }
 
@@ -412,8 +413,6 @@ export class IssuePanelComponent extends UnsubscribeService implements OnInit, O
 
       });
     }
-
-    //pass to adduser component template with view child
   }
 
   //Ng2 Smart Table Action event Trigger Methods:

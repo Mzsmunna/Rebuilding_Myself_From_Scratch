@@ -1,4 +1,5 @@
 export interface SearchField {
+
   Key: string;
   Value: string;
   DataType: string;

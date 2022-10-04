@@ -18,12 +18,12 @@ export class DefaultNavBarComponent implements OnInit {
   }
 
   ngOnChanges() {
-    //console.log(`ngOnChanges: Nav-Bar`);
+    //console.log(`ngOnChanges: default-nav-bar`);
   }
 
   ngDoCheck() {
 
-    //console.log(`ngDoCheck: Nav-Bar`);
+    //console.log(`ngDoCheck: default-nav-bar`);
     this.isAuthenticated = this.authService.IsAuthenticated();
     this.isAdmin = this.authService.IsAdmin();
   }
