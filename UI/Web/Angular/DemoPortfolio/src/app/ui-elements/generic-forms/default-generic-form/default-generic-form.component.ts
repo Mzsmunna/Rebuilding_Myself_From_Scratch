@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicForm } from '../../../view_models/common/dynamic-form.model';
 
@@ -9,7 +9,7 @@ import { DynamicForm } from '../../../view_models/common/dynamic-form.model';
 })
 export class DefaultGenericFormComponent implements OnInit {
 
-  dynamicFormModel: DynamicForm;
+  @Input() dynamicFormModel: DynamicForm;
 
   dynamicFormGroup: FormGroup;
 
@@ -17,125 +17,22 @@ export class DefaultGenericFormComponent implements OnInit {
 
     this.dynamicFormGroup = this.formBuilder.group({});
 
-    //this.dynamicForm = {} as DynamicForm;
-    this.dynamicFormModel = {
-
-      Controls: [
-        {
-          Name: "FullName",
-          Label: "Full Name",
-          PlaceHolder: "Full Name",
-          Value: "",
-          Type: "text",
-          IsText: true,
-          //IsTextarea?: boolean,
-          //IsEmail?: boolean,
-          //IsPassword?: boolean,
-          //IsDropdown?: boolean,
-          //IsCheck?: boolean,
-          //IsRadio?: boolean,
-          IsRequired: true,
-          MinLength: 10,
-          MaxLength: 20,
-          Pattern: ""
-          //Validators: {
-          //  IsRequired: true,
-          //  MinLength: 10,
-          //  MaxLength: 20,
-          //  Pattern: "",           
-          //}
-
-        },
-        {
-          Name: "Gender",
-          Label: "Gender",
-          PlaceHolder: "",
-          Value: "",
-          Type: "select",
-          IsDropdown: true,
-          IsRequired: false,
-          Pattern: "",
-          Options: [
-            {
-              Key: "Male",
-              Value: "male",
-              IsSelected: true
-            },
-            {
-              Key: "Female",
-              Value: "female",
-              IsSelected: false
-            },
-            {
-              Key: "Other",
-              Value: "other",
-              IsSelected: false
-            }
-          ]
-        },
-        {
-          Name: "Email",
-          Label: "Email",
-          PlaceHolder: "Email",
-          Value: "",
-          Type: "email",
-          IsEmail: true,
-          IsRequired: true,
-          Pattern: "",
-
-        },
-        {
-          Name: "PhoneOrMobile",
-          Label: "",
-          PlaceHolder: "",
-          Value: "",
-          Type: "select",
-          IsRadio: true, //IsCheckBox: true,
-          IsRequired: false,
-          Pattern: "",
-          Options: [
-            {
-              Key: "Phone",
-              Value: "phone",
-              IsSelected: true
-            },
-            {
-              Key: "Mobile",
-              Value: "mobile",
-              IsSelected: false
-            }
-          ]
-
-        },
-        {
-          Name: "ContactNumber",
-          Label: "Contact Number",
-          PlaceHolder: "",
-          Value: "",
-          Type: "text",
-          IsText: true,
-          IsRequired: false,
-          Pattern: "(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})",
-        },
-        {
-          Name: "Message",
-          Label: "Message",
-          PlaceHolder: "",
-          Value: "",
-          Type: "text", //Type: "textarea",
-          IsText: true, //IsTextarea: true,
-          IsRequired: true,
-          MinLength: 10,
-          MaxLength: 50,
-          Pattern: ""
-        }
-      ]
-    };
+    this.dynamicFormModel = {} as DynamicForm;
   }
 
   ngOnInit(): void {
 
     this.CreateDynamicForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    console.log(`ngOnChanges: default-generic-form`, changes);
+
+    if (!changes["dynamicFormModel"].firstChange) {
+
+      this.CreateDynamicForm();
+    }
   }
 
   CreateDynamicForm() {
