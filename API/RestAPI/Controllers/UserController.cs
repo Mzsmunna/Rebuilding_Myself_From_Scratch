@@ -151,7 +151,7 @@ namespace RestAPI.Controllers
 
         private string CreateToken(User user)
         {
-            var tokenExpiredOn = DateTime.UtcNow.AddDays(1);
+            var tokenExpiredOn = DateTime.UtcNow.AddMinutes(15);
 
             List<Claim> claims = new List<Claim>
             {

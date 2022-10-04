@@ -3,6 +3,7 @@ import jwt_decode, { JwtPayload } from 'jwt-decode'
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../view_models/auth/user.model';
+import { AlertService } from '../common/alert/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
   private token: string | null = '';
   private userId: string = '';
 
-  constructor(private http: HttpClient, private route: Router) {
+  constructor(private alertService: AlertService, private http: HttpClient, private route: Router) {
 
     this.baseApiUrl = "https://localhost:7074/api/User/";
   }
@@ -110,6 +111,7 @@ export class AuthService {
 
         localStorage.removeItem("token");
         localStorage.clear();
+        this.alertService.Info("You have been logged out due to Token expiration", "Token Expired!!", true);
         return false;
       }      
       else
