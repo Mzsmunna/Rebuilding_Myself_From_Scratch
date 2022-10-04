@@ -95,7 +95,30 @@ export class AuthService {
 
   IsAuthenticated(): boolean {
 
-    return localStorage.getItem('token') != null;
+    //return localStorage.getItem('token') != null;
+
+    this.token = this.GetToken();
+
+    if (this.token) {
+
+      let claims = jwt_decode<any>(this.token);
+      //let expiration = claims['http://schemas.microsoft.com/ws/2008/06/identity/claims/expiration'] as Date;
+      let expiration = claims['exp'] as number;
+      expiration = expiration * 1000;
+
+      if (Date.now() >= expiration) {
+
+        localStorage.removeItem("token");
+        localStorage.clear();
+        return false;
+      }      
+      else
+        return true;
+
+    } else {
+
+      return false;
+    }
   }
 
   IsAdmin(): boolean {
