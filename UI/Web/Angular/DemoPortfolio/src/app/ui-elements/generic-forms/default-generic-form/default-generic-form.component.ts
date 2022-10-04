@@ -123,9 +123,7 @@ export class DefaultGenericFormComponent implements OnInit {
     for (const control of this.dynamicFormModel.Controls) {
 
       const validatorsToAdd = [];
-
-      //for (const [key, value] of Object.entries(control.Validators)) {
-      //for (const [key, value] of Object.entries(control)) {
+      let value = control.Value;
 
       if (control.IsRequired) {
 
@@ -171,12 +169,21 @@ export class DefaultGenericFormComponent implements OnInit {
 
         validatorsToAdd.push(Validators.nullValidator);
       }
-        //}
-      //}
+
+      if (control.Options) {
+
+        for (const option of control.Options) {
+
+          if (option.IsSelected)
+            value = option.Value;
+        }
+
+      }
+
       this.dynamicFormGroup.addControl(
 
         control.Name,
-        this.formBuilder.control(control.Value, validatorsToAdd)
+        this.formBuilder.control(value, validatorsToAdd)
       );
 
     }

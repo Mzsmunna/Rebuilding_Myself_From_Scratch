@@ -21,28 +21,13 @@ export interface DynamicFormControls {
   IsRadio?: boolean;
   IsRequired?: boolean;
   IsRequiredTrue?: boolean;
-  Min?: number | null;
-  Max?: number | null;
-  MinLength?: number | null;
-  MaxLength?: number | null;
-  Pattern?: string | null;
-  IsNullValidator?: boolean | null;
-  //Validators: DynamicFormValidators;
+  Min?: number;
+  Max?: number;
+  MinLength?: number;
+  MaxLength?: number;
+  Pattern?: string;
+  IsNullValidator?: boolean;
   Options?: DynamicFormDropdownOptions[];
-  //required: boolean;
-
-}
-
-export interface DynamicFormValidators {
-
-  Required?: boolean;
-  RequiredTrue?: boolean;
-  Pattern?: string | null;
-  Min?: number | null;
-  Max?: number | null;
-  MinLength?: number | null;
-  MaxLength?: number | null;
-  NullValidator?: boolean | null;
 }
 
 export interface DynamicFormDropdownOptions {
@@ -50,5 +35,6 @@ export interface DynamicFormDropdownOptions {
   Key: string;
   Value: string;
   IsSelected?: boolean;
+  IsMultiSelect?: boolean;
   //icon?: string;
 }
