@@ -53,8 +53,6 @@ export class DefaultGenericFormComponent implements OnInit {
           Value: "",
           Type: "select",
           IsDropdown: true,
-          IsCheckBox: true,
-          IsRadio: true,
           IsRequired: false,
           Pattern: "",
           Options: [
@@ -74,7 +72,6 @@ export class DefaultGenericFormComponent implements OnInit {
               IsSelected: false
             }
           ]
-
         },
         {
           Name: "Email",
@@ -88,8 +85,31 @@ export class DefaultGenericFormComponent implements OnInit {
 
         },
         {
-          Name: "Phone",
-          Label: "Phone",
+          Name: "PhoneOrMobile",
+          Label: "",
+          PlaceHolder: "",
+          Value: "",
+          Type: "select",
+          IsRadio: true, //IsCheckBox: true,
+          IsRequired: false,
+          Pattern: "",
+          Options: [
+            {
+              Key: "Phone",
+              Value: "phone",
+              IsSelected: true
+            },
+            {
+              Key: "Mobile",
+              Value: "mobile",
+              IsSelected: false
+            }
+          ]
+
+        },
+        {
+          Name: "ContactNumber",
+          Label: "Contact Number",
           PlaceHolder: "",
           Value: "",
           Type: "text",

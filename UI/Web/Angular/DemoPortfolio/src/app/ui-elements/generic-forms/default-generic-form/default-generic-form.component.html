@@ -26,17 +26,37 @@
       <input *ngIf="control.IsPassword" type="password" id="{{control.Name}}" class="form-control" [ngClass]="{'is-invalid': dynamicFormGroup.controls[control.Name].dirty && dynamicFormGroup.controls[control.Name].errors}" name="{{control.Name}}" placeholder="{{control.PlaceHolder}}" formControlName="{{control.Name}}" />
 
       <!-- Select -->
-      <select *ngIf="control.IsDropdown" id="{{control.Name}}" class="form-select" aria-label="Default select example" name="{{control.Name}}" formControlName="{{control.Name}}">
-        <option *ngFor="let option of control.Options" [value]="option.Value" [selected]="option.IsSelected">{{option.Key}}</option>
-      </select>
+      <ng-container *ngIf="control.IsDropdown">
+
+        <select id="{{control.Name}}" class="form-select" aria-label="Default select example" name="{{control.Name}}" formControlName="{{control.Name}}">
+          <option *ngFor="let option of control.Options" [value]="option.Value" [selected]="option.IsSelected">{{option.Key}}</option>
+        </select>
+
+      </ng-container>
 
       <!-- Checkbox -->
-      <!--<div *ngIf="control.IsCheckBox" class="form-check d-flex justify-content-center mb-4" *ngFor="let option of control.Options">
-        <input class="form-check-input me-2" type="checkbox" [value]="option.Value" id="{{control.Name}}{{option.Key}}" [checked]="option.IsSelected" />
-        <label class="form-check-label" for="{{control.Name}}{{option.Key}}">
-          {{option.Key}}
-        </label>
-      </div>-->
+      <ng-container *ngIf="control.IsCheckBox">
+
+        <div class="form-check mb-4" *ngFor="let option of control.Options">
+          <input class="form-check-input me-2" type="checkbox" [value]="option.Value" id="{{control.Name}}{{option.Key}}" [checked]="option.IsSelected" />
+          <label class="form-check-label" for="{{control.Name}}{{option.Key}}">
+            {{option.Key}}
+          </label>
+        </div>
+
+      </ng-container>
+
+      <!-- Radio -->
+      <ng-container *ngIf="control.IsRadio">
+
+        <div class="form-check mb-4" *ngFor="let option of control.Options">
+          <input class="form-check-input me-2" type="radio" [value]="option.Value" id="{{control.Name}}{{option.Key}}" formControlName="{{control.Name}}" />
+          <label class="form-check-label" for="{{control.Name}}{{option.Key}}">
+            {{option.Key}}
+          </label>
+        </div>
+
+      </ng-container>
 
       <!-- Validation errors -->
       <p class="form-label text-danger" *ngIf="control.IsRequired && dynamicFormGroup.controls[control.Name].dirty && dynamicFormGroup.controls[control.Name].errors?.['required']">{{control.Label}} is required</p>

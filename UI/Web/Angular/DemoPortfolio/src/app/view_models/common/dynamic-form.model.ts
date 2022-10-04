@@ -19,6 +19,7 @@ export interface DynamicFormControls {
   IsDropdown?: boolean;
   IsCheckBox?: boolean;
   IsRadio?: boolean;
+  IsRange?: boolean;
   IsRequired?: boolean;
   IsRequiredTrue?: boolean;
   Min?: number;
