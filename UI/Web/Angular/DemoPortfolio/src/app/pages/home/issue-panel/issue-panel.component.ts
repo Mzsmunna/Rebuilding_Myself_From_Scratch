@@ -194,6 +194,22 @@ export class IssuePanelComponent extends UnsubscribeService implements OnInit, O
       return issue.CreatedByImg;
   }
 
+  GetUserName(issue: Issue) {
+
+    var userId = issue.AssignedId;
+
+    const found = this.assignUserList.find((obj) => {
+
+      return obj.Id == userId;
+
+    })!;
+
+    if (found)
+      return found.Name;
+    else
+      return issue.AssignedName;
+  }
+
   FilterIssueType(issueType: string) {
 
     this.issueFilterType = issueType;

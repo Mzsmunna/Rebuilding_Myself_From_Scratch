@@ -75,7 +75,7 @@
                     onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';"
                     class="shadow-1-strong rounded-circle mt-2" alt="avatar 1"
                     style="width: 60px; height: 60px;">
-              <span class="ms-2">{{issue.AssignedName | titlecase}}</span>
+              <span class="ms-2">{{GetUserName(issue) | titlecase}}</span>
             </th>
             <th *ngIf="isAdmin==false">
               <img src="{{GetUserImg(issue, 'CreatedBy')}}"
@@ -101,7 +101,7 @@
                         aria-label="Default select example"
                         name="Status"
                         (change)="OnStatusChange(issue, $event)"
-                        [disabled]="issue.IsCompleted">
+                        [disabled]="issue.IsCompleted || issue.AssignedId!=loggedUser.Id">
                   <option [selected]="issue.Status=='pending'" value="pending">Pending</option>
                   <option [selected]="issue.Status=='in-progress'" value="in-progress">In-Progress</option>
                   <option [selected]="issue.Status=='done'" value="done">Done</option>
