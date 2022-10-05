@@ -167,10 +167,12 @@ export class AddIssueComponent implements OnInit {
 
   public EnableUpdateMode(issue: Issue): void {
 
-    console.log(`EnableUpdateMode for issue`, issue);
-
     this.existingIssue = issue;
     this.issueForm.enable();
+
+    console.log(`EnableUpdateMode for issue`, issue);
+    console.log(`logged user`, this.loggedUser);
+    console.log(`existing Issue`, this.existingIssue);
 
     if (this.existingIssue) {
 
@@ -248,6 +250,9 @@ export class AddIssueComponent implements OnInit {
       //IsCompleted: new FormControl(bindIssue.IsCompleted, Validators.required)
     }, //{ validators: CustomValidation.passwordMatchValidate }
     );
+
+    if (this.existingIssue.AssignedId != this.loggedUser.Id)
+      this.issueForm.controls['Status'].disable();
   }
 
   FormateDate(date: Date | null) {
