@@ -116,6 +116,31 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DemoPortfolio", "UI\Web\Ang
 		SlnRelativePath = "UI\Web\Angular\DemoPortfolio\"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossPlatform", "CrossPlatform", "{1512FCBE-21D4-4834-A9EA-A7D6E9B64BB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Flutter", "Flutter", "{09998CCE-753E-4342-90E7-016FB0A9B251}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "demo_app", "UI\CrossPlatform\Flutter\demo_app\", "{58D75140-2361-4F91-9A41-F1E9733FBBEC}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_6156"
+		Debug.AspNetCompiler.PhysicalPath = "UI\CrossPlatform\Flutter\demo_app\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6156\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_6156"
+		Release.AspNetCompiler.PhysicalPath = "UI\CrossPlatform\Flutter\demo_app\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6156\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "6156"
+		SlnRelativePath = "UI\CrossPlatform\Flutter\demo_app\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +219,10 @@ Global
 		{55560701-BB37-4706-A01E-EBA6A2200D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55560701-BB37-4706-A01E-EBA6A2200D09}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{55560701-BB37-4706-A01E-EBA6A2200D09}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{58D75140-2361-4F91-9A41-F1E9733FBBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D75140-2361-4F91-9A41-F1E9733FBBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D75140-2361-4F91-9A41-F1E9733FBBEC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D75140-2361-4F91-9A41-F1E9733FBBEC}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -240,6 +269,9 @@ Global
 		{896A6DE6-A780-4080-A9A2-0FC96053BEC9} = {2F241AD1-567C-400B-A096-6F488FDC63FA}
 		{67E80B67-45BD-4913-A79A-0D40EC8A1B6B} = {896A6DE6-A780-4080-A9A2-0FC96053BEC9}
 		{55560701-BB37-4706-A01E-EBA6A2200D09} = {1B02E409-EFA0-4008-9E70-C2895078A8B3}
+		{1512FCBE-21D4-4834-A9EA-A7D6E9B64BB4} = {2F241AD1-567C-400B-A096-6F488FDC63FA}
+		{09998CCE-753E-4342-90E7-016FB0A9B251} = {1512FCBE-21D4-4834-A9EA-A7D6E9B64BB4}
+		{58D75140-2361-4F91-9A41-F1E9733FBBEC} = {09998CCE-753E-4342-90E7-016FB0A9B251}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2369D6A8-FE4B-4854-9B24-557EBC35B65E}
