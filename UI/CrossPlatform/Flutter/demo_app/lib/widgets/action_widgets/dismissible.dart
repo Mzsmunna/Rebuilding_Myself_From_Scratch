@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget083 extends StatefulWidget {
-  const Widget083({Key? key}) : super(key: key);
+class DismissibleWidget extends StatefulWidget {
+  const DismissibleWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget083> createState() => _Widget083State();
+  State<DismissibleWidget> createState() => _DismissibleWidgetState();
 }
 
-class _Widget083State extends State<Widget083> {
+class _DismissibleWidgetState extends State<DismissibleWidget> {
   List<int> items = List<int>.generate(100, (int index) => index);
 
   @override

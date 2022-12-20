@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget123 extends StatefulWidget {
-  const Widget123({Key? key}) : super(key: key);
+class InputChipWidget extends StatefulWidget {
+  const InputChipWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget123> createState() => _Widget123State();
+  State<InputChipWidget> createState() => _InputChipWidgetState();
 }
 
-class _Widget123State extends State<Widget123> {
+class _InputChipWidgetState extends State<InputChipWidget> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {

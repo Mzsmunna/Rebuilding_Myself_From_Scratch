@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget122 extends StatefulWidget {
-  const Widget122({Key? key}) : super(key: key);
+class InkWellWidget extends StatefulWidget {
+  const InkWellWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget122> createState() => _Widget122State();
+  State<InkWellWidget> createState() => _InkWellWidgetState();
 }
 
-class _Widget122State extends State<Widget122> {
+class _InkWellWidgetState extends State<InkWellWidget> {
   Color color = Colors.blue;
   @override
   Widget build(BuildContext context) {

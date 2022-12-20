@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget118 extends StatefulWidget {
-  const Widget118({Key? key}) : super(key: key);
+class IconButtonWidget extends StatefulWidget {
+  const IconButtonWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget118> createState() => _Widget118State();
+  State<IconButtonWidget> createState() => _IconButtonWidgetState();
 }
 
-class _Widget118State extends State<Widget118> {
+class _IconButtonWidgetState extends State<IconButtonWidget> {
   int click = 0;
 
   @override

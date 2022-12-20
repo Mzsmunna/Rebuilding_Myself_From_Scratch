@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget101 extends StatefulWidget {
-  const Widget101({Key? key}) : super(key: key);
+class FilterChipWidget extends StatefulWidget {
+  const FilterChipWidget({Key? key}) : super(key: key);
 
   @override
-  State createState() => Widget101State();
+  State createState() => FilterChipWidgetState();
 }
 
-class Widget101State extends State<Widget101> {
+class FilterChipWidgetState extends State<FilterChipWidget> {
   bool isSelected = false;
 
   @override

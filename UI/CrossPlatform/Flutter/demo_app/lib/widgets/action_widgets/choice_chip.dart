@@ -1,14 +1,14 @@
 //! ChoiceChip
 import 'package:flutter/material.dart';
 
-class Widget036 extends StatefulWidget {
-  const Widget036({Key? key}) : super(key: key);
+class ChoiceChipWidget extends StatefulWidget {
+  const ChoiceChipWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget036> createState() => _Widget036State();
+  State<ChoiceChipWidget> createState() => _ChoiceChipWidgetState();
 }
 
-class _Widget036State extends State<Widget036> {
+class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {

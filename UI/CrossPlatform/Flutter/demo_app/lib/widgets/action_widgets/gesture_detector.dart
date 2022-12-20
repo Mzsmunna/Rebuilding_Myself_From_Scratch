@@ -1,14 +1,14 @@
 //! GestureDetector
 import 'package:flutter/material.dart';
 
-class Widget111 extends StatefulWidget {
-  const Widget111({Key? key}) : super(key: key);
+class GestureDetectorWidget extends StatefulWidget {
+  const GestureDetectorWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget111> createState() => _Widget111State();
+  State<GestureDetectorWidget> createState() => _GestureDetectorWidgetState();
 }
 
-class _Widget111State extends State<Widget111> {
+class _GestureDetectorWidgetState extends State<GestureDetectorWidget> {
   int _counter = 0;
   @override
   Widget build(BuildContext context) {

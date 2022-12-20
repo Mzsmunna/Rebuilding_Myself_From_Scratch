@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget119 extends StatefulWidget {
-  const Widget119({Key? key}) : super(key: key);
+class IgnorePointerWidget extends StatefulWidget {
+  const IgnorePointerWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget119> createState() => _Widget119State();
+  State<IgnorePointerWidget> createState() => _IgnorePointerWidgetState();
 }
 
-class _Widget119State extends State<Widget119> {
+class _IgnorePointerWidgetState extends State<IgnorePointerWidget> {
   bool ignore = false;
 
   void setIgnoring(bool newValue) {

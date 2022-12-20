@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class Widget132 extends StatefulWidget {
-  const Widget132({Key? key}) : super(key: key);
+class LongPressDraggableWidget extends StatefulWidget {
+  const LongPressDraggableWidget({Key? key}) : super(key: key);
 
   @override
-  _Widget132State createState() => _Widget132State();
+  _LongPressDraggableWidgetState createState() =>
+      _LongPressDraggableWidgetState();
 }
 
-class _Widget132State extends State<Widget132> {
+class _LongPressDraggableWidgetState extends State<LongPressDraggableWidget> {
   Offset _offset = const Offset(200, 250);
 
   @override

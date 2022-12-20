@@ -1,8 +1,8 @@
-﻿import 'package:flutter/material.dart';
-import './../../widgets/app_widgets.dart';
+import 'package:flutter/material.dart';
+import '../../apps/widgets_manager_app/pages/flutter_widget_list.dart';
 
-class IssueManagerApp extends StatelessWidget {
-  const IssueManagerApp({super.key});
+class WidgetsManagerApp extends StatelessWidget {
+  const WidgetsManagerApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -15,9 +15,9 @@ class IssueManagerApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Issue Manager App"),
+          title: const Text("Review Flutter Widgets"),
         ),
-        //body: const AbsorbPointerWidget(),
+        body: const FlutterWidgetList(),
       ),
     );
   }
