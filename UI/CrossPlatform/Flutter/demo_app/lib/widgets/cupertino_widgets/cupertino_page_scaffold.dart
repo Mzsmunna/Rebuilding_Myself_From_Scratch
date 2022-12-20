@@ -2,8 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 
-class Widget058 extends StatelessWidget {
-  const Widget058({Key? key}) : super(key: key);
+class CupertinoPageScaffoldWidget extends StatelessWidget {
+  const CupertinoPageScaffoldWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

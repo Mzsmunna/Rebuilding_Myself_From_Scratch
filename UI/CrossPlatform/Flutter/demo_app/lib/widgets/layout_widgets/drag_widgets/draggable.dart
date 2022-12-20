@@ -1,14 +1,14 @@
 //!Draggable
 import 'package:flutter/material.dart';
 
-class Widget086 extends StatefulWidget {
-  const Widget086({Key? key}) : super(key: key);
+class DraggableWidget extends StatefulWidget {
+  const DraggableWidget({Key? key}) : super(key: key);
 
   @override
-  Widget086State createState() => Widget086State();
+  DraggableWidgetState createState() => DraggableWidgetState();
 }
 
-class Widget086State extends State<Widget086> {
+class DraggableWidgetState extends State<DraggableWidget> {
   Color caughtColor = Colors.red;
 
   @override

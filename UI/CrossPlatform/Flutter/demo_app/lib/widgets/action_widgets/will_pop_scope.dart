@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget213 extends StatefulWidget {
-  const Widget213({Key? key}) : super(key: key);
+class WillPopScopeWidget extends StatefulWidget {
+  const WillPopScopeWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget213> createState() => _Widget213State();
+  State<WillPopScopeWidget> createState() => _WillPopScopeWidgetState();
 }
 
-class _Widget213State extends State<Widget213> {
+class _WillPopScopeWidgetState extends State<WillPopScopeWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(

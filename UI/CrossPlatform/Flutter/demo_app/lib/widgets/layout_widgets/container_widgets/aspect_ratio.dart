@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget022 extends StatelessWidget {
-  const Widget022({Key? key}) : super(key: key);
+class AspectRatioWidget extends StatelessWidget {
+  const AspectRatioWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

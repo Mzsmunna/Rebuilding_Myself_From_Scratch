@@ -1,8 +1,8 @@
 //! GridPaper
 import 'package:flutter/material.dart';
 
-class Widget112 extends StatelessWidget {
-  const Widget112({Key? key}) : super(key: key);
+class GridPaperWidget extends StatelessWidget {
+  const GridPaperWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

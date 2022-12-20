@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget018 extends StatefulWidget {
-  const Widget018({Key? key}) : super(key: key);
+class AnimatedRotationWidget extends StatefulWidget {
+  const AnimatedRotationWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget018> createState() => Widget018State();
+  State<AnimatedRotationWidget> createState() => AnimatedRotationWidgetState();
 }
 
-class Widget018State extends State<Widget018> {
+class AnimatedRotationWidgetState extends State<AnimatedRotationWidget> {
   double turns = 0.0;
 
   @override

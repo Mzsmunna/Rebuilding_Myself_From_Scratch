@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget102 extends StatelessWidget {
-  const Widget102({Key? key}) : super(key: key);
+class FittedBoxWidget extends StatelessWidget {
+  const FittedBoxWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

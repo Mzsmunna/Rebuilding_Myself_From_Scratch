@@ -1,14 +1,16 @@
 //! NotificationListener
 import 'package:flutter/material.dart';
 
-class Widget141 extends StatefulWidget {
-  const Widget141({Key? key}) : super(key: key);
+class NotificationListenerWidget extends StatefulWidget {
+  const NotificationListenerWidget({Key? key}) : super(key: key);
 
   @override
-  _Widget141State createState() => _Widget141State();
+  _NotificationListenerWidgetState createState() =>
+      _NotificationListenerWidgetState();
 }
 
-class _Widget141State extends State<Widget141> {
+class _NotificationListenerWidgetState
+    extends State<NotificationListenerWidget> {
   String message = 'New';
 
   @override

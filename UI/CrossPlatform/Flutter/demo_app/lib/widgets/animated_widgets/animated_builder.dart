@@ -4,14 +4,15 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class Widget007 extends StatefulWidget {
-  const Widget007({Key? key}) : super(key: key);
+class AnimatedBuilderWidget extends StatefulWidget {
+  const AnimatedBuilderWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget007> createState() => _Widget007State();
+  State<AnimatedBuilderWidget> createState() => _AnimatedBuilderWidgetState();
 }
 
-class _Widget007State extends State<Widget007> with TickerProviderStateMixin {
+class _AnimatedBuilderWidgetState extends State<AnimatedBuilderWidget>
+    with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 10),
     vsync: this,

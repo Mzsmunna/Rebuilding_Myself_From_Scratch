@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget171 extends StatefulWidget {
-  const Widget171({Key? key}) : super(key: key);
+class ScrollbarWidget extends StatefulWidget {
+  const ScrollbarWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget171> createState() => _Widget171State();
+  State<ScrollbarWidget> createState() => _ScrollbarWidgetState();
 }
 
-class _Widget171State extends State<Widget171> {
+class _ScrollbarWidgetState extends State<ScrollbarWidget> {
   final ScrollController controller = ScrollController();
 
   @override

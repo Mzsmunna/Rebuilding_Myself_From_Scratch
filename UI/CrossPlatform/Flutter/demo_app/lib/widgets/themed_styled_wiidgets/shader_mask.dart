@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget174 extends StatelessWidget {
-  const Widget174({Key? key}) : super(key: key);
+class ShaderMaskWidget extends StatelessWidget {
+  const ShaderMaskWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

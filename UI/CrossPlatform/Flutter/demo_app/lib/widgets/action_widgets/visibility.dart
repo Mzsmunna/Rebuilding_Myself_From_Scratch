@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget212 extends StatefulWidget {
-  const Widget212({Key? key}) : super(key: key);
+class VisibilityWidget extends StatefulWidget {
+  const VisibilityWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget212> createState() => _Widget212State();
+  State<VisibilityWidget> createState() => _VisibilityWidgetState();
 }
 
-class _Widget212State extends State<Widget212> {
+class _VisibilityWidgetState extends State<VisibilityWidget> {
   bool isVisible = true;
 
   @override

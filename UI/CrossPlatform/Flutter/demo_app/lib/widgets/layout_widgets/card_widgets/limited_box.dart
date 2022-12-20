@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget126 extends StatelessWidget {
-  const Widget126({Key? key}) : super(key: key);
+class LimitedBoxWidget extends StatelessWidget {
+  const LimitedBoxWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

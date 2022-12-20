@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget204 extends StatelessWidget {
-  const Widget204({Key? key}) : super(key: key);
+class TextSpanWidget extends StatelessWidget {
+  const TextSpanWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

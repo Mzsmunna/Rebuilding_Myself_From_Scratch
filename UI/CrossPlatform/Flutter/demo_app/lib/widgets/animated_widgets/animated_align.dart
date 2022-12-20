@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 //! AnimatedAlign
 
-class Widget006 extends StatefulWidget {
-  const Widget006({Key? key}) : super(key: key);
+class AnimatedAlignWidget extends StatefulWidget {
+  const AnimatedAlignWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget006> createState() => _Widget006State();
+  State<AnimatedAlignWidget> createState() => _AnimatedAlignWidgetState();
 }
 
-class _Widget006State extends State<Widget006> {
+class _AnimatedAlignWidgetState extends State<AnimatedAlignWidget> {
   bool selected = false;
 
   @override

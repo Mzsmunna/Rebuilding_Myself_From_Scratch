@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget149 extends StatefulWidget {
-  const Widget149({Key? key}) : super(key: key);
+class PageViewWidget extends StatefulWidget {
+  const PageViewWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget149> createState() => _Widget149State();
+  State<PageViewWidget> createState() => _PageViewWidgetState();
 }
 
-class _Widget149State extends State<Widget149> {
+class _PageViewWidgetState extends State<PageViewWidget> {
   @override
   Widget build(BuildContext context) {
     return PageView(

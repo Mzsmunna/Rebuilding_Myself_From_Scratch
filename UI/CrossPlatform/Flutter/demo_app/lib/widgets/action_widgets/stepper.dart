@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget193 extends StatefulWidget {
-  const Widget193({Key? key}) : super(key: key);
+class StepperWidget extends StatefulWidget {
+  const StepperWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget193> createState() => _Widget193State();
+  State<StepperWidget> createState() => _StepperWidgetState();
 }
 
-class _Widget193State extends State<Widget193> {
+class _StepperWidgetState extends State<StepperWidget> {
   int _currentStep = 0;
   @override
   Widget build(BuildContext context) {

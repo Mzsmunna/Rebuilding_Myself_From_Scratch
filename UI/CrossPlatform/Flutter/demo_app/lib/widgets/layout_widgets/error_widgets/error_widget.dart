@@ -17,19 +17,19 @@ void main() {
     );
   };
 
-  runApp(const MyApp());
+  runApp(const MyErrorApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyErrorApp extends StatefulWidget {
+  const MyErrorApp({super.key});
 
   static const String _title = 'ErrorWidget Sample';
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyErrorApp> createState() => _MyErrorAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyErrorAppState extends State<MyErrorApp> {
   bool throwError = false;
 
   @override
@@ -42,9 +42,9 @@ class _MyAppState extends State<MyApp> {
       );
     } else {
       return MaterialApp(
-        title: MyApp._title,
+        title: MyErrorApp._title,
         home: Scaffold(
-          appBar: AppBar(title: const Text(MyApp._title)),
+          appBar: AppBar(title: const Text(MyErrorApp._title)),
           body: Center(
             child: TextButton(
                 onPressed: () {

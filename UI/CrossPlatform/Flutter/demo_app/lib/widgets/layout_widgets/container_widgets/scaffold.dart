@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget169 extends StatefulWidget {
-  const Widget169({Key? key}) : super(key: key);
+class ScaffoldWidget extends StatefulWidget {
+  const ScaffoldWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget169> createState() => _Widget169State();
+  State<ScaffoldWidget> createState() => _ScaffoldWidgetState();
 }
 
-class _Widget169State extends State<Widget169> {
+class _ScaffoldWidgetState extends State<ScaffoldWidget> {
   int _count = 0;
 
   @override

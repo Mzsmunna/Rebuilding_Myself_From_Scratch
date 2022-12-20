@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget094 extends StatefulWidget {
-  const Widget094({Key? key}) : super(key: key);
+class ExpandedWidget extends StatefulWidget {
+  const ExpandedWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget094> createState() => _Widget094State();
+  State<ExpandedWidget> createState() => _ExpandedWidgetState();
 }
 
-class _Widget094State extends State<Widget094> {
+class _ExpandedWidgetState extends State<ExpandedWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(

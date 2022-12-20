@@ -11,14 +11,14 @@ class DecrementIntent extends Intent {
   const DecrementIntent();
 }
 
-class Widget175 extends StatefulWidget {
-  const Widget175({Key? key}) : super(key: key);
+class ShortcutsWidget extends StatefulWidget {
+  const ShortcutsWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget175> createState() => _Widget175State();
+  State<ShortcutsWidget> createState() => _ShortcutsWidgetState();
 }
 
-class _Widget175State extends State<Widget175> {
+class _ShortcutsWidgetState extends State<ShortcutsWidget> {
   int count = 0;
 
   @override

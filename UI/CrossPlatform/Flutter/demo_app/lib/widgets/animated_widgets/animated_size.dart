@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget019 extends StatefulWidget {
-  const Widget019({Key? key}) : super(key: key);
+class AnimatedSizeWidget extends StatefulWidget {
+  const AnimatedSizeWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget019> createState() => _Widget019State();
+  State<AnimatedSizeWidget> createState() => _AnimatedSizeWidgetState();
 }
 
-class _Widget019State extends State<Widget019> {
+class _AnimatedSizeWidgetState extends State<AnimatedSizeWidget> {
   double _size = 300;
 
   @override

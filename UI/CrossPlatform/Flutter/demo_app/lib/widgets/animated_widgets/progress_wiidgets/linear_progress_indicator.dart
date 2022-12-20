@@ -2,14 +2,16 @@
 
 import 'package:flutter/material.dart';
 
-class Widget127 extends StatefulWidget {
-  const Widget127({Key? key}) : super(key: key);
+class LinearProgressIndicatorWidget extends StatefulWidget {
+  const LinearProgressIndicatorWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget127> createState() => _Widget127State();
+  State<LinearProgressIndicatorWidget> createState() =>
+      _LinearProgressIndicatorWidgetState();
 }
 
-class _Widget127State extends State<Widget127> with TickerProviderStateMixin {
+class _LinearProgressIndicatorWidgetState
+    extends State<LinearProgressIndicatorWidget> with TickerProviderStateMixin {
   late AnimationController controller;
 
   @override

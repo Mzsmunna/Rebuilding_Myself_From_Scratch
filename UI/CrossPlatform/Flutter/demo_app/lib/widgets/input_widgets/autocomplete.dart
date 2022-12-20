@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget023 extends StatelessWidget {
-  const Widget023({Key? key}) : super(key: key);
+class AutoCompleteWidget extends StatelessWidget {
+  const AutoCompleteWidget({Key? key}) : super(key: key);
 
   static const List<String> listItems = <String>[
     'apple',

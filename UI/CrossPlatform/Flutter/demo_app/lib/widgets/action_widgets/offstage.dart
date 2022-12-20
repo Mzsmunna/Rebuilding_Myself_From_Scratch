@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget142 extends StatefulWidget {
-  const Widget142({Key? key}) : super(key: key);
+class OffstageWidget extends StatefulWidget {
+  const OffstageWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget142> createState() => _Widget142State();
+  State<OffstageWidget> createState() => _OffstageWidgetState();
 }
 
-class _Widget142State extends State<Widget142> {
+class _OffstageWidgetState extends State<OffstageWidget> {
   bool isHided = true;
 
   @override

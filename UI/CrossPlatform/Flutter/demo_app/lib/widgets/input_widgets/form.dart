@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget107 extends StatelessWidget {
-  Widget107({Key? key}) : super(key: key);
+class FormWidget extends StatelessWidget {
+  FormWidget({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
 
   @override

@@ -1,15 +1,15 @@
-//!flow
+//!Flow
 
 import 'package:flutter/material.dart';
 
-class Widget105 extends StatefulWidget {
-  const Widget105({Key? key}) : super(key: key);
+class FlowWidget extends StatefulWidget {
+  const FlowWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget105> createState() => _Widget105State();
+  State<FlowWidget> createState() => _FlowWidgetState();
 }
 
-class _Widget105State extends State<Widget105>
+class _FlowWidgetState extends State<FlowWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController menuAnimation;
   IconData lastIconClicked = Icons.notifications;

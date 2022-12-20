@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class Widget178 extends StatefulWidget {
-  const Widget178({Key? key}) : super(key: key);
+class SizeTransitionWidget extends StatefulWidget {
+  const SizeTransitionWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget178> createState() => _Widget178State();
+  State<SizeTransitionWidget> createState() => _SizeTransitionWidgetState();
 }
 
-class _Widget178State extends State<Widget178> with TickerProviderStateMixin {
+class _SizeTransitionWidgetState extends State<SizeTransitionWidget>
+    with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,

@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class Widget011 extends StatefulWidget {
-  const Widget011({Key? key}) : super(key: key);
+class AnimatedIconWidget extends StatefulWidget {
+  const AnimatedIconWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget011> createState() => _Widget11State();
+  State<AnimatedIconWidget> createState() => _AnimatedIconWidgetState();
 }
 
-class _Widget11State extends State<Widget011> with TickerProviderStateMixin {
+class _AnimatedIconWidgetState extends State<AnimatedIconWidget>
+    with TickerProviderStateMixin {
   bool _isPlay = false;
   late AnimationController _controller;
 

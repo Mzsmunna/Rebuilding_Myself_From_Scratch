@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget121 extends StatefulWidget {
-  const Widget121({Key? key}) : super(key: key);
+class IndexedStackWidget extends StatefulWidget {
+  const IndexedStackWidget({Key? key}) : super(key: key);
 
   @override
-  _Widget121State createState() => _Widget121State();
+  _IndexedStackWidgetState createState() => _IndexedStackWidgetState();
 }
 
-class _Widget121State extends State<Widget121> {
+class _IndexedStackWidgetState extends State<IndexedStackWidget> {
   int index = 0;
 
   @override

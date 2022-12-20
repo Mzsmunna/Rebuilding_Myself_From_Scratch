@@ -2,8 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 
-class Widget070 extends StatelessWidget {
-  Widget070({Key? key}) : super(key: key);
+class CupertinoTextFieldWidget extends StatelessWidget {
+  CupertinoTextFieldWidget({Key? key}) : super(key: key);
   final TextEditingController _textController =
       TextEditingController(text: 'Flutter Mapp');
   @override

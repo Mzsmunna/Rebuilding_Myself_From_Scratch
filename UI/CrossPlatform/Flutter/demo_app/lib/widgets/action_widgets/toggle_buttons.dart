@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget206 extends StatefulWidget {
-  const Widget206({Key? key}) : super(key: key);
+class ToggleButtonsWidget extends StatefulWidget {
+  const ToggleButtonsWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget206> createState() => _Widget206State();
+  State<ToggleButtonsWidget> createState() => _ToggleButtonsWidgetState();
 }
 
-class _Widget206State extends State<Widget206> {
+class _ToggleButtonsWidgetState extends State<ToggleButtonsWidget> {
   List<bool> isSelected = [
     false,
     false,
@@ -19,17 +19,17 @@ class _Widget206State extends State<Widget206> {
   Widget build(BuildContext context) {
     return Center(
       child: ToggleButtons(
-        children: const [
-          Icon(Icons.home),
-          Icon(Icons.settings),
-          Icon(Icons.person),
-        ],
         onPressed: (int index) {
           setState(() {
             isSelected[index] = !isSelected[index];
           });
         },
         isSelected: isSelected,
+        children: const [
+          Icon(Icons.home),
+          Icon(Icons.settings),
+          Icon(Icons.person),
+        ],
       ),
     );
   }

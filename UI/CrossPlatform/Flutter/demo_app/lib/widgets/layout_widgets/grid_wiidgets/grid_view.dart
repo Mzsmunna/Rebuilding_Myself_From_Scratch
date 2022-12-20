@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget115 extends StatelessWidget {
-  const Widget115({Key? key}) : super(key: key);
+class GridViewWidget extends StatelessWidget {
+  const GridViewWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +20,13 @@ class Widget115 extends StatelessWidget {
             Icons.menu,
           ),
         ),
-        child: Image.network(
-          'https://tinyurl.com/yc4pctt5',
-          fit: BoxFit.cover,
-        ),
         footer: const GridTileBar(
           backgroundColor: Colors.black45,
           leading: Icon(Icons.favorite),
+        ),
+        child: Image.network(
+          'https://tinyurl.com/yc4pctt5',
+          fit: BoxFit.cover,
         ),
       ),
       itemCount: 10,

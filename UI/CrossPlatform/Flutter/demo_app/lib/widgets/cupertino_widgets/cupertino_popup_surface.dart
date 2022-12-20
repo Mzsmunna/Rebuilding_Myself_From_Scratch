@@ -2,8 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 
-class Widget060 extends StatelessWidget {
-  const Widget060({Key? key}) : super(key: key);
+class CupertinoPopupSurfaceWidget extends StatelessWidget {
+  const CupertinoPopupSurfaceWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

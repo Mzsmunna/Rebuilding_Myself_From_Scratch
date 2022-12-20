@@ -1,14 +1,14 @@
 //! Checkbox
 import 'package:flutter/material.dart';
 
-class Widget033 extends StatefulWidget {
-  const Widget033({Key? key}) : super(key: key);
+class CheckBoxWidget extends StatefulWidget {
+  const CheckBoxWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget033> createState() => _Widget033State();
+  State<CheckBoxWidget> createState() => _CheckBoxWidgetState();
 }
 
-class _Widget033State extends State<Widget033> {
+class _CheckBoxWidgetState extends State<CheckBoxWidget> {
   bool? isChecked = false;
 
   @override

@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget181 extends StatefulWidget {
-  const Widget181({Key? key}) : super(key: key);
+class SlideTransitionWidget extends StatefulWidget {
+  const SlideTransitionWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget181> createState() => _Widget181State();
+  State<SlideTransitionWidget> createState() => _SlideTransitionWidgetState();
 }
 
-class _Widget181State extends State<Widget181>
+class _SlideTransitionWidgetState extends State<SlideTransitionWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),

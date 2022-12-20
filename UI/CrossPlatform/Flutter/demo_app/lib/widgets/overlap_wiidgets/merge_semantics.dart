@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget136 extends StatelessWidget {
-  const Widget136({Key? key}) : super(key: key);
+class MergeSemanticsWidget extends StatelessWidget {
+  const MergeSemanticsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

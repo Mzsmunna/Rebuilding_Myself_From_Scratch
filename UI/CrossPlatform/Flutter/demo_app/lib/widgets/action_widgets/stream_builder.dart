@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-class Widget194 extends StatefulWidget {
-  const Widget194({Key? key}) : super(key: key);
+class StreamBuilderWidget extends StatefulWidget {
+  const StreamBuilderWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget194> createState() => _Widget194State();
+  State<StreamBuilderWidget> createState() => _StreamBuilderWidgetState();
 }
 
 //FAKE FIREBASE STREAM
@@ -20,9 +20,9 @@ Stream<int> generateStream = (() async* {
   yield 3;
 })();
 
-class _Widget194State extends State<Widget194> {
+class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Center(
       child: StreamBuilder(
         stream: generateStream,

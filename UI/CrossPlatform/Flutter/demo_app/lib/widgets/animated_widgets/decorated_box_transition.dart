@@ -2,14 +2,16 @@
 
 import 'package:flutter/material.dart';
 
-class Widget081 extends StatefulWidget {
-  const Widget081({Key? key}) : super(key: key);
+class DecoratedBoxTransitionWidget extends StatefulWidget {
+  const DecoratedBoxTransitionWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget081> createState() => _Widget081State();
+  State<DecoratedBoxTransitionWidget> createState() =>
+      _DecoratedBoxTransitionWidgetState();
 }
 
-class _Widget081State extends State<Widget081> with TickerProviderStateMixin {
+class _DecoratedBoxTransitionWidgetState
+    extends State<DecoratedBoxTransitionWidget> with TickerProviderStateMixin {
   final DecorationTween decorationTween = DecorationTween(
     begin: BoxDecoration(
       color: Colors.white,

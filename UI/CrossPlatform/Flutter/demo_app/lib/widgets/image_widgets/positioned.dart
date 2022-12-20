@@ -1,8 +1,8 @@
-//!positioned
+//!Positioned
 import 'package:flutter/material.dart';
 
-class Widget155 extends StatelessWidget {
-  const Widget155({Key? key}) : super(key: key);
+class PositionedWidget extends StatelessWidget {
+  const PositionedWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

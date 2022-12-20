@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 //!AnimatedPadding
 
-class Widget015 extends StatefulWidget {
-  const Widget015({Key? key}) : super(key: key);
+class AnimatedPaddingWidget extends StatefulWidget {
+  const AnimatedPaddingWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget015> createState() => _Widget015State();
+  State<AnimatedPaddingWidget> createState() => _AnimatedPaddingWidgetState();
 }
 
-class _Widget015State extends State<Widget015> {
+class _AnimatedPaddingWidgetState extends State<AnimatedPaddingWidget> {
   double padValue = 0.0;
 
   @override

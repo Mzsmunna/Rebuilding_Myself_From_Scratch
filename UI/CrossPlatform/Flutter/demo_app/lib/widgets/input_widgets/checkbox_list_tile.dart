@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget034 extends StatefulWidget {
-  const Widget034({Key? key}) : super(key: key);
+class CheckBoxListTileWidget extends StatefulWidget {
+  const CheckBoxListTileWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget034> createState() => _Widget034State();
+  State<CheckBoxListTileWidget> createState() => _CheckBoxListTileWidgetState();
 }
 
-class _Widget034State extends State<Widget034> {
+class _CheckBoxListTileWidgetState extends State<CheckBoxListTileWidget> {
   bool? _isChecked = false;
   @override
   Widget build(BuildContext context) {

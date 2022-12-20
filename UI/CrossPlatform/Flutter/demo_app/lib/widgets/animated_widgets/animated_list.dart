@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 //! AnimatedList
 
-class Widget012 extends StatefulWidget {
-  const Widget012({Key? key}) : super(key: key);
+class AnimatedListWidget extends StatefulWidget {
+  const AnimatedListWidget({Key? key}) : super(key: key);
 
   @override
-  Widget012State createState() => Widget012State();
+  AnimatedListWidgetState createState() => AnimatedListWidgetState();
 }
 
-class Widget012State extends State<Widget012> {
+class AnimatedListWidgetState extends State<AnimatedListWidget> {
   final _items = [];
   final GlobalKey<AnimatedListState> _key = GlobalKey();
 

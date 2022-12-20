@@ -1,9 +1,9 @@
-//! stack
+//! Stack
 
 import 'package:flutter/material.dart';
 
-class Widget192 extends StatelessWidget {
-  const Widget192({Key? key}) : super(key: key);
+class StackWidget extends StatelessWidget {
+  const StackWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

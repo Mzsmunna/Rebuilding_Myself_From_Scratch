@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget196 extends StatefulWidget {
-  const Widget196({Key? key}) : super(key: key);
+class SwitchListTileWidget extends StatefulWidget {
+  const SwitchListTileWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget196> createState() => _Widget196State();
+  State<SwitchListTileWidget> createState() => _SwitchListTileWidgetState();
 }
 
-class _Widget196State extends State<Widget196> {
+class _SwitchListTileWidgetState extends State<SwitchListTileWidget> {
   bool lights = false;
 
   @override

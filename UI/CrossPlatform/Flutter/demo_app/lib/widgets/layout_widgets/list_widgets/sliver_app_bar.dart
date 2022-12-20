@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget183 extends StatefulWidget {
-  const Widget183({Key? key}) : super(key: key);
+class SliverAppBarWidget extends StatefulWidget {
+  const SliverAppBarWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget183> createState() => _Widget183State();
+  State<SliverAppBarWidget> createState() => _SliverAppBarWidgetState();
 }
 
-class _Widget183State extends State<Widget183> {
+class _SliverAppBarWidgetState extends State<SliverAppBarWidget> {
   bool _pinned = true;
   bool _snap = false;
   bool _floating = false;

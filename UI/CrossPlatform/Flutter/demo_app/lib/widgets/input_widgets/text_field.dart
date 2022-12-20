@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget202 extends StatefulWidget {
-  const Widget202({Key? key}) : super(key: key);
+class TextFieldWidget extends StatefulWidget {
+  const TextFieldWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget202> createState() => _Widget202State();
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
 
-class _Widget202State extends State<Widget202> {
+class _TextFieldWidgetState extends State<TextFieldWidget> {
   late TextEditingController controller;
   String text = '';
 

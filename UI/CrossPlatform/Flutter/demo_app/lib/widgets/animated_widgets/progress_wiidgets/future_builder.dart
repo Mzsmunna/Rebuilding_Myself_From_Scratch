@@ -1,14 +1,14 @@
 //! Future builder
 import 'package:flutter/material.dart';
 
-class Widget110 extends StatefulWidget {
-  const Widget110({Key? key}) : super(key: key);
+class FutureBuilderWidget extends StatefulWidget {
+  const FutureBuilderWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget110> createState() => _Widget110State();
+  State<FutureBuilderWidget> createState() => _FutureBuilderWidgetState();
 }
 
-class _Widget110State extends State<Widget110> {
+class _FutureBuilderWidgetState extends State<FutureBuilderWidget> {
   Future<String> getData() async {
     await Future.delayed(
       const Duration(seconds: 1),

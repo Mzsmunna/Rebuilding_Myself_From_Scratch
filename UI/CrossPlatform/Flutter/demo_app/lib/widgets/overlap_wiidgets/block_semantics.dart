@@ -2,16 +2,16 @@
 
 import 'package:flutter/material.dart';
 
-class Widget027 extends StatefulWidget {
-  const Widget027({Key? key}) : super(key: key);
+class BlockSemanticsWidget extends StatefulWidget {
+  const BlockSemanticsWidget({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _Widget027State();
+    return _BlockSemanticsWidgetState();
   }
 }
 
-class _Widget027State extends State<Widget027> {
+class _BlockSemanticsWidgetState extends State<BlockSemanticsWidget> {
   bool isShow = false;
 
   @override

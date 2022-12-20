@@ -1,8 +1,8 @@
 //!CustomPaint
 import 'package:flutter/material.dart';
 
-class Widget071 extends StatelessWidget {
-  const Widget071({Key? key}) : super(key: key);
+class CustomPaintWidget extends StatelessWidget {
+  const CustomPaintWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(

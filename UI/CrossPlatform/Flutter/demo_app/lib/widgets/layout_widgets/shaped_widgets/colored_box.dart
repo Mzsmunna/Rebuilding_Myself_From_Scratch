@@ -1,8 +1,8 @@
 //! ColoredBox
 import 'package:flutter/material.dart';
 
-class Widget044 extends StatelessWidget {
-  const Widget044({Key? key}) : super(key: key);
+class ColoredBoxWidget extends StatelessWidget {
+  const ColoredBoxWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

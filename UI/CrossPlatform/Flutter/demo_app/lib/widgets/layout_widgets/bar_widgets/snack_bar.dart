@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget190 extends StatelessWidget {
-  const Widget190({Key? key}) : super(key: key);
+class SnackBarWidget extends StatelessWidget {
+  const SnackBarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

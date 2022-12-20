@@ -8,14 +8,14 @@ List<Widget> widgets = const [
   Icon(Icons.person),
 ];
 
-class Widget198 extends StatefulWidget {
-  const Widget198({Key? key}) : super(key: key);
+class TabPageSelectorWidget extends StatefulWidget {
+  const TabPageSelectorWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget198> createState() => _Widget198State();
+  State<TabPageSelectorWidget> createState() => _TabPageSelectorWidgetState();
 }
 
-class _Widget198State extends State<Widget198>
+class _TabPageSelectorWidgetState extends State<TabPageSelectorWidget>
     with SingleTickerProviderStateMixin {
   late final TabController controller;
   int _index = 0;

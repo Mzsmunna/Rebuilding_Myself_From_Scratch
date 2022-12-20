@@ -1,14 +1,14 @@
 //! SliverOpacity
 import 'package:flutter/material.dart';
 
-class Widget187 extends StatefulWidget {
-  const Widget187({Key? key}) : super(key: key);
+class SliverOpacityWidget extends StatefulWidget {
+  const SliverOpacityWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget187> createState() => _Widget187State();
+  State<SliverOpacityWidget> createState() => _SliverOpacityWidgetState();
 }
 
-class _Widget187State extends State<Widget187> {
+class _SliverOpacityWidgetState extends State<SliverOpacityWidget> {
   bool visible = true;
 
   @override

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 //!AboutDialog
 
-class Widget001 extends StatefulWidget {
-  const Widget001({
+class AboutDialogWidget extends StatefulWidget {
+  const AboutDialogWidget({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Widget001> createState() => _Widget001State();
+  State<AboutDialogWidget> createState() => _AboutDialogWidgetState();
 }
 
-class _Widget001State extends State<Widget001> {
+class _AboutDialogWidgetState extends State<AboutDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(

@@ -2,18 +2,18 @@
 
 import 'package:flutter/material.dart';
 
-class Widget145 extends StatelessWidget {
-  const Widget145({Key? key}) : super(key: key);
+class OutlinedButtonWidget extends StatelessWidget {
+  const OutlinedButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {},
-      child: const Text('Click Me'),
       style: OutlinedButton.styleFrom(
-        primary: Colors.black,
+        foregroundColor: Colors.black,
         backgroundColor: Colors.orangeAccent,
       ),
+      child: const Text('Click Me'),
     );
   }
 }

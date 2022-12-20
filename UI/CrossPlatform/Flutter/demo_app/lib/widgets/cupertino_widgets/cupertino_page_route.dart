@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 //!CupertinoPageRoute
 
-class Widget057 extends StatelessWidget {
-  const Widget057({Key? key}) : super(key: key);
+class CupertinoPageRouteWidget extends StatelessWidget {
+  const CupertinoPageRouteWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

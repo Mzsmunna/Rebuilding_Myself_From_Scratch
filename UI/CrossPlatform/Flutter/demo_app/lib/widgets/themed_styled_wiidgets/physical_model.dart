@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget150 extends StatelessWidget {
-  const Widget150({Key? key}) : super(key: key);
+class PhysicalModelWidget extends StatelessWidget {
+  const PhysicalModelWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

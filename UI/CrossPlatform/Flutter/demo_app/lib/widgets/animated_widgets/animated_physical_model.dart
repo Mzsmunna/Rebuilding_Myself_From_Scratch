@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 //! AnimatedPhysicalModel
 
-class Widget016 extends StatefulWidget {
-  const Widget016({Key? key}) : super(key: key);
+class AnimatedPhysicalModelWidget extends StatefulWidget {
+  const AnimatedPhysicalModelWidget({Key? key}) : super(key: key);
 
   @override
-  Widget016State createState() => Widget016State();
+  AnimatedPhysicalModelWidgetState createState() =>
+      AnimatedPhysicalModelWidgetState();
 }
 
-class Widget016State extends State<Widget016> {
+class AnimatedPhysicalModelWidgetState
+    extends State<AnimatedPhysicalModelWidget> {
   bool _isFlat = true;
   @override
   Widget build(BuildContext context) {

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 //! AnimatedCrossFade
 
-class Widget009 extends StatefulWidget {
-  const Widget009({Key? key}) : super(key: key);
+class AnimatedCrossFadeWidget extends StatefulWidget {
+  const AnimatedCrossFadeWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget009> createState() => _Widget009State();
+  State<AnimatedCrossFadeWidget> createState() =>
+      _AnimatedCrossFadeWidgetState();
 }
 
-class _Widget009State extends State<Widget009> {
+class _AnimatedCrossFadeWidgetState extends State<AnimatedCrossFadeWidget> {
   bool _bool = true;
   @override
   Widget build(BuildContext context) {

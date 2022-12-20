@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget189 extends StatelessWidget {
-  const Widget189({Key? key}) : super(key: key);
+class SliverToBoxAdapterWidget extends StatelessWidget {
+  const SliverToBoxAdapterWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

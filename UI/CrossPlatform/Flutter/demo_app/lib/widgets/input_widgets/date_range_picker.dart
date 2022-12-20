@@ -2,16 +2,16 @@
 
 import 'package:flutter/material.dart';
 
-class Widget079 extends StatefulWidget {
-  const Widget079({Key? key}) : super(key: key);
+class DateRangePickerWidget extends StatefulWidget {
+  const DateRangePickerWidget({Key? key}) : super(key: key);
 
   @override
-  Widget079State createState() {
-    return Widget079State();
+  DateRangePickerWidgetState createState() {
+    return DateRangePickerWidgetState();
   }
 }
 
-class Widget079State extends State<Widget079> {
+class DateRangePickerWidgetState extends State<DateRangePickerWidget> {
   DateTimeRange selectedDates = DateTimeRange(
     start: DateTime.now(),
     end: DateTime.now(),

@@ -1,8 +1,8 @@
 //! ClipOval
 import 'package:flutter/material.dart';
 
-class Widget039 extends StatelessWidget {
-  const Widget039({Key? key}) : super(key: key);
+class ClipOvalWidget extends StatelessWidget {
+  const ClipOvalWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

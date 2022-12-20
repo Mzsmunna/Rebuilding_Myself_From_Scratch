@@ -2,14 +2,16 @@
 
 import 'package:flutter/cupertino.dart';
 
-class Widget065 extends StatefulWidget {
-  const Widget065({Key? key}) : super(key: key);
+class CupertinoSlidingSegmentedControlWidget extends StatefulWidget {
+  const CupertinoSlidingSegmentedControlWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget065> createState() => _Widget065State();
+  State<CupertinoSlidingSegmentedControlWidget> createState() =>
+      _CupertinoSlidingSegmentedControlWidgetState();
 }
 
-class _Widget065State extends State<Widget065> {
+class _CupertinoSlidingSegmentedControlWidgetState
+    extends State<CupertinoSlidingSegmentedControlWidget> {
   int? _sliding = 0;
   @override
   Widget build(BuildContext context) {

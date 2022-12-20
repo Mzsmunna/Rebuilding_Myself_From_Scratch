@@ -3,14 +3,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Widget056 extends StatefulWidget {
-  const Widget056({Key? key}) : super(key: key);
+class CupertinoDatePickerWidget extends StatefulWidget {
+  const CupertinoDatePickerWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget056> createState() => _Widget056State();
+  State<CupertinoDatePickerWidget> createState() =>
+      _CupertinoDatePickerWidgetState();
 }
 
-class _Widget056State extends State<Widget056> {
+class _CupertinoDatePickerWidgetState extends State<CupertinoDatePickerWidget> {
   Duration duration = const Duration(seconds: 1);
 
   @override

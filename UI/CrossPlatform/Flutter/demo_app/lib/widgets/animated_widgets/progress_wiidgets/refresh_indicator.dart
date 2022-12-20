@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 
-class Widget163 extends StatefulWidget {
-  const Widget163({Key? key}) : super(key: key);
+class RefreshIndicatorWidget extends StatefulWidget {
+  const RefreshIndicatorWidget({Key? key}) : super(key: key);
   @override
-  _Widget163State createState() => _Widget163State();
+  _RefreshIndicatorWidgetState createState() => _RefreshIndicatorWidgetState();
 }
 
-class _Widget163State extends State<Widget163> {
+class _RefreshIndicatorWidgetState extends State<RefreshIndicatorWidget> {
   List<String> items = [
     "Item 1",
     "Item 2",
@@ -25,6 +25,8 @@ class _Widget163State extends State<Widget163> {
         items.add("Item $nextItem");
         setState(() {});
       },
+      color: Colors.white,
+      backgroundColor: Colors.orangeAccent,
       child: ListView.builder(
         itemCount: items.length,
         itemBuilder: ((context, index) => Padding(
@@ -36,8 +38,6 @@ class _Widget163State extends State<Widget163> {
             )),
         padding: const EdgeInsets.all(5),
       ),
-      color: Colors.white,
-      backgroundColor: Colors.orangeAccent,
     );
   }
 }

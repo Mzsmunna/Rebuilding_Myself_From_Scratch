@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget137 extends StatefulWidget {
-  const Widget137({Key? key}) : super(key: key);
+class ModalBarrierWidget extends StatefulWidget {
+  const ModalBarrierWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget137> createState() => _Widget137State();
+  State<ModalBarrierWidget> createState() => _ModalBarrierWidgetState();
 }
 
-class _Widget137State extends State<Widget137> {
+class _ModalBarrierWidgetState extends State<ModalBarrierWidget> {
   bool activated = true;
   @override
   Widget build(BuildContext context) {

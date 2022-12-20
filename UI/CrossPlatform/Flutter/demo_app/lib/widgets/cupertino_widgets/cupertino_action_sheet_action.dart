@@ -2,14 +2,16 @@
 
 import 'package:flutter/cupertino.dart';
 
-class Widget051 extends StatefulWidget {
-  const Widget051({Key? key}) : super(key: key);
+class CupertinoActionSheetActionWidget extends StatefulWidget {
+  const CupertinoActionSheetActionWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget051> createState() => _Widget051State();
+  State<CupertinoActionSheetActionWidget> createState() =>
+      _CupertinoActionSheetActionWidgetState();
 }
 
-class _Widget051State extends State<Widget051> {
+class _CupertinoActionSheetActionWidgetState
+    extends State<CupertinoActionSheetActionWidget> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

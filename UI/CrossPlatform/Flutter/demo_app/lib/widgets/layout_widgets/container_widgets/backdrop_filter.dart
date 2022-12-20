@@ -4,8 +4,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class Widget024 extends StatelessWidget {
-  const Widget024({Key? key}) : super(key: key);
+class BackdropFilterWidget extends StatelessWidget {
+  const BackdropFilterWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

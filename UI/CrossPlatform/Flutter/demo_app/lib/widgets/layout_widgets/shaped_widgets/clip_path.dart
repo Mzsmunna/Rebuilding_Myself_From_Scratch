@@ -1,8 +1,8 @@
 //! ClipPath
 import 'package:flutter/material.dart';
 
-class Widget040 extends StatelessWidget {
-  const Widget040({Key? key}) : super(key: key);
+class ClipPathWidget extends StatelessWidget {
+  const ClipPathWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

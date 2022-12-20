@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 //! AboutListTile
-class Widget002 extends StatelessWidget {
-  const Widget002({Key? key}) : super(key: key);
+class AboutListTileWidget extends StatelessWidget {
+  const AboutListTileWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

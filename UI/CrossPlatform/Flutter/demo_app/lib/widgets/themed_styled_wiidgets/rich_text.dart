@@ -1,9 +1,9 @@
-//! richtext
+//! RichText
 
 import 'package:flutter/material.dart';
 
-class Widget165 extends StatelessWidget {
-  const Widget165({Key? key}) : super(key: key);
+class RichTextWidget extends StatelessWidget {
+  const RichTextWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

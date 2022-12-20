@@ -3,14 +3,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Widget063 extends StatefulWidget {
-  const Widget063({Key? key}) : super(key: key);
+class CupertinoSegmentedControlWidget extends StatefulWidget {
+  const CupertinoSegmentedControlWidget({Key? key}) : super(key: key);
 
   @override
-  Widget063State createState() => Widget063State();
+  CupertinoSegmentedControlWidgetState createState() =>
+      CupertinoSegmentedControlWidgetState();
 }
 
-class Widget063State extends State<Widget063> {
+class CupertinoSegmentedControlWidgetState
+    extends State<CupertinoSegmentedControlWidget> {
   String? _currentText;
   @override
   Widget build(BuildContext context) {

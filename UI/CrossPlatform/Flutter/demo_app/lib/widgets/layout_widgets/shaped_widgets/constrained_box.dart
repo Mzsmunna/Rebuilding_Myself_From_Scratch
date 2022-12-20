@@ -1,8 +1,8 @@
 //! ConstrainedBox
 import 'package:flutter/material.dart';
 
-class Widget046 extends StatelessWidget {
-  const Widget046({Key? key}) : super(key: key);
+class ConstrainedBoxWidget extends StatelessWidget {
+  const ConstrainedBoxWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,6 @@ class Widget046 extends StatelessWidget {
         constraints: const BoxConstraints(
           maxWidth: 900,
           maxHeight: 350,
-          
         ),
         child: Container(
           color: Colors.orangeAccent,

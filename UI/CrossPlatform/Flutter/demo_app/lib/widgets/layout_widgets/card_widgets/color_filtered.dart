@@ -1,8 +1,8 @@
 //! ColorFiltered
 import 'package:flutter/material.dart';
 
-class Widget045 extends StatelessWidget {
-  const Widget045({Key? key}) : super(key: key);
+class ColorFilteredWidget extends StatelessWidget {
+  const ColorFilteredWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

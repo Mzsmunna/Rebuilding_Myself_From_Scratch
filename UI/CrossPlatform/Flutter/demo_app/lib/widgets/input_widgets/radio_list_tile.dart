@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 
 enum SingingCharacter { lafayette, jefferson }
 
-class Widget159 extends StatefulWidget {
-  const Widget159({Key? key}) : super(key: key);
+class RadioListTileWidget extends StatefulWidget {
+  const RadioListTileWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget159> createState() => _Widget159State();
+  State<RadioListTileWidget> createState() => _RadioListTileWidgetState();
 }
 
 List<String> options = ['Option 1', 'Option 2'];
 
-class _Widget159State extends State<Widget159> {
+class _RadioListTileWidgetState extends State<RadioListTileWidget> {
   String currentOption = options[0];
 
   @override

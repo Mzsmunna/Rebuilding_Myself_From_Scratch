@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget211 extends StatelessWidget {
-  const Widget211({Key? key}) : super(key: key);
+class VerticalDividerWidget extends StatelessWidget {
+  const VerticalDividerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

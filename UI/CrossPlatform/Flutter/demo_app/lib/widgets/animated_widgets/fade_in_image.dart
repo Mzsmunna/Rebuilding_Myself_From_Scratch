@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget099 extends StatelessWidget {
-  const Widget099({Key? key}) : super(key: key);
+class FadeInImageWidget extends StatelessWidget {
+  const FadeInImageWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

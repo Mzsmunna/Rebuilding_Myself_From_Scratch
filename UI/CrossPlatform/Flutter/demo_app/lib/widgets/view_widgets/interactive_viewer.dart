@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class Widget124 extends StatefulWidget {
-  const Widget124({Key? key}) : super(key: key);
+class InteractiveViewerWidget extends StatefulWidget {
+  const InteractiveViewerWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget124> createState() => _Widget124State();
+  State<InteractiveViewerWidget> createState() =>
+      _InteractiveViewerWidgetState();
 }
 
-class _Widget124State extends State<Widget124> {
+class _InteractiveViewerWidgetState extends State<InteractiveViewerWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

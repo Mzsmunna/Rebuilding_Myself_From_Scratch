@@ -1,14 +1,14 @@
 //! ClipRRect
 import 'package:flutter/material.dart';
 
-class Widget042 extends StatefulWidget {
-  const Widget042({Key? key}) : super(key: key);
+class ClipRRectWidget extends StatefulWidget {
+  const ClipRRectWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget042> createState() => _Widget042State();
+  State<ClipRRectWidget> createState() => _ClipRRectWidgetState();
 }
 
-class _Widget042State extends State<Widget042> {
+class _ClipRRectWidgetState extends State<ClipRRectWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(

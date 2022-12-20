@@ -1,8 +1,8 @@
 //!CupertinoScrollbar
 import 'package:flutter/cupertino.dart';
 
-class Widget061 extends StatelessWidget {
-  const Widget061({Key? key}) : super(key: key);
+class CupertinoScrollbarWidget extends StatelessWidget {
+  const CupertinoScrollbarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

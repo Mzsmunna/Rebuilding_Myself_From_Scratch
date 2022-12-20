@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget182 extends StatefulWidget {
-  const Widget182({Key? key}) : super(key: key);
+class SliderWidget extends StatefulWidget {
+  const SliderWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget182> createState() => _Widget182State();
+  State<SliderWidget> createState() => _SliderWidgetState();
 }
 
-class _Widget182State extends State<Widget182> {
+class _SliderWidgetState extends State<SliderWidget> {
   double _currentSliderValue = 20;
 
   @override

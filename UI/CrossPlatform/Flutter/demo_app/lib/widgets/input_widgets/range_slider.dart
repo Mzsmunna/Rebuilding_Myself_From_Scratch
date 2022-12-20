@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget160 extends StatefulWidget {
-  const Widget160({Key? key}) : super(key: key);
+class RangeSliderWidget extends StatefulWidget {
+  const RangeSliderWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget160> createState() => _Widget160State();
+  State<RangeSliderWidget> createState() => _RangeSliderWidgetState();
 }
 
-class _Widget160State extends State<Widget160> {
+class _RangeSliderWidgetState extends State<RangeSliderWidget> {
   RangeValues values = const RangeValues(0.1, 0.5);
 
   @override

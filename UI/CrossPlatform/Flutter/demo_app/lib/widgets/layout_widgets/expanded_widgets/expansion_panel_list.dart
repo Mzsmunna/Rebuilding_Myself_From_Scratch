@@ -13,14 +13,15 @@ class Item {
   bool isExpanded;
 }
 
-class Widget096 extends StatefulWidget {
-  const Widget096({Key? key}) : super(key: key);
+class ExpansionPanelListWidget extends StatefulWidget {
+  const ExpansionPanelListWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget096> createState() => _Widget096State();
+  State<ExpansionPanelListWidget> createState() =>
+      _ExpansionPanelListWidgetState();
 }
 
-class _Widget096State extends State<Widget096> {
+class _ExpansionPanelListWidgetState extends State<ExpansionPanelListWidget> {
   final List<Item> _data = List<Item>.generate(
     10,
     (int index) {

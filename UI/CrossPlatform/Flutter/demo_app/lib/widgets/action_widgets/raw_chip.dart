@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget162 extends StatelessWidget {
-  const Widget162({Key? key}) : super(key: key);
+class RawChipWidget extends StatelessWidget {
+  const RawChipWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

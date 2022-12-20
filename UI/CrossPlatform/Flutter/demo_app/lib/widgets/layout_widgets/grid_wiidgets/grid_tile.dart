@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget113 extends StatelessWidget {
-  const Widget113({Key? key}) : super(key: key);
+class GridTileWidget extends StatelessWidget {
+  const GridTileWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,21 +14,21 @@ class Widget113 extends StatelessWidget {
         child: GridTile(
           header: Container(
             height: 40,
+            color: Colors.black38,
             child: const Center(
               child: Text('Header'),
             ),
+          ),
+          footer: Container(
+            height: 40,
             color: Colors.black38,
+            child: const Center(
+              child: Text('Footer'),
+            ),
           ),
           child: Image.network(
             'https://tinyurl.com/yc4pctt5',
             fit: BoxFit.cover,
-          ),
-          footer: Container(
-            height: 40,
-            child: const Center(
-              child: Text('Footer'),
-            ),
-            color: Colors.black38,
           ),
         ),
       ),

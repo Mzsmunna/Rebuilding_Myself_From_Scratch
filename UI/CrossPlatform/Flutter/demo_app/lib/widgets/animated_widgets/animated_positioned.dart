@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class Widget017 extends StatefulWidget {
-  const Widget017({Key? key}) : super(key: key);
+class AnimatedPositionedWidget extends StatefulWidget {
+  const AnimatedPositionedWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget017> createState() => _Widget017State();
+  State<AnimatedPositionedWidget> createState() =>
+      _AnimatedPositionedWidgetState();
 }
 
-class _Widget017State extends State<Widget017> {
+class _AnimatedPositionedWidgetState extends State<AnimatedPositionedWidget> {
   bool selected = false;
 
   @override

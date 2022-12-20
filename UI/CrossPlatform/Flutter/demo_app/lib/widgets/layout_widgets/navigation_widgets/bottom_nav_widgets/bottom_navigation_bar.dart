@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 //! BottomNavigationBar
 
-class Widget028 extends StatefulWidget {
-  const Widget028({Key? key}) : super(key: key);
+class BottomNavigationBarWidget extends StatefulWidget {
+  const BottomNavigationBarWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget028> createState() => _Widget028State();
+  State<BottomNavigationBarWidget> createState() =>
+      _BottomNavigationBarWidgetState();
 }
 
-class _Widget028State extends State<Widget028> {
+class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int _currentIndex = 0;
   List<Widget> body = const [
     Icon(Icons.home),

@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget139 extends StatefulWidget {
-  const Widget139({Key? key}) : super(key: key);
+class MouseRegionWidget extends StatefulWidget {
+  const MouseRegionWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget139> createState() => _Widget139State();
+  State<MouseRegionWidget> createState() => _MouseRegionWidgetState();
 }
 
-class _Widget139State extends State<Widget139> {
+class _MouseRegionWidgetState extends State<MouseRegionWidget> {
   int enterCount = 0;
   int exitCount = 0;
   double x = 0.0;

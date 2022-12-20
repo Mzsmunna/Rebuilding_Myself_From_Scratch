@@ -2,14 +2,16 @@
 
 import 'package:flutter/material.dart';
 
-class Widget167 extends StatefulWidget {
-  const Widget167({Key? key}) : super(key: key);
+class RotationTransitionWidget extends StatefulWidget {
+  const RotationTransitionWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget167> createState() => _Widget167State();
+  State<RotationTransitionWidget> createState() =>
+      _RotationTransitionWidgetState();
 }
 
-class _Widget167State extends State<Widget167> with TickerProviderStateMixin {
+class _RotationTransitionWidgetState extends State<RotationTransitionWidget>
+    with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 1),
     vsync: this,

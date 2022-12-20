@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget203 extends StatefulWidget {
-  const Widget203({Key? key}) : super(key: key);
+class TextFormFieldWidget extends StatefulWidget {
+  const TextFormFieldWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget203> createState() => _Widget203State();
+  State<TextFormFieldWidget> createState() => _TextFormFieldWidgetState();
 }
 
-class _Widget203State extends State<Widget203> {
+class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
   List<String> titles = [
     '',
     '',

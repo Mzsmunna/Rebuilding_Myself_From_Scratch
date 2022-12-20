@@ -2,14 +2,14 @@
 
 import 'package:flutter/cupertino.dart';
 
-class Widget064 extends StatefulWidget {
-  const Widget064({Key? key}) : super(key: key);
+class CupertinoSliderWidget extends StatefulWidget {
+  const CupertinoSliderWidget({Key? key}) : super(key: key);
 
   @override
-  Widget064State createState() => Widget064State();
+  CupertinoSliderWidgetState createState() => CupertinoSliderWidgetState();
 }
 
-class Widget064State extends State<Widget064> {
+class CupertinoSliderWidgetState extends State<CupertinoSliderWidget> {
   double _currentValue = 1;
   @override
   Widget build(BuildContext context) {

@@ -2,16 +2,16 @@
 
 import 'package:flutter/material.dart';
 
-class Widget158 extends StatefulWidget {
-  const Widget158({Key? key}) : super(key: key);
+class RadioWidget extends StatefulWidget {
+  const RadioWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget158> createState() => _Widget158State();
+  State<RadioWidget> createState() => _RadioWidgetState();
 }
 
 List<String> options = ['Option 1', 'Option 2'];
 
-class _Widget158State extends State<Widget158> {
+class _RadioWidgetState extends State<RadioWidget> {
   String currentOption = options[0];
 
   @override

@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget195 extends StatefulWidget {
-  const Widget195({Key? key}) : super(key: key);
+class SwitchWidget extends StatefulWidget {
+  const SwitchWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget195> createState() => _Widget195State();
+  State<SwitchWidget> createState() => _SwitchWidgetState();
 }
 
-class _Widget195State extends State<Widget195> {
+class _SwitchWidgetState extends State<SwitchWidget> {
   bool isSwitched = false;
 
   @override

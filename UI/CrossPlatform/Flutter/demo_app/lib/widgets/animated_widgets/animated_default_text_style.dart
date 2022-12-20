@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 //! AnimatedDefaultTextStyle
 
-class Widget010 extends StatefulWidget {
-  const Widget010({Key? key}) : super(key: key);
+class AnimatedDefaultTextStyleWidget extends StatefulWidget {
+  const AnimatedDefaultTextStyleWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget010> createState() => _Widget010State();
+  State<AnimatedDefaultTextStyleWidget> createState() =>
+      _AnimatedDefaultTextStyleWidgetState();
 }
 
-class _Widget010State extends State<Widget010> {
+class _AnimatedDefaultTextStyleWidgetState
+    extends State<AnimatedDefaultTextStyleWidget> {
   bool _first = true;
   double _fontSize = 60;
   Color _color = Colors.blue;

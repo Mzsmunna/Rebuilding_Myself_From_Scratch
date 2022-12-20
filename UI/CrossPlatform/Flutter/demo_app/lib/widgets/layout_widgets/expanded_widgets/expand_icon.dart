@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget095 extends StatefulWidget {
-  const Widget095({Key? key}) : super(key: key);
+class ExpandIconWidget extends StatefulWidget {
+  const ExpandIconWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget095> createState() => _Widget095State();
+  State<ExpandIconWidget> createState() => _ExpandIconWidgetState();
 }
 
-class _Widget095State extends State<Widget095> {
+class _ExpandIconWidgetState extends State<ExpandIconWidget> {
   bool _isExpanded = false;
   @override
   Widget build(BuildContext context) {

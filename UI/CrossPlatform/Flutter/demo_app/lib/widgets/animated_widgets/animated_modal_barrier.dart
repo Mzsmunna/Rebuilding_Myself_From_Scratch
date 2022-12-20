@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 //! AnimatedModalBarrier
 
-class Widget013 extends StatefulWidget {
-  const Widget013({Key? key}) : super(key: key);
+class AnimatedModalBarrierWidget extends StatefulWidget {
+  const AnimatedModalBarrierWidget({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _Widget013State();
+  State<StatefulWidget> createState() => _AnimatedModalBarrierWidgetState();
 }
 
-class _Widget013State extends State<Widget013>
+class _AnimatedModalBarrierWidgetState extends State<AnimatedModalBarrierWidget>
     with SingleTickerProviderStateMixin {
   bool _isPressed = false;
   late Widget _animatedModalBarrier;

@@ -3,8 +3,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget184 extends StatelessWidget {
-  const Widget184({Key? key}) : super(key: key);
+class SliverFixedExtentListWidget extends StatelessWidget {
+  const SliverFixedExtentListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

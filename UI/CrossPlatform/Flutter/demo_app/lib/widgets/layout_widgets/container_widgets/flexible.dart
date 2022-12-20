@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget103 extends StatefulWidget {
-  const Widget103({Key? key}) : super(key: key);
+class FlexibleWidget extends StatefulWidget {
+  const FlexibleWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget103> createState() => _Widget103State();
+  State<FlexibleWidget> createState() => _FlexibleWidgetState();
 }
 
-class _Widget103State extends State<Widget103> {
+class _FlexibleWidgetState extends State<FlexibleWidget> {
   TextStyle textStyle = const TextStyle(
     color: Colors.white,
     fontSize: 20,

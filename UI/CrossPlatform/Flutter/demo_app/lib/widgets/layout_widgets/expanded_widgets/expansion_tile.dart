@@ -2,15 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class Widget098 extends StatefulWidget {
-  const Widget098({Key? key}) : super(key: key);
+class ExpansionTileWidget extends StatefulWidget {
+  const ExpansionTileWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget098> createState() => _Widget098State();
+  State<ExpansionTileWidget> createState() => _ExpansionTileWidgetState();
 }
 
-class _Widget098State extends State<Widget098> {
-  final bool _customIcon = false;
+class _ExpansionTileWidgetState extends State<ExpansionTileWidget> {
+  //final bool _customIcon = false;
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,13 @@ class _Widget098State extends State<Widget098> {
       children: <Widget>[
         ExpansionTile(
           title: const Text('Expansion Tile'),
+          onExpansionChanged: (bool expanded) {},
+          controlAffinity: ListTileControlAffinity.leading,
           children: const <Widget>[
             ListTile(
               title: Text('This is tile number'),
             ),
           ],
-          onExpansionChanged: (bool expanded) {},
-          controlAffinity: ListTileControlAffinity.leading,
         ),
       ],
     );

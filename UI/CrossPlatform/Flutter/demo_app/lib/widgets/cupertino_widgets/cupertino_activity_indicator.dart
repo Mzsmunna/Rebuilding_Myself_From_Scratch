@@ -3,14 +3,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Widget052 extends StatefulWidget {
-  const Widget052({Key? key}) : super(key: key);
+class CupertinoActivityIndicatorWidget extends StatefulWidget {
+  const CupertinoActivityIndicatorWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget052> createState() => _Widget052State();
+  State<CupertinoActivityIndicatorWidget> createState() =>
+      _CupertinoActivityIndicatorWidgetState();
 }
 
-class _Widget052State extends State<Widget052> {
+class _CupertinoActivityIndicatorWidgetState
+    extends State<CupertinoActivityIndicatorWidget> {
   @override
   Widget build(BuildContext context) {
     return const CupertinoPageScaffold(

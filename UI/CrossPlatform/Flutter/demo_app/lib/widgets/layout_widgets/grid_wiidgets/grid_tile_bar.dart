@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget114 extends StatelessWidget {
-  const Widget114({Key? key}) : super(key: key);
+class GridTileBarWidget extends StatelessWidget {
+  const GridTileBarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

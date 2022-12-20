@@ -2,8 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 
-class Widget054 extends StatelessWidget {
-  const Widget054({Key? key}) : super(key: key);
+class CupertinoButtonWidget extends StatelessWidget {
+  const CupertinoButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

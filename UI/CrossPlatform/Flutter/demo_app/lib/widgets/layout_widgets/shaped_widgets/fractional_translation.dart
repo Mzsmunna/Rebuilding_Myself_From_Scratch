@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget108 extends StatelessWidget {
-  const Widget108({Key? key}) : super(key: key);
+class FractionalTranslationWidget extends StatelessWidget {
+  const FractionalTranslationWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

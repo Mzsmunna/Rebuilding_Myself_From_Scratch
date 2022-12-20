@@ -4,15 +4,15 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+class MyAnimatedWidget extends StatefulWidget {
+  const MyAnimatedWidget({Key? key}) : super(key: key);
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<MyAnimatedWidget> createState() => _MyAnimatedWidgetState();
 }
 
 /// AnimationControllers can be created with `vsync: this` because of TickerProviderStateMixin.
-class _MyStatefulWidgetState extends State<MyStatefulWidget>
+class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
     with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 10),

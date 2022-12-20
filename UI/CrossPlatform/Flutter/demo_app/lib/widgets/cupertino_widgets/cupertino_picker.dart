@@ -3,14 +3,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Widget059 extends StatefulWidget {
-  const Widget059({Key? key}) : super(key: key);
+class CupertinoPickerWidget extends StatefulWidget {
+  const CupertinoPickerWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget059> createState() => _Widget059State();
+  State<CupertinoPickerWidget> createState() => _CupertinoPickerWidgetState();
 }
 
-class _Widget059State extends State<Widget059> {
+class _CupertinoPickerWidgetState extends State<CupertinoPickerWidget> {
   int _selectedValue = 0;
   @override
   Widget build(BuildContext context) {

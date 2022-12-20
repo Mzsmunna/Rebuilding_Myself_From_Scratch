@@ -1,15 +1,17 @@
-//!
+//!CupertinoAlertDialog
 
 import 'package:flutter/cupertino.dart';
 
-class Widget053 extends StatefulWidget {
-  const Widget053({Key? key}) : super(key: key);
+class CupertinoAlertDialogWidget extends StatefulWidget {
+  const CupertinoAlertDialogWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget053> createState() => _Widget053State();
+  State<CupertinoAlertDialogWidget> createState() =>
+      _CupertinoAlertDialogWidgetState();
 }
 
-class _Widget053State extends State<Widget053> {
+class _CupertinoAlertDialogWidgetState
+    extends State<CupertinoAlertDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

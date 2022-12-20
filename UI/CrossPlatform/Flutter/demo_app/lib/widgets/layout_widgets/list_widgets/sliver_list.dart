@@ -3,8 +3,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget186 extends StatelessWidget {
-  const Widget186({Key? key}) : super(key: key);
+class SliverListWidget extends StatelessWidget {
+  const SliverListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget109 extends StatelessWidget {
-  const Widget109({Key? key}) : super(key: key);
+class FractionallySizedBoxWidget extends StatelessWidget {
+  const FractionallySizedBoxWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

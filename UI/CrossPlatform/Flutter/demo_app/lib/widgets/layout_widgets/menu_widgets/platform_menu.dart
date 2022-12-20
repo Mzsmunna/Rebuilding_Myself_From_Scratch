@@ -1,8 +1,8 @@
 //! PlatformMenu
 import 'package:flutter/material.dart';
 
-class Widget153 extends StatelessWidget {
-  const Widget153({Key? key}) : super(key: key);
+class PlatformMenuWidget extends StatelessWidget {
+  const PlatformMenuWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

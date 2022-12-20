@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget140 extends StatefulWidget {
-  const Widget140({Key? key}) : super(key: key);
+class NavigationBarWidget extends StatefulWidget {
+  const NavigationBarWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget140> createState() => _Widget140State();
+  State<NavigationBarWidget> createState() => _NavigationBarWidgetState();
 }
 
-class _Widget140State extends State<Widget140> {
+class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   int currentIndex = 0;
   static const List body = [
     Icon(Icons.home, size: 50),

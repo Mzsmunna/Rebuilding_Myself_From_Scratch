@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget166 extends StatelessWidget {
-  const Widget166({Key? key}) : super(key: key);
+class RotatedBoxWidget extends StatelessWidget {
+  const RotatedBoxWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

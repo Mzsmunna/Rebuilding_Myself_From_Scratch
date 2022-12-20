@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class Widget161 extends StatelessWidget {
-  const Widget161({Key? key}) : super(key: key);
+class RawAutocompleteWidget extends StatelessWidget {
+  const RawAutocompleteWidget({Key? key}) : super(key: key);
 
   static const List<String> theList = [
     'Venusaur',

@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Widget172 extends StatefulWidget {
-  const Widget172({Key? key}) : super(key: key);
+class SelectableTextWidget extends StatefulWidget {
+  const SelectableTextWidget({Key? key}) : super(key: key);
 
   @override
-  State<Widget172> createState() => _Widget172State();
+  State<SelectableTextWidget> createState() => _SelectableTextWidgetState();
 }
 
-class _Widget172State extends State<Widget172> {
+class _SelectableTextWidgetState extends State<SelectableTextWidget> {
   String text = '';
   @override
   Widget build(BuildContext context) {
