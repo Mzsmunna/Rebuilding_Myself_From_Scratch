@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class spacerWidget extends StatelessWidget {
-  const spacerWidget({Key? key}) : super(key: key);
+class SpacerWidget extends StatelessWidget {
+  const SpacerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

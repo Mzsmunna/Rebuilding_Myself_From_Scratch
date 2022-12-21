@@ -6,10 +6,10 @@ class AnimatedRotationWidget extends StatefulWidget {
   const AnimatedRotationWidget({Key? key}) : super(key: key);
 
   @override
-  State<AnimatedRotationWidget> createState() => AnimatedRotationWidgetState();
+  State<AnimatedRotationWidget> createState() => _AnimatedRotationWidgetState();
 }
 
-class AnimatedRotationWidgetState extends State<AnimatedRotationWidget> {
+class _AnimatedRotationWidgetState extends State<AnimatedRotationWidget> {
   double turns = 0.0;
 
   @override
@@ -29,13 +29,13 @@ class AnimatedRotationWidgetState extends State<AnimatedRotationWidget> {
             ),
           ),
           ElevatedButton(
-            child: const Text('Rotate Logo'),
             style: ElevatedButton.styleFrom(
-              primary: Colors.orangeAccent,
+              backgroundColor: Colors.orangeAccent,
             ),
             onPressed: () {
               setState(() => turns += 1 / 4);
             },
+            child: const Text('Rotate Logo'),
           ),
         ],
       ),

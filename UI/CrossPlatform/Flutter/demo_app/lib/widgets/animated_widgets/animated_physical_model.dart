@@ -6,11 +6,11 @@ class AnimatedPhysicalModelWidget extends StatefulWidget {
   const AnimatedPhysicalModelWidget({Key? key}) : super(key: key);
 
   @override
-  AnimatedPhysicalModelWidgetState createState() =>
-      AnimatedPhysicalModelWidgetState();
+  _AnimatedPhysicalModelWidgetState createState() =>
+      _AnimatedPhysicalModelWidgetState();
 }
 
-class AnimatedPhysicalModelWidgetState
+class _AnimatedPhysicalModelWidgetState
     extends State<AnimatedPhysicalModelWidget> {
   bool _isFlat = true;
   @override
