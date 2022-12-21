@@ -12,17 +12,25 @@ import 'package:flutter/material.dart';
 import '../../../widgets/access_widgets.dart';
 
 class FlutterWidgetList extends StatefulWidget {
-  const FlutterWidgetList({Key? key}) : super(key: key);
+  FlutterWidgetList({Key? key, String this.viewType = ''}) : super(key: key);
+  String viewType;
 
   @override
-  _FlutterWidgetListState createState() => _FlutterWidgetListState();
+  _FlutterWidgetListState createState() =>
+      _FlutterWidgetListState(viewType: this.viewType);
 }
 
 class _FlutterWidgetListState extends State<FlutterWidgetList> {
+  _FlutterWidgetListState({String this.viewType = ''});
+  String viewType;
+
   @override
   Widget build(BuildContext context) {
-    //return ListView(children: _getListViewDataList());
-    return ListView(children: _getExpansionTileDataList());
+    if (viewType == "list") {
+      return ListView(children: _getListViewDataList());
+    } else {
+      return ListView(children: _getExpansionTileDataList());
+    }
   }
 
   Widget _getListTileWidget(Widget bindWidget, String title) {

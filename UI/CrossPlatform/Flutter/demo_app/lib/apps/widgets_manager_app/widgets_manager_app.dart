@@ -14,11 +14,42 @@ class WidgetsManagerApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Review Flutter Widgets"),
-        ),
-        body: const FlutterWidgetList(),
+        appBar: MyAppBar(),
+        body: FlutterWidgetList(),
       ),
+    );
+  }
+}
+
+class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
+  MyAppBar() : super();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(60);
+
+  @override
+  _MyAppBarState createState() => _MyAppBarState();
+}
+
+class _MyAppBarState extends State<MyAppBar> {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: const Text("Review Flutter Widgets"),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.list_alt),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: const Icon(Icons.library_books_outlined),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: const Icon(Icons.grid_on),
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }
