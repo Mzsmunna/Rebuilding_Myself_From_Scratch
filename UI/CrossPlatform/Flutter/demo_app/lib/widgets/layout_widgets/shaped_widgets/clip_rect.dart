@@ -8,7 +8,7 @@ class ClipRectWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ClipRect(
-        clipper: MyClipper(),
+        clipper: MyClipperRect(),
         child: Container(
           width: 3000,
           height: 3000,
@@ -19,7 +19,7 @@ class ClipRectWidget extends StatelessWidget {
   }
 }
 
-class MyClipper extends CustomClipper<Rect> {
+class MyClipperRect extends CustomClipper<Rect> {
   @override
   Rect getClip(Size size) {
     return const Rect.fromLTWH(50, 0, 80, 80);

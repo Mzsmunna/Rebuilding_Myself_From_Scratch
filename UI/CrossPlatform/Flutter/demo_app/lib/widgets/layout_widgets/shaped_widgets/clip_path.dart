@@ -7,7 +7,7 @@ class ClipPathWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: MyClipper(),
+      clipper: MyClipperPath(),
       child: Container(
         width: double.infinity,
         height: 300,
@@ -17,7 +17,7 @@ class ClipPathWidget extends StatelessWidget {
   }
 }
 
-class MyClipper extends CustomClipper<Path> {
+class MyClipperPath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     return Path()

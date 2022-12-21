@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 //! Center
 
-class CenterWidget extends StatefulWidget {
-  const CenterWidget({Key? key}) : super(key: key);
+class BottomSheetWidget extends StatefulWidget {
+  const BottomSheetWidget({Key? key}) : super(key: key);
 
   @override
-  State<CenterWidget> createState() => _CenterWidgetState();
+  State<BottomSheetWidget> createState() => _BottomSheetWidgetState();
 }
 
-class _CenterWidgetState extends State<CenterWidget> {
+class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(

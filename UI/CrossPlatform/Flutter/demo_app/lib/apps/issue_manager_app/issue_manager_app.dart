@@ -1,5 +1,5 @@
 ﻿import 'package:flutter/material.dart';
-import './../../widgets/app_widgets.dart';
+import '../../widgets/access_widgets.dart';
 
 class IssueManagerApp extends StatelessWidget {
   const IssueManagerApp({super.key});

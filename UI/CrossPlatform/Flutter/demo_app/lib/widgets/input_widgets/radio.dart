@@ -9,10 +9,10 @@ class RadioWidget extends StatefulWidget {
   State<RadioWidget> createState() => _RadioWidgetState();
 }
 
-List<String> options = ['Option 1', 'Option 2'];
+List<String> _options = ['Option 1', 'Option 2'];
 
 class _RadioWidgetState extends State<RadioWidget> {
-  String currentOption = options[0];
+  String currentOption = _options[0];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class _RadioWidgetState extends State<RadioWidget> {
         ListTile(
           title: const Text('Option 1'),
           leading: Radio(
-            value: options[0],
+            value: _options[0],
             groupValue: currentOption,
             onChanged: (value) {
               setState(() {
@@ -33,7 +33,7 @@ class _RadioWidgetState extends State<RadioWidget> {
         ListTile(
           title: const Text('Option 2'),
           leading: Radio(
-            value: options[1],
+            value: _options[1],
             groupValue: currentOption,
             onChanged: (value) {
               setState(() {

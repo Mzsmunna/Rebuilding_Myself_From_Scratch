@@ -1,15 +1,15 @@
-//!CupertinoTabBar
+//!CupertinoTabView
 
 import 'package:flutter/cupertino.dart';
 
-class CupertinoTabBarWidget extends StatefulWidget {
-  const CupertinoTabBarWidget({Key? key}) : super(key: key);
+class CupertinoTabViewWidget extends StatefulWidget {
+  const CupertinoTabViewWidget({Key? key}) : super(key: key);
 
   @override
-  State<CupertinoTabBarWidget> createState() => _CupertinoTabBarWidgetState();
+  State<CupertinoTabViewWidget> createState() => _CupertinoTabViewWidgetState();
 }
 
-class _CupertinoTabBarWidgetState extends State<CupertinoTabBarWidget> {
+class _CupertinoTabViewWidgetState extends State<CupertinoTabViewWidget> {
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
