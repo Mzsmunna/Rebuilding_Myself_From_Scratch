@@ -15,7 +15,7 @@ class _ClipRRectWidgetState extends State<ClipRRectWidget> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
         child: Image.asset(
-          'assets/icon/ocean.jpg',
+          'lib/assets/icons/wave.png',
           width: 350,
         ),
       ),
