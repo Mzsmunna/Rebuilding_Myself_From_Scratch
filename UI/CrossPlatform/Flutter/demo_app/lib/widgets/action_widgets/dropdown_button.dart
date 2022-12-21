@@ -18,10 +18,10 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
       child: DropdownButton<String>(
         value: dropdownValue,
         icon: const Icon(Icons.menu),
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.black87),
         underline: Container(
           height: 2,
-          color: Colors.white,
+          color: Colors.black54,
         ),
         onChanged: (String? newValue) {
           setState(() {

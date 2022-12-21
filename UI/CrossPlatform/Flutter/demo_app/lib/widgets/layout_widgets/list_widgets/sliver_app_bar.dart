@@ -28,7 +28,7 @@ class _SliverAppBarWidgetState extends State<SliverAppBarWidget> {
             flexibleSpace: FlexibleSpaceBar(
               title: const Text('Flutter Mapp'),
               background: Image.asset(
-                'assets/icon/ocean.jpg',
+                'lib/assets/icons/wave.png',
                 fit: BoxFit.cover,
               ),
             ),
