@@ -9,7 +9,7 @@ class TooltipWidget extends StatelessWidget {
     return Center(
       child: Tooltip(
         message: 'This is an image',
-        child: Image.asset('assets/icon/ocean.jpg'),
+        child: Image.asset('lib/assets/icons/wave.png'),
       ),
     );
   }

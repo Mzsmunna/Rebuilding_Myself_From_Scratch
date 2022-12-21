@@ -12,12 +12,12 @@ class StackWidget extends StatelessWidget {
         children: [
           Center(
             child: Image.asset(
-              'assets/icon/ocean.jpg',
+              'lib/assets/icons/wave.png',
             ),
           ),
           Center(
             child: Image.asset(
-              'assets/icon/blue.jpg',
+              'lib/assets/icons/ocean.png',
               width: 300,
             ),
           ),

@@ -11,7 +11,7 @@ class WidgetsManagerApp extends StatelessWidget {
       title: 'Demo AFF',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blueGrey,
       ),
       home: Scaffold(
         appBar: AppBar(
