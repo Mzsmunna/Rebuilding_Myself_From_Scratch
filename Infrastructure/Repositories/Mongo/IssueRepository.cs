@@ -14,11 +14,11 @@ using System.Text.RegularExpressions;
 
 namespace Repositories.Mongo
 {
-    public class IssueRepository : MongoDBBase<Issue, IssueConfiguration>, IIssueRepository
+    public class IssueRepository : MongoDBBase<Issue>, IIssueRepository
     {
         private readonly IMongoCollection<Issue> _collection;
         
-        public IssueRepository(IMongoDBContext context) : base(context)
+        public IssueRepository(IMongoDBContext context, IssueConfiguration entityConfig) : base(context, entityConfig)
         {
             _collection = mongoCollection;
         }

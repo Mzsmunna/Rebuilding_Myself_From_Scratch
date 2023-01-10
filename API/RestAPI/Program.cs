@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using Repositories.Mongo;
+using Repositories.Mongo.Configs;
 using Repositories.Mongo.Core;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
@@ -23,6 +24,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<MongoDBSettings>(_configuration.GetSection(nameof(MongoDBSettings)));
 builder.Services.AddTransient<MongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
 builder.Services.AddTransient<IMongoDBContext, MongoDBContext>();
+
+builder.Services.AddScoped<UserConfiguration>();
+builder.Services.AddScoped<IssueConfiguration>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IIssueRepository, IssueRepository>();

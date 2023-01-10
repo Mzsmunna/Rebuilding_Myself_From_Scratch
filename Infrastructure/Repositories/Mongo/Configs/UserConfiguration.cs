@@ -31,6 +31,8 @@ namespace Repositories.Mongo.Configs
                     //map.MapProperty(x => x.ModifiedBy).SetElementName("ModifiedBy");
                     //map.GetMemberMap(x => x.ModifiedBy).SetSerializer(new StringSerializer(BsonType.ObjectId));
                 });
+
+                return _collectionName;
             }
 
             //if (!BsonClassMap.IsClassMapRegistered(typeof(Guide)))
@@ -42,7 +44,7 @@ namespace Repositories.Mongo.Configs
             //    });
             //}
 
-            return _collectionName;
+            return string.Empty;
         }
     }
 }

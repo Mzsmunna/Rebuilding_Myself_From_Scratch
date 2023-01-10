@@ -13,10 +13,10 @@ using System.Threading.Tasks;
 
 namespace Repositories.Mongo
 {
-    public class UserRepository : MongoDBBase<User, UserConfiguration>, IUserRepository
+    public class UserRepository : MongoDBBase<User>, IUserRepository
     {
         private readonly IMongoCollection<User> _collection;
-        public UserRepository(IMongoDBContext dbContext) : base(dbContext)
+        public UserRepository(IMongoDBContext dbContext, UserConfiguration entityConfig) : base(dbContext, entityConfig)
         {
             _collection = mongoCollection;
         }

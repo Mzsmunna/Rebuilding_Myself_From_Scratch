@@ -25,9 +25,11 @@ namespace Repositories.Mongo.Configs
                     map.MapProperty(x => x.Id).SetElementName("_id");
                     map.GetMemberMap(x => x.Id).SetSerializer(new StringSerializer(BsonType.ObjectId));
                 });
+
+                return _collectionName;
             }
 
-            return _collectionName;
+            return string.Empty;
         }
     }
 }

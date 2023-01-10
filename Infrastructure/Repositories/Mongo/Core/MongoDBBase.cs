@@ -9,14 +9,12 @@ using System.Threading.Tasks;
 
 namespace Repositories.Mongo.Core
 {
-    public class MongoDBBase<T, T2> where T : class where T2 : IEntityConfiguration, new()
+    public class MongoDBBase<T> where T : class
     {
         protected readonly IMongoCollection<T> mongoCollection;
 
-        public MongoDBBase(IMongoDBContext dBContext)
+        public MongoDBBase(IMongoDBContext dBContext, IEntityConfiguration entityConfig)
         {
-            IEntityConfiguration entityConfig = new T2();
-
             string collectionName = entityConfig.Register();
 
             if (string.IsNullOrEmpty(collectionName))
