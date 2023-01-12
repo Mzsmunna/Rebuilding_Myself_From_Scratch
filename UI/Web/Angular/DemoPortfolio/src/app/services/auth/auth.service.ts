@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import jwt_decode, { JwtPayload } from 'jwt-decode'
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../view_models/auth/user.model';
 import { AlertService } from '../common/alert/alert.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,11 @@ export class AuthService {
   Login(user: User) {
 
     return this.http.post(this.baseApiUrl + 'Login', user, { responseType: 'text' });
+  }
+
+  LoginWithGoogle(credentials: string): Observable<any> {
+    const header = new HttpHeaders().set('Content-type', 'application/json');
+    return this.http.post(this.baseApiUrl + "LoginWithGoogle", JSON.stringify(credentials), { headers: header });
   }
 
   GetLoggedUser() {
