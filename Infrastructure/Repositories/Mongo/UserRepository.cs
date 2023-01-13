@@ -44,6 +44,21 @@ namespace Repositories.Mongo
             return null;
         }
 
+        public async Task<User> LoginUser(string email)
+        {
+            var filter = Builders<User>.Filter.Empty;
+            filter &= Builders<User>.Filter.Eq(x => x.IsActive, true);
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                filter &= Builders<User>.Filter.Eq(x => x.Email, email.ToLower());
+
+                return await _collection.Find(filter).FirstOrDefaultAsync();
+            }
+
+            return null;
+        }
+
         public async Task<User> RegisterUser(string email)
         {
             var filter = Builders<User>.Filter.Empty;

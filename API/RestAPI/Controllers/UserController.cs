@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Entities.Authentication;
 using Domain.Interfaces;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -70,6 +71,51 @@ namespace RestAPI.Controllers
                     user.PasswordSalt = passwordSalt;
 
                     if (!VerifyPasswordHash(user.Password, user.PasswordHash, user.PasswordSalt))
+                    {
+                        return StatusCode(StatusCodes.Status403Forbidden, "Wrong credential.");
+                    }
+                    else
+                    {
+                        string token = CreateToken(existingUser);
+                        var refreshToken = GenerateRefreshToken();
+                        SetRefreshToken(refreshToken, existingUser);
+                        return Ok(token);
+                    }
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status204NoContent, "User doesn't exist.");
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [ActionName("LoginWithGoogle")]
+        public async Task<IActionResult> LoginWithGoogle([FromBody] string credential)
+        {
+            var settings = new GoogleJsonWebSignature.ValidationSettings()
+            {
+                Audience = new List<string> { "729270420162-eqgm0blm2u34lgu9m9ck0b6cq6q47oi3.apps.googleusercontent.com" }
+            };
+
+            var payload = await GoogleJsonWebSignature.ValidateAsync(credential, settings);
+
+            if (payload != null)
+            {
+                var existingUser = _userRepository.LoginUser(payload.Email).Result;
+
+                if (existingUser != null)
+                {
+                    CreatePasswordHash(existingUser.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+                    existingUser.PasswordHash = passwordHash;
+                    existingUser.PasswordSalt = passwordSalt;
+
+                    if (!VerifyPasswordHash(existingUser.Password, existingUser.PasswordHash, existingUser.PasswordSalt))
                     {
                         return StatusCode(StatusCodes.Status403Forbidden, "Wrong credential.");
                     }

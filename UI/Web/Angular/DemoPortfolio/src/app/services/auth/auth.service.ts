@@ -35,9 +35,9 @@ export class AuthService {
     return this.http.post(this.baseApiUrl + 'Login', user, { responseType: 'text' });
   }
 
-  LoginWithGoogle(credentials: string): Observable<any> {
+  LoginWithGoogle(credentials: string): Observable<string> {
     const header = new HttpHeaders().set('Content-type', 'application/json');
-    return this.http.post(this.baseApiUrl + "LoginWithGoogle", JSON.stringify(credentials), { headers: header });
+    return this.http.post(this.baseApiUrl + "LoginWithGoogle", JSON.stringify(credentials), { headers: header, responseType: 'text' }) as Observable<string>;
   }
 
   GetLoggedUser() {

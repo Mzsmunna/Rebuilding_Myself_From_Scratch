@@ -48,23 +48,34 @@ export class LoginComponent extends UnsubscribeService implements OnInit, OnDest
   }
 
   async handleCredentialResponse(response: CredentialResponse) {
-    debugger;
-    await this.authService.LoginWithGoogle(response.credential).subscribe(
-      (x: any) => {
+    //debugger;
+    await this.authService.LoginWithGoogle(response.credential).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
+
+      console.log(result);
+
+      if (result) {
+
         localStorage.removeItem("token");
         localStorage.clear();
-        localStorage.setItem('token', x.token);
+        localStorage.setItem('token', result);
         this.alertService.Success("Login Successful!!", "Yay!!", true);
 
         this.ngZone.run(() => {
           this.route.navigate(['/home']);
         })
-        
-      },
-      (error: any) => {
-        console.log(error);
+
+      } else {
+
+        console.log("Login Failed!");
+        this.alertService.Error("Please try again!!", "Login failed!!", true);
       }
-    );
+    },
+    error => {
+
+      console.log("login server error:", error);
+      this.alertService.Error("Please try again!!", "Login failed!!", true);
+    },
+    () => console.log('yay'));
   }
 
   Login(isValid: boolean) {
