@@ -13,8 +13,12 @@ namespace Domain.Enums.CricMz
         Domestic,
         Franchise,
         League, 
-        Local, 
-        Gully, 
-        Others
+        Local,
+        Gully,
+        Street,
+        Indoor,
+        Book,
+        Paper,
+        Other
     }
 }

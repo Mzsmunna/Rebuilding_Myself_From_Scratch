@@ -17,6 +17,8 @@ namespace Domain.Entities.CricMz
         public bool IsNational { get; set; } = true;
         public bool IsDomestic { get; set; } = true;
         public bool IsFranchise { get; set; } = true;
+        public bool IsLocal { get; set; } = true;
+        public bool IsSGI { get; set; } = true; // Street-Gully-Indoor
 
 
         //[Squard] , [Playing XI] , [Bench] , [Batting] , [Bowling]
