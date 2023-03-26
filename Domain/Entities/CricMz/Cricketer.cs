@@ -58,6 +58,27 @@ namespace Domain.Entities.CricMz
         public FieldingStat FieldingStat { get; set; }
     }
 
+    public class Batter
+    {
+        public BasicInfo BatterInfo { get; set; } = new BasicInfo();
+        public int Matches { get; set; } = 0;
+        public int Innings { get; set; } = 0;
+        public int TotalRuns { get; set; } = 0;
+        public int TotalBallFaced { get; set; } = 0;
+        public int Runs { get; set; } = 0;
+        public int BallFaced { get; set; } = 0;
+        public int Best { get; set; } = 0;
+        public float Average { get; set; } = 0;
+        public float StrikeRate { get; set; } = 0;
+        public int Ones { get; set; } = 0;
+        public int Twos { get; set; } = 0;
+        public int Threes { get; set; } = 0;
+        public int Fours { get; set; } = 0;
+        public int Sixes { get; set; } = 0;
+        public int Fifties { get; set; } = 0;
+        public int Centuries { get; set; } = 0;
+    }
+
     public class BattingStat
     {
         public int Innings { get; set; } = 0;

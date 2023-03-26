@@ -22,12 +22,12 @@ namespace Domain.Entities.CricMz
         public bool IsKeeper { get; set; }
         public bool IsSubstitute { get; set; }
         public bool IsInjured { get; set; }
-        public Batting BattingPerformance { get; set; }
-        public Bowling BowlingPerformance { get; set; }
-        public Fielding FieldingPerformance { get; set; }
+        public BattingPerformance BattingPerformance { get; set; }
+        public BowlingPerformance BowlingPerformance { get; set; }
+        public FieldingPerformance FieldingPerformance { get; set; }
     }
 
-    public class Batting
+    public class BattingPerformance
     {
         public int BattingOrder { get; set; } = 0;
         public string BattingHand { get; set; } = string.Empty;
@@ -54,7 +54,7 @@ namespace Domain.Entities.CricMz
         public DateTime? PlayerOut { get; set; }
     }
 
-    public class Bowling
+    public class BowlingPerformance
     {
         public string BowlingArm { get; set; } = string.Empty; // left, right,
         public string BowlingAction { get; set; } = string.Empty; // pacer, spinner,
@@ -77,7 +77,7 @@ namespace Domain.Entities.CricMz
         public int Unlucky { get; set; } = 0;
     }
 
-    public class Fielding
+    public class FieldingPerformance
     {
         public string FieldingPositions { get; set; } = string.Empty; // ","
         public string FieldingZones { get; set; } = string.Empty; // ","
