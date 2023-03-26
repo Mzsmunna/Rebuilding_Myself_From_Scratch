@@ -21,9 +21,9 @@ namespace Domain.Entities.CricMz
         public Batting NonStrikerBatsman { get; set; } = new Batting();
         public Bowling Bowler { get; set; } = new Bowling();
         public BasicInfo FieldingSetupInfo { get; set; } = new BasicInfo();
-        public Fielding FielderInfo { get; set; } = new Fielding();
-        public Fielding AssistFielderInfo { get; set; } = new Fielding();
-        public Fielding WicketKeeperInfo { get; set; } = new Fielding();
+        public Fielding Fielder { get; set; } = new Fielding();
+        public Fielding AssistFielder { get; set; } = new Fielding();
+        public Fielding WicketKeeper { get; set; } = new Fielding();
         public int Runs { get; set; } = 0;
         public string RunType { get; set; } = string.Empty; // dot, single, double, triple, boundary / four, over-boundary / six
         public bool IsOut { get; set; }
