@@ -33,10 +33,13 @@ namespace Domain.Entities.CricMz
         public string ExtraSpecificReason { get; set; } = string.Empty; // by, leg_by, wide-outside_leg, wide-outside-off, wide-height, noball-height, noball-overstepping, noball-max_bouncers, noball-fake_fielding, noball-fielding_rules_voilance
         public int BonusRuns { get; set; } = 0;
         public string BonusReason { get; set; } = string.Empty; // miss field, overthrow, overboundary, fake fielding, fielding rules voilance, hitting helmet on field etc
-        public double CurrentOver { get; set; } = 0; //12.1, 25.5, 49, etc
-        public int BallNo { get; set; } = 0;
-        //public string OverID { get; set; } = string.Empty;
-        public string CreatedOn { get; set; } = string.Empty;
+        public double Overs { get; set; } = 0; //12, 25, 49, etc
+        public int OversBallNo { get; set; } = 0; // Max =  6 / 5
+        public int InningsBallNo { get; set; } = 0;
+        public string BallOverview { get; set; } = string.Empty;
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTime? ModifiedOn { get; set; }
+        public string ModificationReason { get; set; } = string.Empty;
     }
 
     public class Batting
@@ -48,6 +51,9 @@ namespace Domain.Entities.CricMz
         public int TotalBalls { get; set; } = 0;
         public int TotalFours { get; set; } = 0;
         public int TotalSixes { get; set; } = 0;
+        public int BoundariesInARow { get; set; } = 0;
+        public int FoursInARow { get; set; } = 0;
+        public int SixesInARow { get; set; } = 0;
         public double Batspeed { get; set; } = 0;
         public bool IsDefended { get; set; }
         public bool IsMissed { get; set; }
@@ -56,7 +62,7 @@ namespace Domain.Entities.CricMz
         public bool IsEdge { get; set; }
         public bool IsOut { get; set; }
         public int HitDistance { get; set; } = 0;
-        public int HitAngle { get; set; } = 0; // angle degree + hdista
+        public int HitAngle { get; set; } = 0; // angle degree + height-distance
         public string HittingZone { get; set; } = string.Empty; // 0-11
         public string HittingArea { get; set; } = string.Empty; // straight, long-on, long-off, cover, 3rd man, etc
         public string ShotSelection { get; set; } = string.Empty; // straight-drive, cover-drive, square-drive, square-cut, pull, hook, sweep etc
@@ -74,10 +80,15 @@ namespace Domain.Entities.CricMz
         public BasicInfo TeamInfo { get; set; } = new BasicInfo();
         public bool IsWicketTaken { get; set; }
         public int Runs { get; set; } = 0;
+        public int TotalDots { get; set; } = 0;
+        public int TotalMaidens { get; set; } = 0;
         public int TotalRuns { get; set; } = 0;
         public int TotalBalls { get; set; } = 0;
         public int TotalWideBalls { get; set; } = 0;
         public int TotalNoBalls { get; set; } = 0;
+        public int DotsInARow { get; set; } = 0;
+        public int MaidensInARow { get; set; } = 0;
+        public int WicketsInARow { get; set; } = 0;
         public int Wickets { get; set; } = 0;
         public double BallSpeed { get; set; } = 0;
         public string BowlingArm { get; set; } = string.Empty; // left, right,
@@ -87,6 +98,7 @@ namespace Domain.Entities.CricMz
         public string BallPitched { get; set; } = string.Empty; //(x, y) coordinate value
         public string BallLength { get; set; } = string.Empty; // good, full, short, yourker, half-holly, etc
         public bool IsReviewed { get; set; }
+        public bool IsMaidenBall { get; set; }
         public bool IsReviewLost { get; set; }
         public int Spells { get; set; } = 0;
         public string Milestone { get; set; } = string.Empty; // HAT-TRICK, FIFER
@@ -116,9 +128,11 @@ namespace Domain.Entities.CricMz
     public class Umpiring
     {
         public BasicInfo UmpireInfo { get; set; } = new BasicInfo();
+        public bool IsRequestedDoubleChecked { get; set; }
         public bool IsDecitionDoubleChecked { get; set; }
         public bool IsThirdUmpireCalled { get; set; }
         public bool IsGivenOut { get; set; }
+        public bool IsReviewing { get; set; }
         public bool IsReviewOverturned { get; set; }
         public string ReviewOverview { get; set; } = string.Empty; // EDGE, HITTING WICKET, UMPIRE-CALL, MISSING-WICKET, NO-EDGE
         public string SoftSignal { get; set; } = string.Empty; // OUT / NOT OUT / None
