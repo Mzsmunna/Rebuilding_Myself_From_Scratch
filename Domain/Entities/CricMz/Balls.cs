@@ -11,7 +11,8 @@ namespace Domain.Entities.CricMz
         public string ID { get; set; } = string.Empty;
         public BasicInfo MatchInfo { get; set; } = new BasicInfo();
         public Commentating Commentary { get; set; } = new Commentating();
-        public BasicInfo ClipInfo { get; set; } = new BasicInfo();
+        public BasicInfo? ClipInfo { get; set; } = null;
+        public WeatherForecast? WeatherForecast { get; set; } = null;
         //public List<string> MomentIDs { get; set; } = new List<string>();
         public Umpiring StampUmpire { get; set; } = new Umpiring();
         public Umpiring LegUmpire { get; set; } = new Umpiring();
@@ -24,18 +25,24 @@ namespace Domain.Entities.CricMz
         public Fielding Fielder { get; set; } = new Fielding();
         public Fielding AssistFielder { get; set; } = new Fielding();
         public Fielding WicketKeeper { get; set; } = new Fielding();
+        public int Innings { get; set; } = 1; // TEST_MAX => 4, REST_MAX => 2
         public int Runs { get; set; } = 0;
         public string RunType { get; set; } = string.Empty; // dot, single, double, triple, boundary / four, over-boundary / six
         public bool IsOut { get; set; }
-        public string OutType { get; set; } = string.Empty; // RunOut, Caught, CaughtBehind, Blowled, LBW, HitWicket, Stumped, Mankading
+        public string OutType { get; set; } = string.Empty; // RunOut, Caught, CaughtBehind, Caught&Bowled, Blowled, LBW, HitWicket, Stumped, Mankading, RetiredHurt, RetiredOut, TimedOut, HitBallTwice, ObstructingField, Absent
+        public string MatchType { get; set; } = string.Empty; // street, gully, rooftop, indoor, book, paper, local, area, national, international, league, franchise, friendly, charity
+        public string MatchFormat { get; set; } = string.Empty; // Limited, ODI, ODI_40, TEST, TEST_4D, TEST_3D, T20I, T20, T10, SAS => Six_A_Site
+        public string MatchBallType { get; set; } = string.Empty; // pingpong, sponge, plastic, rubber, tennis, tape_tennis, synthetic, hockey, cork, red_leather, white_leather, pink_leather, other
+        public string MatchPitchType { get; set; } = string.Empty; // rough, cement, turf, astroturf, matting, green, dry, dusty, flat_track, wet, dead
         public int Extras { get; set; } = 0;
         public string ExtraReason { get; set; } = string.Empty; // bye, leg_bye, wide, noball
         public string ExtraSpecificReason { get; set; } = string.Empty; // bye, leg_bye, wide-outside_leg, wide-outside-off, wide-height, noball-height, noball-overstepping, noball-max_bouncers, noball-fake_fielding, noball-fielding_rules_voilance
         public int BonusRuns { get; set; } = 0;
         public string BonusReason { get; set; } = string.Empty; // miss field, overthrow, overboundary, fake fielding, fielding rules voilance, hitting helmet on field etc
-        public double Overs { get; set; } = 0; //12, 25, 49, etc
-        public int OversBallNo { get; set; } = 0; // Max =  6 / 5
-        public int InningsBallNo { get; set; } = 0;
+        public double Over { get; set; } = 0; //12, 25, 49, etc
+        public int OverBallNo { get; set; } = 0; // Max =  6 / 5
+        public int TotalOver { get; set; } = 0; // 10, 20, 50, 90, etc
+        public int ReducedOverTo { get; set; } = 0; // 8, 18, 27, 35, etc
         public string BallOverview { get; set; } = string.Empty;
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
@@ -46,15 +53,26 @@ namespace Domain.Entities.CricMz
     {
         public BasicInfo BatsmanInfo { get; set; } = new BasicInfo();
         public BasicInfo TeamInfo { get; set; } = new BasicInfo();
-        public int Runs { get; set; } = 0;
-        public int TotalRuns { get; set; } = 0;
-        public int TotalBalls { get; set; } = 0;
-        public int TotalFours { get; set; } = 0;
-        public int TotalSixes { get; set; } = 0;
-        public int BoundariesInARow { get; set; } = 0;
-        public int FoursInARow { get; set; } = 0;
-        public int SixesInARow { get; set; } = 0;
-        public double Batspeed { get; set; } = 0;
+        public int TeamTarget { get; set; } = 0;
+        public int TeamScore { get; set; } = 0;
+        public int TeamBalls { get; set; } = 0;
+        public int TeamWickets { get; set; } = 0; //1, 2, 4, etc
+        public int TeamFours { get; set; } = 0;
+        public int TeamSixes { get; set; } = 0;
+        public int TeamExtra { get; set; } = 0;
+        public int TeamBonus { get; set; } = 0;
+        public double CurrentRunRate { get; set; } = 0; //12, 25, 49, etc
+        public double RequireRunRate { get; set; } = 0; //12, 25, 49, etc
+        public int RemainingBalls { get; set; } = 0;
+        public int PlayerRuns { get; set; } = 0;
+        public int PlayerScore { get; set; } = 0;
+        public int PlayerBalls { get; set; } = 0;
+        public int PlayerFours { get; set; } = 0;
+        public int PlayerSixes { get; set; } = 0;
+        public int PlayerBoundariesInARow { get; set; } = 0;
+        public int PlayerFoursInARow { get; set; } = 0;
+        public int PlayerSixesInARow { get; set; } = 0;
+        public double PlayerBatspeed { get; set; } = 0;
         public bool IsDefended { get; set; }
         public bool IsMissed { get; set; }
         public bool IsLeftAlone { get; set; }
@@ -69,6 +87,8 @@ namespace Domain.Entities.CricMz
         public bool IsReviewed { get; set; }
         public bool IsReviewLost { get; set; }
         public bool IsRetiredHurt { get; set; }
+        public bool IsInjured { get; set; }
+        public string InjuredReason { get; set; } = string.Empty;
         public int Minutes { get; set; } = 0;
         public string Milestone { get; set; } = string.Empty; // FIFTIES, HUNDREDS, DOUBLE-HUNDREDS, TRIPLE-HUNDREDS, 6SIXES, 6FOURS,
         public string Achievement { get; set; } = string.Empty; // 500RUNS, 1000RUNS, 2000RUNS, 5000RUNS & 100WICKETS, ETC
@@ -96,9 +116,11 @@ namespace Domain.Entities.CricMz
         public string BowlingArm { get; set; } = string.Empty; // left, right,
         public string BowlingAction { get; set; } = string.Empty; // pacer, spinner,
         public string BowlingStyle { get; set; } = string.Empty; // Leg, Off, Left Arm, Right Arm, Medium, etc
-        public string BallType { get; set; } = string.Empty; // In Swing, Out Swing, Googly, Doosra, etc
+        public string BowlingType { get; set; } = string.Empty; // In Swing, Out Swing, Googly, Doosra, etc
         public string BallPitched { get; set; } = string.Empty; //(x, y) coordinate value
         public string BallLength { get; set; } = string.Empty; // good, full, short, yourker, half-holly, etc
+        public bool IsInjured { get; set; }
+        public string InjuredReason { get; set; } = string.Empty;
         public bool IsReviewed { get; set; }
         public bool IsMaidenBall { get; set; }
         public bool IsReviewLost { get; set; }
@@ -111,6 +133,8 @@ namespace Domain.Entities.CricMz
     {
         public BasicInfo FielderInfo { get; set; } = new BasicInfo();
         public string FielderPosition { get; set; } = string.Empty; //gully, silly, 1st-slip, 2nd-slip, keeping etc
+        public bool IsInjured { get; set; }
+        public string InjuredReason { get; set; } = string.Empty;
         public bool IsSubstituteFilder { get; set; }
         public bool IsCatchTaken { get; set; }
         public bool IsSloppyCatch { get; set; }
@@ -138,18 +162,21 @@ namespace Domain.Entities.CricMz
         public bool IsReviewOverturned { get; set; }
         public string ReviewOverview { get; set; } = string.Empty; // EDGE, HITTING WICKET, UMPIRE-CALL, MISSING-WICKET, NO-EDGE
         public string SoftSignal { get; set; } = string.Empty; // OUT / NOT OUT / None
+        public bool IsInjured { get; set; }
+        public string InjuredReason { get; set; } = string.Empty;
     }
 
     public class Commentating
     {
         public BasicInfo CommenterInfo { get; set; } = new BasicInfo();
-        //public BasicInfo CommentInfo { get; set; } = new BasicInfo();
         public string Comment { get; set; } = string.Empty;
         public string Speech { get; set; } = string.Empty;
     }
 
-    public class Weathering
+    public class WeatherForecast
     {
-        
+        public string WeatherCondition { get; set; } = string.Empty; // t29c; h35c; cloudy / rainy / sunny / clear;
+        public bool IsFoggy { get; set; }
+        public bool IsWetOutfield { get; set; }
     }
 }
