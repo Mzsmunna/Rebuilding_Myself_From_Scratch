@@ -20,6 +20,7 @@ namespace Domain.Entities.CricMz
         public string MatchFormats { get; set; } = string.Empty;
         public int MatchNo { get; set; } = 1;
 
+        public MatchConfig MatchConfig { get; set; } = new MatchConfig();
         public BasicInfo TournamentInfo { get; set; } = new BasicInfo();
         public BasicInfo SeriesInfo { get; set; } = new BasicInfo();
         public BasicInfo StadiumInfo { get; set; } = new BasicInfo();
@@ -54,20 +55,86 @@ namespace Domain.Entities.CricMz
         public DateTime MatchEndedAt { get; set; }
 
 
-	//- List<Balls>
+	    //- List<Balls>
  
-	//- Stats(Most runs, wickets, etc)
-	//- TeamA -> {
- //   } 
-	//- TeamB-> {[Squard] , [Playing XI] , [Bench] , [Batting] , [Bowling]
-}
-//-ScoreCard: { }
-//-HostTeamID:
-//	-DRS;
-//-Highlights:
-//	-Bet(in future)
-//    - User friendly Adds
-//	- better / unique animations (in future) 
-//	-News Feeds(Blogs, Vlogs, Content, Memes, Posts)[in future]
-//    }
+	    //- Stats(Most runs, wickets, etc)
+	    //- TeamA -> {
+     //   } 
+	    //- TeamB-> {[Squard] , [Playing XI] , [Bench] , [Batting] , [Bowling]
+    }
+    //-ScoreCard: { }
+    //-HostTeamID:
+    //	-DRS;
+    //-Highlights:
+    //	-Bet(in future)
+    //    - User friendly Adds
+    //	- better / unique animations (in future) 
+    //	-News Feeds(Blogs, Vlogs, Content, Memes, Posts)[in future]
+    //    }
+
+    public class MatchConfig
+    {
+        public string ID { get; set; } = string.Empty;
+        public string TossType { get; set; } = string.Empty; // CoinFlip, BatFlip, Numbering, BlindNamePickForNumber,
+        public string MatchType { get; set; } = string.Empty; // street, gully, rooftop, indoor, book, paper, local, area, national, international, league, franchise, friendly, charity
+        public string MatchFormat { get; set; } = string.Empty; // Limited, ODI, ODI_40, TEST, TEST_4D, TEST_3D, T20I, T20, T10, SAS => Six_A_Site
+        public string PlayType { get; set; } = string.Empty; // short_pitch, long_pitch
+        public bool IsProperCricket { get; set; } = true;
+        public bool IsSoloMatch { get; set; } = false;
+        public int MaxOver { get; set; } = 10; // 450 => TEST
+        public int MaxBallInOver { get; set; } = 6;
+        public int MaxPlayerInTeam { get; set; } = 11;
+        public List<DisabledZone>? DisabledZones { get; set; } = null; // Max length 6; 
+        public List<Powerplay>? Powerplays { get; set; } = new List<Powerplay> ();
+        public bool AllowDLS { get; set; } = false;
+        public bool HasDRS { get; set; } = false;
+        public bool HasHotSpot { get; set; } = false;
+        public bool HasHawkEye { get; set; } = false;
+        public bool HasSnickoMeter { get; set; } = false;
+        public bool HasStumpMic { get; set; } = false;
+        public bool HasBroadcastRights { get; set; } = false;
+        public string BroadcastingOn { get; set; } = string.Empty; //"GTV, TSPORTS, RABBITHOLEBD, YOUTUBE" urls    
+        public bool AllowSlowOverRate { get; set; } = true;
+        public bool AllowTeamBalance { get; set; } = true;
+        public bool AllowPlayerInBothTeam { get; set; } = false;
+        public bool AllowMultiStyleBatting { get; set; } = false;
+        public bool AllowMultiStyleBowling { get; set; } = false;
+        public bool AllowPaceBowling { get; set; } = true;
+        public bool AllowDualBatting { get; set; } = true;
+        public bool AllowLastMan { get; set; } = false;
+        public bool AllowKeeping { get; set; } = true;
+        public bool AllowKeeperSwitch { get; set; } = true;
+        public bool AllowBatterSwitchOnOver { get; set; } = true;
+        public bool AllowBatterSwitchOnOut { get; set; } = true;
+        public bool AllowSingle { get; set; } = true;
+        public bool AllowDouble { get; set; } = true;
+        public bool AllowTriple { get; set; } = true;
+        public bool AllowFour { get; set; } = true;
+        public bool AllowSix { get; set; } = true;
+        public bool AllowNoBall { get; set; } = true;
+        public bool AllowHeightNoBall { get; set; } = true;
+        public bool AllowWideBall { get; set; } = true;
+        public bool AllowHeightWideBall { get; set; } = true;
+        public bool AllowExtraRun { get; set; } = true;
+        public bool AllowByeRun { get; set; } = true;
+        public bool AllowLegByeRun { get; set; } = true;
+        public bool AllowFreeHit { get; set; } = true;
+        public int? MaxFieldersInCircle { get; set; } = 9;
+        public int? MaxFieldersOffCircle { get; set; } = 5;
+    }
+
+    public class Powerplay
+    {
+        public int Start { get; set; } = 1; //ODI => 1, 11, 41; T20 => 1, 7
+        public int End { get; set; } = 10; //ODI => 10, 40, 50; T20 => 6, 20
+        public int MaxFieldersInCircle { get; set; } = 9;
+        public int MaxFieldersOffCircle { get; set; } = 5;
+    }
+
+    public class DisabledZone
+    {    
+        public int Zone { get; set; } = 0; // MIN => 0, Max => 11
+        public string Reason { get; set; } = string.Empty; // wall, pond, pool, building, garadge, garden, muddy, roof, car-paking, street, highway, other
+        public string SpecificReason { get; set; } = string.Empty;
+    }
 }

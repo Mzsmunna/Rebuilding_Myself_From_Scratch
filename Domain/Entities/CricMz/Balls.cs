@@ -29,8 +29,8 @@ namespace Domain.Entities.CricMz
         public bool IsOut { get; set; }
         public string OutType { get; set; } = string.Empty; // RunOut, Caught, CaughtBehind, Blowled, LBW, HitWicket, Stumped, Mankading
         public int Extras { get; set; } = 0;
-        public string ExtraReason { get; set; } = string.Empty; // by, leg_by, wide, noball
-        public string ExtraSpecificReason { get; set; } = string.Empty; // by, leg_by, wide-outside_leg, wide-outside-off, wide-height, noball-height, noball-overstepping, noball-max_bouncers, noball-fake_fielding, noball-fielding_rules_voilance
+        public string ExtraReason { get; set; } = string.Empty; // bye, leg_bye, wide, noball
+        public string ExtraSpecificReason { get; set; } = string.Empty; // bye, leg_bye, wide-outside_leg, wide-outside-off, wide-height, noball-height, noball-overstepping, noball-max_bouncers, noball-fake_fielding, noball-fielding_rules_voilance
         public int BonusRuns { get; set; } = 0;
         public string BonusReason { get; set; } = string.Empty; // miss field, overthrow, overboundary, fake fielding, fielding rules voilance, hitting helmet on field etc
         public double Overs { get; set; } = 0; //12, 25, 49, etc
@@ -91,6 +91,8 @@ namespace Domain.Entities.CricMz
         public int WicketsInARow { get; set; } = 0;
         public int Wickets { get; set; } = 0;
         public double BallSpeed { get; set; } = 0;
+        public string BowlingEnd { get; set; } = string.Empty; // left, right,
+        public string BowlingSide { get; set; } = string.Empty; // round_the_wicket, around_the_wicket,
         public string BowlingArm { get; set; } = string.Empty; // left, right,
         public string BowlingAction { get; set; } = string.Empty; // pacer, spinner,
         public string BowlingStyle { get; set; } = string.Empty; // Leg, Off, Left Arm, Right Arm, Medium, etc
