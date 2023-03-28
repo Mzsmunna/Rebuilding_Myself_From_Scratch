@@ -25,7 +25,7 @@ namespace Domain.Entities.CricMz
         public Fielding Fielder { get; set; } = new Fielding();
         public Fielding AssistFielder { get; set; } = new Fielding();
         public Fielding WicketKeeper { get; set; } = new Fielding();
-        public int Innings { get; set; } = 1; // TEST_MAX => 4, REST_MAX => 2
+        public MatchSummary MatchSummary { get; set; } = new MatchSummary();
         public int Runs { get; set; } = 0;
         public string RunType { get; set; } = string.Empty; // dot, single, double, triple, boundary / four, over-boundary / six
         public bool IsOut { get; set; }
@@ -39,10 +39,6 @@ namespace Domain.Entities.CricMz
         public string ExtraSpecificReason { get; set; } = string.Empty; // bye, leg_bye, wide-outside_leg, wide-outside-off, wide-height, noball-height, noball-overstepping, noball-max_bouncers, noball-fake_fielding, noball-fielding_rules_voilance
         public int BonusRuns { get; set; } = 0;
         public string BonusReason { get; set; } = string.Empty; // miss field, overthrow, overboundary, fake fielding, fielding rules voilance, hitting helmet on field etc
-        public double Over { get; set; } = 0; //12, 25, 49, etc
-        public int OverBallNo { get; set; } = 0; // Max =  6 / 5
-        public int MaxOver { get; set; } = 0; // 10, 20, 50, 90, etc
-        public int ReducedOverTo { get; set; } = 0; // 8, 18, 27, 35, etc
         public string BallOverview { get; set; } = string.Empty;
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
@@ -53,26 +49,16 @@ namespace Domain.Entities.CricMz
     {
         public BasicInfo BatsmanInfo { get; set; } = new BasicInfo();
         public BasicInfo TeamInfo { get; set; } = new BasicInfo();
-        public int TeamTarget { get; set; } = 0;
-        public int TeamScore { get; set; } = 0;
-        public int TeamBalls { get; set; } = 0;
-        public int TeamWickets { get; set; } = 0; //1, 2, 4, etc
-        public int TeamFours { get; set; } = 0;
-        public int TeamSixes { get; set; } = 0;
-        public int TeamExtra { get; set; } = 0;
-        public int TeamBonus { get; set; } = 0;
-        public double CurrentRunRate { get; set; } = 0; //12, 25, 49, etc
-        public double RequireRunRate { get; set; } = 0; //12, 25, 49, etc
-        public int RemainingBalls { get; set; } = 0;
-        public int PlayerRuns { get; set; } = 0;
-        public int PlayerScore { get; set; } = 0;
-        public int PlayerBalls { get; set; } = 0;
-        public int PlayerFours { get; set; } = 0;
-        public int PlayerSixes { get; set; } = 0;
-        public int PlayerBoundariesInARow { get; set; } = 0;
-        public int PlayerFoursInARow { get; set; } = 0;
-        public int PlayerSixesInARow { get; set; } = 0;
-        public double PlayerBatspeed { get; set; } = 0;
+        public int Runs { get; set; } = 0;
+        public int Score { get; set; } = 0;
+        public int Balls { get; set; } = 0;
+        public int Fours { get; set; } = 0;
+        public int Sixes { get; set; } = 0;
+        public double StrikeRate { get; set; } = 0;
+        public int BoundariesInARow { get; set; } = 0;
+        public int FoursInARow { get; set; } = 0;
+        public int SixesInARow { get; set; } = 0;
+        public double Batspeed { get; set; } = 0;
         public bool IsDefended { get; set; }
         public bool IsMissed { get; set; }
         public bool IsLeftAlone { get; set; }
@@ -99,17 +85,18 @@ namespace Domain.Entities.CricMz
         public BasicInfo BowlerInfo { get; set; } = new BasicInfo();
         public BasicInfo TeamInfo { get; set; } = new BasicInfo();
         public bool IsWicketTaken { get; set; }
-        public int Runs { get; set; } = 0;
+        public int RunsConsumed { get; set; } = 0;
+        public int RunsGiven { get; set; } = 0;
+        public int Wickets { get; set; } = 0;
+        public double Economy { get; set; } = 0;
         public int TotalDots { get; set; } = 0;
         public int TotalMaidens { get; set; } = 0;
-        public int TotalRuns { get; set; } = 0;
         public int TotalBalls { get; set; } = 0;
         public int TotalWideBalls { get; set; } = 0;
         public int TotalNoBalls { get; set; } = 0;
         public int DotsInARow { get; set; } = 0;
         public int MaidensInARow { get; set; } = 0;
         public int WicketsInARow { get; set; } = 0;
-        public int Wickets { get; set; } = 0;
         public double BallSpeed { get; set; } = 0;
         public string BowlingEnd { get; set; } = string.Empty; // left, right,
         public string BowlingSide { get; set; } = string.Empty; // round_the_wicket, around_the_wicket,
@@ -132,6 +119,7 @@ namespace Domain.Entities.CricMz
     public class Fielding
     {
         public BasicInfo FielderInfo { get; set; } = new BasicInfo();
+        public BasicInfo TeamInfo { get; set; } = new BasicInfo();
         public string FielderPosition { get; set; } = string.Empty; //gully, silly, 1st-slip, 2nd-slip, keeping etc
         public bool IsInjured { get; set; }
         public string InjuredReason { get; set; } = string.Empty;
