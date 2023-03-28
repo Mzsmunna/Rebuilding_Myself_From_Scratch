@@ -16,13 +16,17 @@ namespace Domain.Entities.CricMz
 		public string ID { get; set; } = string.Empty;
 		public string Name { get; set; } = string.Empty;
 		public string Title { get; set; } = string.Empty;
-        public string MatchTypes { get; set; } = string.Empty;
-        public string MatchFormats { get; set; } = string.Empty;
-        public int MatchNo { get; set; } = 1;
+        public string Type { get; set; } = string.Empty; // street, gully, rooftop, indoor, book, paper, local, area, national, international, league, franchise, friendly, charity
+        public string Format { get; set; } = string.Empty; // Limited, ODI, ODI_40, TEST, TEST_4D, TEST_3D, T20I, T20, T10, SAS => Six_A_Site
+        public string BallType { get; set; } = string.Empty; // pingpong, sponge, plastic, rubber, tennis, tape_tennis, synthetic, hockey, cork, red_leather, white_leather, pink_leather, other
+        public string PitchType { get; set; } = string.Empty; // rough, cement, turf, astroturf, matting, green, dry, dusty, flat_track, wet, dead
+        public int Number { get; set; } = 1;
+        public string Result { get; set; } = string.Empty;
+        public string WinsBy { get; set; } = string.Empty; // Runs / Wickets
 
         public MatchConfig MatchConfig { get; set; } = new MatchConfig();
-        public BasicInfo TournamentInfo { get; set; } = new BasicInfo();
-        public BasicInfo SeriesInfo { get; set; } = new BasicInfo();
+        public BasicInfo? TournamentInfo { get; set; } = new BasicInfo();
+        public BasicInfo? SeriesInfo { get; set; } = new BasicInfo();
         public BasicInfo StadiumInfo { get; set; } = new BasicInfo();
         public BasicInfo FirstUmpireInfo { get; set; } = new BasicInfo();
         public BasicInfo SecondUmpireInfo { get; set; } = new BasicInfo();
@@ -32,14 +36,17 @@ namespace Domain.Entities.CricMz
         public Squad HomeTeam { get; set; } = new Squad();
         public Squad AwayTeam { get; set; } = new Squad();
 
-        public BasicInfo? ManOfMatch { get; set; } = null;
-        public BasicInfo? ManOfSeries { get; set; } = null;
-        public BasicInfo? ManOfTournament { get; set; } = null;
+        public string ManOfMatchID { get; set; } = string.Empty;
+        public string GameChangerOfMatchID { get; set; } = string.Empty;
+        public string ManOfSeriesID { get; set; } = string.Empty;
+        public string ManOfTournamentID { get; set; } = string.Empty;
         public List<Award>? OtherAwards { get; set; } = null;
-        public string MatchResult { get; set; } = string.Empty;
-        public string MatchWinsBy { get; set; } = string.Empty; // Runs / Wickets
-        public bool IsDLSApplied { get; set; }
 
+        public bool IsDLSApplied { get; set; }
+        public string CoinFlipTeamID { get; set; } = string.Empty; // Team ID
+        public string CoinSidePickerTeamID { get; set; } = string.Empty; // Head / Tails
+        public string CoinSidePicked { get; set; } = string.Empty; // Head / Tails
+        public string CoinSide { get; set; } = string.Empty; // Head / Tails
         public string TossWinTeamID { get; set; } = string.Empty; // Team ID
         public string WinningTeamID { get; set; } = string.Empty; // Team ID
         public string TossDecition { get; set; } = string.Empty; // 'Bat' / 'Bowl' or 'Fielding'
@@ -90,6 +97,7 @@ namespace Domain.Entities.CricMz
         public int MaxPlayerInTeam { get; set; } = 11;
         public List<Powerplay>? Powerplays { get; set; } = new List<Powerplay> (); // Max length 3; 
         public CustomConfig? CustomConfig { get; set; } = null;
+        public bool AllowPlayerReplacement { get; set; } = false;
         public bool AllowBatterSwitchOnOut { get; set; } = true;
         public bool AllowSlowOverRate { get; set; } = true;
         public bool AllowDLS { get; set; } = false;
@@ -127,7 +135,6 @@ namespace Domain.Entities.CricMz
         public bool AllowLegByeRun { get; set; } = true;
         public bool AllowFreeHit { get; set; } = true;
         public bool AllowTeamBalance { get; set; } = true;
-        public bool AllowPlayerReplacement { get; set; } = false;
         public bool AllowPlayerInBothTeam { get; set; } = false;
         public bool AllowMultiStyleBatting { get; set; } = false;
         public bool AllowMultiStyleBowling { get; set; } = false;

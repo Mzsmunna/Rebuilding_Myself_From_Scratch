@@ -41,7 +41,7 @@ namespace Domain.Entities.CricMz
         public string BonusReason { get; set; } = string.Empty; // miss field, overthrow, overboundary, fake fielding, fielding rules voilance, hitting helmet on field etc
         public double Over { get; set; } = 0; //12, 25, 49, etc
         public int OverBallNo { get; set; } = 0; // Max =  6 / 5
-        public int TotalOver { get; set; } = 0; // 10, 20, 50, 90, etc
+        public int MaxOver { get; set; } = 0; // 10, 20, 50, 90, etc
         public int ReducedOverTo { get; set; } = 0; // 8, 18, 27, 35, etc
         public string BallOverview { get; set; } = string.Empty;
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;

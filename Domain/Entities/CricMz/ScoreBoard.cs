@@ -8,8 +8,8 @@ namespace Domain.Entities.CricMz
 {
     public class ScoreBoard : IEntity
     {
-        public Score HomeTeamScore { get; set; } = new Score();
-        public Score AwayTeamScore { get; set; } = new Score();
+        public Score HomeTeam { get; set; } = new Score();
+        public Score AwayTeam { get; set; } = new Score();
         public BasicInfo? ManOfMatch { get; set; } = null;
         public BasicInfo? ManOfSeries { get; set; } = null;
         public BasicInfo? ManOfTournament { get; set; } = null;
@@ -19,21 +19,11 @@ namespace Domain.Entities.CricMz
         public bool IsDLSApplied { get; set; }
     }
 
-    public class Score : IEntity
-    {
-        public BasicInfo TeamInfo { get; set; } = new BasicInfo();
-        public int Runs { get; set; } = 0;
-        public int Balls { get; set; } = 0;
-        public int Overs { get; set; } = 0;
-        public int Extras { get; set; } = 0;
-        public int Wickets { get; set; } = 0;
-        public int Target { get; set; } = 0;
-        public bool IsWinner { get; set; } = false;
-    }
-
     public class Award
     {
-        public BasicInfo AwardInfo { get; set; } = new BasicInfo();
-        public BasicInfo PlayerInfo { get; set; } = new BasicInfo();
+        public string AwardID { get; set; } = string.Empty;
+        public string AwardName { get; set; } = string.Empty;
+        public string PoweredBy { get; set; } = string.Empty;
+        public string PlayerID { get; set; } = string.Empty;
     }
 }

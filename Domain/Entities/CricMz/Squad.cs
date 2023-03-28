@@ -8,17 +8,36 @@ namespace Domain.Entities.CricMz
 {
     public class Squad
     {
-        //public BasicInfo TeamInfo { get; set; } = new BasicInfo();
-        public ScoreCard ScoreCard { get; set; } = new ScoreCard();
-        public List<Performers> Players { get; set; } = new List<Performers>();
+        public Score TeamScore { get; set; } = new Score();
+        public List<Partnership> Partnerships { get; set; } = new List<Partnership>();
+        public List<Performer> Players { get; set; } = new List<Performer>();
     }
 
-    public class Performers
+    public class Partnership
+    {
+        public string TeamID { get; set; } = string.Empty;
+        public string FirstPlayerID { get; set; } = string.Empty;
+        public int FirstPlayerContribution { get; set; } = 0;
+        public string SecondPlayerID { get; set; } = string.Empty;
+        public int SecondPlayerContribution { get; set; } = 0;
+        public int TotalContributions { get; set; } = 0;
+        public bool IsUnbroken { get; set; } = false;
+        public int? FallOfWickets { get; set; } = null;
+        public int WicketsNo { get; set; } = 1;
+        public string OutType { get; set; } = string.Empty; //RunOut, Caught, Bold, LBW, HitWicket, Stumped
+        public string BowlerID { get; set; } = string.Empty;
+        public string FielderID { get; set; } = string.Empty;
+        public string AssistFielderID { get; set; } = string.Empty;
+        public string WicketKeeperID { get; set; } = string.Empty;
+    }
+
+    public class Performer
     {
         public BasicInfo PlayerInfo { get; set; } = new BasicInfo();
         public string Role { get; set; } = string.Empty;
         public bool IsPlaying { get; set; }
         public bool IsCaptain { get; set; }
+        public bool IsViceCaptain { get; set; }
         public bool IsKeeper { get; set; }
         public bool IsSubstitute { get; set; }
         public bool IsInjured { get; set; }
@@ -38,7 +57,9 @@ namespace Domain.Entities.CricMz
         public int Twos { get; set; } = 0;
         public int Threes { get; set; } = 0;
         public int Fours { get; set; } = 0;
+        public int Fives { get; set; } = 0;
         public int Sixes { get; set; } = 0;
+        public int Sevens { get; set; } = 0;
         public int Lucky { get; set; } = 0;
         public int Edges { get; set; } = 0;
         public double StrikeRate { get; set; } = 0;
@@ -65,14 +86,19 @@ namespace Domain.Entities.CricMz
         public int HitWickets { get; set; } = 0;
         public int RetiredHurts { get; set; } = 0;
         public int Runs { get; set; } = 0;
+        public int ExtraRuns { get; set; } = 0;
         public int Balls { get; set; } = 0;
+        public int NoBalls { get; set; } = 0;
+        public int WideBalls { get; set; } = 0;
         public int Maidens { get; set; } = 0;
         public int Dots { get; set; } = 0;
         public int Ones { get; set; } = 0;
         public int Twos { get; set; } = 0;
         public int Threes { get; set; } = 0;
         public int Fours { get; set; } = 0;
+        public int Fives { get; set; } = 0;
         public int Sixes { get; set; } = 0;
+        public int Sevens { get; set; } = 0;
         public double EconomyRate { get; set; } = 0;
         public int Unlucky { get; set; } = 0;
     }
