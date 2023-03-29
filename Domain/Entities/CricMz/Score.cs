@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.CricMz
 {
-    public class Score : MiniScore
+    public class Score
     {
+        public int Target { get; set; } = 0;
+        public int Runs { get; set; } = 0;
+        public int Extras { get; set; } = 0;
+        public int Balls { get; set; } = 0;
+        public int RemainingBalls { get; set; } = 0;
+        public int Wickets { get; set; } = 0;
+        public int Over { get; set; } = 0;
+        public int OverBallNo { get; set; } = 0; // Max =  6 / 5
+        public double CurrentRunRate { get; set; } = 0;
+        public double RequireRunRate { get; set; } = 0;
         public int WideRuns { get; set; } = 0;
         public int ByeRuns { get; set; } = 0;
         public int LegByeRuns { get; set; } = 0;
@@ -22,52 +32,30 @@ namespace Domain.Entities.CricMz
         public int Sevens { get; set; } = 0;
         public int NoBalls { get; set; } = 0;
         public int WideBalls { get; set; } = 0;
-        public List<Performer> Players { get; set; } = new List<Performer>();
+        public List<Performance> Performances { get; set; } = new List<Performance>(); // Max Length 11
         public List<Partnership> Partnerships { get; set; } = new List<Partnership>();
-        //public Scorer? HighestScorer { get; set; } = null;
-        //public Scorer? HighestWicketTaker { get; set; } = null;
     }
 
-    public class MiniScore
-    {
-        public int Target { get; set; } = 0;
-        public int Runs { get; set; } = 0;
-        public int Extras { get; set; } = 0;
-        public int Balls { get; set; } = 0;
-        public int RemainingBalls { get; set; } = 0;
-        public int Wickets { get; set; } = 0;
-        public int Over { get; set; } = 0;
-        public int OverBallNo { get; set; } = 0; // Max =  6 / 5
-        public double CurrentRunRate { get; set; } = 0;
-        public double RequireRunRate { get; set; } = 0;
-    }
-
-    public class ScoreCard
+    public class Squard
     {
         public BasicInfo TeamInfo { get; set; } = new BasicInfo();
+        public List<Performer> Players { get; set; } = new List<Performer>();
         public Score FirstInnings { get; set; } = new Score();
-        public Score? SecondInnings { get; set; } = null;
+        public Score? SecondInnings { get; set; } = null; // Only if Match Format is TEST
     }
 
-    public class MiniScoreCard
+    public class Scorer
     {
-        public BasicInfo TeamInfo { get; set; } = new BasicInfo();
-        public MiniScore FirstInnings { get; set; } = new Score();
-        public MiniScore? SecondInnings { get; set; } = null;
+        public Identity PlayerIdentity { get; set; } = new Identity();
+        public int RunScored { get; set; } = 0;
+        public int BallPlayed { get; set; } = 0;
+        public int RunGiven { get; set; } = 0;
+        public int BallDelivered { get; set; } = 0;
+        public int WicketTaken { get; set; } = 0;
+        public int CatchTaken { get; set; } = 0;
+        public int RunOuts { get; set; } = 0;
+        public int Stumped { get; set; } = 0;
     }
-
-    //public class Scorer
-    //{
-    //    public Identity PlayerIdentity { get; set; } = new Identity();
-    //    public int RunScored { get; set; } = 0;
-    //    public int BallPlayed { get; set; } = 0;
-    //    public int RunGiven { get; set; } = 0;
-    //    public int BallDelivered { get; set; } = 0;
-    //    public int WicketTaken { get; set; } = 0;
-    //    public int CatchTaken { get; set; } = 0;
-    //    public int RunOuts { get; set; } = 0;
-    //    public int Stumped { get; set; } = 0;
-    //}
 
     public class Partnership
     {
@@ -97,9 +85,14 @@ namespace Domain.Entities.CricMz
         public bool IsKeeper { get; set; }
         public bool IsSubstitute { get; set; }
         public bool IsInjured { get; set; }
-        public BattingPerformance BattingPerformance { get; set; }
-        public BowlingPerformance BowlingPerformance { get; set; }
-        public FieldingPerformance FieldingPerformance { get; set; }
+    }
+
+    public class Performance
+    {
+        public string PlayerID { get; set; } = string.Empty;
+        public BattingPerformance? BattingPerformance { get; set; } = null;
+        public BowlingPerformance? BowlingPerformance { get; set; } = null;
+        public FieldingPerformance? FieldingPerformance { get; set; } = null;
     }
 
     public class BattingPerformance
@@ -172,5 +165,13 @@ namespace Domain.Entities.CricMz
         public int AssistCatches { get; set; } = 0;
         public int DroppedCatches { get; set; } = 0;
         public int Stumpings { get; set; } = 0;
+    }
+
+    public class Award
+    {
+        public string AwardID { get; set; } = string.Empty;
+        public string AwardName { get; set; } = string.Empty;
+        public string PoweredBy { get; set; } = string.Empty;
+        public string PlayerID { get; set; } = string.Empty;
     }
 }

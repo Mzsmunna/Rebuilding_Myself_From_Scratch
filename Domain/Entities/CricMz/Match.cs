@@ -26,40 +26,35 @@ namespace Domain.Entities.CricMz
         public string WinningTeamID { get; set; } = string.Empty; // Team ID
         public string Result { get; set; } = string.Empty;
         public string WinsBy { get; set; } = string.Empty; // Runs / Wickets
-        public bool IsRainAffected { get; set; } = false;
+        public string WeatherCondition { get; set; } = string.Empty; // t29c; h35c; cloudy / rainy / sunny / clear;
+        public bool IsMatchInterrupted { get; set; }
+        public string MatchInterruptReason { get; set; } = string.Empty; // Rain, Low-SunLight, Low-FloodLight, Wet-Outfield, etc
+        public bool IsLive { get; set; }
+        public bool IsMatchAbandoned { get; set; } = false;
+        public bool IsMatchStarted { get; set; }
+        public bool IsMatchFinished { get; set; }
+        public bool IsMatchTied { get; set; } = false;
         public bool IsDLSApplied { get; set; } = false;
 
         public MatchConfig Config { get; set; } = new MatchConfig();
         public BasicInfo? TournamentInfo { get; set; } = null;
         public BasicInfo? SeriesInfo { get; set; } = null;
         public BasicInfo? StadiumInfo { get; set; } = null;
-        public BasicInfo? HostTeamInfo { get; set; } = null;
+        //public BasicInfo? HostInfo { get; set; } = null;
         public BasicInfo? FirstUmpireInfo { get; set; } = null;
         public BasicInfo? SecondUmpireInfo { get; set; } = null;
         public BasicInfo? TvUmpireInfo { get; set; } = null;
         public BasicInfo? MatchRefreeInfo { get; set; } = null;
 
         public MatchSummary Summary { get; set; } = new MatchSummary();
-        public ScoreCard HomeTeam { get; set; } = new ScoreCard();
-        public ScoreCard AwayTeam { get; set; } = new ScoreCard();
+        public Squard HomeTeam { get; set; } = new Squard();
+        public Squard AwayTeam { get; set; } = new Squard();
 
-        public string CoinFlipTeamID { get; set; } = string.Empty; // Team ID
+        public string CoinFlippedTeamID { get; set; } = string.Empty; // Team ID
         public string CoinSidePickerTeamID { get; set; } = string.Empty; // Head / Tails
-        public string CoinSidePicked { get; set; } = string.Empty; // Head / Tails
         public string CoinSide { get; set; } = string.Empty; // Head / Tails
+        public string CoinSidePicked { get; set; } = string.Empty; // Head / Tails
 
-        public string WeatherCondition { get; set; } = string.Empty; // t29c; h35c; cloudy / rainy / sunny / clear;
-        public bool IsMatchInterrupted { get; set; }
-        public bool IsMatchInterruptReason { get; set; } // Rain,
-        public bool IsInterruptedByRain { get; set; }
-        public bool IsMatchAbandoned { get; set; }
-        public bool IsMatchStarted { get; set; }
-        public bool IsMatchFinished { get; set; }
-        public bool IsMatchTied { get; set; }
-        public bool IsDRSApplied { get; set; }
-        public DateTime MatchStartedAt { get; set; }
-        public DateTime MatchResumedAt { get; set; }
-        public DateTime MatchEndedAt { get; set; }
 
 
 	    //- List<Balls>
@@ -76,13 +71,16 @@ namespace Domain.Entities.CricMz
 
     public class MatchScore
     {
-        // Oponent Team = Fielding / Bowling Team
-        public BasicInfo OponentTeamInfo { get; set; } = new BasicInfo();
-        public BasicInfo TeamInfo { get; set; } = new BasicInfo();
-        public int OponentRuns { get; set; } = 0;
-        public int OponentBalls { get; set; } = 0;
-        public int OponentWickets { get; set; } = 0; //1, 2, 4, etc
-        public double OponentRunRate { get; set; } = 0;
+        // Opponent Team = Fielding / Bowling Team
+        public DateTime? InningsStartedAt { get; set; }
+        public BasicInfo OpponentTeamInfo { get; set; } = new BasicInfo();
+        public BasicInfo BattingTeamInfo { get; set; } = new BasicInfo();
+        public Scorer? HighestScorer { get; set; } = null;
+        public Scorer? HighestWicketTaker { get; set; } = null;
+        public int OpponentRuns { get; set; } = 0;
+        public int OpponentBalls { get; set; } = 0;
+        public int OpponentWickets { get; set; } = 0; //1, 2, 4, etc
+        public double OpponentRunRate { get; set; } = 0;
         public int Target { get; set; } = 0;
         public int Runs { get; set; } = 0;
         public int Balls { get; set; } = 0;
@@ -96,14 +94,14 @@ namespace Domain.Entities.CricMz
         public int ReducedOverTo { get; set; } = 0; // 8, 18, 27, 35, etc
         public double CurrentRunRate { get; set; } = 0;
         public double RequireRunRate { get; set; } = 0;
+        public DateTime? InningsEndedAt { get; set; }
     }
 
     public class MatchSummary
     {
+        public DateTime MatchDateTime { get; set; }
         public MatchScore FirstInnings { get; set; } = new MatchScore();
         public MatchScore? SecondInnings { get; set; } = null; // Only if Match Format is TEST
-        public bool IsRainAffected { get; set; } = false;
-        public bool IsDLSApplied { get; set; } = false;
         public string Result { get; set; } = string.Empty;
         public string ManOfMatchID { get; set; } = string.Empty;
         public string ManOfSeriesID { get; set; } = string.Empty;
@@ -113,6 +111,7 @@ namespace Domain.Entities.CricMz
         public string MostRunsScorerID { get; set; } = string.Empty;
         public string MostWicketsTakerID { get; set; } = string.Empty;
         public string BestAllRoundingPerformerID { get; set; } = string.Empty;
+        public DateTime? MatchEndedAt { get; set; }
 
         //public BasicInfo? ManOfMatch { get; set; } = null;
         //public BasicInfo? ManOfSeries { get; set; } = null;

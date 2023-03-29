@@ -48,7 +48,6 @@ namespace Domain.Entities.CricMz
     public class Batting
     {
         public BasicInfo BatsmanInfo { get; set; } = new BasicInfo();
-        public BasicInfo TeamInfo { get; set; } = new BasicInfo();
         public int Runs { get; set; } = 0;
         public int Score { get; set; } = 0;
         public int Balls { get; set; } = 0;
@@ -83,7 +82,6 @@ namespace Domain.Entities.CricMz
     public class Bowling
     {
         public BasicInfo BowlerInfo { get; set; } = new BasicInfo();
-        public BasicInfo TeamInfo { get; set; } = new BasicInfo();
         public bool IsWicketTaken { get; set; }
         public int RunsConsumed { get; set; } = 0;
         public int RunsGiven { get; set; } = 0;
@@ -119,7 +117,6 @@ namespace Domain.Entities.CricMz
     public class Fielding
     {
         public BasicInfo FielderInfo { get; set; } = new BasicInfo();
-        public BasicInfo TeamInfo { get; set; } = new BasicInfo();
         public string FielderPosition { get; set; } = string.Empty; //gully, silly, 1st-slip, 2nd-slip, keeping etc
         public bool IsInjured { get; set; }
         public string InjuredReason { get; set; } = string.Empty;
