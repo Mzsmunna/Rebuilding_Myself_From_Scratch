@@ -10,7 +10,7 @@ namespace Domain.Entities.CricMz
     {
         public DateTime? InningsStartedAt { get; set; } = null;
         public bool IsBattingFirst { get; set; } = true;
-        public string ScoreLine { get; set; } = string.Empty; // "0,0,1,4,0,0NB,2,0,0WD,0,6,0,0,3,0,4WD,0,2LB,1BY,5B,WB => WL|WS|WC|WCB|WC&B|WRNO|WRH|WRHO|WT|WHW|WHB2|WM|WOF|WA"
+        public string CurrentOver { get; set; } = string.Empty; // "0,0,1,0NB,4,0,WB => WL|WS|WC|WCB|WC&B|WRNO|WRH|WRHO|WT|WHW|WHB2|WM|WOF|WA"
         public int Dots { get; set; } = 0;
         public int Ones { get; set; } = 0;
         public int Twos { get; set; } = 0;
@@ -37,8 +37,11 @@ namespace Domain.Entities.CricMz
         public int PartnershipFrom { get; set; } = 0;
         public double CurrentRunRate { get; set; } = 0;
         public double RequireRunRate { get; set; } = 0;
-        public Scorer? HighestScorer { get; set; } = null;
-        public Scorer? HighestWicketTaker { get; set; } = null;
+        public Scorer? Striker { get; set; } = null;
+        public Scorer? NonStriker { get; set; } = null;
+        public Scorer? Bowler { get; set; } = null;
+        //public Scorer? HighestScorer { get; set; } = null;
+        //public Scorer? HighestWicketTaker { get; set; } = null;
         public DateTime? InningsEndedAt { get; set; } = null;
     }
 
@@ -126,9 +129,21 @@ namespace Domain.Entities.CricMz
         public string ReplacementID { get; set; } = string.Empty;
     }
 
+    public class ScoreLine
+    {
+        public int OverNo { get; set; } = 1;
+        public string PerformLine { get; set; } = string.Empty; // Batter => "0,0,1" "4,0,0,2,0,0" "0,6,0,0,3" "0,0,0,WB / WL / WS / WC / WCB / WC&B / WRNO / WRH / WRHO / WT / WHW / WHB2 / WM / WOF / WA"
+                                                                // Bowler => "WB,0,1,4,0,0" "2,0,0,6,0,0" "3,0,0,WC,0,WS" "WL,0,0,0,0,NB,WD,6"
+                                                                // Fielder => "WC,0,1,4,0,0" "2,0,FNC,6,0,0" "3,0,0,FA,WC&B,0" "FCM,FROM,FCD,0,0,0"
+    }
+
     public class Performance
     {
         public string PlayerID { get; set; } = string.Empty;
+        public bool InCharge { get; set; } = false;
+        public bool IsBatted { get; set; } = false;
+        public bool IsBowled { get; set; } = false;
+        public bool IsFielded { get; set; } = true;
         public BattingPerformance? BattingPerformance { get; set; } = null;
         public BowlingPerformance? BowlingPerformance { get; set; } = null;
         public FieldingPerformance? FieldingPerformance { get; set; } = null;
@@ -138,7 +153,7 @@ namespace Domain.Entities.CricMz
     {
         public int BattingOrder { get; set; } = 0;
         public string BattingHand { get; set; } = string.Empty;
-        public string BattingLine { get; set; } = string.Empty; // "0,0,1,4,0,0,2,0,0,0,6,0,0,3,0,0,0,WB | WL | WS | WC | WCB | WC&B | WRNO | WRH | WRHO | WT | WHW | WHB2 | WM | WOF | WA"
+        public List<ScoreLine>? BattingLines { get; set; } = null;
         public int Runs { get; set; } = 0;
         public int Balls { get; set; } = 0;
         public int Dots { get; set; } = 0;
@@ -158,6 +173,7 @@ namespace Domain.Entities.CricMz
         public double StrikeRate { get; set; } = 0;
         public int Minutes { get; set; } = 0;
         public bool IsOut { get; set; } = false;
+        public bool IsAtNonStrike { get; set; } = false;
         public bool IsRetiredHurt { get; set; } = false;
         public string OutType { get; set; } = string.Empty; // Blowled, LBW, Stumped, Caught, CaughtBehind, Caught&Bowled, RunOut, HitWicket, Mankading, RetiredHurt, RetiredOut, TimedOut, HitBallTwice, ObstructingField, Absent
         public string BowlerID { get; set; } = string.Empty;
@@ -172,7 +188,7 @@ namespace Domain.Entities.CricMz
     {
         public string BowlingArm { get; set; } = string.Empty; // left, right,
         public string BowlingAction { get; set; } = string.Empty; // pacer, spinner,
-        public string BowlingLine { get; set; } = string.Empty; // "WB,0,1,4,0,0,2,0,0,6,0,0,3,0,0,WC,0,WS,WL,0,0,0,0"
+        public List<ScoreLine>? BowlingLines { get; set; } = null;
         public int Wickets { get; set; } = 0;
         public int Bowled { get; set; } = 0;
         public int LBW { get; set; } = 0;
@@ -202,7 +218,7 @@ namespace Domain.Entities.CricMz
         public string FieldingPositions { get; set; } = string.Empty; // ","
         public string FieldingZones { get; set; } = string.Empty; // ","
         public string FieldingHand { get; set; } = string.Empty; // ","
-        public string FieldingLine { get; set; } = string.Empty; // "WC,0,1,4,0,0,2,0,FNC,6,0,0,3,0,0,FA,WC&B,0,FCM,FROM,FCD,0,0,0,0"
+        public List<ScoreLine>? FieldingLines { get; set; } = null;
         public int RunOuts { get; set; } = 0;
         public int AssistRunOuts { get; set; } = 0;
         public int MissedRunOuts { get; set; } = 0;

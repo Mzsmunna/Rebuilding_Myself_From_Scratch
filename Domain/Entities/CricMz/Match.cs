@@ -101,6 +101,7 @@ namespace Domain.Entities.CricMz
     public class MatchConfig
     {
         public string TossType { get; set; } = string.Empty; // CoinFlip, BatFlip, Numbering, BlindNamePickForNumber,
+        public string MatchGenre { get; set; } = string.Empty; // Men / Women / Men_Special / Women_Special / Transgender / Others
         public string MatchType { get; set; } = string.Empty; // street, gully, rooftop, indoor, book, paper, local, area, national, international, league, franchise, friendly, charity
         public string MatchFormat { get; set; } = string.Empty; // Limited, ODI, ODI_40, TEST, TEST_4D, TEST_3D, T20I, T20, T10, SAS => Six_A_Site
         public string BallType { get; set; } = string.Empty; // pingpong, sponge, plastic, rubber, tennis, tape_tennis, synthetic, hockey, cork, red_leather, white_leather, pink_leather, other

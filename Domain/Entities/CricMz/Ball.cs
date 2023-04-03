@@ -11,7 +11,7 @@ namespace Domain.Entities.CricMz
         public string ID { get; set; } = string.Empty;
         public string Tags { get; set; } = string.Empty;
         public BallSummary BallSummary { get; set; } = new BallSummary();
-        public ScoreSummary? ScoreSummary { get; set; } = new ScoreSummary();
+        public ScoreSummary? ScoreSummary { get; set; } = new ScoreSummary(); // for historical score record after each ball
 
         public Commentating? Commentary { get; set; } = new Commentating();
         public Umpiring? StampUmpire { get; set; } = new Umpiring();
@@ -41,10 +41,6 @@ namespace Domain.Entities.CricMz
         public string RunType { get; set; } = string.Empty; // dot, single, double, triple, boundary / four, over-boundary / six
         public bool IsOut { get; set; } = false;
         public string OutType { get; set; } = string.Empty; // RunOut, Caught, CaughtBehind, Caught&Bowled, Blowled, LBW, HitWicket, Stumped, Mankading, RetiredHurt, RetiredOut, TimedOut, HitBallTwice, ObstructingField, Absent
-        public string MatchType { get; set; } = string.Empty; // street, gully, rooftop, indoor, book, paper, local, area, national, international, league, franchise, friendly, charity
-        public string MatchFormat { get; set; } = string.Empty; // Limited, ODI, ODI_40, TEST, TEST_4D, TEST_3D, T20I, T20, T10, SAS => Six_A_Site
-        public string MatchBallType { get; set; } = string.Empty; // pingpong, sponge, plastic, rubber, tennis, tape_tennis, synthetic, hockey, cork, red_leather, white_leather, pink_leather, other
-        public string MatchPitchType { get; set; } = string.Empty; // rough, cement, turf, astroturf, matting, green, dry, dusty, flat_track, wet, dead
         public int Extras { get; set; } = 0;
         public string ExtraReason { get; set; } = string.Empty; // bye, leg_bye, wide, noball
         public string ExtraSpecificReason { get; set; } = string.Empty; // bye, leg_bye, wide-outside_leg, wide-outside-off, wide-height, noball-height, noball-overstepping, noball-max_bouncers, noball-fake_fielding, noball-fielding_rules_voilance
@@ -56,8 +52,11 @@ namespace Domain.Entities.CricMz
     public class ScoreSummary
     {
         public string MatchID { get; set; } = string.Empty;
-        public string MatchType { get; set; } = string.Empty;
-        public string MatchFormat { get; set; } = string.Empty;
+        public string MatchGenre { get; set; } = string.Empty; // Men / Women / Men_Special / Women_Special / Transgender / Others
+        public string MatchType { get; set; } = string.Empty; // street, gully, rooftop, indoor, book, paper, local, area, national, international, league, franchise, friendly, charity
+        public string MatchFormat { get; set; } = string.Empty; // Limited, ODI, ODI_40, TEST, TEST_4D, TEST_3D, T20I, T20, T10, SAS => Six_A_Site
+        public string BallType { get; set; } = string.Empty; // pingpong, sponge, plastic, rubber, tennis, tape_tennis, synthetic, hockey, cork, red_leather, white_leather, pink_leather, other
+        public string PitchType { get; set; } = string.Empty; // rough, cement, turf, astroturf, matting, green, dry, dusty, flat_track, wet, dead
         public string MatchTitle { get; set; } = string.Empty;
         public BasicInfo TeamInfo { get; set; } = new BasicInfo();
         public BasicInfo OpponentInfo { get; set; } = new BasicInfo();

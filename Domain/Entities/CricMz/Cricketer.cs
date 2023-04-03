@@ -32,15 +32,6 @@ namespace Domain.Entities.CricMz
         public string Role { get; set; } = string.Empty; //","
     }
 
-    public class BirthInfo
-    {
-        public string State { get; set; } = string.Empty;
-        public string County { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
-        public string City { get; set; } = string.Empty;
-        public string Place { get; set; } = string.Empty;
-    }
-
     public class CricketerStat : IEntity
     {
         public string ID { get; set; } = string.Empty;
