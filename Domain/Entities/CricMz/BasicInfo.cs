@@ -10,6 +10,7 @@ namespace Domain.Entities.CricMz
     {
         public string ID { get; set; } = string.Empty;
         public string Identifier { get; set; } = string.Empty; // Code
+        public string Tags { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
     }
 

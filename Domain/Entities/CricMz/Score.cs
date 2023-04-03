@@ -37,9 +37,9 @@ namespace Domain.Entities.CricMz
         public int PartnershipFrom { get; set; } = 0;
         public double CurrentRunRate { get; set; } = 0;
         public double RequireRunRate { get; set; } = 0;
-        public DateTime? InningsEndedAt { get; set; } = null;
         public Scorer? HighestScorer { get; set; } = null;
         public Scorer? HighestWicketTaker { get; set; } = null;
+        public DateTime? InningsEndedAt { get; set; } = null;
     }
 
     public class ScoreBoard
@@ -51,8 +51,8 @@ namespace Domain.Entities.CricMz
 
     public class ScoreCard
     {
-        public List<Performance> Performances { get; set; } = new List<Performance>(); // Max Length 11
-        public List<Partnership> Partnerships { get; set; } = new List<Partnership>();
+        public List<Performance> Performances { get; set; } = new List<Performance>(); // Max length is generally 11
+        public List<Partnership>? Partnerships { get; set; } = new List<Partnership>(); // can be null when UnconventionalRules.IsSoloMatch == true && UnconventionalRules.AllowDualBatting == false
         public List<Session>? Sessions { get; set; } = null; // Only if Match Format is TEST
     }
 
@@ -86,7 +86,6 @@ namespace Domain.Entities.CricMz
 
     public class Partnership
     {
-        public string TeamID { get; set; } = string.Empty;
         public string FirstPlayerID { get; set; } = string.Empty;
         public int FirstPlayerContribution { get; set; } = 0;
         public string SecondPlayerID { get; set; } = string.Empty;
@@ -150,8 +149,12 @@ namespace Domain.Entities.CricMz
         public int Fives { get; set; } = 0;
         public int Sixes { get; set; } = 0;
         public int Sevens { get; set; } = 0;
-        public int Lucky { get; set; } = 0;
+        public int Lucks { get; set; } = 0;
         public int Edges { get; set; } = 0;
+        public int FrontFoots { get; set; } = 0;
+        public int BackFoots { get; set; } = 0;
+        public int StepOuts { get; set; } = 0;
+        public int Lofts { get; set; } = 0;
         public double StrikeRate { get; set; } = 0;
         public int Minutes { get; set; } = 0;
         public bool IsOut { get; set; } = false;

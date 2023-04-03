@@ -15,8 +15,8 @@ namespace Domain.Entities.CricMz
     {
 		public string ID { get; set; } = string.Empty;
         public string Identifier { get; set; } = string.Empty;
+        public string Tags { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
-        public string Title { get; set; } = string.Empty;
 
         public MatchConfig Config { get; set; } = new MatchConfig();
         public TossDetails? TossDetails { get; set; } = new TossDetails();
@@ -32,13 +32,9 @@ namespace Domain.Entities.CricMz
 
         public MatchSummary Summary { get; set; } = new MatchSummary();
         public Squard HomeTeam { get; set; } = new Squard();
-        public Squard AwayTeam { get; set; } = new Squard();
+        public Squard? AwayTeam { get; set; } = new Squard(); // can be null only when UnconventionalRules.IsSoloMatch == true
         public DateTime StartTime { get; set; } = DateTime.UtcNow;
         public DateTime? EndTime { get; set; } = null;
-
-
-
-
 
         //- List<Balls>
 
@@ -64,25 +60,29 @@ namespace Domain.Entities.CricMz
 
     public class MatchSummary
     {
+        public string MatchID { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
         public bool OnLive { get; set; } = false;
         public bool IsEnded { get; set; } = false;
         public int DayNo { get; set; } = 1;
-        public ScoreBoard HomeTeam { get; set; } = new ScoreBoard();
-        public ScoreBoard AwayTeam { get; set; } = new ScoreBoard();
+        public ScoreBoard HomeTeamScore { get; set; } = new ScoreBoard();
+        public ScoreBoard? AwayTeamScore { get; set; } = new ScoreBoard(); // can be null only when UnconventionalRules.IsSoloMatch == true
         public int Target { get; set; } = 0;
         public int RevisedTarget { get; set; } = 0;
+        public string Host { get; set; } = string.Empty;
+        public string Vanue { get; set; } = string.Empty;
         public string Toss { get; set; } = string.Empty;
         public string Result { get; set; } = string.Empty;
-        public string WinningTeamID { get; set; } = string.Empty; // Team ID
+        public string WinningTeamID { get; set; } = string.Empty;
         public string ManOfMatchID { get; set; } = string.Empty;
         public string ManOfSeriesID { get; set; } = string.Empty;
         public string ManOfTournamentID { get; set; } = string.Empty;
-        public string GameChangerOfMatchID { get; set; } = string.Empty;
-        public string ValuablePlayerOfMatchID { get; set; } = string.Empty;
-        public string ImpactPlayerOfMatchID { get; set; } = string.Empty;
+        public string GameChangerID { get; set; } = string.Empty;
+        public string ValuablePlayerID { get; set; } = string.Empty;
+        public string ImpactPlayerID { get; set; } = string.Empty;
         public string MostRunScorerID { get; set; } = string.Empty;
         public string MostWicketTakerID { get; set; } = string.Empty;
-        public string BestAllRoundingPerformerID { get; set; } = string.Empty;
+        public string AllRoundingPerformerID { get; set; } = string.Empty;
     }
 
     public class MatchResult
@@ -120,11 +120,11 @@ namespace Domain.Entities.CricMz
         public int MaxSubstituteAllowed { get; set; } = 0; // Impact Player in IPL 2023
         public int MaxFieldersInCircle { get; set; } = 11;
         public int MaxFieldersOffCircle { get; set; } = 5;
-        public ConventionalRules? ConventionalRules { get; set; } = null;
-        public UnconventionalRules? UnconventionalRules { get; set; } = null;
-        public List<CustomRule>? CustomRules { get; set; } = new List<CustomRule>();
         public List<Powerplay>? Powerplays { get; set; } = new List<Powerplay>(); // Max length 3;
         public Reductions? Reductions { get; set; } = null;
+        public ConventionalRules? ConventionalRules { get; set; } = null;
+        public UnconventionalRules? UnconventionalRules { get; set; } = null;
+        public List<CustomRule>? CustomRules { get; set; } = null;
     }
 
     public class OfficialConfig
