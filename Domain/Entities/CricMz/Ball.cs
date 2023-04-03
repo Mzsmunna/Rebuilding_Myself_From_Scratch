@@ -6,26 +6,33 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.CricMz
 {
-    public class Balls : IEntity
+    public class Ball : IEntity
     {
         public string ID { get; set; } = string.Empty;
         public BasicInfo MatchInfo { get; set; } = new BasicInfo();
-        public Commentating Commentary { get; set; } = new Commentating();
+        public Commentating? Commentary { get; set; } = new Commentating();
         public BasicInfo? ClipInfo { get; set; } = null;
         public WeatherForecast? WeatherForecast { get; set; } = null;
         //public List<string> MomentIDs { get; set; } = new List<string>();
-        public Umpiring StampUmpire { get; set; } = new Umpiring();
-        public Umpiring LegUmpire { get; set; } = new Umpiring();
-        public Umpiring TvUmpire { get; set; } = new Umpiring();
-        public Umpiring MatchRefree { get; set; } = new Umpiring();
-        public Batting StrikerBatsman { get; set; } = new Batting();
-        public Batting NonStrikerBatsman { get; set; } = new Batting();
-        public Bowling Bowler { get; set; } = new Bowling();
-        public BasicInfo FieldingSetupInfo { get; set; } = new BasicInfo();
-        public Fielding Fielder { get; set; } = new Fielding();
-        public Fielding AssistFielder { get; set; } = new Fielding();
-        public Fielding WicketKeeper { get; set; } = new Fielding();
-        public MatchSummary MatchSummary { get; set; } = new MatchSummary();
+        public Umpiring? StampUmpire { get; set; } = new Umpiring();
+        public Umpiring? LegUmpire { get; set; } = new Umpiring();
+        public Umpiring? TvUmpire { get; set; } = new Umpiring();
+        public Umpiring? MatchRefree { get; set; } = new Umpiring();
+        public Batting? StrikerBatsman { get; set; } = new Batting();
+        public Batting? NonStrikerBatsman { get; set; } = new Batting();
+        public Bowling? Bowler { get; set; } = new Bowling();
+        public BasicInfo? FieldingSetupInfo { get; set; } = new BasicInfo();
+        public Fielding? Fielder { get; set; } = new Fielding();
+        public Fielding? AssistFielder { get; set; } = new Fielding();
+        public Fielding? WicketKeeper { get; set; } = new Fielding();
+        public BallSummary BallSummary { get; set; } = new BallSummary();
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTime? ModifiedOn { get; set; } = null;
+        public string ModificationReason { get; set; } = string.Empty;
+    }
+
+    public class BallSummary
+    {
         public int Runs { get; set; } = 0;
         public string RunType { get; set; } = string.Empty; // dot, single, double, triple, boundary / four, over-boundary / six
         public bool IsOut { get; set; }
@@ -39,10 +46,7 @@ namespace Domain.Entities.CricMz
         public string ExtraSpecificReason { get; set; } = string.Empty; // bye, leg_bye, wide-outside_leg, wide-outside-off, wide-height, noball-height, noball-overstepping, noball-max_bouncers, noball-fake_fielding, noball-fielding_rules_voilance
         public int BonusRuns { get; set; } = 0;
         public string BonusReason { get; set; } = string.Empty; // miss field, overthrow, overboundary, fake fielding, fielding rules voilance, hitting helmet on field etc
-        public string BallOverview { get; set; } = string.Empty;
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
-        public DateTime? ModifiedOn { get; set; }
-        public string ModificationReason { get; set; } = string.Empty;
+        public string BallOverview { get; set; } = string.Empty; // Comment / Commentary
     }
 
     public class Batting
@@ -65,11 +69,13 @@ namespace Domain.Entities.CricMz
         public bool IsEdge { get; set; }
         public bool IsOut { get; set; }
         public int HitDistance { get; set; } = 0;
+        public string BattingHand { get; set; } = string.Empty;
         public int HitAngle { get; set; } = 0; // angle degree + height-distance
         public string HittingZone { get; set; } = string.Empty; // 0-11
         public string HittingArea { get; set; } = string.Empty; // straight, long-on, long-off, cover, 3rd man, etc
         public string ShotSelection { get; set; } = string.Empty; // straight-drive, cover-drive, square-drive, square-cut, pull, hook, sweep etc
         public bool IsReviewed { get; set; }
+        public string ReviewedFor { get; set; } = string.Empty; // no-ball, wide, not-out, etc
         public bool IsReviewLost { get; set; }
         public bool IsRetiredHurt { get; set; }
         public bool IsInjured { get; set; }
@@ -107,6 +113,7 @@ namespace Domain.Entities.CricMz
         public bool IsInjured { get; set; }
         public string InjuredReason { get; set; } = string.Empty;
         public bool IsReviewed { get; set; }
+        public string ReviewedFor { get; set; } = string.Empty; // no-ball, wide, out, etc
         public bool IsMaidenBall { get; set; }
         public bool IsReviewLost { get; set; }
         public int Spells { get; set; } = 0;
@@ -117,21 +124,15 @@ namespace Domain.Entities.CricMz
     public class Fielding
     {
         public BasicInfo FielderInfo { get; set; } = new BasicInfo();
-        public string FielderPosition { get; set; } = string.Empty; //gully, silly, 1st-slip, 2nd-slip, keeping etc
-        public bool IsInjured { get; set; }
+        public string FielderPosition { get; set; } = string.Empty; // gully, silly, 1st-slip, 2nd-slip, keeping etc
+        public string FieldingHand { get; set; } = string.Empty;
+        public string FieldingAction { get; set; } = string.Empty; // No chance, Attempted, Runs Saved, Boundary Saved, Overboundary Saved, Cought, Cought & Bowled, Caught Behind, Catch Dropped, Miss Fielding, Overthrow, Run Out, Direct Run Out, Combined Run Out, Missed Run Out
+        public bool IsSubstituteFilder { get; set; } = false;
+        public bool IsInjured { get; set; } = false;
         public string InjuredReason { get; set; } = string.Empty;
-        public bool IsSubstituteFilder { get; set; }
-        public bool IsCatchTaken { get; set; }
-        public bool IsSloppyCatch { get; set; }
-        public bool IsCombinedCatch { get; set; }
-        public bool IsCatchDropped { get; set; }
-        public bool IsRunOut { get; set; }
-        public bool IsCombinedRunOut { get; set; }
-        public bool IsRunOutMissed { get; set; }
-        public bool IsMissFielding { get; set; }
-        public bool IsOverThrow { get; set; }
-        public bool IsExtraOrdinaryFielding { get; set; }
-        public bool IsExtraOrdinaryCatch { get; set; }
+        public int FumbleCount { get; set; } = 0;
+        public bool IsExtraOrdinaryFielding { get; set; } = false;
+        public bool IsExtraOrdinaryCatch { get; set; } = false;
         public string Milestone { get; set; } = string.Empty; // HAT-TRICK CATCHES, HAT-TRICK RUN-OUTS, HAT-TRICK STAMPINGS
         public string Achievement { get; set; } = string.Empty; // 200 CATCHES, 50 RUN-OUTS, 100 STAMPINGS
     }
@@ -160,7 +161,9 @@ namespace Domain.Entities.CricMz
 
     public class WeatherForecast
     {
-        public string WeatherCondition { get; set; } = string.Empty; // t29c; h35c; cloudy / rainy / sunny / clear;
+        public double Temperature { get; set; } = 0; // in F
+        public double Humidity { get; set; } = 0; // in F
+        public string Condition { get; set; } = string.Empty; // t29c; h35c; cloudy / rainy / sunny / clear;
         public bool IsFoggy { get; set; }
         public bool IsWetOutfield { get; set; }
     }
