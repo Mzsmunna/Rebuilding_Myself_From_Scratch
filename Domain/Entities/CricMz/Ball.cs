@@ -37,6 +37,8 @@ namespace Domain.Entities.CricMz
 
     public class BallSummary
     {
+        public int OverNo { get; set; }
+        public int BallNo { get; set; } // max == BallPerOver
         public int Runs { get; set; } = 0;
         public string RunType { get; set; } = string.Empty; // dot, single, double, triple, boundary / four, over-boundary / six
         public bool IsOut { get; set; } = false;
@@ -46,7 +48,21 @@ namespace Domain.Entities.CricMz
         public string ExtraSpecificReason { get; set; } = string.Empty; // bye, leg_bye, wide-outside_leg, wide-outside-off, wide-height, noball-height, noball-overstepping, noball-max_bouncers, noball-fake_fielding, noball-fielding_rules_voilance
         public int BonusRuns { get; set; } = 0;
         public string BonusReason { get; set; } = string.Empty; // miss field, overthrow, overboundary, fake fielding, fielding rules voilance, hitting helmet on field etc
-        public string BallOverview { get; set; } = string.Empty; // Comment / Commentary
+        public string Comment { get; set; } = string.Empty;
+
+        public string StrikerBatsmanID { get; set; } = string.Empty;
+        public string NonStrikerBatsmanID { get; set; } = string.Empty;
+        public string BowlerID { get; set; } = string.Empty;
+        public string WicketKeeperID { get; set; } = string.Empty;
+        public string FilderID { get; set; } = string.Empty;
+        public string AssistFilderID { get; set; } = string.Empty;
+        public string StampUmpireID { get; set; } = string.Empty;
+        public string LegUmpireID { get; set; } = string.Empty;
+        public string TvUmpireID { get; set; } = string.Empty;
+        public string MatchRefreeID { get; set; } = string.Empty;
+        public string FieldingSetupID { get; set; } = string.Empty;
+        public string FielderID { get; set; } = string.Empty;
+        public string AssistFielderID { get; set; } = string.Empty;
     }
 
     public class ScoreSummary

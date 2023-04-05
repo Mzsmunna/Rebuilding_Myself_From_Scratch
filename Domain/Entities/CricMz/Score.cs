@@ -27,6 +27,8 @@ namespace Domain.Entities.CricMz
         public int Byes { get; set; } = 0;
         public int LegByes { get; set; } = 0;
         public int Wickets { get; set; } = 0;
+        public int OverNo { get; set; }
+        public int BallNo { get; set; } // max == BallPerOver
         public int Balls { get; set; } = 0;
         public int NoBalls { get; set; } = 0;
         public int WideBalls { get; set; } = 0;
@@ -54,6 +56,7 @@ namespace Domain.Entities.CricMz
 
     public class ScoreCard
     {
+        public List<Over> Overs { get; set; } = new List<Over>();
         public List<Performance> Performances { get; set; } = new List<Performance>(); // Max length is generally 11
         public List<Partnership>? Partnerships { get; set; } = new List<Partnership>(); // can be null when UnconventionalRules.IsSoloMatch == true && UnconventionalRules.AllowDualBatting == false
         public List<Session>? Sessions { get; set; } = null; // Only if Match Format is TEST
@@ -129,12 +132,31 @@ namespace Domain.Entities.CricMz
         public string ReplacementID { get; set; } = string.Empty;
     }
 
-    public class ScoreLine
+    public class Over
     {
-        public int OverNo { get; set; } = 1;
-        public string PerformLine { get; set; } = string.Empty; // Batter => "0,0,1" "4,0,0,2,0,0" "0,6,0,0,3" "0,0,0,WB / WL / WS / WC / WCB / WC&B / WRNO / WRH / WRHO / WT / WHW / WHB2 / WM / WOF / WA"
-                                                                // Bowler => "WB,0,1,4,0,0" "2,0,0,6,0,0" "3,0,0,WC,0,WS" "WL,0,0,0,0,NB,WD,6"
-                                                                // Fielder => "WC,0,1,4,0,0" "2,0,FNC,6,0,0" "3,0,0,FA,WC&B,0" "FCM,FROM,FCD,0,0,0"
+        public int OverNo { get; set; }
+        public List<Bowl>? Balls { get; set; } = new List<Bowl>(); // minLength == BallPerOver -> 6  || public List<string> BallIds { get; set; } = new List<string>();
+        public string Overview { get; set; } = string.Empty; // "0,1NB,1WD,4,1,3NB,6,2,WB / WL / WS / WC / WCB / WC&B / WRNO / WRH / WRHO / WT / WHW / WHB2 / WM / WOF / WA"; minLength == BallPerOver
+    }
+
+    public class Bowl
+    {
+        public int BallNo { get; set; } // max == BallPerOver
+        public string Result { get; set; } = string.Empty; // 0 / 1NB / 2WD / 4 / 1 / 3NB / 6 / 2LB / 2 / WB / WL / WS / WC / WCB / WC&B / WRNO / WRH / WRHO / WT / WHW / WHB2 / WM / WOF / WA
+        public string Comment { get; set; } = string.Empty;
+        public string StrikerBatsmanID { get; set; } = string.Empty;
+        public string NonStrikerBatsmanID { get; set; } = string.Empty;
+        public string BowlerID { get; set; } = string.Empty;
+        public string WicketKeeperID { get; set; } = string.Empty;
+        public string FilderID { get; set; } = string.Empty;
+        public string AssistFilderID { get; set; } = string.Empty;
+        public string StampUmpireID { get; set; } = string.Empty;
+        public string LegUmpireID { get; set; } = string.Empty;
+        public string TvUmpireID { get; set; } = string.Empty;
+        public string MatchRefreeID { get; set; } = string.Empty;
+        public string FieldingSetupID { get; set; } = string.Empty;
+        public string FielderID { get; set; } = string.Empty;
+        public string AssistFielderID { get; set; } = string.Empty;
     }
 
     public class Performance
@@ -153,7 +175,7 @@ namespace Domain.Entities.CricMz
     {
         public int BattingOrder { get; set; } = 0;
         public string BattingHand { get; set; } = string.Empty;
-        public List<ScoreLine>? BattingLines { get; set; } = null;
+        public string BattingLines { get; set; } = string.Empty; // "x,x,x,0,0,1|4,0,4,2,0,1|1,x,x,x,x,6|0,0,3,x,x,x|0,2,0,WB / WL / WS / WC / WCB / WC&B / WRNO / WRH / WRHO / WT / WHW / WHB2 / WM / WOF / WA"
         public int Runs { get; set; } = 0;
         public int Balls { get; set; } = 0;
         public int Dots { get; set; } = 0;
@@ -187,8 +209,8 @@ namespace Domain.Entities.CricMz
     public class BowlingPerformance
     {
         public string BowlingArm { get; set; } = string.Empty; // left, right,
-        public string BowlingAction { get; set; } = string.Empty; // pacer, spinner,
-        public List<ScoreLine>? BowlingLines { get; set; } = null;
+        public string BowlingAction { get; set; } = string.Empty; // pacer, spinner,                                                      
+        public string BowlingLines { get; set; } = string.Empty; // "WB,0,1,4,0,0|2,0,0,6,0,0|3,0,0,WC,0,WS|WL,0,0,0,0,NB,WD,6"
         public int Wickets { get; set; } = 0;
         public int Bowled { get; set; } = 0;
         public int LBW { get; set; } = 0;
@@ -218,7 +240,7 @@ namespace Domain.Entities.CricMz
         public string FieldingPositions { get; set; } = string.Empty; // ","
         public string FieldingZones { get; set; } = string.Empty; // ","
         public string FieldingHand { get; set; } = string.Empty; // ","
-        public List<ScoreLine>? FieldingLines { get; set; } = null;
+        public string FieldingLines { get; set; } = string.Empty; // "x,x,1,4,0,WC|x,x,x,x,x,1|FNC,6,x,0,0,x|x,x,x,FA,WC&B,0|3,FCM,FROM,FCD,x,x"
         public int RunOuts { get; set; } = 0;
         public int AssistRunOuts { get; set; } = 0;
         public int MissedRunOuts { get; set; } = 0;
