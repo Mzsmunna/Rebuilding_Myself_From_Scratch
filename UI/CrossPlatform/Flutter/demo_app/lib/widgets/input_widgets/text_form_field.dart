@@ -23,7 +23,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
         autovalidateMode: AutovalidateMode.always,
         onChanged: () {
           setState(() {
-            Form.of(primaryFocus!.context!)!.save();
+            Form.of(primaryFocus!.context!).save();
           });
         },
         child: Column(

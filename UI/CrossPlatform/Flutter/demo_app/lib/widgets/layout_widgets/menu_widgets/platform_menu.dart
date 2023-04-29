@@ -7,10 +7,10 @@ class PlatformMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformMenuBar(
-      menus: <MenuItem>[
+      menus: <PlatformMenuItem>[
         PlatformMenu(
           label: 'Platform Menu',
-          menus: <MenuItem>[
+          menus: <PlatformMenuItem>[
             PlatformMenuItemGroup(
               members: [
                 PlatformMenuItem(
@@ -23,7 +23,7 @@ class PlatformMenuWidget extends StatelessWidget {
               members: [
                 PlatformMenu(
                   label: 'Messages',
-                  menus: <MenuItem>[
+                  menus: <PlatformMenuItem>[
                     PlatformMenuItem(
                       onSelected: () {},
                       shortcut: const CharacterActivator('F'),
@@ -40,7 +40,7 @@ class PlatformMenuWidget extends StatelessWidget {
           ],
         ),
       ],
-      body: const Center(
+      child: const Center(
         child: Text(
           'Flutter Mapp',
         ),
