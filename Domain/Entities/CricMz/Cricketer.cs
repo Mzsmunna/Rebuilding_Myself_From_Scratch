@@ -23,7 +23,8 @@ namespace Domain.Entities.CricMz
         public string TitleName { get; set; } = string.Empty;
         public int Age { get; set; } = 0;
         public DateTime? BirthDate { get; set; } = null;
-        public BirthPlace? BirthPlace { get; set; }
+        public Place? BirthPlace { get; set; } = null;
+        public Place? DeathPlace { get; set; } = null;
         public float Height { get; set; } = 0;
         public float Weight { get; set; } = 0;
         public string Nationality { get; set; } = string.Empty; //","

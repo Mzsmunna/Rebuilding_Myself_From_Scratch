@@ -14,6 +14,7 @@ namespace Domain.Entities.CricMz
         public string Gender { get; set; } = string.Empty; // male / female / transgender / other
         public int Age { get; set; } = 0;
         public DateTime? BirthDate { get; set; } = null;
+        public DateTime? DeathDate { get; set; } = null;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty; // need to be encrypted
         public string Phone { get; set; } = string.Empty;
@@ -33,9 +34,13 @@ namespace Domain.Entities.CricMz
         public TechnicalInfo? TechnicalInfo { get; set; } = new TechnicalInfo();
     }
 
-    public class BirthPlace
+    public class Place
     {
         public string Location { get; set; } = string.Empty;
+        public string Lat { get; set; } = string.Empty;
+        public string Long { get; set; } = string.Empty;
+        public string In { get; set; } = string.Empty;
+        public string At { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string County { get; set; } = string.Empty;
@@ -88,7 +93,8 @@ namespace Domain.Entities.CricMz
         public string TitleName { get; set; } = string.Empty; // Mzs || Mzsmunna
         public List<ContractInfo>? Contracts { get; set; } = null;
         public List<AddressInfo>? Addresses { get; set; } = null;
-        public BirthPlace? BirthPlace { get; set; } = null;
+        public Place? BirthPlace { get; set; } = null;
+        public Place? DeathPlace { get; set; } = null;
         public double Height { get; set; } = 0;
         public double Weight { get; set; } = 0;
         public bool IsLefty { get; set; } = false;
@@ -179,7 +185,8 @@ namespace Domain.Entities.CricMz
 
     public class Education
     {
-        public string Institution { get; set; } = string.Empty;
+        public string InstitutionID { get; set; } = string.Empty;
+        public string InstitutionName { get; set; } = string.Empty;
         public string Degree { get; set; } = string.Empty;
         public string Department { get; set; } = string.Empty;     
         public string Description { get; set; } = string.Empty;
@@ -199,11 +206,25 @@ namespace Domain.Entities.CricMz
         public DateTime ExpirationDate { get; set; }
     }
 
+    public class Skill
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string LearnedFromID { get; set; } = string.Empty; // Institution, Organization, User, etc
+        public string LearnedFromName { get; set; } = string.Empty; // Institution, Organization, User, etc
+        public string Description { get; set; } = string.Empty;
+        public bool IsSelfLearned { get; set; } = false;
+        public DateTime LearnedDate { get; set; }
+    }
+
     public class Project
     {
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
+        public string ToolAndTechs { get; set; } = string.Empty; // "C#, Asp.net Core, MongoDB, Reddis, SignalR, RabbitMQ, TypeScript" etc
         public string Description { get; set; } = string.Empty;
         public string Link { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
@@ -219,10 +240,11 @@ namespace Domain.Entities.CricMz
     public class Career
     {
         //public List<string>? TimeLineIDs { get; set; } = null; // Should be new Entity collection with user ID
-        public string CurrentStatus { get; set; } = string.Empty;
+        public string CurrentProfession { get; set; } = string.Empty;
         public List<Profession>? AllProfessions { get; set; } = null;
         public List<Education>? Educations { get; set; } = null;
         public List<Certification>? Certifications { get; set; } = null;
+        public List<Skill>? Skills { get; set; } = null;
         public List<Project>? Projects { get; set; } = null;
     }
 
