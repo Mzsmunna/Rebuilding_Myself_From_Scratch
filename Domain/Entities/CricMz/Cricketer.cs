@@ -22,10 +22,10 @@ namespace Domain.Entities.CricMz
         public string NickName { get; set; } = string.Empty;
         public string TitleName { get; set; } = string.Empty;
         public int Age { get; set; } = 0;
+        public DateTime? BirthDate { get; set; } = null;
+        public BirthPlace? BirthPlace { get; set; }
         public float Height { get; set; } = 0;
         public float Weight { get; set; } = 0;
-        public DateTime? DOB { get; set; } = null;
-        public BirthInfo? BirthInfo { get; set; }
         public string Nationality { get; set; } = string.Empty; //","
         public string Teams { get; set; } = string.Empty; //","
         public string TeamIds { get; set; } = string.Empty; //","
