@@ -65,14 +65,14 @@ namespace Domain.Entities.CricMz
     public class Squard
     {
         public string TeamID { get; set; } = string.Empty;
-        public List<Performer> Players { get; set; } = new List<Performer>();
+        public List<Performer> Cricketers { get; set; } = new List<Performer>();
         public ScoreCard FirstInnings { get; set; } = new ScoreCard();
         public ScoreCard? SecondInnings { get; set; } = null; // Only if Match Format is TEST
     }
 
     public class Scorer
     {
-        public BasicInfo PlayerInfo { get; set; } = new BasicInfo();
+        public BasicInfo CricketerInfo { get; set; } = new BasicInfo();
         public int RunScored { get; set; } = 0;
         public int FourScored { get; set; } = 0;
         public int SixScored { get; set; } = 0;
@@ -161,7 +161,7 @@ namespace Domain.Entities.CricMz
 
     public class Performance
     {
-        public string PlayerID { get; set; } = string.Empty;
+        public string CricketerID { get; set; } = string.Empty;
         public bool InCharge { get; set; } = false;
         public bool IsBatted { get; set; } = false;
         public bool IsBowled { get; set; } = false;
@@ -256,6 +256,6 @@ namespace Domain.Entities.CricMz
         public string AwardID { get; set; } = string.Empty;
         public string AwardName { get; set; } = string.Empty;
         public string PoweredBy { get; set; } = string.Empty;
-        public string PlayerID { get; set; } = string.Empty;
+        public string CricketerID { get; set; } = string.Empty;
     }
 }

@@ -61,6 +61,9 @@ namespace Domain.Entities.CricMz
     public class MatchSummary
     {
         public string MatchID { get; set; } = string.Empty;
+        public string MatchGenre { get; set; } = string.Empty; // Men / Women / Men_Special / Women_Special / Transgender / Others
+        public string MatchType { get; set; } = string.Empty; // street, gully, rooftop, indoor, book, paper, local, area, national, international, league, franchise, friendly, charity
+        public string MatchFormat { get; set; } = string.Empty; // Limited, ODI, ODI_40, TEST, TEST_4D, TEST_3D, T20I, T20, T10, SAS => Six_A_Site
         public string Title { get; set; } = string.Empty;
         public bool OnLive { get; set; } = false;
         public bool IsEnded { get; set; } = false;

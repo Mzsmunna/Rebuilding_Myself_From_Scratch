@@ -15,6 +15,7 @@ namespace Domain.Entities.CricMz
         public int Age { get; set; } = 0;
         public DateTime? BirthDate { get; set; } = null;
         public DateTime? DeathDate { get; set; } = null;
+        public string Nationality { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty; // need to be encrypted
         public string Phone { get; set; } = string.Empty;
@@ -99,7 +100,7 @@ namespace Domain.Entities.CricMz
         public Place? DeathPlace { get; set; } = null;
         public double Height { get; set; } = 0;
         public double Weight { get; set; } = 0;
-        public bool IsLefty { get; set; } = false;
+        public bool IsLeftie { get; set; } = false;
         public string LifeGoals { get; set; } = string.Empty; // ","
         public string Hobbies { get; set; } = string.Empty; // ","
         public string Interests { get; set; } = string.Empty; // ","
@@ -169,6 +170,7 @@ namespace Domain.Entities.CricMz
 
     public class Profession
     {
+        public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty; // "Job", "Business", "Entrepreneur", "Intrapreneur", "Sports", "Music", "Film", "Tourist" etc
@@ -181,7 +183,7 @@ namespace Domain.Entities.CricMz
         public string Description { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public bool AsInternship { get; set; } = false;
         public bool AsHobby { get; set; } = false;
         public bool AsPartTime { get; set; } = false;
@@ -199,7 +201,7 @@ namespace Domain.Entities.CricMz
         public string Description { get; set; } = string.Empty;
         public string Grade { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 
     public class Certification
@@ -242,7 +244,7 @@ namespace Domain.Entities.CricMz
         public string OrganizationId { get; set; } = string.Empty;
         public string OrganizationName { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 
     public class Career
@@ -279,7 +281,7 @@ namespace Domain.Entities.CricMz
         public string Title { get; set; } = string.Empty;
         public List<Link> AuthorizedUrls { get; set; } = new List<Link>();
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public bool IsAdmin { get; set; } = false;
         public bool IsActive { get; set; } = false;
     }

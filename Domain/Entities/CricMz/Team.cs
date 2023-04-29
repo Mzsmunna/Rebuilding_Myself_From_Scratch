@@ -13,10 +13,10 @@ namespace Domain.Entities.CricMz
         public string Name { get; set; } = string.Empty;
         public string Tags { get; set; } = string.Empty;
         public string Code { get; set; } = string.Empty; // BAN, ENG, CSK, MI, etc
+        public string Type { get; set; } = string.Empty; // International, National, Domestic, Franchise, Local, Street, Gully, Indoor
         public string BoardName { get; set; } = string.Empty;
         public string OrganizationName { get; set; } = string.Empty;
         public string OwnersName { get; set; } = string.Empty;
-        public string State { get; set; } = string.Empty; // International, National, Domestic, Franchise, Local, Street, Gully, Indoor
         public string Title { get; set; } = string.Empty;
         public string Caption { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
