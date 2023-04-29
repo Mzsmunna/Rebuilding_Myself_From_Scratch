@@ -23,7 +23,9 @@ namespace Domain.Entities.CricMz
         public string About { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
         public string CoverImage { get; set; } = string.Empty;
-        public string CurrentRole { get; set; } = string.Empty; // ","
+        public string Occupation { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
+        public string Actions { get; set; } = "R"; // "CRUDS", "C", "R", "U", "D", "S", "CR", "UD", "CRU", "RU", "RD", "CD", etc
         public AdditionalInfo? AdditionalInfo { get; set; } = null;
         public SocialInfo? SocialInfo { get; set; } = null;
         public PaymentCardInfo? PaymentCardInfo { get; set; } = null;
@@ -98,6 +100,7 @@ namespace Domain.Entities.CricMz
         public double Height { get; set; } = 0;
         public double Weight { get; set; } = 0;
         public bool IsLefty { get; set; } = false;
+        public string LifeGoals { get; set; } = string.Empty; // ","
         public string Hobbies { get; set; } = string.Empty; // ","
         public string Interests { get; set; } = string.Empty; // ","
         public string Genres { get; set; } = string.Empty; // ","
@@ -123,8 +126,10 @@ namespace Domain.Entities.CricMz
     {
         public string Category { get; set; } = string.Empty; // "home" / "office" / "personal" / "other"
         public string Email { get; set; } = string.Empty;
+        public string Number { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string Mobile { get; set; } = string.Empty;
+        public bool IsActive { get; set; } = false;
     }
 
     public class SocialInfo
@@ -151,14 +156,15 @@ namespace Domain.Entities.CricMz
         public string ParentID { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
+        public string Sections { get; set; } = string.Empty; // ","
         public string Actions { get; set; } = "R"; // "CRUDS", "C", "R", "U", "D", "S", "CR", "UD", "CRU", "RU", "RD", "CD", etc
         public string BaseUrl { get; set; } = string.Empty;
         public string DomainUrl { get; set; } = string.Empty;
         public string SubUrl { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
-        public bool IsDefaultRedirectUrl { get; set; } = false;
-        public bool IsOpenInNewTab { get; set; } = true;
-        public int Order { get; set; } = 0;
+        public bool AsDefaultRedirectUrl { get; set; } = false;
+        public bool AsOpenInNewTab { get; set; } = true;
+        public int OrderNo { get; set; } = 0;
     }
 
     public class Profession
@@ -188,7 +194,8 @@ namespace Domain.Entities.CricMz
         public string InstitutionID { get; set; } = string.Empty;
         public string InstitutionName { get; set; } = string.Empty;
         public string Degree { get; set; } = string.Empty;
-        public string Department { get; set; } = string.Empty;     
+        public string Department { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Grade { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }
@@ -212,8 +219,9 @@ namespace Domain.Entities.CricMz
         public string Title { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
-        public string LearnedFromID { get; set; } = string.Empty; // Institution, Organization, User, etc
-        public string LearnedFromName { get; set; } = string.Empty; // Institution, Organization, User, etc
+        public string LearnedFrom { get; set; } = string.Empty; // Institution, Organization, User, etc
+        public string LearnedFromID { get; set; } = string.Empty;
+        public string LearnedFromName { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public bool IsSelfLearned { get; set; } = false;
         public DateTime LearnedDate { get; set; }
@@ -240,7 +248,6 @@ namespace Domain.Entities.CricMz
     public class Career
     {
         //public List<string>? TimeLineIDs { get; set; } = null; // Should be new Entity collection with user ID
-        public string CurrentProfession { get; set; } = string.Empty;
         public List<Profession>? AllProfessions { get; set; } = null;
         public List<Education>? Educations { get; set; } = null;
         public List<Certification>? Certifications { get; set; } = null;
