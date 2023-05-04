@@ -10,6 +10,7 @@ namespace Domain.Entities.CricMz
     public class UserUniverse : IEntity
     {
         public string Id { get; set; } = string.Empty;
+        public string Identifier { get; set; } = string.Empty; // ","
         public string Name { get; set; } = string.Empty; // Mamunuz zaman sarker
         public string Gender { get; set; } = string.Empty; // male / female / transgender / other
         public int Age { get; set; } = 0;
@@ -28,14 +29,17 @@ namespace Domain.Entities.CricMz
         public string Occupation { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public string Permissions { get; set; } = "R"; // "CRUDS", "C", "R", "U", "D", "S", "CR", "UD", "CRU", "RU", "RD", "CD", etc
-        public UserAdditionalInfo? AdditionalInfo { get; set; } = null;
-        public UserSocialInfo? SocialInfo { get; set; } = null;
-        public UserPaymentCardInfo? PaymentCardInfo { get; set; } = null;
-        public UserBillingInfo? BillingInfo { get; set; } = null;
-        public List<UserNationality>? Nationalities { get; set; } = null;
         public UserLife? Life { get; set; } = null;
-        public List<UserAuthorization> Authorizations { get; set; } = new List<UserAuthorization>();
-        public UserTechnicalInfo? TechnicalInfo { get; set; } = new UserTechnicalInfo();
+        public UserSocialInfo? SocialInfo { get; set; } = null;
+        public UserAdditionalInfo? AdditionalInfo { get; set; } = null;
+        public UserTechnicalInfo? TechnicalInfo { get; set; } = null;
+        public List<UserAuthorization>? Authorizations { get; set; } = null;
+        public List<UserIdentity>? Identities { get; set; } = null;
+        public List<UserAccount>? Accounts { get; set; } = null;
+        public List<UserVisa>? Visas { get; set; } = null;
+        public List<UserPassport>? Passports { get; set; } = null;
+        public List<UserPaymentCard>? PaymentCards { get; set; } = null;
+        public List<UserCredential>? Credentials { get; set; } = null;
     }
 
     public class UserPlace
@@ -52,40 +56,78 @@ namespace Domain.Entities.CricMz
         public string Zip { get; set; } = string.Empty;
     }
 
-    public class UserNationality
+    public class UserIdentity
     {
-        public string Visa { get; set; } = string.Empty;
-        public string Passport { get; set; } = string.Empty;
-        public DateTime? IssuedDate { get; set; } = null;
-        public DateTime? ExpirationDate { get; set; } = null;
+        public string Id { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Code { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string Number { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
+        public string CountryID { get; set; } = string.Empty;
+        public string CountryCode { get; set; } = string.Empty;
+        public string Nationality { get; set; } = string.Empty;
+        public string Language { get; set; } = string.Empty;
+        public string IssuingAuthorityID { get; set; } = string.Empty;
+        public string IssuingAuthorityName { get; set; } = string.Empty;
+        public DateTime IssuedDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
         public bool IsByBorn { get; set; } = false;
-        public bool IsPermanent { get; set; } = false;
     }
 
-    public class UserPaymentCardInfo
+    public class UserAccount
+    {
+        public string Id { get; set; } = string.Empty;
+        public string IssuingBankID { get; set; } = string.Empty;
+        public string IssuingBankName { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string Number { get; set; } = string.Empty;
+        public string HolderName { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public string Branch { get; set; } = string.Empty;
+        public string Zip { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
+        public DateTime OpenDate { get; set; }
+        public DateTime CloseDate { get; set; }
+    }
+
+    public class UserPaymentCard : UserAccount
     {
         // Credit card details
-        public string CardNumber { get; set; } = string.Empty;
-        public string CardHolderName { get; set; } = string.Empty;
-        public string CardType { get; set; } = string.Empty;
         public string CVV { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
-        public string Zip { get; set; } = string.Empty;
-        public int ExpirationMonth { get; set; }
-        public int ExpirationYear { get; set; }
+        public string BillingAddress { get; set; } = string.Empty;
+        public DateTime ExpirationMonth { get; set; }
+        public DateTime ExpirationYear { get; set; }
     }
 
-    public class UserBillingInfo
+    public class UserVisa
     {
-        // Billing address
-        public string Address { get; set; } = string.Empty;
-        public string City { get; set; } = string.Empty;
-        public string State { get; set; } = string.Empty;
-        public string PostalCode { get; set; } = string.Empty;
+        public string Id { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
-        public double Amount { get; set; }
-        public DateTime PaymentDate { get; set; }
-        public string PaymentStatus { get; set; } = string.Empty;
+        public string VisaType { get; set; } = string.Empty;
+        public DateTime IssueDate { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public string PassportID { get; set; } = string.Empty;
+        public string PassportNumber { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+    }
+
+    public class UserPassport
+    {
+        public string Id { get; set; } = string.Empty;
+        public string PassportNumber { get; set; } = string.Empty;
+        public string SurName { get; set; } = string.Empty;
+        public string GivenName { get; set; } = string.Empty;
+        public string NationalID { get; set; } = string.Empty;
+        public string Nationality { get; set; } = string.Empty;
+        public string Gender { get; set; } = string.Empty;
+        public DateTime DateOfBirth { get; set; }
+        public DateTime IssueDate { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public string PlaceOfBirth { get; set; } = string.Empty;
+        public string PlaceOfIssue { get; set; } = string.Empty;
     }
 
     public class UserAdditionalInfo
@@ -94,9 +136,10 @@ namespace Domain.Entities.CricMz
         public string MiddleName { get; set; } = string.Empty; // Zaman
         public string LastName { get; set; } = string.Empty; // Sarker
         public string NickName { get; set; } = string.Empty; // Munna
+        public string SurName { get; set; } = string.Empty; // Mamun
         public string TitleName { get; set; } = string.Empty; // Mzs || Mzsmunna
-        public List<UserContractInfo>? Contracts { get; set; } = null;
-        public List<UserAddressInfo>? Addresses { get; set; } = null;
+        public List<UserContract>? Contracts { get; set; } = null;
+        public List<UserAddress>? Addresses { get; set; } = null;
         public UserPlace? BirthPlace { get; set; } = null;
         public UserPlace? DeathPlace { get; set; } = null;
         public double Height { get; set; } = 0;
@@ -114,7 +157,7 @@ namespace Domain.Entities.CricMz
         public string CurrentMood { get; set; } = string.Empty; // ","
     }
 
-    public class UserAddressInfo
+    public class UserAddress
     {
         public string Address { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
@@ -122,9 +165,10 @@ namespace Domain.Entities.CricMz
         public string County { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public string Zip { get; set; } = string.Empty;
+        public string PostalCode { get; set; } = string.Empty;
     }
 
-    public class UserContractInfo
+    public class UserContract
     {
         public string Category { get; set; } = string.Empty; // "home" / "office" / "personal" / "other"
         public string Email { get; set; } = string.Empty;
@@ -392,12 +436,36 @@ namespace Domain.Entities.CricMz
         public bool IsActive { get; set; } = false;
     }
 
+    public class UserCredential
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string RecoveryEmail { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string RecoveryPhone { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string Caption { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string SecurityQuestion { get; set; } = string.Empty;
+        public string SecurityAnswer { get; set; } = string.Empty;
+        public bool IsVerified { get; set; } = false;
+        public bool IsActive { get; set; } = false;
+        public bool IsTwoFactorAuth { get; set; } = false;
+        public DateTime? AccountCreated { get; set; }
+    }
+
     public class UserTechnicalInfo
     {
         public string RefreshToken { get; set; } = string.Empty;
         public string ConfirmationCode { get; set; } = string.Empty;
         public bool IsConfirmed { get; set; } = false;
         public bool IsDeleted { get; set; } = false;
+        public bool IsTwoFactorAuth { get; set; } = false;
 
         [BsonIgnore]
         public byte[]? PasswordHash { get; set; }
