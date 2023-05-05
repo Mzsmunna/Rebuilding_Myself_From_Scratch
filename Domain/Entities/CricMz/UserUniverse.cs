@@ -39,7 +39,6 @@ namespace Domain.Entities.CricMz
         public List<UserVisa>? Visas { get; set; } = null;
         public List<UserPassport>? Passports { get; set; } = null;
         public List<UserPaymentCard>? PaymentCards { get; set; } = null;
-        public List<UserCredential>? Credentials { get; set; } = null;
     }
 
     public class UserPlace
@@ -79,23 +78,36 @@ namespace Domain.Entities.CricMz
     public class UserAccount
     {
         public string Id { get; set; } = string.Empty;
-        public string IssuingBankID { get; set; } = string.Empty;
-        public string IssuingBankName { get; set; } = string.Empty;
+        public string IssuingOrgID { get; set; } = string.Empty;
+        public string IssuingOrgName { get; set; } = string.Empty;
+        public string OrgType { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
         public string Number { get; set; } = string.Empty;
         public string HolderName { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string Branch { get; set; } = string.Empty;
         public string Zip { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
+        public string Signature { get; set; } = string.Empty;
+        public string ESignature { get; set; } = string.Empty;
+        public bool IsAppOrWebsite { get; set; } = false;
+        public UserCredential? Credential { get; set; } = null;
         public DateTime OpenDate { get; set; }
         public DateTime CloseDate { get; set; }
     }
 
-    public class UserPaymentCard : UserAccount
+    public class UserPaymentCard // might need to be encrypted
     {
         // Credit card details
+        public string Id { get; set; } = string.Empty;
+        public string IssuingOrgID { get; set; } = string.Empty;
+        public string IssuingOrgName { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string Number { get; set; } = string.Empty;
+        public string HolderName { get; set; } = string.Empty;
         public string CVV { get; set; } = string.Empty;
         public string BillingAddress { get; set; } = string.Empty;
         public DateTime ExpirationMonth { get; set; }
@@ -436,11 +448,14 @@ namespace Domain.Entities.CricMz
         public bool IsActive { get; set; } = false;
     }
 
-    public class UserCredential
+    public class UserCredential // need to be encrypted
     {
         public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
-        public string Url { get; set; } = string.Empty;
+        public string SiteName { get; set; } = string.Empty;
+        public string SiteUrl { get; set; } = string.Empty;
+        public string SiteCategory { get; set; } = string.Empty;
+        public string SiteType { get; set; } = string.Empty;
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
