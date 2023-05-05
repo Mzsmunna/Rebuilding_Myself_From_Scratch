@@ -58,7 +58,7 @@ namespace Domain.Entities.CricMz
         public List<UserAccount>? Accounts { get; set; } = null;
         public List<UserVisa>? Visas { get; set; } = null;
         public List<UserPassport>? Passports { get; set; } = null;
-        public List<UserPaymentCard>? PaymentCards { get; set; } = null;
+        public List<UserWallet>? Wallets { get; set; } = null;
     }
 
     public class UserPlace
@@ -119,13 +119,15 @@ namespace Domain.Entities.CricMz
         public DateTime? CloseDate { get; set; }
     }
 
-    public class UserPaymentCard // might need to be encrypted
+    public class UserWallet // might need to be encrypted
     {
         // Credit card details
         public string Id { get; set; } = string.Empty;
         public string IssuingOrgID { get; set; } = string.Empty;
         public string IssuingOrgName { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
+        public string Caption { get; set; } = string.Empty;
         public string Number { get; set; } = string.Empty;
         public string HolderName { get; set; } = string.Empty;
         public string CVV { get; set; } = string.Empty;
