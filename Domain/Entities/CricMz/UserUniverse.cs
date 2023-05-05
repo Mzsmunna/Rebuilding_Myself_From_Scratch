@@ -70,7 +70,7 @@ namespace Domain.Entities.CricMz
         public string Language { get; set; } = string.Empty;
         public string IssuingAuthorityID { get; set; } = string.Empty;
         public string IssuingAuthorityName { get; set; } = string.Empty;
-        public DateTime IssuedDate { get; set; }
+        public DateTime IssuedDate { get; set; } = DateTime.UtcNow;
         public DateTime? ExpirationDate { get; set; }
         public bool IsByBorn { get; set; } = false;
     }
@@ -95,8 +95,8 @@ namespace Domain.Entities.CricMz
         public string ESignature { get; set; } = string.Empty;
         public bool IsAppOrWebsite { get; set; } = false;
         public UserCredential? Credential { get; set; } = null;
-        public DateTime OpenDate { get; set; }
-        public DateTime CloseDate { get; set; }
+        public DateTime OpenDate { get; set; } = DateTime.UtcNow;
+        public DateTime? CloseDate { get; set; }
     }
 
     public class UserPaymentCard // might need to be encrypted
@@ -110,8 +110,9 @@ namespace Domain.Entities.CricMz
         public string HolderName { get; set; } = string.Empty;
         public string CVV { get; set; } = string.Empty;
         public string BillingAddress { get; set; } = string.Empty;
-        public DateTime ExpirationMonth { get; set; }
-        public DateTime ExpirationYear { get; set; }
+        public int ExpirationMonth { get; set; }
+        public int ExpirationYear { get; set; }
+        public DateTime ExpirationDate { get; set; } = DateTime.UtcNow;
     }
 
     public class UserVisa
@@ -119,8 +120,8 @@ namespace Domain.Entities.CricMz
         public string Id { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string VisaType { get; set; } = string.Empty;
-        public DateTime IssueDate { get; set; }
-        public DateTime ExpirationDate { get; set; }
+        public DateTime IssueDate { get; set; } = DateTime.UtcNow;
+        public DateTime ExpirationDate { get; set; } = DateTime.UtcNow;
         public string PassportID { get; set; } = string.Empty;
         public string PassportNumber { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
@@ -136,8 +137,8 @@ namespace Domain.Entities.CricMz
         public string Nationality { get; set; } = string.Empty;
         public string Gender { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
-        public DateTime IssueDate { get; set; }
-        public DateTime ExpirationDate { get; set; }
+        public DateTime IssueDate { get; set; } = DateTime.UtcNow;
+        public DateTime ExpirationDate { get; set; } = DateTime.UtcNow;
         public string PlaceOfBirth { get; set; } = string.Empty;
         public string PlaceOfIssue { get; set; } = string.Empty;
     }
@@ -205,7 +206,7 @@ namespace Domain.Entities.CricMz
         public string TwitchProfile { get; set; } = string.Empty;
         public string SlackProfile { get; set; } = string.Empty;
         public string ZoomProfile { get; set; } = string.Empty;
-        public List<UserAccessLink>? Others { get; set; } = null;
+        public List<UserAccessLink>? OtherProfiles { get; set; } = null;
     }
 
     public class UserAccessLink
@@ -215,16 +216,33 @@ namespace Domain.Entities.CricMz
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
         public string Caption { get; set; } = string.Empty;
         public string Sections { get; set; } = string.Empty; // ","
         public string Permissions { get; set; } = "R"; // "CRUDS", "C", "R", "U", "D", "S", "CR", "UD", "CRU", "RU", "RD", "CD", etc
-        public string BaseUrl { get; set; } = string.Empty;
-        public string DomainUrl { get; set; } = string.Empty;
+        public string SiteUrl { get; set; } = string.Empty;
         public string SubUrl { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
         public bool AsDefaultRedirectUrl { get; set; } = false;
         public bool AsOpenInNewTab { get; set; } = true;
-        public int OrderNo { get; set; } = 0;
+        public int Ordering { get; set; } = 0;
+    }
+
+    public class UserBookmark
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Key { get; set; } = string.Empty;
+        public string Value { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Caption { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
+        public string Image { get; set; } = string.Empty;
+        public string Attachment { get; set; } = string.Empty;
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTime? ModifiedOn { get; set; }
     }
 
     public class UserProfession
@@ -242,7 +260,7 @@ namespace Domain.Entities.CricMz
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.UtcNow;
         public DateTime? EndDate { get; set; }
         public bool AsInternship { get; set; } = false;
         public bool AsHobby { get; set; } = false;
@@ -265,7 +283,7 @@ namespace Domain.Entities.CricMz
         public string Grade { get; set; } = string.Empty;
         public string Class { get; set; } = string.Empty;
         public string Result { get; set; } = string.Empty;
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.UtcNow;
         public DateTime? EndDate { get; set; }
     }
 
@@ -282,8 +300,8 @@ namespace Domain.Entities.CricMz
         public string IssuerName { get; set; } = string.Empty;
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public DateTime IssuedDate { get; set; }
-        public DateTime ExpirationDate { get; set; }
+        public DateTime IssuedDate { get; set; } = DateTime.UtcNow;
+        public DateTime? ExpirationDate { get; set; }
     }
 
     public class UserSkill
@@ -300,7 +318,7 @@ namespace Domain.Entities.CricMz
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public bool IsSelfLearned { get; set; } = false;
-        public DateTime LearnedDate { get; set; }
+        public DateTime LearnedDate { get; set; } = DateTime.UtcNow;
     }
 
     public class UserProject
@@ -320,7 +338,7 @@ namespace Domain.Entities.CricMz
         public bool IsContributor { get; set; } = false;
         public string LogisticId { get; set; } = string.Empty;
         public string LogisticName { get; set; } = string.Empty;
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.UtcNow;
         public DateTime? EndDate { get; set; }
     }
 
@@ -338,7 +356,7 @@ namespace Domain.Entities.CricMz
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public bool IsMilestone { get; set; } = false;
-        public DateTime AchievedDate { get; set; }
+        public DateTime AchievedDate { get; set; } = DateTime.UtcNow;
     }
 
     public class UserMemoryAndMoment
@@ -354,7 +372,7 @@ namespace Domain.Entities.CricMz
         public List<string>? Withs { get; set; } = null;
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public DateTime MomentDate { get; set; }
+        public DateTime MomentDate { get; set; } = DateTime.UtcNow;
     }
 
     public class UserFriendAndFamily
@@ -373,7 +391,7 @@ namespace Domain.Entities.CricMz
         public bool IsBestie { get; set; } = false;
         public bool IsInspiration { get; set; } = false;
         public bool IsGuider { get; set; } = false;
-        public DateTime Since { get; set; }
+        public DateTime Since { get; set; } = DateTime.UtcNow;
         public DateTime? Till { get; set; }
     }
 
@@ -391,7 +409,7 @@ namespace Domain.Entities.CricMz
         public bool IsCelebrity { get; set; } = false;
         public bool IsSubscribed { get; set; } = false;
         public int Rank { get; set; } = 0;
-        public DateTime Since { get; set; }
+        public DateTime Since { get; set; } = DateTime.UtcNow;
         public DateTime? Till { get; set; }
     }
 
@@ -442,7 +460,7 @@ namespace Domain.Entities.CricMz
         public string Category { get; set; } = string.Empty; // "paid", "subscribed", "in_app_purchase" etc        
         public string Permissions { get; set; } = "R"; // "CRUDS", "C", "R", "U", "D", "S", "CR", "UD", "CRU", "RU", "RD", "CD", etc
         public List<UserAccessLink> AuthorizedUrls { get; set; } = new List<UserAccessLink>();
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.UtcNow;
         public DateTime? EndDate { get; set; }
         public bool IsAdmin { get; set; } = false;
         public bool IsActive { get; set; } = false;
@@ -471,7 +489,7 @@ namespace Domain.Entities.CricMz
         public bool IsVerified { get; set; } = false;
         public bool IsActive { get; set; } = false;
         public bool IsTwoFactorAuth { get; set; } = false;
-        public DateTime? AccountCreated { get; set; }
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
     }
 
     public class UserTechnicalInfo
@@ -493,8 +511,8 @@ namespace Domain.Entities.CricMz
         
         [BsonIgnore]
         public DateTime? TokenExpires { get; set; }
-        public bool? IsActive { get; set; } = false;
-        public DateTime? CreatedOn { get; set; } = DateTime.UtcNow;
+        public bool IsActive { get; set; } = false;
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
         public string CreatedBy { get; set; } = string.Empty;
         public string ModifiedBy { get; set; } = string.Empty;
