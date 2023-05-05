@@ -59,6 +59,7 @@ namespace Domain.Entities.CricMz
         public List<UserVisa>? Visas { get; set; } = null;
         public List<UserPassport>? Passports { get; set; } = null;
         public List<UserWallet>? Wallets { get; set; } = null;
+        public List<UserGoods>? Goods { get; set; } = null;
     }
 
     public class UserPlace
@@ -247,8 +248,46 @@ namespace Domain.Entities.CricMz
         public string Url { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
         public string Attachment { get; set; } = string.Empty;
+        public bool IsArcived { get; set; } = false;
         public DateTime AddedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
+    }
+
+    public class UserGoods
+    {
+        public string Id { get; set; } = string.Empty;
+        public string ReceivedTransactionID { get; set; } = string.Empty;
+        public string ReturnedTransactionID { get; set; } = string.Empty;
+        public string SoldTransactionID { get; set; } = string.Empty;
+        public string ProductID { get; set; } = string.Empty;
+        public string ProductName { get; set; } = string.Empty;
+        public string ProductUrl { get; set; } = string.Empty;
+        public string OwnerId { get; set; } = string.Empty;
+        public string OwnerName { get; set; } = string.Empty;
+        public string OwnerType { get; set; } = string.Empty; // Person, Company, Shop, Org, etc
+        public string Name { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty; // Accessory, Gadget, Jwelary, Vehicle, Software etc
+        public string Category { get; set; } = string.Empty; // Mobile, Headphone, Bracelet, Car, Bike, Mobile App, Website etc
+        public string Caption { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public List<string>? Images { get; set; } = null;
+        public List<string>? Attachments { get; set; } = null;
+        public bool IsRequested { get; set; } = false;
+        public bool IsPurchased { get; set; } = true;
+        public bool IsBrandNew { get; set; } = true;
+        public bool IsBorrowed { get; set; } = false;
+        public bool IsGifted { get; set; } = false;
+        public bool IsShared { get; set; } = false;
+        public bool IsFromOnline { get; set; } = false;
+        public bool IsVirtualProduct { get; set; } = false;
+        public bool IsAvailable { get; set; } = true;
+        public List<Info>? SharedWiths { get; set; } = null;
+        public DateTime ReceivedOn { get; set; } = DateTime.UtcNow;
+        public DateTime? RequestedOn { get; set; } = null;
+        public DateTime? CartedOn { get; set; } = null;       
+        public DateTime? ReturnedOn { get; set; } = null;
+        public DateTime? SoldOn { get; set; } = null;
     }
 
     public class UserProfession
