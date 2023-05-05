@@ -11,9 +11,28 @@ namespace Domain.Entities.CricMz
     {
         public string Id { get; set; } = string.Empty;
         public string Identifier { get; set; } = string.Empty; // ","
+        public string FirstName { get; set; } = string.Empty; // Mamunuz
+        public string MiddleName { get; set; } = string.Empty; // Zaman
+        public string LastName { get; set; } = string.Empty; // Sarker
+        public string NickName { get; set; } = string.Empty; // Munna
+        public string SurName { get; set; } = string.Empty; // Mamun
+        public string TitleName { get; set; } = string.Empty; // Mzs || Mzsmunna
         public string Name { get; set; } = string.Empty; // Mamunuz zaman sarker
         public string Gender { get; set; } = string.Empty; // male / female / transgender / other
         public int Age { get; set; } = 0;
+        public double Height { get; set; } = 0;
+        public double Weight { get; set; } = 0;
+        public bool IsLeftie { get; set; } = false;
+        public string LifeGoals { get; set; } = string.Empty; // ","
+        public string Hobbies { get; set; } = string.Empty; // ","
+        public string Interests { get; set; } = string.Empty; // ","
+        public string Genres { get; set; } = string.Empty; // ","
+        public string Tastes { get; set; } = string.Empty; // ","
+        public string Personalities { get; set; } = string.Empty; // ","
+        public string Attitudes { get; set; } = string.Empty; // ","
+        public string Behaviors { get; set; } = string.Empty; // ","
+        public string RecentMoods { get; set; } = string.Empty; // ","
+        public string CurrentMoods { get; set; } = string.Empty; // ",
         public DateTime? BirthDate { get; set; } = null;
         public DateTime? DeathDate { get; set; } = null;
         public string Nationality { get; set; } = string.Empty;
@@ -21,7 +40,8 @@ namespace Domain.Entities.CricMz
         public string Password { get; set; } = string.Empty; // need to be encrypted
         public string Phone { get; set; } = string.Empty;
         public string Mobile { get; set; } = string.Empty;
-        public string Address { get; set; } = string.Empty;
+        public string PresentAddress { get; set; } = string.Empty;
+        public string HomeTownAddress { get; set; } = string.Empty;
         public string About { get; set; } = string.Empty;
         public string Quote { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
@@ -145,29 +165,10 @@ namespace Domain.Entities.CricMz
 
     public class UserAdditionalInfo
     {
-        public string FirstName { get; set; } = string.Empty; // Mamunuz
-        public string MiddleName { get; set; } = string.Empty; // Zaman
-        public string LastName { get; set; } = string.Empty; // Sarker
-        public string NickName { get; set; } = string.Empty; // Munna
-        public string SurName { get; set; } = string.Empty; // Mamun
-        public string TitleName { get; set; } = string.Empty; // Mzs || Mzsmunna
         public List<UserContract>? Contracts { get; set; } = null;
         public List<UserAddress>? Addresses { get; set; } = null;
         public UserPlace? BirthPlace { get; set; } = null;
         public UserPlace? DeathPlace { get; set; } = null;
-        public double Height { get; set; } = 0;
-        public double Weight { get; set; } = 0;
-        public bool IsLeftie { get; set; } = false;
-        public string LifeGoals { get; set; } = string.Empty; // ","
-        public string Hobbies { get; set; } = string.Empty; // ","
-        public string Interests { get; set; } = string.Empty; // ","
-        public string Genres { get; set; } = string.Empty; // ","
-        public string Tastes { get; set; } = string.Empty; // ","
-        public string Personalities { get; set; } = string.Empty; // ","
-        public string Attitude { get; set; } = string.Empty; // ","
-        public string Behavior { get; set; } = string.Empty; // ","
-        public string RecentMood { get; set; } = string.Empty; // ","
-        public string CurrentMood { get; set; } = string.Empty; // ","
     }
 
     public class UserAddress
@@ -179,6 +180,9 @@ namespace Domain.Entities.CricMz
         public string State { get; set; } = string.Empty;
         public string Zip { get; set; } = string.Empty;
         public string PostalCode { get; set; } = string.Empty;
+        public bool IsPresentAddress { get; set; } = false;
+        public bool IsHomeTown { get; set; } = false;
+        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
     }
 
     public class UserContract
@@ -241,7 +245,7 @@ namespace Domain.Entities.CricMz
         public string Url { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
         public string Attachment { get; set; } = string.Empty;
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
     }
 
@@ -490,7 +494,7 @@ namespace Domain.Entities.CricMz
         public bool IsVerified { get; set; } = false;
         public bool IsActive { get; set; } = false;
         public bool IsTwoFactorAuth { get; set; } = false;
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
     }
 
     public class UserTechnicalInfo
