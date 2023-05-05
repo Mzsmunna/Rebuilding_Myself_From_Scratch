@@ -11,6 +11,7 @@ namespace Domain.Entities.CricMz
     {
         public string Id { get; set; } = string.Empty;
         public string Identifier { get; set; } = string.Empty; // ","
+        public string Platforms { get; set; } = string.Empty; // App / Web App name ","
         public string FirstName { get; set; } = string.Empty; // Mamunuz
         public string MiddleName { get; set; } = string.Empty; // Zaman
         public string LastName { get; set; } = string.Empty; // Sarker
@@ -54,12 +55,7 @@ namespace Domain.Entities.CricMz
         public UserAdditionalInfo? AdditionalInfo { get; set; } = null;
         public UserTechnicalInfo? TechnicalInfo { get; set; } = null;
         public List<UserAuthorization>? Authorizations { get; set; } = null;
-        public List<UserIdentity>? Identities { get; set; } = null;
-        public List<UserAccount>? Accounts { get; set; } = null;
-        public List<UserVisa>? Visas { get; set; } = null;
-        public List<UserPassport>? Passports { get; set; } = null;
-        public List<UserWallet>? Wallets { get; set; } = null;
-        public List<UserGoods>? Goods { get; set; } = null;
+        
     }
 
     public class UserPlace
@@ -172,10 +168,19 @@ namespace Domain.Entities.CricMz
         public List<UserAddress>? Addresses { get; set; } = null;
         public UserPlace? BirthPlace { get; set; } = null;
         public UserPlace? DeathPlace { get; set; } = null;
+        public List<UserIdentity>? Identities { get; set; } = null;
+        public List<UserAccount>? Accounts { get; set; } = null;
+        public List<UserVisa>? Visas { get; set; } = null;
+        public List<UserPassport>? Passports { get; set; } = null;
+        public List<UserWallet>? Wallets { get; set; } = null;
+        public List<UserGoods>? Goods { get; set; } = null;
+        public List<UserFood>? Foods { get; set; } = null;
+        public List<UserContent>? Contents { get; set; } = null;
     }
 
-    public class UserAddress
+    public class UserAddress // might need to be encrypted
     {
+        public Info? Owner { get; set; } = new Info();
         public string Address { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
@@ -183,9 +188,18 @@ namespace Domain.Entities.CricMz
         public string State { get; set; } = string.Empty;
         public string Zip { get; set; } = string.Empty;
         public string PostalCode { get; set; } = string.Empty;
+        public string House { get; set; } = string.Empty;
+        public string Flat { get; set; } = string.Empty;
+        public string Floor { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
+        public int Fare { get; set; } = 0; // Amount
+        public string Currency { get; set; } = string.Empty;
+        public string Plan { get; set; } = string.Empty; // Monthly / Weekly / Yearly
+        public bool IsRental { get; set; } = false;       
         public bool IsPresentAddress { get; set; } = false;
-        public bool IsHomeTown { get; set; } = false;
-        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
+        public bool IsHomeAddress { get; set; } = false;
+        public DateTime Since { get; set; } = DateTime.UtcNow;
+        public DateTime? Till { get; set; } = DateTime.UtcNow;
     }
 
     public class UserContract
@@ -220,12 +234,14 @@ namespace Domain.Entities.CricMz
     {
         public string Id { get; set; } = string.Empty;
         public string ParentID { get; set; } = string.Empty;
+        public string Platform { get; set; } = string.Empty; // App / Web App name
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public string Caption { get; set; } = string.Empty;
         public string Sections { get; set; } = string.Empty; // ","
+        public string Modules { get; set; } = string.Empty; // ","
         public string Permissions { get; set; } = "R"; // "CRUDS", "C", "R", "U", "D", "S", "CR", "UD", "CRU", "RU", "RD", "CD", etc
         public string SiteUrl { get; set; } = string.Empty;
         public string SubUrl { get; set; } = string.Empty;
@@ -238,10 +254,12 @@ namespace Domain.Entities.CricMz
     public class UserBookmark
     {
         public string Id { get; set; } = string.Empty;
+        public string Platform { get; set; } = string.Empty; // App / Web App name
         public string Key { get; set; } = string.Empty;
         public string Value { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
+        public string Folder { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Caption { get; set; } = string.Empty;
@@ -249,8 +267,67 @@ namespace Domain.Entities.CricMz
         public string Image { get; set; } = string.Empty;
         public string Attachment { get; set; } = string.Empty;
         public bool IsArcived { get; set; } = false;
+        public bool IsFavourite { get; set; } = false;
+        public bool IsStarred { get; set; } = false;
         public DateTime AddedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
+    }
+
+    public class UserContent
+    {
+        public string Id { get; set; } = string.Empty;
+        public string LinkedId { get; set; } = string.Empty;
+        public string LinkedType { get; set; } = string.Empty; // "Related-To, Blocked-By, Caused-By, Sub-Task"
+        public Info? Responsible { get; set; } = null;
+        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public string Name { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Tags { get; set; } = string.Empty; // memes, funny, facts, critics ","
+        public string Type { get; set; } = string.Empty; // Article, News, Post, Blog, Vlog, Issue, Poll
+        public string Category { get; set; } = string.Empty; // Sports, Business, Politics, Movie, Music, [Task, To-Do, Bug, Feature, Concern], [Yes, No, A, B, x, Y, Z, Other]
+        public string Caption { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string Privacy { get; set; } = string.Empty; // Private, Personal, Public, Friends&Family, FriendsOfFriends
+        public string Priority { get; set; } = string.Empty; // Lowest, Low, Medium, High, Highest
+        public string Status { get; set; } = string.Empty; // Pending, In-Progress, Testing, Done, Completed, Released, Resolved, Closed
+        public List<string>? Images { get; set; } = null;
+        public List<string>? Videos { get; set; } = null;
+        public List<string>? Attachments { get; set; } = null; // formatted html text or xml or json or others file link
+        public int Views { get; set; } = 0; // Reach
+        public int Comments { get; set; } = 0;
+        public React? Reacts { get; set; } = null;
+        //public List<UserReact>? Reacts { get; set; } = null;
+        //public List<UserEngagement>? Engagements { get; set; } = null;
+        public List<ContentOption>? Options { get; set; } = null; // Polls
+        public bool IsAnIssue { get; set; } = false;
+        public bool IsSubTask { get; set; } = false;
+        public bool IsVirtual { get; set; } = false;
+        public List<Info>? SharedWiths { get; set; } = null;
+        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
+        public DateTime? ModifiedOn { get; set; } = DateTime.UtcNow;
+        public DateTime? StartedOn { get; set; } = null;
+        public DateTime? TestedOn { get; set; } = null;
+        public DateTime? CompletedOn { get; set; } = null;
+        public DateTime? ReopenedOn { get; set; } = null;
+        public DateTime? ResolvedOn { get; set; } = null;
+    }
+
+    public class UserEngagement
+    {
+        public string Id { get; set; } = string.Empty;
+        public string ContentId { get; set; } = string.Empty;
+        public string MasterCommentId { get; set; } = string.Empty;
+        public string ParentCommentId { get; set; } = string.Empty;
+        public Info Commenter { get; set; } = new Info();
+        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public string Comment { get; set; } = string.Empty;
+        public string Privacy { get; set; } = string.Empty; // Private, Personal, Public, Friends&Family, FriendsOfFriends
+        public string Attachment { get; set; } = string.Empty; // formatted html text or xml or json or image or video or others file link
+        public React? Reacts { get; set; } = null;
+        public Field? OptionPicked { get; set; } = null;
+        //public List<UserReact>? Reacts { get; set; } = null;
+        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
+        public DateTime? ModifiedOn { get; set; } = DateTime.UtcNow;
     }
 
     public class UserGoods
@@ -266,6 +343,7 @@ namespace Domain.Entities.CricMz
         public string ProviderId { get; set; } = string.Empty;
         public string ProviderName { get; set; } = string.Empty;
         public string ProviderType { get; set; } = string.Empty; // Person, Company, Shop, Org, etc
+        public string Platform { get; set; } = string.Empty; // App / Web App name
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty; // Accessory, Gadget, Jwelary, Vehicle, Software etc
@@ -273,6 +351,7 @@ namespace Domain.Entities.CricMz
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public List<string>? Images { get; set; } = null;
+        public List<string>? Videos { get; set; } = null;
         public List<string>? Attachments { get; set; } = null;
         public int Quantity { get; set; } = 0;
         public string MassUnit { get; set; } = string.Empty; // kg, g, pound, etc
@@ -315,6 +394,7 @@ namespace Domain.Entities.CricMz
         public string ProviderId { get; set; } = string.Empty;
         public string ProviderName { get; set; } = string.Empty;
         public string ProviderType { get; set; } = string.Empty; // Person, Company, Office, Org, etc
+        public string Platform { get; set; } = string.Empty; // App / Web App name
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty; // Accessory, Gadget, Jwelary, Vehicle, Software etc
@@ -322,6 +402,7 @@ namespace Domain.Entities.CricMz
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public List<string>? Images { get; set; } = null;
+        public List<string>? Videos { get; set; } = null;
         public List<string>? Attachments { get; set; } = null;
         public int Quantity { get; set; } = 0;
         public string MassUnit { get; set; } = string.Empty; // kg, g, pound, etc
@@ -368,9 +449,44 @@ namespace Domain.Entities.CricMz
     public class UserReview
     {
         public Info Commenter { get; set; } = new Info();
+        public string Platform { get; set; } = string.Empty; // App / Web App name
         public string Comment { get; set; } = string.Empty;
         public int Rating { get; set; } = 0;
         public int RateLimit { get; set; } = 5;
+    }
+
+    public class UserReact
+    {
+        public Info Reacter { get; set; } = new Info();
+        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public string Type { get; set; } = string.Empty; // Up, Down, Funny, Clap, Love, Report
+        public string ReportReason { get; set; } = string.Empty;
+    }
+
+    public class React
+    {
+        public int Total { get; set; } = 0;
+        public int UpReacts { get; set; } = 0;
+        public int DownReacts { get; set; } = 0;
+        public int FunnyReacts { get; set; } = 0;
+        public int ClapReacts { get; set; } = 0;
+        public int LoveReacts { get; set; } = 0;
+        public int ReportReacts { get; set; } = 0;
+    }
+
+    public class ContentOption
+    {
+        public string Key { get; set; } = string.Empty;
+        public string Value { get; set; } = string.Empty;
+        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public string Status { get; set; } = string.Empty; // Pending, In-Progress, Testing, Done, Completed, Released, Resolved, Closed
+        public int Votes { get; set; } = 0;
+        public DateTime? ModifiedOn { get; set; } = null;
+        public DateTime? StartedOn { get; set; } = null;
+        public DateTime? TestedOn { get; set; } = null;
+        public DateTime? CompletedOn { get; set; } = null;
+        public DateTime? ReopenedOn { get; set; } = null;
+        public DateTime? ResolvedOn { get; set; } = null;
     }
 
     public class UserProfession
@@ -570,22 +686,26 @@ namespace Domain.Entities.CricMz
     public class UserLogistic
     {
         public string Id { get; set; } = string.Empty;
+        public string Platform { get; set; } = string.Empty; // App / Web App name
         public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public bool IsFounder { get; set; } = false;
         public bool IsOwner { get; set; } = false;
         public bool IsSharedOwner { get; set; } = false;
+        public bool IsVerified { get; set; } = false;
         public int Ownerships { get; set; } = 0; // 0 - 100%
+        public List<string>? LegalDocuments { get; set; } = null;
         public List<UserRole> Roles { get; set; } = new List<UserRole>();
     }
 
     public class UserRole
     {
         public string Id { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty; // "admin", "moderator", "agent", "manager", "user"
+        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
-        public string Type { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty; // "admin", "moderator", "agent", "manager", "user", "employee"
         public string Category { get; set; } = string.Empty; // "paid", "subscribed", "in_app_purchase" etc        
         public string Permissions { get; set; } = "R"; // "CRUDS", "C", "R", "U", "D", "S", "CR", "UD", "CRU", "RU", "RD", "CD", etc
         public List<UserAccessLink> AuthorizedUrls { get; set; } = new List<UserAccessLink>();

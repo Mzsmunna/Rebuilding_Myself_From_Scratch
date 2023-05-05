@@ -8,21 +8,21 @@ namespace Domain.Entities.CricMz
 {
     public class BasicInfo : Info
     {
+        public string Title { get; set; } = string.Empty;
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Tags { get; set; } = string.Empty;
-        public string Image { get; set; } = string.Empty;
         public string CoverImage { get; set; } = string.Empty;
         public string Urls { get; set; } = string.Empty;
     }
 
     public class Info
     {
-        public string ID { get; set; } = string.Empty;
-        public string Identifier { get; set; } = string.Empty; // Code
+        public string Id { get; set; } = string.Empty; // GUID
+        public string Identifier { get; set; } = string.Empty; // Codes / Key_Words ","
         public string Name { get; set; } = string.Empty;
-        public string Title { get; set; } = string.Empty;
-        public string Type { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty; // Collection / Table
         public string Category { get; set; } = string.Empty;
+        public string Image { get; set; } = string.Empty;
     }
 }
