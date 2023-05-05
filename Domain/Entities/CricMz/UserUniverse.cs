@@ -444,6 +444,7 @@ namespace Domain.Entities.CricMz
         public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
         public bool IsFounder { get; set; } = false;
         public bool IsOwner { get; set; } = false;
         public bool IsSharedOwner { get; set; } = false;
