@@ -259,12 +259,13 @@ namespace Domain.Entities.CricMz
         public string ReceivedTransactionID { get; set; } = string.Empty;
         public string ReturnedTransactionID { get; set; } = string.Empty;
         public string SoldTransactionID { get; set; } = string.Empty;
+        public string SupplyChainID { get; set; } = string.Empty;
         public string ProductID { get; set; } = string.Empty;
         public string ProductName { get; set; } = string.Empty;
         public string ProductUrl { get; set; } = string.Empty;
-        public string OwnerId { get; set; } = string.Empty;
-        public string OwnerName { get; set; } = string.Empty;
-        public string OwnerType { get; set; } = string.Empty; // Person, Company, Shop, Org, etc
+        public string ProviderId { get; set; } = string.Empty;
+        public string ProviderName { get; set; } = string.Empty;
+        public string ProviderType { get; set; } = string.Empty; // Person, Company, Shop, Org, etc
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty; // Accessory, Gadget, Jwelary, Vehicle, Software etc
@@ -273,21 +274,103 @@ namespace Domain.Entities.CricMz
         public string Description { get; set; } = string.Empty;
         public List<string>? Images { get; set; } = null;
         public List<string>? Attachments { get; set; } = null;
+        public int Quantity { get; set; } = 0;
+        public string MassUnit { get; set; } = string.Empty; // kg, g, pound, etc
+        public double UnitPrice { get; set; } = 0;
+        public double TotalCost { get; set; } = 0;
+        public string Currency { get; set; } = string.Empty;
+        public double AverageRating { get; set; } = 0;
+        public bool IsOwnMade { get; set; } = false;
+        public bool IsCustomMade { get; set; } = false;
         public bool IsRequested { get; set; } = false;
         public bool IsPurchased { get; set; } = true;
         public bool IsBrandNew { get; set; } = true;
         public bool IsBorrowed { get; set; } = false;
         public bool IsGifted { get; set; } = false;
-        public bool IsShared { get; set; } = false;
         public bool IsFromOnline { get; set; } = false;
         public bool IsVirtualProduct { get; set; } = false;
         public bool IsAvailable { get; set; } = true;
+        public bool IsEndUser { get; set; } = true;
+        public bool IsShared { get; set; } = false;
         public List<Info>? SharedWiths { get; set; } = null;
-        public DateTime ReceivedOn { get; set; } = DateTime.UtcNow;
+        public List<UserReview>? Reviews { get; set; } = null;
+        public DateTime AvailableOn { get; set; } = DateTime.UtcNow;
         public DateTime? RequestedOn { get; set; } = null;
-        public DateTime? CartedOn { get; set; } = null;       
+        public DateTime? CartedOn { get; set; } = null;
         public DateTime? ReturnedOn { get; set; } = null;
         public DateTime? SoldOn { get; set; } = null;
+        public DateTime? PaidOn { get; set; } = null;
+        public DateTime? CashReceivedOn { get; set; } = null;
+    }
+
+    public class UserFood
+    {
+        public string Id { get; set; } = string.Empty;    
+        public string DelivaryID { get; set; } = string.Empty;
+        public string ReturnedDelivaryID { get; set; } = string.Empty;
+        public string SupplyChainID { get; set; } = string.Empty;
+        public string FoodID { get; set; } = string.Empty;
+        public string FoodName { get; set; } = string.Empty;
+        public string FoodUrl { get; set; } = string.Empty;
+        public string ProviderId { get; set; } = string.Empty;
+        public string ProviderName { get; set; } = string.Empty;
+        public string ProviderType { get; set; } = string.Empty; // Person, Company, Office, Org, etc
+        public string Name { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty; // Accessory, Gadget, Jwelary, Vehicle, Software etc
+        public string Category { get; set; } = string.Empty; // Mobile, Headphone, Bracelet, Car, Bike, Mobile App, Website etc
+        public string Caption { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public List<string>? Images { get; set; } = null;
+        public List<string>? Attachments { get; set; } = null;
+        public int Quantity { get; set; } = 0;
+        public string MassUnit { get; set; } = string.Empty; // kg, g, pound, etc
+        public double UnitPrice { get; set; } = 0;
+        public double TotalCost { get; set; } = 0;
+        public string Currency { get; set; } = string.Empty;
+        public double AverageRating { get; set; } = 0;
+        public bool IsHomeMade { get; set; } = false;
+        public bool IsRequested { get; set; } = false;
+        public bool IsPurchased { get; set; } = true;
+        public bool IsCelebrated { get; set; } = false; // Treat
+        public bool IsFromOnline { get; set; } = false;
+        public bool IsAvailable { get; set; } = true;
+        public bool IsEndUser { get; set; } = true;
+        public bool IsShared { get; set; } = false;
+        public List<Info>? SharedWiths { get; set; } = null;
+        public List<FoodIngredient>? Ingredients { get; set; } = null;
+        public List<UserReview>? Reviews { get; set; } = null;
+        public DateTime AvailableOn { get; set; } = DateTime.UtcNow;
+        public DateTime? RequestedOn { get; set; } = null;
+        public DateTime? CartedOn { get; set; } = null;
+        public DateTime? SoldOn { get; set; } = null;
+        public DateTime? PaidOn { get; set; } = null;
+        public DateTime? CashReceivedOn { get; set; } = null;
+    }
+
+    public class FoodIngredient
+    {
+        public Info Ingredient { get; set; } = new Info();
+        public bool IsRequested { get; set; } = false;
+        public bool IsHomeMade { get; set; } = false;
+        public bool IsPurchased { get; set; } = true;
+        public bool IsFromOnline { get; set; } = false;
+        public bool IsHealthy { get; set; } = false;
+        public bool IsJunky { get; set; } = false;
+        public int SugarLevel { get; set; } = 0;
+        public List<string>? NutritionalInformation { get; set; } = null;
+        public List<string>? AllergenInformation { get; set; } = null;
+        public DateTime AvailableOn { get; set; } = DateTime.UtcNow;
+        public DateTime? RequestedOn { get; set; } = null;
+        public DateTime? CartedOn { get; set; } = null;
+    }
+
+    public class UserReview
+    {
+        public Info Commenter { get; set; } = new Info();
+        public string Comment { get; set; } = string.Empty;
+        public int Rating { get; set; } = 0;
+        public int RateLimit { get; set; } = 5;
     }
 
     public class UserProfession
