@@ -11,4 +11,12 @@ namespace Domain.Entities
         public string Key { get; set; } = string.Empty;
         public string Value { get; set; } = string.Empty;
     }
+
+    public class Caption : Field
+    {
+        public string KeyIcon { get; set; } = string.Empty;
+        public string KeyLink { get; set; } = string.Empty;
+        public string ValueIcon { get; set; } = string.Empty;
+        public string ValueLink { get; set; } = string.Empty;
+    }
 }

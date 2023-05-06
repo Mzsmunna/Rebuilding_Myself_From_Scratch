@@ -39,6 +39,8 @@ namespace Domain.Entities.CricMz
         public string Nationality { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty; // need to be encrypted
+        public string FingerPrint { get; set; } = string.Empty; // need to be encrypted
+        public string QRCode { get; set; } = string.Empty; // need to be encrypted
         public string Phone { get; set; } = string.Empty;
         public string Mobile { get; set; } = string.Empty;
         public string PresentAddress { get; set; } = string.Empty;
@@ -54,8 +56,7 @@ namespace Domain.Entities.CricMz
         public UserSocialInfo? SocialInfo { get; set; } = null;
         public UserAdditionalInfo? AdditionalInfo { get; set; } = null;
         public UserTechnicalInfo? TechnicalInfo { get; set; } = null;
-        public List<UserAuthorization>? Authorizations { get; set; } = null;
-        
+        public List<UserAuthorization>? Authorizations { get; set; } = null;     
     }
 
     public class UserPlace
@@ -173,7 +174,7 @@ namespace Domain.Entities.CricMz
         public List<UserVisa>? Visas { get; set; } = null;
         public List<UserPassport>? Passports { get; set; } = null;
         public List<UserWallet>? Wallets { get; set; } = null;
-        public List<UserGoods>? Goods { get; set; } = null;
+        public List<UserItem>? Goods { get; set; } = null;
         public List<UserFood>? Foods { get; set; } = null;
         public List<UserContent>? Contents { get; set; } = null;
     }
@@ -277,14 +278,21 @@ namespace Domain.Entities.CricMz
     {
         public string Id { get; set; } = string.Empty;
         public string LinkedId { get; set; } = string.Empty;
-        public string LinkedType { get; set; } = string.Empty; // "Related-To, Blocked-By, Caused-By, Sub-Task"
-        public Info? Responsible { get; set; } = null;
-        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public string LinkedType { get; set; } = string.Empty; // "related-to, blocked-by, caused-by, sub-task, list-item, shared"
+        public string QRCode { get; set; } = string.Empty;
+        public Info? Manufacturer { get; set; } = null;
+        public Info? Owner { get; set; } = null;
+        public Info? Vendor { get; set; } = null;
+        public Info? Responsible { get; set; } = null; // Assigned to     
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
-        public string Tags { get; set; } = string.Empty; // memes, funny, facts, critics ","
-        public string Type { get; set; } = string.Empty; // Article, News, Post, Blog, Vlog, Issue, Poll
-        public string Category { get; set; } = string.Empty; // Sports, Business, Politics, Movie, Music, [Task, To-Do, Bug, Feature, Concern], [Yes, No, A, B, x, Y, Z, Other]
+        public string Brand { get; set; } = string.Empty;
+        public string Model { get; set; } = string.Empty;
+        public string Product { get; set; } = string.Empty;
+        public string Tags { get; set; } = string.Empty; // memes, funny, facts, critcs, reality ","
+        public string Type { get; set; } = string.Empty; // article, news, post, blog, vlog, issue, poll, course, product, food
+        public string Category { get; set; } = string.Empty; // Sports, Business, Politics, Movie, Music, issue => [Story, Task, To-Do, Reminder, Bug, Feature, Concern], poll => [Yes, No, A, B, x, Y, Z, Other]
+        public string Folder { get; set; } = string.Empty; // Album
         public string Caption { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Privacy { get; set; } = string.Empty; // Private, Personal, Public, Friends&Family, FriendsOfFriends
@@ -292,16 +300,24 @@ namespace Domain.Entities.CricMz
         public string Status { get; set; } = string.Empty; // Pending, In-Progress, Testing, Done, Completed, Released, Resolved, Closed
         public List<string>? Images { get; set; } = null;
         public List<string>? Videos { get; set; } = null;
-        public List<string>? Attachments { get; set; } = null; // formatted html text or xml or json or others file link
+        public List<string>? Attachments { get; set; } = null; // formatted html text or xml or json or others file link     
+        public List<Specification>? Specifications { get; set; } = null;
         public int Views { get; set; } = 0; // Reach
         public int Comments { get; set; } = 0;
+        public int Shares { get; set; } = 0;
         public React? Reacts { get; set; } = null;
         //public List<UserReact>? Reacts { get; set; } = null;
         //public List<UserEngagement>? Engagements { get; set; } = null;
+        //public List<ItemAvailability>? AvailableItems { get; set; } = null;
         public List<ContentOption>? Options { get; set; } = null; // Polls
-        public bool IsAnIssue { get; set; } = false;
-        public bool IsSubTask { get; set; } = false;
-        public bool IsVirtual { get; set; } = false;
+        public bool IsContainer { get; set; } = false;
+        public bool IsShortStory { get; set; } = false;
+        public bool IsVendorMerged { get; set; } = false;
+        public bool IsInStock { get; set; } = false;
+        public bool IsVirtualItem { get; set; } = false;
+        public bool IsAnAdvertise { get; set; } = false;
+        public bool IsAnIssue { get; set; } = false;       
+        public bool IsShareable { get; set; } = false;
         public List<Info>? SharedWiths { get; set; } = null;
         public DateTime AddedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; } = DateTime.UtcNow;
@@ -310,6 +326,37 @@ namespace Domain.Entities.CricMz
         public DateTime? CompletedOn { get; set; } = null;
         public DateTime? ReopenedOn { get; set; } = null;
         public DateTime? ResolvedOn { get; set; } = null;
+        public DateTime? ReminderOn { get; set; } = null;
+        public string ReminderDuration { get; set; } = string.Empty; // Once, Daily, Weekly, Monday, Friday, etc
+    }
+
+    public class StockItem
+    {
+        public string Id { get; set; } = string.Empty;
+        public string QRCode { get; set; } = string.Empty;
+        public Info? Vendor { get; set; } = null;
+        public Info? Content { get; set; } = null;
+        public ItemIdentity? Identity { get; set; } = null;
+        public int Available { get; set; } = 0;
+        public string MassUnit { get; set; } = string.Empty; // kg, g, pound, etc
+        public double UnitPrice { get; set; } = 0;
+        public double ManufacturerCost { get; set; } = 0;
+        public double ShippingCost { get; set; } = 0;
+        public double TotalCost { get; set; } = 0;
+        public string Currency { get; set; } = string.Empty;
+    }
+
+    public class ItemAvailability
+    {
+        public int Available { get; set; } = 0;
+        public bool IsUncountable { get; set; } = false;
+        public string MassUnit { get; set; } = string.Empty; // kg, g, pound, etc
+        public double PerUnitCost { get; set; } = 0;
+        public double ManufacturerCost { get; set; } = 0;
+        public double ShippingCost { get; set; } = 0;
+        public double DelivaryCost { get; set; } = 0;
+        public double TotalCost { get; set; } = 0;
+        public string Currency { get; set; } = string.Empty;
     }
 
     public class UserEngagement
@@ -330,22 +377,21 @@ namespace Domain.Entities.CricMz
         public DateTime? ModifiedOn { get; set; } = DateTime.UtcNow;
     }
 
-    public class UserGoods
+    public class UserItem
     {
         public string Id { get; set; } = string.Empty;
+        public ItemIdentity? Identity { get; set; } = null;
+        public Info ReceiverInfo { get; set; } = new Info();
         public string ReceivedTransactionID { get; set; } = string.Empty;
         public string ReturnedTransactionID { get; set; } = string.Empty;
         public string SoldTransactionID { get; set; } = string.Empty;
         public string SupplyChainID { get; set; } = string.Empty;
-        public string ProductID { get; set; } = string.Empty;
-        public string ProductName { get; set; } = string.Empty;
-        public string ProductUrl { get; set; } = string.Empty;
-        public string ProviderId { get; set; } = string.Empty;
-        public string ProviderName { get; set; } = string.Empty;
-        public string ProviderType { get; set; } = string.Empty; // Person, Company, Shop, Org, etc
-        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public Info? ContentInfo { get; set; } = null;
+        public Info? ProviderInfo { get; set; } = null;
+        public Info? Manufacturer { get; set; } = null;
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
+        public string Model { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty; // Accessory, Gadget, Jwelary, Vehicle, Software etc
         public string Category { get; set; } = string.Empty; // Mobile, Headphone, Bracelet, Car, Bike, Mobile App, Website etc
         public string Caption { get; set; } = string.Empty;
@@ -356,6 +402,8 @@ namespace Domain.Entities.CricMz
         public int Quantity { get; set; } = 0;
         public string MassUnit { get; set; } = string.Empty; // kg, g, pound, etc
         public double UnitPrice { get; set; } = 0;
+        public double ManufacturerCost { get; set; } = 0;
+        public double ShippingCost { get; set; } = 0;
         public double TotalCost { get; set; } = 0;
         public string Currency { get; set; } = string.Empty;
         public double AverageRating { get; set; } = 0;
@@ -372,7 +420,6 @@ namespace Domain.Entities.CricMz
         public bool IsEndUser { get; set; } = true;
         public bool IsShared { get; set; } = false;
         public List<Info>? SharedWiths { get; set; } = null;
-        public List<UserReview>? Reviews { get; set; } = null;
         public DateTime AvailableOn { get; set; } = DateTime.UtcNow;
         public DateTime? RequestedOn { get; set; } = null;
         public DateTime? CartedOn { get; set; } = null;
@@ -382,19 +429,81 @@ namespace Domain.Entities.CricMz
         public DateTime? CashReceivedOn { get; set; } = null;
     }
 
+    public class VendorItem // => pre added / existing user add well known Product collection / dictionary to search & include product in your site / shop / business without any new entries
+    {
+        public string Id { get; set; } = string.Empty;
+        public string QRCode { get; set; } = string.Empty;
+        public Info? Manufacturer { get; set; } = null;
+        public string Name { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Brand { get; set; } = string.Empty;
+        public string Model { get; set; } = string.Empty;
+        public string Product { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty; // Accessory, Gadget, Jwelary, Vehicle, Software etc
+        public string Category { get; set; } = string.Empty; // Mobile, Headphone, Bracelet, Car, Bike, Mobile App, Website etc
+        public string Caption { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public List<Specification>? Specifications { get; set; } = null;
+        public List<string>? Images { get; set; } = null;
+        public List<string>? Videos { get; set; } = null;
+        public List<string>? Attachments { get; set; } = null;
+        //public List<UserReview>? Reviews { get; set; } = null;
+        public double AverageRating { get; set; } = 0;
+        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
+        public DateTime? ModifiedOn { get; set; } = null;
+    }
+
+    public class ItemIdentity
+    {
+        public string QRCode { get; set; } = string.Empty;
+        /// <summary>
+        /// IMEI (International Mobile Equipment Identity) is a unique identifier assigned to mobile phones and other wireless devices. 
+        /// It is a 15-digit number that is used to identify the device on a cellular network. 
+        /// The IMEI is typically printed on the back of the phone or can be found by dialing *#06# on the device.
+        /// </summary>
+        public string IMEI { get; set; } = string.Empty;
+        /// <summary>
+        /// A serial number is a unique identifier assigned by the manufacturer to a specific product. 
+        /// It is often used for electronics, appliances, and other products that require warranty or repair services.
+        /// </summary>
+        public string SerialNumber { get; set; } = string.Empty;
+        /// <summary>
+        /// UPC code - A UPC (Universal Product Code) is a barcode that is used to identify a specific product. 
+        /// It is typically found on food and beverage products, but can be used for other products as well.
+        /// </summary>
+        public string UPC { get; set; } = string.Empty;
+        /// <summary>
+        /// ISBN - An ISBN (International Standard Book Number) is a unique identifier assigned to books and other publications. 
+        /// It is used to identify the specific edition of a book and can be helpful for libraries and other organizations that need to keep track of multiple copies of the same title.
+        /// </summary>
+        public string ISBN { get; set; } = string.Empty;
+        /// <summary>
+        /// VIN - A VIN (Vehicle Identification Number) is a unique identifier assigned to motor vehicles. 
+        /// It is used to track ownership, service records, and other information about a specific vehicle.
+        /// </summary>
+        public string VIN { get; set; } = string.Empty;
+        /// <summary>
+        /// MAC address - A MAC (Media Access Control) address is a unique identifier assigned to network interface controllers for use as a network address in communications within a network segment.
+        /// </summary>
+        public string MACAddress { get; set; } = string.Empty;
+    }
+
+    public class Specification
+    {
+        public string Title { get; set; } = string.Empty;
+        public string TitleIcon { get; set; } = string.Empty;
+        public string TitleLink { get; set; } = string.Empty;
+        public List<Caption> Caption { get; set; } = new List<Caption>();
+    }
+
     public class UserFood
     {
         public string Id { get; set; } = string.Empty;    
         public string DelivaryID { get; set; } = string.Empty;
         public string ReturnedDelivaryID { get; set; } = string.Empty;
         public string SupplyChainID { get; set; } = string.Empty;
-        public string FoodID { get; set; } = string.Empty;
-        public string FoodName { get; set; } = string.Empty;
-        public string FoodUrl { get; set; } = string.Empty;
-        public string ProviderId { get; set; } = string.Empty;
-        public string ProviderName { get; set; } = string.Empty;
-        public string ProviderType { get; set; } = string.Empty; // Person, Company, Office, Org, etc
-        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public Info? ContentInfo { get; set; } = null;
+        public Info? ProviderInfo { get; set; } = null;
         public string Name { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty; // Accessory, Gadget, Jwelary, Vehicle, Software etc
@@ -419,7 +528,7 @@ namespace Domain.Entities.CricMz
         public bool IsEndUser { get; set; } = true;
         public bool IsShared { get; set; } = false;
         public List<Info>? SharedWiths { get; set; } = null;
-        public List<FoodIngredient>? Ingredients { get; set; } = null;
+        public List<Specification>? Ingredients { get; set; } = null;
         public List<UserReview>? Reviews { get; set; } = null;
         public DateTime AvailableOn { get; set; } = DateTime.UtcNow;
         public DateTime? RequestedOn { get; set; } = null;
@@ -429,25 +538,22 @@ namespace Domain.Entities.CricMz
         public DateTime? CashReceivedOn { get; set; } = null;
     }
 
-    public class FoodIngredient
+    public class ContentRevenue
     {
-        public Info Ingredient { get; set; } = new Info();
-        public bool IsRequested { get; set; } = false;
-        public bool IsHomeMade { get; set; } = false;
-        public bool IsPurchased { get; set; } = true;
-        public bool IsFromOnline { get; set; } = false;
-        public bool IsHealthy { get; set; } = false;
-        public bool IsJunky { get; set; } = false;
-        public int SugarLevel { get; set; } = 0;
-        public List<string>? NutritionalInformation { get; set; } = null;
-        public List<string>? AllergenInformation { get; set; } = null;
-        public DateTime AvailableOn { get; set; } = DateTime.UtcNow;
-        public DateTime? RequestedOn { get; set; } = null;
-        public DateTime? CartedOn { get; set; } = null;
+        public Info Revenuer { get; set; } = new Info();
+        public string Platform { get; set; } = string.Empty; // App / Web App name
+        public string PromoCode { get; set; } = string.Empty; // Might need to be encrypted
+        public bool IsPaid { get; set; } = false;
+        public bool IsBundled { get; set; } = false;
+        public bool IsAddFree { get; set; } = false;
+        public string Comment { get; set; } = string.Empty;
+        public int Rating { get; set; } = 0;
+        public int RateLimit { get; set; } = 5;
     }
 
     public class UserReview
     {
+        public string VendorID { get; set; } = string.Empty;
         public Info Commenter { get; set; } = new Info();
         public string Platform { get; set; } = string.Empty; // App / Web App name
         public string Comment { get; set; } = string.Empty;
@@ -690,6 +796,7 @@ namespace Domain.Entities.CricMz
         public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
+        public string QRCode { get; set; } = string.Empty;
         public bool IsFounder { get; set; } = false;
         public bool IsOwner { get; set; } = false;
         public bool IsSharedOwner { get; set; } = false;
