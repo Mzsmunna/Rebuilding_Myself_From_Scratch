@@ -11,33 +11,35 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+  private authApiUrl: string = '';
   private baseApiUrl: string = '';
   private token: string | null = '';
   private userId: string = '';
 
   constructor(private alertService: AlertService, private http: HttpClient, private route: Router) {
 
-    this.baseApiUrl = "https://localhost:7074/api/User/";
+    this.authApiUrl = "https://localhost:7207/api/Auth/";
+    this.baseApiUrl = "https://localhost:7221/api/User/"; //"https://localhost:7074/api/User/"
   }
 
   RefreshToken(user: User) {
 
-    return this.http.post(this.baseApiUrl + 'RefreshToken', user);
+    return this.http.post(this.authApiUrl + 'GetRefreshToken', user);
   }
 
   Register(user: User) {
 
-    return this.http.post(this.baseApiUrl + 'Register', user);
+    return this.http.post(this.authApiUrl + 'RegisterWithEmail', user);
   }
 
   Login(user: User) {
 
-    return this.http.post(this.baseApiUrl + 'Login', user, { responseType: 'text' });
+    return this.http.post(this.authApiUrl + 'LoginWithEmail', user, { responseType: 'text' });
   }
 
   LoginWithGoogle(credentials: string): Observable<string> {
     const header = new HttpHeaders().set('Content-type', 'application/json');
-    return this.http.post(this.baseApiUrl + "LoginWithGoogle", JSON.stringify(credentials), { headers: header, responseType: 'text' }) as Observable<string>;
+    return this.http.post(this.authApiUrl + "LoginWithGoogle", JSON.stringify(credentials), { headers: header, responseType: 'text' }) as Observable<string>;
   }
 
   GetLoggedUser() {
@@ -119,7 +121,7 @@ export class AuthService {
         localStorage.clear();
         this.alertService.Info("You have been logged out due to Token expiration", "Token Expired!!", true);
         return false;
-      }      
+      }
       else
         return true;
 

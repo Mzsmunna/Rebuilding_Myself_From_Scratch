@@ -15,7 +15,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {
 
-    this.baseApiUrl = "https://localhost:7074/api/User/";
+    this.baseApiUrl = "https://localhost:7221/api/User/"; //"https://localhost:7074/api/User/"
 
     this.selectedProfile$ = new Subject<User>();
   }
