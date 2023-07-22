@@ -1,10 +1,13 @@
 import 'package:demo_app/apps/issue_manager_app/issue_manager_app.dart';
 import 'package:demo_app/apps/widgets_manager_app/widgets_manager_app.dart';
+import 'package:demo_app/bloc/counter_bloc/counter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   //runApp(const MyApp());
-  runApp(const WidgetsManagerApp());
+  runApp(const MyBlocApp());
+  //runApp(const WidgetsManagerApp());
   //runApp(const IssueManagerApp());
 }
 
@@ -30,6 +33,25 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Mzs Demo App'),
+    );
+  }
+}
+
+class MyBlocApp extends StatelessWidget {
+  const MyBlocApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => CounterBloc(),
+      child: MaterialApp(
+        title: 'Flutter Bloc Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'Mzs Bloc Demo App'),
+      ),
     );
   }
 }
@@ -74,56 +96,104 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   // This method is rerun every time setState is called, for instance as done
+  //   // by the _incrementCounter method above.
+  //   //
+  //   // The Flutter framework has been optimized to make rerunning build methods
+  //   // fast, so that you can just rebuild anything that needs updating rather
+  //   // than having to individually change instances of widgets.
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       // Here we take the value from the MyHomePage object that was created by
+  //       // the App.build method, and use it to set our appbar title.
+  //       title: Text(widget.title),
+  //     ),
+  //     body: Center(
+  //       // Center is a layout widget. It takes a single child and positions it
+  //       // in the middle of the parent.
+  //       child: Column(
+  //         // Column is also a layout widget. It takes a list of children and
+  //         // arranges them vertically. By default, it sizes itself to fit its
+  //         // children horizontally, and tries to be as tall as its parent.
+  //         //
+  //         // Invoke "debug painting" (press "p" in the console, choose the
+  //         // "Toggle Debug Paint" action from the Flutter Inspector in Android
+  //         // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+  //         // to see the wireframe for each widget.
+  //         //
+  //         // Column has various properties to control how it sizes itself and
+  //         // how it positions its children. Here we use mainAxisAlignment to
+  //         // center the children vertically; the main axis here is the vertical
+  //         // axis because Columns are vertical (the cross axis would be
+  //         // horizontal).
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: <Widget>[
+  //           Text(
+  //             "Count value is:",
+  //             style: Theme.of(context).textTheme.headlineSmall,
+  //           ),
+  //           Text(
+  //             '$_counter',
+  //             style: Theme.of(context).textTheme.headlineMedium,
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //     floatingActionButton: Row(
+  //       mainAxisAlignment: MainAxisAlignment.end,
+  //       children: <Widget>[
+  //         FloatingActionButton(
+  //           onPressed: _incrementCounter,
+  //           tooltip: 'Increment',
+  //           child: const Icon(Icons.add),
+  //         ),
+  //         const SizedBox(
+  //           width: 5.0,
+  //         ),
+  //         FloatingActionButton(
+  //           onPressed: _decrementCounter,
+  //           tooltip: 'Increment',
+  //           child: const Icon(Icons.minimize_sharp),
+  //         ),
+  //       ],
+  //     ),
+
+  //     // This trailing comma makes auto-formatting nicer for build methods.
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Count value is:",
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+        child:
+            BlocBuilder<CounterBloc, CounterState>(builder: (context, state) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Count value is:",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              Text(
+                "${BlocProvider.of<CounterBloc>(context).state.count}",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          );
+        }),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: _incrementCounter,
+            onPressed: () =>
+                BlocProvider.of<CounterBloc>(context).add(IncreaseEvent()),
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
@@ -131,9 +201,10 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 5.0,
           ),
           FloatingActionButton(
-            onPressed: _decrementCounter,
-            tooltip: 'Increment',
-            child: const Icon(Icons.minimize_sharp),
+            onPressed: () =>
+                BlocProvider.of<CounterBloc>(context).add(DecreaseEvent()),
+            tooltip: 'Decrement',
+            child: const Icon(Icons.remove),
           ),
         ],
       ),
