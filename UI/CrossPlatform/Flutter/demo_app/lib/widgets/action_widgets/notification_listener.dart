@@ -5,7 +5,7 @@ class NotificationListenerWidget extends StatefulWidget {
   const NotificationListenerWidget({Key? key}) : super(key: key);
 
   @override
-  _NotificationListenerWidgetState createState() =>
+  State<NotificationListenerWidget> createState() =>
       _NotificationListenerWidgetState();
 }
 

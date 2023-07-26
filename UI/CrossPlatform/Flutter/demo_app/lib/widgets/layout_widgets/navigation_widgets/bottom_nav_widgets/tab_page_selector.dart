@@ -63,9 +63,9 @@ class _TabPageSelectorWidgetState extends State<TabPageSelectorWidget>
               controller.animateTo(_index);
               setState(() {});
             },
-            child: const Icon(Icons.navigate_next),
             hoverElevation: 0,
             elevation: 0,
+            child: const Icon(Icons.navigate_next),
           )
         ],
       ),

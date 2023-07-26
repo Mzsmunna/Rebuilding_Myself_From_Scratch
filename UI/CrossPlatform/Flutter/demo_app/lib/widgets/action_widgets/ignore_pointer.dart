@@ -28,11 +28,11 @@ class _IgnorePointerWidgetState extends State<IgnorePointerWidget> {
             onPressed: () {
               setIgnoring(!ignore);
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: ignore ? Colors.red : Colors.green,
+            ),
             child: Text(
               ignore ? 'Blocked' : 'All good',
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: ignore ? Colors.red : Colors.green,
             ),
           ),
           IgnorePointer(

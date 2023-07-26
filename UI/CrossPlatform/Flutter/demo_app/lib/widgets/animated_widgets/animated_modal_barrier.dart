@@ -21,14 +21,14 @@ class _AnimatedModalBarrierWidgetState extends State<AnimatedModalBarrierWidget>
 
   @override
   void initState() {
-    ColorTween _colorTween = ColorTween(
+    ColorTween colorTween = ColorTween(
       begin: Colors.orangeAccent.withOpacity(0.5),
       end: Colors.blueGrey.withOpacity(0.5),
     );
 
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
-    _colorAnimation = _colorTween.animate(_animationController);
+    _colorAnimation = colorTween.animate(_animationController);
 
     _animatedModalBarrier = AnimatedModalBarrier(
       color: _colorAnimation,
@@ -54,7 +54,7 @@ class _AnimatedModalBarrierWidgetState extends State<AnimatedModalBarrierWidget>
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orangeAccent,
+                      backgroundColor: Colors.orangeAccent,
                     ),
                     child: const Text('Press'),
                     onPressed: () {

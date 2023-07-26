@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class RefreshIndicatorWidget extends StatefulWidget {
   const RefreshIndicatorWidget({Key? key}) : super(key: key);
   @override
-  _RefreshIndicatorWidgetState createState() => _RefreshIndicatorWidgetState();
+  State<RefreshIndicatorWidget> createState() => _RefreshIndicatorWidgetState();
 }
 
 class _RefreshIndicatorWidgetState extends State<RefreshIndicatorWidget> {

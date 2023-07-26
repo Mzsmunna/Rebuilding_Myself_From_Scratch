@@ -13,7 +13,7 @@ class WidgetsManagerApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: Scaffold(
+      home: const Scaffold(
         appBar: MyAppBar(),
         body: FlutterWidgetList(),
       ),
@@ -22,13 +22,13 @@ class WidgetsManagerApp extends StatelessWidget {
 }
 
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
-  MyAppBar() : super();
+  const MyAppBar({Key? key}) : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
 
   @override
-  _MyAppBarState createState() => _MyAppBarState();
+  State<MyAppBar> createState() => _MyAppBarState();
 }
 
 class _MyAppBarState extends State<MyAppBar> {

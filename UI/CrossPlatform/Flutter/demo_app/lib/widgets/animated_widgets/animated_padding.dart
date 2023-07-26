@@ -19,7 +19,7 @@ class _AnimatedPaddingWidgetState extends State<AnimatedPaddingWidget> {
       children: <Widget>[
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Colors.orangeAccent,
+            backgroundColor: Colors.orangeAccent,
           ),
           child: const Text('Change padding'),
           onPressed: () {

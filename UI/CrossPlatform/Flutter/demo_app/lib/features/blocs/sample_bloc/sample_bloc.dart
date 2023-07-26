@@ -6,8 +6,6 @@ part 'sample_state.dart';
 
 class SampleBloc extends Bloc<SampleEvent, SampleState> {
   SampleBloc() : super(SampleInitial()) {
-    on<SampleEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<SampleEvent>((event, emit) {});
   }
 }

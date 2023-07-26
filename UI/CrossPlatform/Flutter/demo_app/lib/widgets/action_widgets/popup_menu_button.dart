@@ -21,12 +21,12 @@ class _PopupMenuButtonWidgetState extends State<PopupMenuButtonWidget> {
       trailing: PopupMenuButton(
         itemBuilder: (context) => [
           PopupMenuItem(
-            child: Text(item1),
             value: item1,
+            child: Text(item1),
           ),
           PopupMenuItem(
-            child: Text(item2),
             value: item2,
+            child: Text(item2),
           )
         ],
         onSelected: (String newValue) {

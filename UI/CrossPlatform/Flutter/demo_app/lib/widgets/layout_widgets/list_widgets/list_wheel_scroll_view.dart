@@ -6,7 +6,7 @@ class ListWheelScrollViewWidget extends StatefulWidget {
   const ListWheelScrollViewWidget({Key? key}) : super(key: key);
 
   @override
-  _ListWheelScrollViewWidgetState createState() =>
+  State<ListWheelScrollViewWidget> createState() =>
       _ListWheelScrollViewWidgetState();
 }
 

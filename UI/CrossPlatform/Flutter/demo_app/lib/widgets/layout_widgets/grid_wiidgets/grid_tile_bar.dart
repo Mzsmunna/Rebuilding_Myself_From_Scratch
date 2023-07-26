@@ -20,13 +20,13 @@ class GridTileBarWidget extends StatelessWidget {
               Icons.menu,
             ),
           ),
-          child: Image.network(
-            'https://tinyurl.com/yc4pctt5',
-            fit: BoxFit.cover,
-          ),
           footer: const GridTileBar(
             backgroundColor: Colors.black45,
             leading: Icon(Icons.favorite),
+          ),
+          child: Image.network(
+            'https://tinyurl.com/yc4pctt5',
+            fit: BoxFit.cover,
           ),
         ),
       ),

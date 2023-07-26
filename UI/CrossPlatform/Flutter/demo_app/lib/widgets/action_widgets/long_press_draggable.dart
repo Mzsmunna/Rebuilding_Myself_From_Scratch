@@ -6,7 +6,7 @@ class LongPressDraggableWidget extends StatefulWidget {
   const LongPressDraggableWidget({Key? key}) : super(key: key);
 
   @override
-  _LongPressDraggableWidgetState createState() =>
+  State<LongPressDraggableWidget> createState() =>
       _LongPressDraggableWidgetState();
 }
 

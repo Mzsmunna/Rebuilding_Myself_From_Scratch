@@ -6,7 +6,7 @@ class AnimatedPhysicalModelWidget extends StatefulWidget {
   const AnimatedPhysicalModelWidget({Key? key}) : super(key: key);
 
   @override
-  _AnimatedPhysicalModelWidgetState createState() =>
+  State<AnimatedPhysicalModelWidget> createState() =>
       _AnimatedPhysicalModelWidgetState();
 }
 

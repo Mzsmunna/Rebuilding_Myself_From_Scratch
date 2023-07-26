@@ -36,7 +36,7 @@ class BannerWidget extends StatelessWidget {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.orangeAccent),
+                              backgroundColor: Colors.orangeAccent),
                           child: const Text('Get now'),
                           onPressed: () {},
                         )

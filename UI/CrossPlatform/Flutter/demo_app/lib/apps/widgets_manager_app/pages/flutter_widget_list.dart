@@ -12,17 +12,17 @@ import 'package:flutter/material.dart';
 import '../../../widgets/access_widgets.dart';
 
 class FlutterWidgetList extends StatefulWidget {
-  FlutterWidgetList({Key? key, String this.viewType = ''}) : super(key: key);
-  String viewType;
+  const FlutterWidgetList({Key? key, this.viewType = ''}) : super(key: key);
+  final String viewType;
 
   @override
-  _FlutterWidgetListState createState() =>
-      _FlutterWidgetListState(viewType: this.viewType);
+  State<FlutterWidgetList> createState() =>
+      _FlutterWidgetListState(viewType: viewType);
 }
 
 class _FlutterWidgetListState extends State<FlutterWidgetList> {
-  _FlutterWidgetListState({String this.viewType = ''});
-  String viewType;
+  _FlutterWidgetListState({this.viewType = ''});
+  final String viewType;
 
   @override
   Widget build(BuildContext context) {

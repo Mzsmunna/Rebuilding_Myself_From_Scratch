@@ -6,7 +6,7 @@ class IndexedStackWidget extends StatefulWidget {
   const IndexedStackWidget({Key? key}) : super(key: key);
 
   @override
-  _IndexedStackWidgetState createState() => _IndexedStackWidgetState();
+  State<IndexedStackWidget> createState() => _IndexedStackWidgetState();
 }
 
 class _IndexedStackWidgetState extends State<IndexedStackWidget> {
