@@ -17,6 +17,7 @@ class FlutterWidgetList extends StatefulWidget {
 
   @override
   State<FlutterWidgetList> createState() =>
+      // ignore: no_logic_in_create_state
       _FlutterWidgetListState(viewType: viewType);
 }
 

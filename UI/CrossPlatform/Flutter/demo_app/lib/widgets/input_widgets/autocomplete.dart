@@ -23,6 +23,7 @@ class AutoCompleteWidget extends StatelessWidget {
         });
       },
       onSelected: (String item) {
+        // ignore: avoid_print
         print('The $item was selected');
       },
     );
