@@ -2,8 +2,8 @@ import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'flutter_widget_list.dart';
 
-class WidgetsManagerApp extends StatelessWidget {
-  const WidgetsManagerApp({super.key});
+class FlutterwidgetsApp extends StatelessWidget {
+  const FlutterwidgetsApp({super.key});
 
   // This widget is the root of your application.
   @override
