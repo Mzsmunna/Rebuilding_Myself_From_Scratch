@@ -8,35 +8,32 @@ part 'counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(InitialState()) {
-    // on<InitialEvent>(initialCounterEvent);
-    // on<IncreaseEvent>(increaseCounterEvent);
-    // on<DecreaseEvent>(decreseCounterEvent);
+    on<InitialEvent>(initialCounterEvent);
+    on<IncreaseEvent>(increaseCounterEvent);
+    on<DecreaseEvent>(decreseCounterEvent);
 
-    on<InitialEvent>((event, emit) {
-      emit(InitialState());
-    });
+    // on<InitialEvent>((event, emit) {
+    //   emit(InitialState());
+    // });
 
-    on<IncreaseEvent>((event, emit) {
-      emit(IncreaseState(count: state.count + 1));
-    });
+    // on<IncreaseEvent>((event, emit) {
+    //   emit(IncreaseState(count: state.count + 1));
+    // });
 
-    on<DecreaseEvent>((event, emit) {
-      emit(DecreaseState(count: state.count - 1));
-    });
+    // on<DecreaseEvent>((event, emit) {
+    //   emit(DecreaseState(count: state.count - 1));
+    // });
   }
 
-  // FutureOr<void> initialCounterEvent(
-  //     InitialEvent event, Emitter<CounterState> emit) {
-  //   emit(InitialState());
-  // }
+  void initialCounterEvent(InitialEvent event, Emitter<CounterState> emit) {
+    emit(InitialState());
+  }
 
-  // FutureOr<void> increaseCounterEvent(
-  //     IncreaseEvent event, Emitter<CounterState> emit) {
-  //   emit(IncreaseState(count: state.count++));
-  // }
+  void increaseCounterEvent(IncreaseEvent event, Emitter<CounterState> emit) {
+    emit(IncreaseState(count: state.count + 1));
+  }
 
-  // FutureOr<void> decreseCounterEvent(
-  //     DecreaseEvent event, Emitter<CounterState> emit) {
-  //   emit(DecreaseState(count: state.count--));
-  // }
+  void decreseCounterEvent(DecreaseEvent event, Emitter<CounterState> emit) {
+    emit(DecreaseState(count: state.count - 1));
+  }
 }
