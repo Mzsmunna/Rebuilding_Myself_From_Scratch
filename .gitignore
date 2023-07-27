@@ -454,3 +454,4 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 /UI/Web/Angular/DemoPortfolio/.vscode
 /API/RestAPI/wwwroot/UploadedFiles
+/UI/CrossPlatform/Flutter/demo_app/.vscode/settings.json

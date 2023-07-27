@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../apps/widgets_manager_app/pages/flutter_widget_list.dart';
+import 'flutter_widget_list.dart';
 
 class WidgetsManagerApp extends StatelessWidget {
   const WidgetsManagerApp({super.key});
