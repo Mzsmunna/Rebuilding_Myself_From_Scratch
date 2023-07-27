@@ -12,6 +12,7 @@ class WidgetsManagerApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
+        useMaterial3: true,
       ),
       home: const Scaffold(
         appBar: MyAppBar(),
