@@ -1,4 +1,5 @@
-﻿import 'package:flutter/material.dart';
+﻿import 'package:demo_app/common/configs/themes/default_app_theme.dart';
+import 'package:flutter/material.dart';
 //import '../../widgets/access_widgets.dart';
 
 class IssueManagerApp extends StatelessWidget {
@@ -10,10 +11,7 @@ class IssueManagerApp extends StatelessWidget {
     return MaterialApp(
       title: 'Demo AFF',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        useMaterial3: true,
-      ),
+      theme: DefaultAppTheme.materialThree,
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Issue Manager App"),

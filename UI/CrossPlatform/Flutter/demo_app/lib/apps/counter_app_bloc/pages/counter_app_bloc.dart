@@ -1,3 +1,4 @@
+import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:demo_app/apps/counter_app_bloc/features/blocs/counter_bloc/counter_bloc.dart';
@@ -12,10 +13,7 @@ class CounterAppBloc extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Bloc Demo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          useMaterial3: true,
-        ),
+        theme: DefaultAppTheme.materialThree,
         home: const CounterBlocPage(title: 'Mzs Bloc Demo App'),
       ),
     );

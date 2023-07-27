@@ -1,3 +1,4 @@
+import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'flutter_widget_list.dart';
 
@@ -10,10 +11,7 @@ class WidgetsManagerApp extends StatelessWidget {
     return MaterialApp(
       title: 'Demo AFF',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        useMaterial3: true,
-      ),
+      theme: DefaultAppTheme.darkTheme,
       home: const Scaffold(
         appBar: MyAppBar(),
         body: FlutterWidgetList(),
