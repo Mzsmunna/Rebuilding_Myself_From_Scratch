@@ -1,15 +1,15 @@
-import 'package:demo_app/widgets/animated_widgets/animated_default_text_style.dart';
-import 'package:demo_app/widgets/animated_widgets/fade_transition.dart';
-import 'package:demo_app/widgets/input_widgets/raw_autocomplete.dart';
-import 'package:demo_app/widgets/overlap_wiidgets/baseline.dart';
-import 'package:demo_app/widgets/overlap_wiidgets/block_semantics.dart';
-import 'package:demo_app/widgets/overlap_wiidgets/merge_semantics.dart';
-import 'package:demo_app/widgets/overlap_wiidgets/semantics.dart';
-import 'package:demo_app/widgets/overlap_wiidgets/sized_overflow_box.dart';
-import 'package:demo_app/widgets/overlap_wiidgets/stack.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/animated_widgets/animated_default_text_style.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/animated_widgets/fade_transition.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/input_widgets/raw_autocomplete.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/overlap_wiidgets/baseline.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/overlap_wiidgets/block_semantics.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/overlap_wiidgets/merge_semantics.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/overlap_wiidgets/semantics.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/overlap_wiidgets/sized_overflow_box.dart';
+import 'package:demo_app/apps/flutter_widgets_overview_app/widgets/overlap_wiidgets/stack.dart';
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../widgets/access_widgets.dart';
+import '../widgets/access_widgets.dart';
 
 class FlutterWidgetList extends StatefulWidget {
   const FlutterWidgetList({Key? key, this.viewType = ''}) : super(key: key);
