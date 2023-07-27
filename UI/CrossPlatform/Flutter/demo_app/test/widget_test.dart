@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:demo_app/apps/counter_app/counter_app.dart';
+import 'package:demo_app/apps/counter_app/pages/counter_app.dart';
 //import 'package:demo_app/main.dart';
 
 void main() {
