@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AppTopBar {
-  static AppBar getDefaultAppBar(
-      String title, BuildContext context, Widget app) {
+  static AppBar getDefaultAppBar(String title, BuildContext context, Widget app,
+      {bool useGoRouer = false, String goRouterPath = ""}) {
     return AppBar(
       title: Text(title),
       leading: IconButton(
         onPressed: () {
-          Navigator.pop(context);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return app;
-              },
-            ),
-          );
+          if (useGoRouer) {
+            GoRouter.of(context).go(goRouterPath);
+          } else {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return app;
+                },
+              ),
+            );
+          }
         },
         icon: const Icon(Icons.dangerous),
       ),
