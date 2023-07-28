@@ -7,21 +7,21 @@ class DefaultTextStyleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
+        Text(
           'Flutter Mapp',
         ),
         DefaultTextStyle(
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 36,
             color: Colors.blue,
           ),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
                   'Flutter Mapp',
                 ),

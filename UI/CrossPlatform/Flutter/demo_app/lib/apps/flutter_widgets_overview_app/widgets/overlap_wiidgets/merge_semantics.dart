@@ -7,9 +7,9 @@ class MergeSemanticsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MergeSemantics(
+    return const MergeSemantics(
       child: Row(
-        children: const [
+        children: [
           Icon(Icons.person),
           Text('Flutter Mapp'),
         ],

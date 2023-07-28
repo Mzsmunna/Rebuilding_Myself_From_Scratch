@@ -7,10 +7,10 @@ class CupertinoButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const <Widget>[
+        children: <Widget>[
           CupertinoButton(
             onPressed: null,
             child: Text('Enabled'),

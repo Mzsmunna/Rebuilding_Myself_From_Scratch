@@ -7,8 +7,8 @@ class PlaceholderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const <Widget>[
+    return const Column(
+      children: <Widget>[
         Placeholder(
           fallbackHeight: 300,
           fallbackWidth: 50,

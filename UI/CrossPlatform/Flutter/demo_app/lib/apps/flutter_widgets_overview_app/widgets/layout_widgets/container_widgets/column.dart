@@ -7,11 +7,11 @@ class ColumnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
-      children: const <Widget>[
+      children: <Widget>[
         Text('Row 1'),
         Text('Row 2'),
         Text('Row 3'),
