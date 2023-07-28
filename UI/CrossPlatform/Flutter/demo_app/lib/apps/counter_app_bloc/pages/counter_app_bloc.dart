@@ -52,6 +52,7 @@ class CounterBlocPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
+            heroTag: "counter_bloc_increment",
             onPressed: () =>
                 BlocProvider.of<CounterBloc>(context).add(IncreaseEvent()),
             tooltip: 'Increment',
@@ -61,6 +62,7 @@ class CounterBlocPage extends StatelessWidget {
             width: 5.0,
           ),
           FloatingActionButton(
+            heroTag: "counter_bloc_decrement",
             onPressed: () =>
                 BlocProvider.of<CounterBloc>(context).add(DecreaseEvent()),
             tooltip: 'Decrement',

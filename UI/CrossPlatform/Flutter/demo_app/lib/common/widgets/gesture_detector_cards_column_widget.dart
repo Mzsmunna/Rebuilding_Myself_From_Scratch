@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CardShowcaseWidget extends StatelessWidget {
+class GestureDetectorCardsColumnWidget extends StatelessWidget {
   final String title;
   final String description;
   final String image;
   final Widget app;
 
-  const CardShowcaseWidget(
+  const GestureDetectorCardsColumnWidget(
       {super.key,
       required this.title,
       required this.description,

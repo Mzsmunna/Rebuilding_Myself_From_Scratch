@@ -115,6 +115,7 @@ class _CounterPageState extends State<CounterPage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
+            heroTag: "counter_increment",
             onPressed: _incrementCounter,
             tooltip: 'Increment',
             child: const Icon(Icons.add),
@@ -123,8 +124,9 @@ class _CounterPageState extends State<CounterPage> {
             width: 5.0,
           ),
           FloatingActionButton(
+            heroTag: "counter_decrement",
             onPressed: _decrementCounter,
-            tooltip: 'Increment',
+            tooltip: 'Decrement',
             child: const Icon(Icons.remove),
           ),
         ],
