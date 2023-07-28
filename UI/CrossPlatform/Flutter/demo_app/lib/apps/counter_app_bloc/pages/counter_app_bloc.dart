@@ -1,3 +1,5 @@
+import 'package:demo_app/apps/app_showcase.dart';
+import 'package:demo_app/common/configs/app_bar/app_top_bar.dart';
 import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,8 +29,10 @@ class CounterBlocPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
+      appBar: AppTopBar.getDefaultAppBar(
+        title,
+        context,
+        const AppShowcase(),
       ),
       body: Center(
         child:

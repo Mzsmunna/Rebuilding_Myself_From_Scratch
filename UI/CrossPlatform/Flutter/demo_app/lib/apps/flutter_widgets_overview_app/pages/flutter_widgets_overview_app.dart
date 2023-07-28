@@ -1,3 +1,5 @@
+import 'package:demo_app/apps/app_showcase.dart';
+import 'package:demo_app/common/configs/app_bar/app_top_bar.dart';
 import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'flutter_widget_list.dart';
@@ -33,22 +35,10 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: const Text("Review Flutter Widgets"),
-      actions: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.list_alt),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: const Icon(Icons.library_books_outlined),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: const Icon(Icons.grid_on),
-          onPressed: () {},
-        ),
-      ],
+    return AppTopBar.getWidgetAppBar(
+      "Review Flutter Widgets",
+      context,
+      const AppShowcase(),
     );
   }
 }

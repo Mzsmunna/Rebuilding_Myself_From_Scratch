@@ -1,4 +1,6 @@
-﻿import 'package:demo_app/common/configs/themes/default_app_theme.dart';
+﻿import 'package:demo_app/apps/app_showcase.dart';
+import 'package:demo_app/common/configs/app_bar/app_top_bar.dart';
+import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:flutter/material.dart';
 //import '../../widgets/access_widgets.dart';
 
@@ -13,8 +15,10 @@ class IssueManagerApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: DefaultAppTheme.materialThree,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Issue Manager App"),
+        appBar: AppTopBar.getDefaultAppBar(
+          "Issue Manager App",
+          context,
+          const AppShowcase(),
         ),
         //body: const AbsorbPointerWidget(),
       ),
