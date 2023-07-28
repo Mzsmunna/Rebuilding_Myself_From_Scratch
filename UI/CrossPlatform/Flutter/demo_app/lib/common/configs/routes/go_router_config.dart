@@ -7,16 +7,21 @@ class GoRouterConfig extends StatelessWidget {
   const GoRouterConfig({super.key});
 
   static final GoRouter _routerConfig = GoRouter(
-    initialLocation: "/Home",
+    initialLocation: "/",
     routes: [
       GoRoute(
-        path: '/Home',
-        builder: (context, state) => const AppShowcase(),
-      ),
-      GoRoute(
-        path: '/Profile',
-        builder: (context, state) => const AppProfile(),
-      ),
+          path: '/',
+          builder: (context, state) => const AppShowcase(),
+          routes: [
+            GoRoute(
+              path: 'Home',
+              builder: (context, state) => const AppShowcase(),
+            ),
+            GoRoute(
+              path: 'Profile',
+              builder: (context, state) => const AppProfile(),
+            ),
+          ]),
     ],
   );
 
