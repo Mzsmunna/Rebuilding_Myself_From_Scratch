@@ -20,9 +20,11 @@ class GoRouterConfig extends StatelessWidget {
             ),
             GoRoute(
               name: 'Profile',
-              path: 'Profile/:username',
+              //path: 'Profile/:username',
+              path: 'Profile',
               builder: (context, state) => AppProfile(
-                username: state.pathParameters['username'],
+                //username: state.pathParameters['username'],
+                username: state.uri.queryParameters['username'],
               ),
             ),
           ]),
