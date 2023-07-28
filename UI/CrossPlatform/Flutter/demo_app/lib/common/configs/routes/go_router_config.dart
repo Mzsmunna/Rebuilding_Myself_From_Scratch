@@ -1,3 +1,4 @@
+import 'package:demo_app/apps/app_error.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_app/apps/app_profile.dart';
 import 'package:demo_app/apps/app_showcase.dart';
@@ -9,17 +10,19 @@ class GoRouterConfig extends StatelessWidget {
   GoRouterConfig({super.key, required this.isConditional}) {
     _routerConfig = GoRouter(
       initialLocation: "/",
+      errorBuilder: (context, state) => const AppError(),
+      // redirect: (context, state) {
+      //   if (isConditional) {
+      //     return '/Profile';
+      //   } else {
+      //     return '/';
+      //     //return '/Oops';
+      //   }
+      // },
       routes: [
         GoRoute(
             path: '/',
             builder: (context, state) => const AppShowcase(),
-            // redirect: (context, state) {
-            //   if (isConditional) {
-            //     return '/Profile';
-            //   } else {
-            //     return '/';
-            //   }
-            // },
             routes: [
               GoRoute(
                 name: 'Home',
