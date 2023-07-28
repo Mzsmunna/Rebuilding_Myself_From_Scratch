@@ -18,8 +18,10 @@ class GoRouterConfig extends StatelessWidget {
               builder: (context, state) => const AppShowcase(),
             ),
             GoRoute(
-              path: 'Profile',
-              builder: (context, state) => const AppProfile(),
+              path: 'Profile/:username',
+              builder: (context, state) => AppProfile(
+                username: state.pathParameters['username'],
+              ),
             ),
           ]),
     ],

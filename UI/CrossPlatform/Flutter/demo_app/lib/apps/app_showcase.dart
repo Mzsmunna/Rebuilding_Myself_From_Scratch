@@ -33,7 +33,7 @@ class AppShowcase extends StatelessWidget {
           selectedIndex: 0,
           onDestinationSelected: (int value) {
             if (value > 0) {
-              GoRouter.of(context).go("/Profile");
+              GoRouter.of(context).go("/Profile/Mzs");
             }
           },
         ),
