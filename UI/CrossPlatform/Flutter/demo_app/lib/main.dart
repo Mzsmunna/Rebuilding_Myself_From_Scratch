@@ -14,5 +14,7 @@ void main() {
   //runApp(const FlutterwidgetsApp());
   //runApp(const IssueManagerApp());
   //runApp(const AppShowcase());
-  runApp(const GoRouterConfig());
+  runApp(GoRouterConfig(
+    isConditional: false,
+  ));
 }
