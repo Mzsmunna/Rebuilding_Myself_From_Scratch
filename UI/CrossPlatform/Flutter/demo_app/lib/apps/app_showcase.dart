@@ -35,8 +35,9 @@ class AppShowcase extends StatelessWidget {
             if (value > 0) {
               //GoRouter.of(context).go("/Profile/Mzs");
               GoRouter.of(context)
-                  //.goNamed('Profile', queryParameters: {"username": "Mzs"});
-                  .goNamed('Profile', queryParameters: {"username": "Mzs"});
+                  //.goNamed('Profile', pathParameters: {"username": "Mzs"});
+                  .goNamed('Profile',
+                      queryParameters: {"username": "Mamun & Maisha's"});
             }
           },
         ),

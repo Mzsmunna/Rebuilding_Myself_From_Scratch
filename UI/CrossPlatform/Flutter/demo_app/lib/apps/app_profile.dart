@@ -26,7 +26,29 @@ class AppProfile extends StatelessWidget {
           useGoRouer: true,
           goRouterPath: '/Home',
         ),
-        //body: const AbsorbPointerWidget(),
+        body: const Column(children: [
+          SizedBox(
+            width: 300,
+            height: 300,
+            child: CircleAvatar(
+              backgroundImage: AssetImage("lib/assets/images/tooned_us.jpeg"),
+              radius: 50,
+            ),
+          ),
+          SizedBox(height: 10),
+          ListTile(
+            leading: Icon(Icons.male),
+            title: Text('Mamun'),
+          ),
+          ListTile(
+            leading: Icon(Icons.female),
+            title: Text('Maisha'),
+          ),
+          ListTile(
+            leading: Icon(Icons.date_range_outlined),
+            title: Text('28/01/2022'),
+          ),
+        ]),
         bottomNavigationBar: NavigationBar(
           destinations: const [
             NavigationDestination(
