@@ -19,6 +19,7 @@ class DefaultAppTheme {
     primaryColor: ThemeData.light().scaffoldBackgroundColor,
     colorScheme: const ColorScheme.light()
         .copyWith(primary: lightPrimaryColor, secondary: secondaryColor),
+    useMaterial3: true,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -26,6 +27,7 @@ class DefaultAppTheme {
     colorScheme: const ColorScheme.dark().copyWith(
       primary: darkPrimaryColor,
     ),
+    useMaterial3: true,
   );
 
   static Color getHexColor(String hexColor) {

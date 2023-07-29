@@ -1,5 +1,5 @@
 import 'package:demo_app/apps/app_showcase.dart';
-import 'package:demo_app/common/configs/app_bar/app_top_bar.dart';
+import 'package:demo_app/common/layouts/app_bar/app_top_bar.dart';
 import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
