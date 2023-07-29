@@ -17,6 +17,7 @@ class _AppShowcaseState extends State<AppShowcase> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    getDarkThemeConfig();
     return StreamBuilder<ConnectivityResult>(
       stream: Connectivity().onConnectivityChanged,
       builder: (context, snapshot) {

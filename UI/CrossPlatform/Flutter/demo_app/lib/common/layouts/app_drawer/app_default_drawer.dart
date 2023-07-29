@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 ValueNotifier<bool> isAppDarkMode = ValueNotifier(false);
+
+getDarkThemeConfig() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final bool? isDarkMode = prefs.getBool('isDarkMode');
+  if (isDarkMode == null) {
+    isAppDarkMode.value = false;
+  } else {
+    isAppDarkMode.value = isDarkMode;
+  }
+}
+
+setDarkThemeConfig() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setBool('isDarkMode', isAppDarkMode.value);
+}
 
 class AppDefaultDrawer extends StatefulWidget {
   const AppDefaultDrawer({super.key});
@@ -41,6 +57,7 @@ class _AppDefaultDrawerState extends State<AppDefaultDrawer> {
                   ),
                   onChanged: (bool value) {
                     isAppDarkMode.value = !isAppDarkMode.value;
+                    setDarkThemeConfig();
                   },
                   secondary: const Icon(Icons.dark_mode),
                 ),
