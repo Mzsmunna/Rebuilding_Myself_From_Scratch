@@ -4,6 +4,7 @@ import 'package:demo_app/apps/app_showcase.dart';
 import 'package:demo_app/common/layouts/app_bar/app_top_bar.dart';
 import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:demo_app/common/layouts/app_drawer/app_default_drawer.dart';
+import 'package:demo_app/common/widgets/internet_connectivity_check.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 //import '../../widgets/access_widgets.dart';
@@ -32,30 +33,34 @@ class AppProfile extends StatelessWidget {
               useGoRouer: true,
               goRouterPath: '/Home',
             ),
-            body: const Column(children: [
-              SizedBox(
-                width: 300,
-                height: 300,
-                child: CircleAvatar(
-                  backgroundImage:
-                      AssetImage("lib/assets/images/tooned_us.jpeg"),
-                  radius: 50,
-                ),
+            body: const InternetConnectivityWidget(
+              screen: Column(
+                children: [
+                  SizedBox(
+                    width: 300,
+                    height: 300,
+                    child: CircleAvatar(
+                      backgroundImage:
+                          AssetImage("lib/assets/images/tooned_us.jpeg"),
+                      radius: 50,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  ListTile(
+                    leading: Icon(Icons.male),
+                    title: Text('Mamun'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.female),
+                    title: Text('Maisha'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.date_range_outlined),
+                    title: Text('28/01/2022'),
+                  ),
+                ],
               ),
-              SizedBox(height: 10),
-              ListTile(
-                leading: Icon(Icons.male),
-                title: Text('Mamun'),
-              ),
-              ListTile(
-                leading: Icon(Icons.female),
-                title: Text('Maisha'),
-              ),
-              ListTile(
-                leading: Icon(Icons.date_range_outlined),
-                title: Text('28/01/2022'),
-              ),
-            ]),
+            ),
             bottomNavigationBar: NavigationBar(
               destinations: const [
                 NavigationDestination(
