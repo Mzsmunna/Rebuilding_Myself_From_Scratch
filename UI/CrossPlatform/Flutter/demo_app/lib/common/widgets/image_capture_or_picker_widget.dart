@@ -4,8 +4,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-ValueNotifier<String> selectedImageFile =
-    ValueNotifier("lib/assets/images/tooned_us.jpeg");
+ValueNotifier<File?> selectedImageFile = ValueNotifier(null);
 
 class ImageCaptureOrPickerWidget extends StatefulWidget {
   const ImageCaptureOrPickerWidget({super.key});
@@ -152,9 +151,10 @@ class _ImageCaptureOrPickerWidgetState
         ]);
     if (croppedFile != null) {
       imageCache.clear();
-      selectedImageFile.value = croppedFile.path;
+      //selectedImageFile.value = croppedFile.path;
       setState(() {
         imageFile = File(croppedFile.path);
+        selectedImageFile.value = imageFile;
       });
       // reload();
     }

@@ -43,10 +43,18 @@ class AppProfile extends StatelessWidget {
                     child: ValueListenableBuilder(
                       valueListenable: selectedImageFile,
                       builder: (context, selectedImage, child) {
-                        return CircleAvatar(
-                          backgroundImage: AssetImage(selectedImage),
-                          radius: 50,
-                        );
+                        if (selectedImage == null) {
+                          return const CircleAvatar(
+                            backgroundImage:
+                                AssetImage("lib/assets/images/tooned_us.jpeg"),
+                            radius: 50,
+                          );
+                        } else {
+                          return CircleAvatar(
+                            backgroundImage: FileImage(selectedImage),
+                            radius: 50,
+                          );
+                        }
                       },
                     ),
                   ),
