@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 
 ValueNotifier<File?> selectedImageFile = ValueNotifier(null);
 
@@ -58,7 +59,9 @@ class _ImageCaptureOrPickerWidgetState
                           Text(
                             "Gallery",
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
                           )
                         ],
                       ),
@@ -80,8 +83,9 @@ class _ImageCaptureOrPickerWidgetState
                             Text(
                               "Camera",
                               textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.black),
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
                             )
                           ],
                         ),
@@ -102,7 +106,7 @@ class _ImageCaptureOrPickerWidgetState
         .pickImage(source: ImageSource.gallery, imageQuality: 50)
         .then((value) {
       if (value != null) {
-        _cropImage(File(value.path));
+        _updateImage(File(value.path));
       }
     });
   }
@@ -112,9 +116,37 @@ class _ImageCaptureOrPickerWidgetState
         .pickImage(source: ImageSource.camera, imageQuality: 50)
         .then((value) {
       if (value != null) {
-        _cropImage(File(value.path));
+        _updateImage(File(value.path));
       }
     });
+  }
+
+  _updateImage(File imgFile) {
+    if (kIsWeb) {
+      setState(() {
+        selectedImageFile.value = imageFile;
+      });
+    } else if (defaultTargetPlatform == TargetPlatform.android) {
+      _cropImage(imgFile);
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      _cropImage(imgFile);
+    } else if (defaultTargetPlatform == TargetPlatform.fuchsia) {
+      setState(() {
+        selectedImageFile.value = imageFile;
+      });
+    } else if (defaultTargetPlatform == TargetPlatform.linux) {
+      setState(() {
+        selectedImageFile.value = imageFile;
+      });
+    } else if (defaultTargetPlatform == TargetPlatform.windows) {
+      setState(() {
+        selectedImageFile.value = imageFile;
+      });
+    } else if (defaultTargetPlatform == TargetPlatform.macOS) {
+      setState(() {
+        selectedImageFile.value = imageFile;
+      });
+    }
   }
 
   _cropImage(File imgFile) async {
@@ -141,7 +173,7 @@ class _ImageCaptureOrPickerWidgetState
         uiSettings: [
           AndroidUiSettings(
               toolbarTitle: "Image Cropper",
-              toolbarColor: Colors.deepOrange,
+              toolbarColor: Colors.blueAccent,
               toolbarWidgetColor: Colors.white,
               initAspectRatio: CropAspectRatioPreset.original,
               lockAspectRatio: false),
