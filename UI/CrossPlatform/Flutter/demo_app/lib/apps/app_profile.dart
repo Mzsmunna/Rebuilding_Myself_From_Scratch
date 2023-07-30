@@ -4,6 +4,7 @@ import 'package:demo_app/apps/app_showcase.dart';
 import 'package:demo_app/common/layouts/app_bar/app_top_bar.dart';
 import 'package:demo_app/common/configs/themes/default_app_theme.dart';
 import 'package:demo_app/common/layouts/app_drawer/app_default_drawer.dart';
+import 'package:demo_app/common/widgets/image_capture_or_picker_widget.dart';
 import 'package:demo_app/common/widgets/internet_connectivity_check.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -33,34 +34,39 @@ class AppProfile extends StatelessWidget {
               useGoRouer: true,
               goRouterPath: '/Home',
             ),
-            body: const InternetConnectivityWidget(
+            body: InternetConnectivityWidget(
               screen: Column(
                 children: [
                   SizedBox(
                     width: 300,
                     height: 300,
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage("lib/assets/images/tooned_us.jpeg"),
-                      radius: 50,
+                    child: ValueListenableBuilder(
+                      valueListenable: selectedImageFile,
+                      builder: (context, selectedImage, child) {
+                        return CircleAvatar(
+                          backgroundImage: AssetImage(selectedImage),
+                          radius: 50,
+                        );
+                      },
                     ),
                   ),
-                  SizedBox(height: 10),
-                  ListTile(
+                  const SizedBox(height: 10),
+                  const ListTile(
                     leading: Icon(Icons.male),
                     title: Text('Mamun'),
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(Icons.female),
                     title: Text('Maisha'),
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(Icons.date_range_outlined),
                     title: Text('28/01/2022'),
                   ),
                 ],
               ),
             ),
+            floatingActionButton: const ImageCaptureOrPickerWidget(),
             bottomNavigationBar: NavigationBar(
               destinations: const [
                 NavigationDestination(
