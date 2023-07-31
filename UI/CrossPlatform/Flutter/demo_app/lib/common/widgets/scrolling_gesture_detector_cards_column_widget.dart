@@ -1,7 +1,7 @@
 import 'package:demo_app/apps/counter_app/pages/counter_app.dart';
 import 'package:demo_app/apps/counter_app_bloc/pages/counter_app_bloc.dart';
 import 'package:demo_app/apps/flutter_widgets_overview_app/pages/flutter_widgets_overview_app.dart';
-import 'package:demo_app/apps/issue_manager_app/pages/issue_manager_app.dart';
+import 'package:demo_app/apps/issue_manager_app/issue_manager_app_main.dart';
 import 'package:demo_app/common/widgets/gesture_detector_cards_column_widget.dart';
 import 'package:flutter/material.dart';
 
