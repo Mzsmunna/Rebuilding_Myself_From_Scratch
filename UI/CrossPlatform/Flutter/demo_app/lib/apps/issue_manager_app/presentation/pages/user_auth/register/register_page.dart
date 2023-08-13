@@ -1,6 +1,7 @@
 import 'package:demo_app/apps/issue_manager_app/presentation/components/form_components/form_button.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/components/form_components/form_datetime.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/components/form_components/form_dropdown.dart';
+import 'package:demo_app/apps/issue_manager_app/presentation/components/form_components/form_number_picker.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/components/form_components/form_square_tile.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/components/form_components/form_textfield.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class RegisterPage extends StatelessWidget {
   // text editing controllers
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
-  //final genderController = TextEditingController();
+  final genderController = TextEditingController();
   final dobController = TextEditingController();
   final ageController = TextEditingController();
   final phoneController = TextEditingController();
@@ -49,7 +50,7 @@ class RegisterPage extends StatelessWidget {
 
                 // welcome back, you've been missed!
                 Text(
-                  "Welcome! Let's resolve issues",
+                  "Welcome! Let's on board to resolve issues",
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 16,
@@ -77,8 +78,10 @@ class RegisterPage extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 // gender dropdown
-                const FormDropdown(
-                  list: <String>['Gender', 'Male', 'Female', 'Other'],
+                FormDropdown(
+                  controller: genderController,
+                  obscureText: false,
+                  list: const <String>['Gender', 'Male', 'Female', 'Other'],
                 ),
 
                 const SizedBox(height: 10),
@@ -92,10 +95,104 @@ class RegisterPage extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
+                // age textfield
+                FormNumberPicker(
+                  hintText: 'Age',
+                  axis: Axis.horizontal,
+                  currentValue: 30,
+                  minValue: 0,
+                  maxValue: 150,
+                ),
+
+                const SizedBox(height: 10),
+
+                // phonenumber textfield
+                FormTextField(
+                  controller: phoneController,
+                  hintText: 'Phone Number',
+                  obscureText: false,
+                ),
+
+                const SizedBox(height: 10),
+
+                // address textarea field
+                FormTextField(
+                  controller: addressController,
+                  hintText: 'Address',
+                  obscureText: false,
+                  maxLines: 5,
+                ),
+
+                const SizedBox(height: 10),
+
+                // departments dropdown
+                FormDropdown(
+                  controller: genderController,
+                  obscureText: false,
+                  list: const <String>[
+                    'Departments',
+                    'None',
+                    'IT',
+                    'QA',
+                    'Engineer',
+                    'Data Science',
+                    'UI / UX',
+                    'Marketing',
+                    'Human Resource'
+                  ],
+                ),
+
+                const SizedBox(height: 10),
+
+                // designation textfield
+                FormTextField(
+                  controller: phoneController,
+                  hintText: 'Designation',
+                  obscureText: false,
+                ),
+
+                const SizedBox(height: 10),
+
+                // Position dropdown
+                FormDropdown(
+                  controller: genderController,
+                  obscureText: false,
+                  list: const <String>[
+                    'Position',
+                    'Unknown',
+                    'Internship',
+                    'Fresher',
+                    'Junior',
+                    'Mid',
+                    'Senior',
+                    'VP'
+                  ],
+                ),
+
+                const SizedBox(height: 10),
+
+                // email textfield
+                FormTextField(
+                  controller: passwordController,
+                  hintText: 'Email',
+                  obscureText: false,
+                ),
+
+                const SizedBox(height: 10),
+
                 // password textfield
                 FormTextField(
                   controller: passwordController,
                   hintText: 'Password',
+                  obscureText: true,
+                ),
+
+                const SizedBox(height: 10),
+
+                // confirm password textfield
+                FormTextField(
+                  controller: passwordController,
+                  hintText: 'Confirm Password',
                   obscureText: true,
                 ),
 

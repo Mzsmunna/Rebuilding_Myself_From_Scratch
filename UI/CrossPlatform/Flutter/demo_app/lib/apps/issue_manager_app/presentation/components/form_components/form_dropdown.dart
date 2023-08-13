@@ -1,36 +1,41 @@
+import 'package:demo_app/apps/issue_manager_app/application/configs/themes/issue_manager_themes.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class FormDropdown extends StatefulWidget {
+  final TextEditingController controller;
+  final bool obscureText;
   final List<String> list;
-  const FormDropdown({super.key, required this.list});
+  String dropdownValue = "";
+  FormDropdown(
+      {super.key,
+      required this.controller,
+      required this.obscureText,
+      required this.list}) {
+    dropdownValue = list.first;
+  }
 
   @override
   State<FormDropdown> createState() => _FormDropdownState();
 }
 
 class _FormDropdownState extends State<FormDropdown> {
-  String dropdownValue = "";
-
   @override
   Widget build(BuildContext context) {
-    dropdownValue = widget.list.first;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: DropdownButton<String>(
-        value: dropdownValue,
+      child: DropdownButtonFormField<String>(
+        value: widget.dropdownValue,
         icon: const Icon(Icons.arrow_downward),
         elevation: 16,
         style: const TextStyle(color: Colors.grey),
-        underline: Container(
-          height: 2,
-          color: Colors.grey,
-        ),
+        decoration:
+            IssueManagerTheme.getFormInputDecoration(widget.dropdownValue),
         isExpanded: true,
         onChanged: (String? value) {
           // This is called when the user selects an item.
           setState(() {
-            dropdownValue = value!;
+            widget.dropdownValue = value!;
           });
         },
         items: widget.list.map<DropdownMenuItem<String>>((String value) {
