@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class FormSquareTile extends StatelessWidget {
   final String imagePath;
+  final double height;
   const FormSquareTile({
     super.key,
     required this.imagePath,
+    required this.height,
   });
 
   @override
@@ -18,7 +20,7 @@ class FormSquareTile extends StatelessWidget {
       ),
       child: Image.asset(
         imagePath,
-        height: 40,
+        height: height,
       ),
     );
   }

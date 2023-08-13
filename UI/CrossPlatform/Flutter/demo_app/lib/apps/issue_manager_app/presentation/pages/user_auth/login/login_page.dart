@@ -2,6 +2,7 @@ import 'package:demo_app/apps/issue_manager_app/presentation/components/form_com
 import 'package:demo_app/apps/issue_manager_app/presentation/components/form_components/form_square_tile.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/components/form_components/form_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -120,15 +121,19 @@ class LoginPage extends StatelessWidget {
                   children: [
                     // google button
                     FormSquareTile(
-                        imagePath:
-                            'lib/apps/issue_manager_app/application/assets/icons/google.png'),
+                      imagePath:
+                          'lib/apps/issue_manager_app/application/assets/icons/google.png',
+                      height: 40,
+                    ),
 
                     SizedBox(width: 20),
 
                     // apple button
                     FormSquareTile(
-                        imagePath:
-                            'lib/apps/issue_manager_app/application/assets/icons/apple.png')
+                      imagePath:
+                          'lib/apps/issue_manager_app/application/assets/icons/apple.png',
+                      height: 40,
+                    ),
                   ],
                 ),
 
@@ -143,12 +148,17 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
-                    const Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      child: const Text(
+                        'Register now',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      onTap: () {
+                        GoRouter.of(context).go("/IssueManager/Register");
+                      },
                     ),
                   ],
                 )
