@@ -5,6 +5,7 @@ class FormTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final Function(String)? onChanged;
   final int maxLines;
 
   const FormTextField(
@@ -12,6 +13,7 @@ class FormTextField extends StatelessWidget {
       required this.controller,
       required this.hintText,
       required this.obscureText,
+      this.onChanged,
       this.maxLines = 1});
 
   @override
@@ -24,6 +26,7 @@ class FormTextField extends StatelessWidget {
         keyboardType: TextInputType.multiline,
         maxLines: maxLines,
         decoration: IssueManagerTheme.getFormInputDecoration(hintText),
+        onChanged: onChanged,
       ),
     );
   }
