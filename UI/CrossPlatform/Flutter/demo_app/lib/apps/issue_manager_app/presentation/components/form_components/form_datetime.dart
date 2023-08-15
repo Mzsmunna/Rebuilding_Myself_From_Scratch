@@ -1,3 +1,4 @@
+import 'package:demo_app/apps/issue_manager_app/application/configs/themes/issue_manager_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -23,21 +24,10 @@ class _FormDateFieldState extends State<FormDateField> {
     DateTime? pickedDate = DateTime.now();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: TextField(
+      child: TextFormField(
         controller: widget.controller,
         obscureText: widget.obscureText,
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade400),
-          ),
-          fillColor: Colors.grey.shade200,
-          filled: true,
-          hintText: widget.hintText,
-          hintStyle: TextStyle(color: Colors.grey[500]),
-        ),
+        decoration: IssueManagerTheme.getFormInputDecoration(widget.hintText),
         readOnly: true, // when true user cannot edit text
         onTap: () async {
           //when click we have to show the datepicker

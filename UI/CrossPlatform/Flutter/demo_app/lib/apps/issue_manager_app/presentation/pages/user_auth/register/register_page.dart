@@ -64,6 +64,7 @@ class RegisterPage extends StatelessWidget {
                   controller: firstNameController,
                   hintText: 'First Name',
                   obscureText: false,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
 
                 const SizedBox(height: 10),
@@ -73,6 +74,7 @@ class RegisterPage extends StatelessWidget {
                   controller: lastNameController,
                   hintText: 'Last Name',
                   obscureText: false,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
 
                 const SizedBox(height: 10),
@@ -111,6 +113,7 @@ class RegisterPage extends StatelessWidget {
                   controller: phoneController,
                   hintText: 'Phone Number',
                   obscureText: false,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
 
                 const SizedBox(height: 10),
@@ -121,6 +124,7 @@ class RegisterPage extends StatelessWidget {
                   hintText: 'Address',
                   obscureText: false,
                   maxLines: 5,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
 
                 const SizedBox(height: 10),
@@ -149,6 +153,7 @@ class RegisterPage extends StatelessWidget {
                   controller: phoneController,
                   hintText: 'Designation',
                   obscureText: false,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
 
                 const SizedBox(height: 10),
@@ -176,6 +181,7 @@ class RegisterPage extends StatelessWidget {
                   controller: passwordController,
                   hintText: 'Email',
                   obscureText: false,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
 
                 const SizedBox(height: 10),
@@ -185,6 +191,7 @@ class RegisterPage extends StatelessWidget {
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
 
                 const SizedBox(height: 10),
@@ -194,6 +201,7 @@ class RegisterPage extends StatelessWidget {
                   controller: passwordController,
                   hintText: 'Confirm Password',
                   obscureText: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
 
                 const SizedBox(height: 10),

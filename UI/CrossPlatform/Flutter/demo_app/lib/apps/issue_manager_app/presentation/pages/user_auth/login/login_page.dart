@@ -13,11 +13,14 @@ class LoginPage extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final loginBloc = LoginBloc();
+  final formKey = GlobalKey<FormState>();
 
   // sign user in method
   void onSignIn() {
-    loginBloc.add(OnSubmitLoginEvent(
-        email: emailController.text, password: passwordController.text));
+    if (formKey.currentState!.validate()) {
+      loginBloc.add(OnSubmitLoginEvent(
+          email: emailController.text, password: passwordController.text));
+    }
   }
 
   void onSignUpNavigate() {
@@ -32,8 +35,8 @@ class LoginPage extends StatelessWidget {
   }
 
   void onPasswordChange(String value) {
-    loginBloc.add(
-        OnChangeLoginEvent(email: value, password: passwordController.text));
+    loginBloc
+        .add(OnChangeLoginEvent(email: emailController.text, password: value));
   }
 
   @override
@@ -43,33 +46,38 @@ class LoginPage extends StatelessWidget {
       listenWhen: (previous, current) {
         bool doListen = false;
         if (current is RegisterNavigateLoginState ||
-            current is SuccessLoginState ||
-            current is InvalidLoginState) {
+                current is SuccessLoginState ||
+                current is ErrorLoginState
+            //|| current is InvalidLoginState
+            ) {
           doListen = true;
         }
         return doListen;
       },
       buildWhen: (previous, current) {
-        bool doListen = true;
+        bool doBuild = true;
         if (current is RegisterNavigateLoginState ||
-            current is SuccessLoginState ||
-            current is InvalidLoginState) {
-          doListen = false;
+                current is SuccessLoginState ||
+                current is ErrorLoginState
+            //|| current is InvalidLoginState
+            ) {
+          doBuild = false;
         }
-        return doListen;
+        return doBuild;
       },
       listener: (context, state) {
         if (state is RegisterNavigateLoginState) {
           //print("state is OnRegisterNavigateLoginEvent");
           GoRouter.of(context).go("/IssueManager/Register");
-        } else if (state is RegisterNavigateLoginState) {
+        } else if (state is SuccessLoginState) {
           //print("state is OnRegisterNavigateLoginEvent");
           //GoRouter.of(context).go("/IssueManager/Home");
-        } else if (state is InvalidLoginState) {
-          //print("state is OnRegisterNavigateLoginEvent");
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.validation)));
         }
+        // else if (state is InvalidLoginState) {
+        //   //print("state is OnRegisterNavigateLoginEvent");
+        //   ScaffoldMessenger.of(context)
+        //       .showSnackBar(SnackBar(content: Text(state.validation)));
+        // }
       },
       builder: (context, state) {
         return Scaffold(
@@ -77,149 +85,163 @@ class LoginPage extends StatelessWidget {
           body: SafeArea(
             child: Center(
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // logo
-                    const Icon(
-                      Icons.lock,
-                      size: 100,
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // welcome back, you've been missed!
-                    Text(
-                      'Welcome back you\'ve been missed!',
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        fontSize: 16,
+                child: Form(
+                  key: formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // logo
+                      const Icon(
+                        Icons.lock,
+                        size: 100,
                       ),
-                    ),
 
-                    const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                    // email textfield
-                    FormTextField(
-                      controller: emailController,
-                      hintText: 'Email',
-                      obscureText: false,
-                      onChanged: onEmailChange,
-                    ),
+                      // welcome back, you've been missed!
+                      Text(
+                        'Welcome back you\'ve been missed!',
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 16,
+                        ),
+                      ),
 
-                    const SizedBox(height: 10),
+                      const SizedBox(height: 20),
 
-                    // password textfield
-                    FormTextField(
-                      controller: passwordController,
-                      hintText: 'Password',
-                      obscureText: true,
-                      onChanged: onPasswordChange,
-                    ),
+                      // email textfield
+                      FormTextField(
+                        controller: emailController,
+                        hintText: 'Email',
+                        obscureText: false,
+                        onChanged: onEmailChange,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        onValidate: (value) =>
+                            (state is InvalidLoginState && !state.isValidEmail)
+                                ? "Not a valid Email"
+                                : null,
+                      ),
 
-                    const SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
-                    // forgot password?
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                      // password textfield
+                      FormTextField(
+                        controller: passwordController,
+                        hintText: 'Password',
+                        obscureText: true,
+                        onChanged: onPasswordChange,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        onValidate: (value) => (state is InvalidLoginState &&
+                                !state.isValidPassword)
+                            ? "Not a valid Password"
+                            : null,
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      // forgot password?
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Forgot Password?',
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // sign in button
+                      FormButton(
+                        text: "Sign In",
+                        onTap: onSignIn,
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // or continue with
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                thickness: 0.5,
+                                color: Colors.grey[400],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Text(
+                                'Or continue with',
+                                style: TextStyle(color: Colors.grey[700]),
+                              ),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                thickness: 0.5,
+                                color: Colors.grey[400],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 15),
+
+                      // google + apple sign in buttons
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // google button
+                          FormSquareTile(
+                            imagePath:
+                                'lib/apps/issue_manager_app/application/assets/icons/google.png',
+                            height: 40,
+                          ),
+
+                          SizedBox(width: 20),
+
+                          // apple button
+                          FormSquareTile(
+                            imagePath:
+                                'lib/apps/issue_manager_app/application/assets/icons/apple.png',
+                            height: 40,
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // not a member? register now
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Forgot Password?',
-                            style: TextStyle(color: Colors.grey[600]),
+                            'Not a member?',
+                            style: TextStyle(color: Colors.grey[700]),
                           ),
-                        ],
-                      ),
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // sign in button
-                    FormButton(
-                      text: "Sign In",
-                      onTap: onSignIn,
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // or continue with
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Divider(
-                              thickness: 0.5,
-                              color: Colors.grey[400],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Text(
-                              'Or continue with',
-                              style: TextStyle(color: Colors.grey[700]),
-                            ),
-                          ),
-                          Expanded(
-                            child: Divider(
-                              thickness: 0.5,
-                              color: Colors.grey[400],
+                          const SizedBox(width: 4),
+                          GestureDetector(
+                            onTap: onSignUpNavigate,
+                            child: const Text(
+                              'Register now',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-
-                    const SizedBox(height: 15),
-
-                    // google + apple sign in buttons
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // google button
-                        FormSquareTile(
-                          imagePath:
-                              'lib/apps/issue_manager_app/application/assets/icons/google.png',
-                          height: 40,
-                        ),
-
-                        SizedBox(width: 20),
-
-                        // apple button
-                        FormSquareTile(
-                          imagePath:
-                              'lib/apps/issue_manager_app/application/assets/icons/apple.png',
-                          height: 40,
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // not a member? register now
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Not a member?',
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
-                        const SizedBox(width: 4),
-                        GestureDetector(
-                          onTap: onSignUpNavigate,
-                          child: const Text(
-                            'Register now',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

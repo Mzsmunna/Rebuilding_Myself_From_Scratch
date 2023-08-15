@@ -29,15 +29,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event.email == "" && event.password == "") {
       //print("InitialLoginState");
       emit(const InitialLoginState());
-    } else if (event.email == "") {
-      //print("Please enter your email");
-      emit(const InvalidLoginState(validation: "Please enter your email"));
-    } else if (event.password == "") {
-      //print("Please enter your password");
-      emit(const InvalidLoginState(validation: "Please enter your password"));
-    } else if (!event.email.contains("@") && !event.email.contains(".")) {
-      //print("Not a valid email");
-      emit(const InvalidLoginState(validation: "Not a valid email"));
+    } else if (!event.isValidEmail || !event.isValidPassword) {
+      //print("InvalidLoginState");
+      emit(
+        InvalidLoginState(
+            email: event.email,
+            password: event.password,
+            isValidEmail: event.isValidEmail,
+            isValidPassword: event.isValidPassword),
+      );
     } else {
       //print("ValidLoginState");
       emit(const ValidLoginState());

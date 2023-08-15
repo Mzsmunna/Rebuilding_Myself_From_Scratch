@@ -5,7 +5,9 @@ class FormTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final AutovalidateMode autovalidateMode;
   final Function(String)? onChanged;
+  final String? Function(String?)? onValidate;
   final int maxLines;
 
   const FormTextField(
@@ -13,20 +15,24 @@ class FormTextField extends StatelessWidget {
       required this.controller,
       required this.hintText,
       required this.obscureText,
+      required this.autovalidateMode,
       this.onChanged,
+      this.onValidate,
       this.maxLines = 1});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         obscureText: (maxLines > 1) ? false : obscureText,
         keyboardType: TextInputType.multiline,
         maxLines: maxLines,
         decoration: IssueManagerTheme.getFormInputDecoration(hintText),
+        autovalidateMode: autovalidateMode,
         onChanged: onChanged,
+        validator: onValidate,
       ),
     );
   }

@@ -25,7 +25,35 @@ class UserModel {
   String? createdBy;
   String? modifiedBy;
 
-  UserModel({
+  UserModel() {
+    id = "";
+    firstName = "";
+    lastName = "";
+    gender = "";
+    age = 0;
+    phone = "";
+    birthDate = null;
+    address = "";
+    department = "";
+    designation = "";
+    position = "";
+    img = "";
+    email = "";
+    password = "";
+    //passwordHash = [];
+    //passwordSalt = [];
+    tokenCreated = null;
+    tokenExpires = null;
+    refreshToken = "";
+    role = "";
+    isActive = true;
+    createdOn = DateTime.now();
+    modifiedOn = null;
+    createdBy = "";
+    modifiedBy = "";
+  }
+
+  UserModel.copy({
     this.id,
     this.firstName,
     this.lastName,

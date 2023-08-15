@@ -1,74 +1,45 @@
-// ignore_for_file: must_be_immutable
-
 part of 'register_bloc.dart';
 
 sealed class RegisterState extends Equatable {
-  UserModel userModel;
-  RegisterState({required this.userModel});
+  const RegisterState();
 
   @override
   List<Object> get props => [];
 }
 
 class InitialRegisterState extends RegisterState {
-  InitialRegisterState()
-      : super(
-          userModel: UserModel(
-            id: "",
-            firstName: "",
-            lastName: "",
-            gender: "",
-            age: 0,
-            phone: "",
-            birthDate: null,
-            address: "",
-            department: "",
-            designation: "",
-            position: "",
-            img: "",
-            email: "",
-            password: "",
-            //passwordHash: [],
-            //passwordSalt: [],
-            tokenCreated: null,
-            tokenExpires: null,
-            refreshToken: "",
-            role: "",
-            isActive: true,
-            createdOn: DateTime.now(),
-            modifiedOn: null,
-            createdBy: "",
-            modifiedBy: "",
-          ),
-        );
+  const InitialRegisterState();
 }
 
-class OnChangeRegisterState extends RegisterState {
-  OnChangeRegisterState({required UserModel userModel})
-      : super(userModel: userModel);
+class InvalidRegisterState extends RegisterState {
+  final String validation;
+  const InvalidRegisterState({required this.validation});
 }
 
-class OnValidRegisterState extends RegisterState {
-  OnValidRegisterState({required UserModel userModel})
-      : super(userModel: userModel);
+class ValidRegisterState extends RegisterState {
+  const ValidRegisterState();
 }
 
-class OnSubmitRegisterState extends RegisterState {
-  OnSubmitRegisterState({required UserModel userModel})
-      : super(userModel: userModel);
+class SubmitRegisterState extends RegisterState {
+  final UserModel userModel;
+  final String confirmPassword;
+  const SubmitRegisterState(
+      {required this.userModel, required this.confirmPassword});
 }
 
-class OnErrorRegisterState extends RegisterState {
-  OnErrorRegisterState({required UserModel userModel})
-      : super(userModel: userModel);
+class ErrorRegisterState extends RegisterState {
+  final String error;
+  const ErrorRegisterState({required this.error});
 }
 
-class OnSuccessRegisterState extends RegisterState {
-  OnSuccessRegisterState({required UserModel userModel})
-      : super(userModel: userModel);
+class SuccessRegisterState extends RegisterState {
+  final String token;
+  const SuccessRegisterState({required this.token});
 }
 
-class OnLoginNavigateLoginState extends RegisterState {
-  OnLoginNavigateLoginState({required UserModel userModel})
-      : super(userModel: userModel);
+class LoginNavigateRegisterState extends RegisterState {
+  final String email;
+  final String password;
+  const LoginNavigateRegisterState(
+      {required this.email, required this.password});
 }
