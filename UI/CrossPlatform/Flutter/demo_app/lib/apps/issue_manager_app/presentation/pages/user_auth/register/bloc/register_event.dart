@@ -24,7 +24,8 @@ class OnChangeRegisterEvent extends RegisterEvent {
       RegExp(r"^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$");
   RegExp get validPasswordRegex => RegExp(
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>');
-  RegExp get validPhoneRegex => RegExp(r"/^(?:(?:\+|00)88|01)?\d{11}$/");
+  RegExp get validPhoneRegex => RegExp(
+      r"(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})");
   //RegExp(r'^[+]{1}(?:[0-9\\-\\(\\)\\/""\\.]\\s?){6, 15}[0-9]{1}$');
 
   OnChangeRegisterEvent(

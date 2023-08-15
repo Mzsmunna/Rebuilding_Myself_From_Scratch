@@ -29,9 +29,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     if (event.userModel.firstName == "" &&
         event.userModel.lastName == "" &&
         event.userModel.gender == "" &&
+        event.userModel.phone == "" &&
         event.userModel.email == "" &&
         event.userModel.password == "" &&
-        event.userModel.phone == "" &&
         event.confirmPassword == "") {
       //print("InitialRegisterState");
       emit(const InitialRegisterState());
