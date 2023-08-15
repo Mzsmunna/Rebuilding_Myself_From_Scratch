@@ -31,6 +31,19 @@ class InvalidRegisterState extends RegisterState {
       required this.isValidEmail,
       required this.isValidPassword,
       required this.isConfirmPassword});
+
+  @override
+  List<Object> get props => [
+        userModel,
+        confirmPassword,
+        isValidFirstName,
+        isValidLastName,
+        isValidGender,
+        isValidPhone,
+        isValidEmail,
+        isValidPassword,
+        isConfirmPassword
+      ];
 }
 
 class ValidRegisterState extends RegisterState {
@@ -42,16 +55,25 @@ class SubmitRegisterState extends RegisterState {
   final String confirmPassword;
   const SubmitRegisterState(
       {required this.userModel, required this.confirmPassword});
+
+  @override
+  List<Object> get props => [userModel, confirmPassword];
 }
 
 class ErrorRegisterState extends RegisterState {
   final String error;
   const ErrorRegisterState({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }
 
 class SuccessRegisterState extends RegisterState {
   final String token;
   const SuccessRegisterState({required this.token});
+
+  @override
+  List<Object> get props => [token];
 }
 
 class LoginNavigateRegisterState extends RegisterState {
@@ -59,4 +81,7 @@ class LoginNavigateRegisterState extends RegisterState {
   final String password;
   const LoginNavigateRegisterState(
       {required this.email, required this.password});
+
+  @override
+  List<Object> get props => [email, password];
 }

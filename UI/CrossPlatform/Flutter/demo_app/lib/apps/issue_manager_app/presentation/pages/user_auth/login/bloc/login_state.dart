@@ -48,16 +48,25 @@ class SubmitLoginState extends LoginState {
   final String email;
   final String password;
   const SubmitLoginState({required this.email, required this.password});
+
+  @override
+  List<Object> get props => [email, password];
 }
 
 class ErrorLoginState extends LoginState {
   final String error;
   const ErrorLoginState({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }
 
 class SuccessLoginState extends LoginState {
   final String token;
   const SuccessLoginState({required this.token});
+
+  @override
+  List<Object> get props => [token];
 }
 
 class RegisterNavigateLoginState extends LoginState {
@@ -65,4 +74,7 @@ class RegisterNavigateLoginState extends LoginState {
   final String password;
   const RegisterNavigateLoginState(
       {required this.email, required this.password});
+
+  @override
+  List<Object> get props => [email, password];
 }
