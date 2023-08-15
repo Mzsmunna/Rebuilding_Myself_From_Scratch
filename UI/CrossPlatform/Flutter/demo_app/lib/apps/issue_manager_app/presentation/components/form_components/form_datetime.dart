@@ -6,13 +6,14 @@ class FormDateField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final Function(DateTime?)? onDatePick;
 
-  const FormDateField({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    required this.obscureText,
-  });
+  const FormDateField(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      required this.obscureText,
+      required this.onDatePick});
 
   @override
   State<FormDateField> createState() => _FormDateFieldState();
@@ -48,6 +49,9 @@ class _FormDateFieldState extends State<FormDateField> {
               widget.controller.text =
                   formattedDate; //set foratted date to TextField value.
             });
+            if (widget.onDatePick != null) {
+              widget.onDatePick!(pickedDate);
+            }
           }
         },
       ),

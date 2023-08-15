@@ -26,29 +26,38 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   void onChangeRegisterEvent(
       OnChangeRegisterEvent event, Emitter<RegisterState> emit) {
-    if (event.userModel.firstName == "" ||
-        event.userModel.lastName == "" ||
-        event.userModel.gender == "" ||
-        event.userModel.email == "" ||
-        event.userModel.password == "" ||
+    if (event.userModel.firstName == "" &&
+        event.userModel.lastName == "" &&
+        event.userModel.gender == "" &&
+        event.userModel.email == "" &&
+        event.userModel.password == "" &&
+        event.userModel.phone == "" &&
         event.confirmPassword == "") {
       //print("InitialRegisterState");
       emit(const InitialRegisterState());
+    } else if (!event.isValidFirstName ||
+        !event.isValidLastName ||
+        !event.isValidGender ||
+        !event.isValidPhone ||
+        !event.isValidEmail ||
+        !event.isValidPassword ||
+        !event.isConfirmPassword) {
+      //print("Not a valid email");
+      emit(InvalidRegisterState(
+        userModel: event.userModel,
+        confirmPassword: event.confirmPassword,
+        isValidFirstName: event.isValidFirstName,
+        isValidLastName: event.isValidLastName,
+        isValidGender: event.isValidGender,
+        isValidPhone: event.isValidPhone,
+        isValidEmail: event.isValidEmail,
+        isValidPassword: event.isValidPassword,
+        isConfirmPassword: event.isConfirmPassword,
+      ));
+    } else {
+      //print("ValidRegisterState");
+      emit(const ValidRegisterState());
     }
-    // else if (event.email == "") {
-    //   //print("Please enter your email");
-    //   emit(const InvalidRegisterState(validation: "Please enter your email"));
-    // } else if (event.password == "") {
-    //   //print("Please enter your password");
-    //   emit(
-    //       const InvalidRegisterState(validation: "Please enter your password"));
-    // } else if (!event.email.contains("@") && !event.email.contains(".")) {
-    //   //print("Not a valid email");
-    //   emit(const InvalidRegisterState(validation: "Not a valid email"));
-    // } else {
-    //   //print("ValidRegisterState");
-    //   emit(const ValidRegisterState());
-    // }
   }
 
   void onSubmitRegisterEvent(

@@ -15,11 +15,8 @@ class OnChangeLoginEvent extends LoginEvent {
   bool isValidPassword = false;
   RegExp get validEmailRegex =>
       RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  RegExp get validNameRegex =>
-      RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
   RegExp get validPasswordRegex => RegExp(
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>');
-  RegExp get validPhoneRegex => RegExp(r'^\S+@\S+$');
 
   OnChangeLoginEvent({required this.email, required this.password}) {
     if (email == "" && password == "") {

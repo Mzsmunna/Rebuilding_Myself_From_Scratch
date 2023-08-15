@@ -7,11 +7,13 @@ class FormDropdown extends StatefulWidget {
   final bool obscureText;
   final List<String> list;
   String dropdownValue = "";
+  final Function(String?)? onChanged;
   FormDropdown(
       {super.key,
       required this.controller,
       required this.obscureText,
-      required this.list}) {
+      required this.list,
+      required this.onChanged}) {
     dropdownValue = list.first;
   }
 
@@ -37,6 +39,9 @@ class _FormDropdownState extends State<FormDropdown> {
           setState(() {
             widget.dropdownValue = value!;
           });
+          if (widget.onChanged != null) {
+            widget.onChanged!(value);
+          }
         },
         items: widget.list.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(

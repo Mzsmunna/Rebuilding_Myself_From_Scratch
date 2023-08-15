@@ -9,6 +9,7 @@ class FormNumberPicker extends StatefulWidget {
   int currentValue;
   final int minValue;
   final int maxValue;
+  final Function(int) onChanged;
 
   FormNumberPicker({
     super.key,
@@ -17,6 +18,7 @@ class FormNumberPicker extends StatefulWidget {
     required this.currentValue,
     required this.minValue,
     required this.maxValue,
+    required this.onChanged,
   });
 
   @override
@@ -41,7 +43,10 @@ class _FormNumberPickerState extends State<FormNumberPicker> {
           value: widget.currentValue,
           minValue: widget.minValue,
           maxValue: widget.maxValue,
-          onChanged: (value) => setState(() => widget.currentValue = value),
+          onChanged: (value) => setState(() {
+            widget.currentValue = value;
+            widget.onChanged(value);
+          }),
         ),
         //Text('Current value: $_currentValue'),
       ],

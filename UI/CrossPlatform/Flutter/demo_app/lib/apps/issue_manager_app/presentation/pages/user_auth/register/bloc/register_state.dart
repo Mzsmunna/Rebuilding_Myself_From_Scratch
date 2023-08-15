@@ -12,8 +12,25 @@ class InitialRegisterState extends RegisterState {
 }
 
 class InvalidRegisterState extends RegisterState {
-  final String validation;
-  const InvalidRegisterState({required this.validation});
+  final UserModel userModel;
+  final String confirmPassword;
+  final bool isValidFirstName;
+  final bool isValidLastName;
+  final bool isValidGender;
+  final bool isValidPhone;
+  final bool isValidEmail;
+  final bool isValidPassword;
+  final bool isConfirmPassword;
+  const InvalidRegisterState(
+      {required this.userModel,
+      required this.confirmPassword,
+      required this.isValidFirstName,
+      required this.isValidLastName,
+      required this.isValidGender,
+      required this.isValidPhone,
+      required this.isValidEmail,
+      required this.isValidPassword,
+      required this.isConfirmPassword});
 }
 
 class ValidRegisterState extends RegisterState {
