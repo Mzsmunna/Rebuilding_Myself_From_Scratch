@@ -47,9 +47,9 @@ class OnChangeRegisterEvent extends RegisterEvent {
       isValidLastName = true;
     }
 
-    if (userModel.gender != null ||
-        userModel.gender != "" ||
-        userModel.gender!.toLowerCase() != "gender") {
+    if (userModel.gender == null ||
+        userModel.gender == "" ||
+        userModel.gender?.toLowerCase() == "gender") {
       isValidGender = false;
     } else {
       isValidGender = true;
@@ -70,7 +70,7 @@ class OnChangeRegisterEvent extends RegisterEvent {
 
     if (userModel.password != "" &&
         !validPasswordRegex.hasMatch(userModel.password!) &&
-        userModel.password!.length < 6) {
+        userModel.password!.length < 5) {
       isValidPassword = false;
       //validation = "Not a valid password";
     } else {

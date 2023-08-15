@@ -34,7 +34,7 @@ class OnChangeLoginEvent extends LoginEvent {
 
     if (password != "" &&
         !validPasswordRegex.hasMatch(password) &&
-        password.length < 6) {
+        password.length < 5) {
       isValidPassword = false;
       //validation = "Not a valid password";
     } else {

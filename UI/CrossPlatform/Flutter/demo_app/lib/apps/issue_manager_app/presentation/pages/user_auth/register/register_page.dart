@@ -399,7 +399,8 @@ class RegisterPage extends StatelessWidget {
                       // sign up button
                       FormButton(
                         text: "Sign Up",
-                        onTap: signUserIn,
+                        onTap:
+                            (state is ValidRegisterState) ? signUserIn : null,
                       ),
 
                       const SizedBox(height: 20),

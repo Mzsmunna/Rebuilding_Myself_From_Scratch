@@ -159,7 +159,7 @@ class LoginPage extends StatelessWidget {
                       // sign in button
                       FormButton(
                         text: "Sign In",
-                        onTap: onSignIn,
+                        onTap: (state is ValidLoginState) ? onSignIn : null,
                       ),
 
                       const SizedBox(height: 20),
