@@ -95,9 +95,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       //print(response.data);
       if (response.statusCode == 200) {
         var authToken = response.data.toString();
-        var sharedPrefs =
-            await AppSharedPreferences.getSharedPreferenceInstance();
-        sharedPrefs?.remove("auth_token");
+        var sharedPrefs = AppSharedPreferences.getSharedPreferenceInstance();
+        //sharedPrefs?.remove("auth_token");
         sharedPrefs?.setString("auth_token", authToken);
         emit(SuccessLoginState(token: authToken));
       } else {

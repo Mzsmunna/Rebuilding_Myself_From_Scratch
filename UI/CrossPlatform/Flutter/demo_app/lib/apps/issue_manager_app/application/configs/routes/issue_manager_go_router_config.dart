@@ -1,13 +1,11 @@
-import 'dart:async';
-
 import 'package:demo_app/apps/app_error.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/utilities/shared_preference_utility.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/login/login_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/register/register_page.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 // ignore: must_be_immutable
 class IssueManagerGoRouterConfig extends StatelessWidget {
@@ -20,12 +18,25 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
       errorBuilder: (context, state) => const AppError(),
       redirect: (context, state) {
         if (isConditional) {
-          isAuthenticated();
+          var sharedPrefs = AppSharedPreferences.getSharedPreferenceInstance();
+          var authToken = sharedPrefs?.getString("auth_token");
+          if (authToken != null) {
+            //Map<String, dynamic> decodedToken = JwtDecoder.decode(authToken);
+            bool hasExpired = JwtDecoder.isExpired(authToken);
+            if (hasExpired) {
+              isLoggedIn = false;
+            } else {
+              isLoggedIn = true;
+            }
+          }
           if (isLoggedIn) {
             return '/IssueManager/IssueHome';
+          } else {
+            return '/IssueManager';
           }
+        } else {
+          return '/IssueManager';
         }
-        return '/IssueManager';
       },
       routes: [
         GoRoute(
@@ -51,70 +62,6 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  FutureOr<bool> isAuthenticated() async {
-    var sharedPrefs = await AppSharedPreferences.getSharedPreferenceInstance();
-
-    var authToken = sharedPrefs?.getString("auth_token");
-
-    if (authToken != null) {
-      const String baseUrl = "http://10.0.2.2:5255";
-
-      final dio = Dio();
-      final Map<String, dynamic> queryJson = {"searchQueries": ""};
-
-      try {
-        dio.interceptors.add(
-          InterceptorsWrapper(
-            onRequest: (options, handler) {
-              // Add the access token to the request header
-              options.headers['Authorization'] = 'Bearer $authToken';
-              return handler.next(options);
-            },
-            onError: (DioException e, handler) async {
-              if (e.response?.statusCode == 401) {
-                // If a 401 response is received, refresh the access token
-                //String newAccessToken = await refreshToken();
-                isLoggedIn = false;
-                //sharedPrefs?.remove("auth_token");
-
-                // Update the request header with the new access token
-                //e.requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
-
-                // Repeat the request with the updated header
-                //return handler.resolve(await dio.fetch(e.requestOptions));
-              } else {
-                isLoggedIn = true;
-              }
-              return handler.next(e);
-            },
-          ),
-        );
-
-        var response =
-            await dio.get("$baseUrl/api/Issue/GetAllIssueCount?searchQueries=");
-        //queryParameters: queryJson);
-        //print(response.statusCode);
-        //print(response.data);
-        if (response.statusCode == 401) {
-          isLoggedIn = false;
-          sharedPrefs?.remove("auth_token");
-        } else {
-          isLoggedIn = true;
-        }
-      } catch (ex) {
-        // ignore: avoid_print
-        print(ex);
-        isLoggedIn = false;
-      } finally {
-        dio.close();
-      }
-    } else {
-      isLoggedIn = false;
-    }
-
-    return isLoggedIn;
   }
 
   @override

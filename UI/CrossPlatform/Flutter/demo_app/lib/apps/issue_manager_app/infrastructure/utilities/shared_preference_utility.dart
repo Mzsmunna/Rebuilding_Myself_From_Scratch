@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppSharedPreferences {
@@ -9,8 +7,13 @@ class AppSharedPreferences {
     getSharedPreferenceInstance();
   }
 
-  static FutureOr<SharedPreferences?> getSharedPreferenceInstance() async {
-    sharedPrefs ??= await SharedPreferences.getInstance();
+  static SharedPreferences? getSharedPreferenceInstance() {
+    if (sharedPrefs == null) {
+      SharedPreferences.getInstance().then((value) {
+        sharedPrefs = value;
+        return sharedPrefs;
+      });
+    }
     return sharedPrefs;
   }
 }
