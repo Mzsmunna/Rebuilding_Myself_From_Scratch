@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:demo_app/apps/issue_manager_app/domain/entities/user_model.dart';
+import 'package:demo_app/apps/issue_manager_app/infrastructure/utilities/shared_preference_utility.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 // ignore: depend_on_referenced_packages
@@ -55,6 +56,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     userModel.email = event.email;
     userModel.password = event.password;
 
+    emit(SubmitLoginState(email: event.email, password: event.password));
+
     // var client = http.Client();
     // try {
     //   // var response = await client.post(
@@ -88,15 +91,27 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       var response =
           await dio.post("$baseUrl/api/Auth/LoginWithEmail", data: userJson);
-      print(response.statusCode);
-      print(response.data);
+      //print(response.statusCode);
+      //print(response.data);
+      if (response.statusCode == 200) {
+        var authToken = response.data.toString();
+        var sharedPrefs =
+            await AppSharedPreferences.getSharedPreferenceInstance();
+        sharedPrefs?.remove("auth_token");
+        sharedPrefs?.setString("auth_token", authToken);
+        emit(SuccessLoginState(token: authToken));
+      } else {
+        emit(ErrorLoginState(
+            error: response.statusMessage ?? "Unable to receive auth token"));
+      }
     } on DioException catch (ex) {
-      print(ex);
+      //print(ex);
+      emit(ErrorLoginState(
+          error:
+              ex.message ?? "Something went wrong while receiving auth token"));
     } finally {
       dio.close();
     }
-
-    emit(SubmitLoginState(email: event.email, password: event.password));
   }
 
   void onRegisterNavigateLoginEvent(

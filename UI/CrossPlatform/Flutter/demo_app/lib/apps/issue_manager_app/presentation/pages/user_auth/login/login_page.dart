@@ -46,10 +46,9 @@ class LoginPage extends StatelessWidget {
       listenWhen: (previous, current) {
         bool doListen = false;
         if (current is RegisterNavigateLoginState ||
-                current is SuccessLoginState ||
-                current is ErrorLoginState
-            //|| current is InvalidLoginState
-            ) {
+            current is SubmitLoginState ||
+            current is ErrorLoginState ||
+            current is SuccessLoginState) {
           doListen = true;
         }
         return doListen;
@@ -57,27 +56,29 @@ class LoginPage extends StatelessWidget {
       buildWhen: (previous, current) {
         bool doBuild = true;
         if (current is RegisterNavigateLoginState ||
-                current is SuccessLoginState ||
-                current is ErrorLoginState
-            //|| current is InvalidLoginState
-            ) {
+            current is SubmitLoginState ||
+            current is ErrorLoginState ||
+            current is SuccessLoginState) {
           doBuild = false;
         }
         return doBuild;
       },
       listener: (context, state) {
         if (state is RegisterNavigateLoginState) {
-          //print("state is OnRegisterNavigateLoginEvent");
+          //print("state is RegisterNavigateLoginState");
           GoRouter.of(context).go("/IssueManager/Register");
+        } else if (state is ErrorLoginState) {
+          //print("state is ErrorLoginState");
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.error)));
         } else if (state is SuccessLoginState) {
-          //print("state is OnRegisterNavigateLoginEvent");
-          //GoRouter.of(context).go("/IssueManager/Home");
+          //print("state is SuccessLoginState");
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Login Successful!!")));
+          Future.delayed(const Duration(seconds: 1), () {
+            GoRouter.of(context).go("/IssueManager/IssueHome");
+          });
         }
-        // else if (state is InvalidLoginState) {
-        //   //print("state is OnRegisterNavigateLoginEvent");
-        //   ScaffoldMessenger.of(context)
-        //       .showSnackBar(SnackBar(content: Text(state.validation)));
-        // }
       },
       builder: (context, state) {
         return Scaffold(

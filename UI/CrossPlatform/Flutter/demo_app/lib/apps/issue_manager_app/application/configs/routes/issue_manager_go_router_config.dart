@@ -1,4 +1,5 @@
 import 'package:demo_app/apps/app_error.dart';
+import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/login/login_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/register/register_page.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,11 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
               name: 'Register',
               path: 'Register',
               builder: (context, state) => RegisterPage(),
+            ),
+            GoRoute(
+              name: 'IssueHome',
+              path: 'IssueHome',
+              builder: (context, state) => const IssueHome(),
             ),
           ],
         ),
