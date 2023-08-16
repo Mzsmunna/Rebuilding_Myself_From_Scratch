@@ -78,9 +78,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     //   client.close();
     // }
 
-    //const String baseUrl = "https://localhost:7207";
-    //const String baseUrl = "https://192.168.1.106:7207";
-    const String baseUrl = "https://10.0.2.2:7207";
+    //const String baseUrl = "http://localhost:5280";
+    //const String baseUrl = "http://192.168.1.106:5280";
+    const String baseUrl = "http://10.0.2.2:5280";
 
     final dio = Dio();
     final Map<String, dynamic> userJson = userModel.toJson();
