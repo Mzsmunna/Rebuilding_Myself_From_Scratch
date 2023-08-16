@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:demo_app/apps/issue_manager_app/domain/entities/user_model.dart';
+import 'package:demo_app/apps/issue_manager_app/infrastructure/services/auth_service.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/utilities/shared_preference_utility.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
@@ -81,16 +82,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     //   client.close();
     // }
 
-    //const String baseUrl = "http://localhost:5280";
-    //const String baseUrl = "http://192.168.1.106:5280";
-    const String baseUrl = "http://10.0.2.2:5280";
-
-    final dio = Dio();
-    final Map<String, dynamic> userJson = userModel.toJson();
-
     try {
-      var response =
-          await dio.post("$baseUrl/api/Auth/LoginWithEmail", data: userJson);
+      var authService = AuthService();
+      var response = await authService.doLogin(userModel);
       //print(response.statusCode);
       //print(response.data);
       if (response.statusCode == 200) {
@@ -101,16 +95,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(SuccessLoginState(token: authToken));
       } else {
         emit(ErrorLoginState(
-            error: response.statusMessage ?? "Unable to receive auth token"));
+            error:
+                response.statusMessage ?? "Unable to login! Please try again"));
       }
     } on DioException catch (ex) {
       //print(ex);
       emit(ErrorLoginState(
-          error:
-              ex.message ?? "Something went wrong while receiving auth token"));
-    } finally {
-      dio.close();
-    }
+          error: ex.message ??
+              "Something went wrong while logging in! Please try again"));
+    } finally {}
   }
 
   void onRegisterNavigateLoginEvent(

@@ -32,8 +32,14 @@ class RegisterPage extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final UserModel userModel = UserModel();
 
-  // sign user in method
-  void signUserIn() {}
+  // signup user in method
+  void signUserUp() {
+    if (formKey.currentState!.validate()) {
+      registerBloc.add(OnSubmitRegisterEvent(
+          userModel: userModel,
+          confirmPassword: confirmPasswordController.text));
+    }
+  }
 
   void onFirstNameChange(String value) {
     userModel.firstName = value;
@@ -126,21 +132,16 @@ class RegisterPage extends StatelessWidget {
       listenWhen: (previous, current) {
         bool doListen = false;
         if (current is LoginNavigateRegisterState ||
-                current is SuccessRegisterState ||
-                current is ErrorRegisterState
-            //|| current is InvalidLoginState
-            ) {
+            current is SubmitRegisterState ||
+            current is ErrorRegisterState ||
+            current is SuccessRegisterState) {
           doListen = true;
         }
         return doListen;
       },
       buildWhen: (previous, current) {
         bool doBuild = true;
-        if (current is LoginNavigateRegisterState ||
-                current is SuccessRegisterState ||
-                current is ErrorRegisterState
-            //|| current is InvalidLoginState
-            ) {
+        if (current is LoginNavigateRegisterState) {
           doBuild = false;
         }
         return doBuild;
@@ -152,12 +153,16 @@ class RegisterPage extends StatelessWidget {
         } else if (state is SuccessRegisterState) {
           //print("state is OnRegisterNavigateLoginEvent");
           //GoRouter.of(context).go("/IssueManager/Home");
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("Registration Successful!! Please login now")));
+          Future.delayed(const Duration(seconds: 1), () {
+            GoRouter.of(context).go("/IssueManager/Login");
+          });
+        } else if (state is ErrorRegisterState) {
+          //print("state is ErrorLoginState");
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.error)));
         }
-        // else if (state is InvalidLoginState) {
-        //   //print("state is OnRegisterNavigateLoginEvent");
-        //   ScaffoldMessenger.of(context)
-        //       .showSnackBar(SnackBar(content: Text(state.validation)));
-        // }
       },
       builder: (context, state) {
         return Scaffold(
@@ -400,7 +405,7 @@ class RegisterPage extends StatelessWidget {
                       FormButton(
                         text: "Sign Up",
                         onTap:
-                            (state is ValidRegisterState) ? signUserIn : null,
+                            (state is ValidRegisterState) ? signUserUp : null,
                       ),
 
                       const SizedBox(height: 20),
