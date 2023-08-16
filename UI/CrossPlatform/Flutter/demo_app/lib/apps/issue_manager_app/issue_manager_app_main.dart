@@ -23,7 +23,7 @@ class IssueManagerApp extends StatelessWidget {
           const AppShowcase(),
         ),
         body: IssueManagerGoRouterConfig(
-          isConditional: false,
+          isConditional: true,
         ), //RegisterPage(), //LoginPage(),
       ),
     );

@@ -55,10 +55,7 @@ class LoginPage extends StatelessWidget {
       },
       buildWhen: (previous, current) {
         bool doBuild = true;
-        if (current is RegisterNavigateLoginState ||
-            current is SubmitLoginState ||
-            current is ErrorLoginState ||
-            current is SuccessLoginState) {
+        if (current is RegisterNavigateLoginState) {
           doBuild = false;
         }
         return doBuild;
