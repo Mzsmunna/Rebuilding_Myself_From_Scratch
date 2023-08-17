@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:demo_app/apps/issue_manager_app/domain/entities/user_model.dart';
 import 'package:demo_app/apps/issue_manager_app/domain/models/search_fields_model.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/utilities/shared_preference_utility.dart';
 import 'package:dio/dio.dart';
@@ -35,13 +34,16 @@ class UserService {
   FutureOr<Response<dynamic>> getAllUserCount(
       List<SearchFieldModel> searchQueries) async {
     //return this.http.get(baseApiUrl + "GetAllUserCount?searchQueries=" + jsonString);
-    final String searchQueriesString = encoder.convert(searchQueries);
+    //String searchQueriesString = encoder.convert(searchQueries);
+    String searchQueriesString =
+        jsonEncode(searchQueries.map((e) => e.toJson()).toList());
+    searchQueriesString = Uri.encodeFull(searchQueriesString);
     var response = await dio
         .get("$baseApiUrl/GetAllUserCount?searchQueries=$searchQueriesString");
     return response;
   }
 
-  FutureOr<List<UserModel>> getAllUsers(
+  FutureOr<Response<dynamic>> getAllUsers(
       int currentPage,
       int pageSize,
       String sortField,
@@ -56,7 +58,7 @@ class UserService {
     final String searchQueriesString = encoder.convert(searchQueries);
     var response = await dio.get(
         "$baseApiUrl/GetAllUsers?currentPage=$currentPage&pageSize=$pageSize&sortField=$sortField&sortDirection=$sortDirection&searchQueries=$searchQueriesString");
-    return response.data;
+    return response;
   }
 
 // FutureOr<List<AssignUser>> GetAllUserToAssign() async {

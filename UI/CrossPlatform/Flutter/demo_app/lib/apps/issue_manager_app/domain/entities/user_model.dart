@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 class UserModel {
   String? id;
   String? firstName;
@@ -53,7 +55,7 @@ class UserModel {
     modifiedBy = "";
   }
 
-  UserModel.copy({
+  UserModel.create({
     this.id,
     this.firstName,
     this.lastName,
@@ -81,29 +83,63 @@ class UserModel {
     this.modifiedBy,
   });
 
+  UserModel.fromJson(Map<String, dynamic> json) {
+    id = json['Id'] ?? json['Id'];
+    firstName = json['FirstName'] ?? json['FirstName'];
+    lastName = json['LastName'] ?? json['LastName'];
+    gender = json['Gender'] ?? json['Gender'];
+    birthDate =
+        json['BirthDate'] == null ? null : DateTime.tryParse(json['BirthDate']);
+    age = json['Age'] ?? json['Age'] as int?;
+    phone = json['Phone'] ?? json['Phone'];
+    address = json['Address'] ?? json['Address'];
+    department = json['Department'] ?? json['Department'];
+    designation = json['Designation'] ?? json['Designation'];
+    position = json['Position'] ?? json['Position'];
+    img = json['Img'] ?? json['Img'];
+    email = json['Email'] ?? json['Email'];
+    password = json['Password'] ?? json['Password'];
+    tokenCreated = json['TokenCreated'] == null
+        ? null
+        : DateTime.tryParse(json['TokenCreated']);
+    tokenExpires = json['TokenExpires'] == null
+        ? null
+        : DateTime.tryParse(json['TokenExpires']);
+    refreshToken = json['TefreshToken'] ?? json['TefreshToken'];
+    role = json['Role'] ?? json['Role'];
+    isActive = json['IsActive'] ?? json['IsActive'] as bool;
+    createdOn =
+        json['CreatedOn'] == null ? null : DateTime.tryParse(json['CreatedOn']);
+    modifiedOn = json['ModifiedOn'] == null
+        ? null
+        : DateTime.tryParse(json['ModifiedOn']);
+    createdBy = json['CreatedBy'] ?? json['CreatedBy'];
+    modifiedBy = json['ModifiedBy'] ?? json['ModifiedBy'];
+  }
+
   Map<String, dynamic> toJson() => {
-        "id": id ?? "",
-        "firstName": firstName ?? firstName,
-        "lastName": lastName ?? lastName,
-        "gender": gender ?? gender,
-        "birthDate": birthDate == null ? null : birthDate!.toIso8601String(),
-        "age": age ?? age,
-        "phone": phone ?? phone,
-        "address": address ?? address,
-        "department": department ?? department,
-        "designation": designation ?? designation,
-        "position": position ?? position,
-        "img": img ?? img,
-        "email": email ?? email,
-        "password": password ?? password,
-        "tokenCreated": tokenCreated ?? tokenCreated,
-        "tokenExpires": tokenExpires ?? tokenExpires,
-        "refreshToken": refreshToken ?? refreshToken,
-        "role": role ?? role,
-        "isActive": isActive ?? isActive,
-        "createdOn": createdOn == null ? null : createdOn!.toIso8601String(),
-        "modifiedOn": modifiedOn == null ? null : modifiedOn!.toIso8601String(),
-        "createdBy": createdBy ?? createdBy,
-        "modifiedBy": modifiedBy ?? modifiedBy,
+        "Id": id ?? "",
+        "FirstName": firstName ?? firstName,
+        "LastName": lastName ?? lastName,
+        "Gender": gender ?? gender,
+        "BirthDate": birthDate == null ? null : birthDate!.toIso8601String(),
+        "Age": age ?? age,
+        "Phone": phone ?? phone,
+        "Address": address ?? address,
+        "Department": department ?? department,
+        "Designation": designation ?? designation,
+        "Position": position ?? position,
+        "Img": img ?? img,
+        "Email": email ?? email,
+        "Password": password ?? password,
+        "TokenCreated": tokenCreated ?? tokenCreated,
+        "TokenExpires": tokenExpires ?? tokenExpires,
+        "RefreshToken": refreshToken ?? refreshToken,
+        "Role": role ?? role,
+        "IsActive": isActive ?? isActive,
+        "CreatedOn": createdOn == null ? null : createdOn!.toIso8601String(),
+        "ModifiedOn": modifiedOn == null ? null : modifiedOn!.toIso8601String(),
+        "CreatedBy": createdBy ?? createdBy,
+        "ModifiedBy": modifiedBy ?? modifiedBy,
       };
 }

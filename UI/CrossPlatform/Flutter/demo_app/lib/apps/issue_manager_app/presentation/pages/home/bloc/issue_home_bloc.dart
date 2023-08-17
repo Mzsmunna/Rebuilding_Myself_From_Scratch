@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:demo_app/apps/issue_manager_app/domain/entities/user_model.dart';
 import 'package:demo_app/apps/issue_manager_app/domain/models/search_fields_model.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/services/user_service.dart';
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
 part 'issue_home_event.dart';
@@ -28,23 +27,42 @@ class IssueHomeBloc extends Bloc<IssueHomeEvent, IssueHomeState> {
       searchQuery.dataType = "string";
       userSearchQueries.add(searchQuery);
 
-      var response = await userService.getAllUserCount(userSearchQueries);
+      //var count = await userService.getAllUserCount(userSearchQueries);
+      var response = await userService.getAllUsers(
+          0, 10, "FirstName", "ascending", userSearchQueries);
       //print(response.statusCode);
       //print(response.data);
       if (response.statusCode == 200) {
-        emit(IssueHomeUserLoaded(userModels: response.data));
+        List<UserModel> userList = [];
+        // response.data
+        //     .map((Map<String, dynamic> val) => UserModel.fromJson(val))
+        //     .toList();
+
+        // response.data.forEach((data) {
+        //   var user = UserModel.fromJson(data);
+        //   userList.add(user);
+        // });
+
+        for (int i = 0; i < response.data.length; i++) {
+          Map<String, dynamic> dynamo = response.data[i];
+          var user = UserModel.fromJson(dynamo);
+          userList.add(user);
+        }
+        emit(IssueHomeUserLoaded(userModels: userList));
       } else {
         emit(IssueHomeUserLoadError(
             userModels: null,
             error:
                 response.statusMessage ?? "Unable to login! Please try again"));
       }
-    } on DioException catch (ex) {
+    } catch (ex) {
       //print(ex);
-      emit(IssueHomeUserLoadError(
-          userModels: null,
-          error: ex.message ??
-              "Something went wrong while logging in! Please try again"));
+      emit(
+        const IssueHomeUserLoadError(
+            userModels: null,
+            error:
+                "Something went wrong while logging in! Please try again"), //ex.toString() ??
+      );
     } finally {}
   }
 }

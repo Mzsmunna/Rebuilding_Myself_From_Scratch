@@ -1,3 +1,4 @@
+import 'package:demo_app/apps/issue_manager_app/domain/entities/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +22,7 @@ class _IssueHomeState extends State<IssueHome> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<IssueHomeBloc, IssueHomeState>(
+      bloc: widget.issueHomeBloc,
       listener: (context, state) {
         // TODO: implement listener
       },
@@ -29,25 +31,29 @@ class _IssueHomeState extends State<IssueHome> {
           backgroundColor: Colors.grey[300],
           body: SafeArea(
             child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => const Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 28,
-                          backgroundImage: NetworkImage("url"),
-                        ),
-                        title: Text('username'),
-                        subtitle: Column(
-                          children: [
-                            Text("email"),
-                            Text("designation"),
-                            Text("department"),
-                            Text("status"),
-                          ],
-                        ),
-                        trailing: Icon(Icons.arrow_forward),
+                itemCount:
+                    state.userModels != null ? state.userModels?.length : 0,
+                itemBuilder: (context, index) {
+                  UserModel? user = state.userModels?[index];
+                  return Card(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 28,
+                        backgroundImage: NetworkImage("${user?.img}"),
                       ),
-                    )),
+                      title: Text("${user?.firstName} ${user?.lastName}"),
+                      subtitle: Column(
+                        children: [
+                          Text("${user?.email}"),
+                          Text("${user?.designation}"),
+                          Text("${user?.department}"),
+                          Text("${user?.isActive}"),
+                        ],
+                      ),
+                      trailing: const Icon(Icons.arrow_forward),
+                    ),
+                  );
+                }),
           ),
         );
       },
