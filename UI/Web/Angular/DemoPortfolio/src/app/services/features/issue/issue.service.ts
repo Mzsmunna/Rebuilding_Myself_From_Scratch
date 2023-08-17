@@ -14,7 +14,7 @@ export class IssueService {
 
   constructor(private http: HttpClient) {
 
-    this.baseApiUrl = "https://localhost:7221/api/Issue/"; //"https://localhost:7074/api/Issue/"
+    this.baseApiUrl = "http://192.168.1.106:5255/api/Issue/"; //"https://localhost:7074/api/Issue/"
     this.issueReload$ = new Subject<boolean>();
   }
 

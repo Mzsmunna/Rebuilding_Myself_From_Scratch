@@ -18,8 +18,8 @@ export class AuthService {
 
   constructor(private alertService: AlertService, private http: HttpClient, private route: Router) {
 
-    this.authApiUrl = "https://localhost:7207/api/Auth/";
-    this.baseApiUrl = "https://localhost:7221/api/User/"; //"https://localhost:7074/api/User/"
+    this.authApiUrl = "http://192.168.1.106:5280/api/Auth/";
+    this.baseApiUrl = "http://192.168.1.106:5255/api/User/"; //"https://localhost:7074/api/User/"
   }
 
   RefreshToken(user: User) {

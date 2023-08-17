@@ -11,9 +11,12 @@ class AuthService {
   SharedPreferences? sharedPrefs;
   String? authToken;
   //final String authApiUrl = "http://localhost:5280/api/Auth";
-  //final String authApiUrl = "http://192.168.1.106:5280/api/Auth";
-  final String authApiUrl = "http://10.0.2.2:5280/api/Auth";
-  final String issueApiUrl = "http://10.0.2.2:5255/api/Issue";
+  //final String authApiUrl = "http://10.0.2.2:5280/api/Auth";
+  //final String issueApiUrl = "http://10.0.2.2:5255/api/Issue";
+
+  final String userApiUrl = "http://192.168.1.106:5255/api/User/";
+  final String authApiUrl = "http://192.168.1.106:5280/api/Auth";
+  final String issueApiUrl = "http://192.168.1.106:5255/api/Issue";
   final Dio dio = Dio();
   String userId = "";
   AuthService() {
