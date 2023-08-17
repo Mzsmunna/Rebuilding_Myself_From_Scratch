@@ -54,7 +54,7 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
             GoRoute(
               name: 'IssueHome',
               path: 'IssueHome',
-              builder: (context, state) => const IssueHome(),
+              builder: (context, state) => IssueHome(),
             ),
           ],
         ),
