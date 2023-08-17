@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:demo_app/apps/issue_manager_app/domain/entities/user_model.dart';
 import 'package:demo_app/apps/issue_manager_app/domain/models/search_fields_model.dart';
+import 'package:demo_app/apps/issue_manager_app/infrastructure/helpers/issue_manager_helper.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/utilities/shared_preference_utility.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,11 +35,9 @@ class UserService {
 
   FutureOr<Response<dynamic>> getAllUserCount(
       List<SearchFieldModel> searchQueries) async {
-    //return this.http.get(baseApiUrl + "GetAllUserCount?searchQueries=" + jsonString);
     //String searchQueriesString = encoder.convert(searchQueries);
     String searchQueriesString =
-        jsonEncode(searchQueries.map((e) => e.toJson()).toList());
-    searchQueriesString = Uri.encodeFull(searchQueriesString);
+        IssueManagerHelper.getSearchQueriesjsonEncode(searchQueries);
     var response = await dio
         .get("$baseApiUrl/GetAllUserCount?searchQueries=$searchQueriesString");
     return response;
@@ -49,46 +49,40 @@ class UserService {
       String sortField,
       String sortDirection,
       List<SearchFieldModel> searchQueries) async {
-    // return this.http.get(baseApiUrl + "GetAllUsers?currentPage=" + currentPage
-    //   + "&pageSize=" + pageSize
-    //   + "&sortField=" + sortField
-    //   + "&sortDirection=" + sortDirection
-    //   + "&searchQueries=" + encodeURIComponent(JSON.stringify(searchQueries)));
-
     final String searchQueriesString = encoder.convert(searchQueries);
     var response = await dio.get(
         "$baseApiUrl/GetAllUsers?currentPage=$currentPage&pageSize=$pageSize&sortField=$sortField&sortDirection=$sortDirection&searchQueries=$searchQueriesString");
     return response;
   }
 
-// FutureOr<List<AssignUser>> GetAllUserToAssign() async {
+  FutureOr<Response<dynamic>> getAllUserToAssign() async {
+    //return this.http.get('${baseApiUrl}GetAllUserToAssign') as Observable<AssignUser[]>;
+    var response = await dio.get("$baseApiUrl/GetAllUserToAssign");
+    return response;
+  }
 
-//   //return this.http.get('${baseApiUrl}GetAllUserToAssign') as Observable<AssignUser[]>;
-//   var response = await dio.post("$baseApiUrl/GetAllUserToAssign");
-//     return response.data;
-// }
+  FutureOr<Response<dynamic>> getUser(String userId) async {
+    var response = await dio.get('$baseApiUrl/GetUser?userId=$userId');
+    return response;
+  }
 
-// GetUser(userId = string): Observable<User> {
+  FutureOr<Response<dynamic>> saveUser(UserModel userModel) async {
+    var response = await dio.post('$baseApiUrl/SaveUser', data: userModel);
+    return response;
+  }
 
-//   return this.http.get('${baseApiUrl}GetUser?userId=' + userId) as Observable<User>;
-// }
+  FutureOr<Response<dynamic>> updateUser(UserModel userModel) async {
+    var response = await dio.put('$baseApiUrl/UpdateUser', data: userModel);
+    return response;
+  }
 
-// SaveUser(user = User): Observable<User> {
+  FutureOr<Response<dynamic>> deleteUser(UserModel userModel) async {
+    var response =
+        await dio.delete('$baseApiUrl/DeleteUser?userId=${userModel.id}');
+    return response;
+  }
 
-//   return this.http.post('${baseApiUrl}SaveUser', user) as Observable<User>;
-// }
-
-// UpdateUser(user = User): Observable<User> {
-
-//   return this.http.put('${baseApiUrl}UpdateUser', user) as Observable<User>;
-// }
-
-// DeleteUser(user = User): Observable<boolean> {
-
-//   return this.http.delete('${baseApiUrl}DeleteUser?userId=' + user.Id) as Observable<boolean>;
-// }
-
-// SaveMedia(file = any): Observable<string> {
+// FutureOr<Response<dynamic>> saveMedia(file = any): Observable<string> {
 
 //   return this.http.post('${baseApiUrl}SaveMedia', file) as Observable<string>;
 // }
