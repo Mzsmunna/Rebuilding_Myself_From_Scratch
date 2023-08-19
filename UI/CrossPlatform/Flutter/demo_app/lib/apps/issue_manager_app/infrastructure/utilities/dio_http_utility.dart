@@ -23,8 +23,7 @@ class DioHttp {
     getDioInstance();
     authKey ??= "auth_token";
     authToken = sharedPrefs?.getString(authKey);
-    bool isTokenExpired = JwtDecoder.isExpired(authToken!);
-    if (!isTokenExpired) {
+    if (authToken != null && !JwtDecoder.isExpired(authToken!)) {
       dio?.interceptors.add(
         InterceptorsWrapper(
           onRequest: (options, handler) {
