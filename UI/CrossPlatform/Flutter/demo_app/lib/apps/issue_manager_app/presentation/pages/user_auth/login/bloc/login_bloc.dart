@@ -91,7 +91,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         var authToken = response.data.toString();
         var sharedPrefs = AppSharedPreferences.getSharedPreferenceInstance();
         //sharedPrefs?.remove("auth_token");
-        sharedPrefs?.setString("auth_token", authToken);
+        sharedPrefs.setString("auth_token", authToken);
         emit(SuccessLoginState(token: authToken));
       } else {
         emit(ErrorLoginState(

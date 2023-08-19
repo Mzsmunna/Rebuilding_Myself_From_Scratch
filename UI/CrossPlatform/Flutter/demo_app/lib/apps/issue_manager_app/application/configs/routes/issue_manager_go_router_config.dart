@@ -1,4 +1,5 @@
 import 'package:demo_app/apps/app_error.dart';
+import 'package:demo_app/apps/issue_manager_app/infrastructure/services/auth_service.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issues/issue_list_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/login/login_page.dart';
@@ -10,8 +11,10 @@ import 'package:go_router/go_router.dart';
 class IssueManagerGoRouterConfig extends StatelessWidget {
   final bool isConditional;
   bool isLoggedIn = false;
+  late final AuthService _authService;
   late final GoRouter _issueManagerRouterConfig;
   IssueManagerGoRouterConfig({super.key, required this.isConditional}) {
+    _authService = AuthService();
     _issueManagerRouterConfig = GoRouter(
       initialLocation: "/IssueManager",
       errorBuilder: (context, state) => const AppError(),
@@ -41,6 +44,7 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
         GoRoute(
           path: '/IssueManager',
           builder: (context, state) => LoginPage(),
+          redirect: (context, state) => redirect(),
           routes: [
             GoRoute(
               name: 'Login',
@@ -77,5 +81,14 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: _issueManagerRouterConfig,
     );
+  }
+
+  String redirect() {
+    isLoggedIn = _authService.isAuthenticated(isConditional);
+    if (isLoggedIn) {
+      return '/IssueManager/IssueHome';
+    } else {
+      return '/IssueManager';
+    }
   }
 }

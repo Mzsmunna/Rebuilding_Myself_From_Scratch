@@ -53,8 +53,9 @@ class DioHttp {
           },
         ),
       );
-    } else {
       isLoggedIn = true;
+    } else {
+      isLoggedIn = false;
     }
     return isLoggedIn;
   }

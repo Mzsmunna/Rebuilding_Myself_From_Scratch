@@ -1,19 +1,25 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppSharedPreferences {
-  static SharedPreferences? sharedPrefs;
+  static late SharedPreferences localStorage;
 
   AppSharedPreferences() {
-    getSharedPreferenceInstance();
+    init();
   }
 
-  static SharedPreferences? getSharedPreferenceInstance() {
-    if (sharedPrefs == null) {
+  static Future<SharedPreferences> init() async {
+    localStorage = await SharedPreferences.getInstance();
+    return localStorage;
+  }
+
+  static SharedPreferences getSharedPreferenceInstance() {
+    // ignore: unnecessary_null_comparison
+    if (localStorage == null) {
       SharedPreferences.getInstance().then((value) {
-        sharedPrefs = value;
-        return sharedPrefs;
+        localStorage = value;
+        return localStorage;
       });
     }
-    return sharedPrefs;
+    return localStorage;
   }
 }

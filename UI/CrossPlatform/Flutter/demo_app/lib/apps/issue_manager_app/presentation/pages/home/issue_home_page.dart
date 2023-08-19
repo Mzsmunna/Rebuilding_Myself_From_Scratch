@@ -39,7 +39,8 @@ class _IssueHomeState extends State<IssueHome> {
                     child: ListTile(
                       leading: CircleAvatar(
                         radius: 28,
-                        backgroundImage: NetworkImage("${user?.img}"),
+                        //backgroundImage: NetworkImage("${user?.img}"),
+                        child: Text("${user?.img}"),
                       ),
                       title: Text("${user?.firstName} ${user?.lastName}"),
                       subtitle: Column(
