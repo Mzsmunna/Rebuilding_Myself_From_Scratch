@@ -73,7 +73,8 @@ class LoginPage extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Login Successful!!")));
           Future.delayed(const Duration(seconds: 1), () {
-            GoRouter.of(context).go("/IssueManager/IssueHome");
+            GoRouter.of(context).go(
+                "/IssueManager/IssueHome"); //.go("/IssueManager/IssueHome/Issues");
           });
         }
       },
