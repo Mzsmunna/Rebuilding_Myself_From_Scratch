@@ -1,11 +1,18 @@
 import 'package:demo_app/apps/app_error.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/services/auth_service.dart';
+import 'package:demo_app/apps/issue_manager_app/presentation/components/navigation_components/nested_navigation.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issues/issue_list_page.dart';
+import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/users/user_list_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/login/login_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/register/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+// private navigators
+final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'IssueHome');
+final _shellNavigatorAKey = GlobalKey<NavigatorState>(debugLabel: 'Users');
+final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'Issues');
 
 // ignore: must_be_immutable
 class IssueManagerGoRouterConfig extends StatelessWidget {
@@ -17,6 +24,7 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
     _authService = AuthService();
     _issueManagerRouterConfig = GoRouter(
       initialLocation: "/IssueManager",
+      navigatorKey: _rootNavigatorKey,
       errorBuilder: (context, state) => const AppError(),
       // redirect: (context, state) {
       //   if (isConditional) {
@@ -61,10 +69,52 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
               path: 'IssueHome',
               builder: (context, state) => IssueHome(),
               routes: [
-                GoRoute(
-                  name: 'Issues',
-                  path: 'Issues',
-                  builder: (context, state) => IssueList(),
+                // Stateful navigation based on:
+                // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
+                StatefulShellRoute.indexedStack(
+                  builder: (context, state, navigationShell) {
+                    return NestedNavigationCustom(
+                        navigationShell: navigationShell);
+                  },
+                  branches: [
+                    StatefulShellBranch(
+                      navigatorKey: _shellNavigatorAKey,
+                      routes: [
+                        GoRoute(
+                          path: 'Users',
+                          pageBuilder: (context, state) => NoTransitionPage(
+                            child: UserList(),
+                          ),
+                          // routes: [
+                          //   GoRoute(
+                          //     path: 'details',
+                          //     builder: (context, state) =>
+                          //         const UserDetailsScreen(label: 'User Details'),
+                          //   ),
+                          // ],
+                        ),
+                      ],
+                    ),
+                    StatefulShellBranch(
+                      navigatorKey: _shellNavigatorBKey,
+                      routes: [
+                        // Shopping Cart
+                        GoRoute(
+                          path: 'Issues',
+                          pageBuilder: (context, state) => NoTransitionPage(
+                            child: IssueList(),
+                          ),
+                          // routes: [
+                          //   GoRoute(
+                          //     path: 'details',
+                          //     builder: (context, state) =>
+                          //         const IssueDetailsScreen(label: 'Issue Details'),
+                          //   ),
+                          // ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
