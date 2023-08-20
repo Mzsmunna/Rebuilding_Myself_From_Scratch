@@ -11,8 +11,9 @@ import 'package:go_router/go_router.dart';
 
 // private navigators
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'IssueHome');
-final _shellNavigatorAKey = GlobalKey<NavigatorState>(debugLabel: 'Users');
-final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'Issues');
+final _shellNavigatorUsersKey = GlobalKey<NavigatorState>(debugLabel: 'Users');
+final _shellNavigatorIssuesKey =
+    GlobalKey<NavigatorState>(debugLabel: 'Issues');
 
 // ignore: must_be_immutable
 class IssueManagerGoRouterConfig extends StatelessWidget {
@@ -64,55 +65,51 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
               path: 'Register',
               builder: (context, state) => RegisterPage(),
             ),
-            GoRoute(
-              name: 'IssueHome',
-              path: 'IssueHome',
-              builder: (context, state) => IssueHome(),
-              routes: [
-                // Stateful navigation based on:
-                // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
-                StatefulShellRoute.indexedStack(
-                  builder: (context, state, navigationShell) {
-                    return NestedNavigationCustom(
-                        navigationShell: navigationShell);
-                  },
-                  branches: [
-                    StatefulShellBranch(
-                      navigatorKey: _shellNavigatorAKey,
-                      routes: [
-                        GoRoute(
-                          path: 'Users',
-                          pageBuilder: (context, state) => NoTransitionPage(
-                            child: UserList(),
-                          ),
-                          // routes: [
-                          //   GoRoute(
-                          //     path: 'details',
-                          //     builder: (context, state) =>
-                          //         const UserDetailsScreen(label: 'User Details'),
-                          //   ),
-                          // ],
-                        ),
-                      ],
+            // GoRoute(
+            //   name: 'IssueHome',
+            //   path: 'IssueHome',
+            //   builder: (context, state) => IssueHome(),
+            // ),
+            StatefulShellRoute.indexedStack(
+              parentNavigatorKey: _rootNavigatorKey,
+              builder: (context, state, navigationShell) {
+                return NestedNavigationCustom(navigationShell: navigationShell);
+              },
+              branches: [
+                StatefulShellBranch(
+                  navigatorKey: _shellNavigatorUsersKey,
+                  routes: [
+                    GoRoute(
+                      path: 'IssueHome',
+                      pageBuilder: (context, state) => NoTransitionPage(
+                        child: UserList(),
+                      ),
+                      // routes: [
+                      //   GoRoute(
+                      //     path: 'details',
+                      //     builder: (context, state) =>
+                      //         const UserDetailsScreen(label: 'User Details'),
+                      //   ),
+                      // ],
                     ),
-                    StatefulShellBranch(
-                      navigatorKey: _shellNavigatorBKey,
-                      routes: [
-                        // Shopping Cart
-                        GoRoute(
-                          path: 'Issues',
-                          pageBuilder: (context, state) => NoTransitionPage(
-                            child: IssueList(),
-                          ),
-                          // routes: [
-                          //   GoRoute(
-                          //     path: 'details',
-                          //     builder: (context, state) =>
-                          //         const IssueDetailsScreen(label: 'Issue Details'),
-                          //   ),
-                          // ],
-                        ),
-                      ],
+                  ],
+                ),
+                StatefulShellBranch(
+                  navigatorKey: _shellNavigatorIssuesKey,
+                  routes: [
+                    // Shopping Cart
+                    GoRoute(
+                      path: 'Issues',
+                      pageBuilder: (context, state) => NoTransitionPage(
+                        child: IssueList(),
+                      ),
+                      // routes: [
+                      //   GoRoute(
+                      //     path: 'details',
+                      //     builder: (context, state) =>
+                      //         const IssueDetailsScreen(label: 'Issue Details'),
+                      //   ),
+                      // ],
                     ),
                   ],
                 ),
