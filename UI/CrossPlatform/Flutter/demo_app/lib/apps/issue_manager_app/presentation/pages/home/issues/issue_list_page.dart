@@ -27,30 +27,25 @@ class _IssueListState extends State<IssueList> {
         // TODO: implement listener
       },
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: Colors.grey[300],
-          body: SafeArea(
-            child: ListView.builder(
-                itemCount:
-                    state.issueModels != null ? state.issueModels?.length : 0,
-                itemBuilder: (context, index) {
-                  IssueModel? issue = state.issueModels?[index];
-                  return Card(
-                    child: ListTile(
-                      title: Text("${issue?.title}"),
-                      subtitle: Column(
-                        children: [
-                          Text("${issue?.type}"),
-                          Text("${issue?.description}"),
-                          Text("${issue?.status}"),
-                          Text("${issue?.isActive}"),
-                        ],
-                      ),
-                      trailing: const Icon(Icons.arrow_forward),
-                    ),
-                  );
-                }),
-          ),
+        return ListView.builder(
+          itemCount: state.issueModels != null ? state.issueModels?.length : 0,
+          itemBuilder: (context, index) {
+            IssueModel? issue = state.issueModels?[index];
+            return Card(
+              child: ListTile(
+                title: Text("${issue?.title}"),
+                subtitle: Column(
+                  children: [
+                    Text("${issue?.type}"),
+                    Text("${issue?.description}"),
+                    Text("${issue?.status}"),
+                    Text("${issue?.isActive}"),
+                  ],
+                ),
+                trailing: const Icon(Icons.arrow_forward),
+              ),
+            );
+          },
         );
       },
     );

@@ -2,6 +2,7 @@ import 'package:demo_app/apps/app_error.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/services/auth_service.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/components/navigation_components/nested_navigation.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
+//import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issues/issue_list_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/users/user_list_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/login/login_page.dart';
@@ -10,10 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // private navigators
-final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'IssueHome');
-final _shellNavigatorUsersKey = GlobalKey<NavigatorState>(debugLabel: 'Users');
-final _shellNavigatorIssuesKey =
-    GlobalKey<NavigatorState>(debugLabel: 'Issues');
+final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'IssueManager');
+//final _shellNavigatorUsersKey = GlobalKey<NavigatorState>(debugLabel: 'Users');
+// final _shellNavigatorIssuesKey =
+//     GlobalKey<NavigatorState>(debugLabel: 'Issues');
 
 // ignore: must_be_immutable
 class IssueManagerGoRouterConfig extends StatelessWidget {
@@ -65,56 +66,56 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
               path: 'Register',
               builder: (context, state) => RegisterPage(),
             ),
-            // GoRoute(
-            //   name: 'IssueHome',
-            //   path: 'IssueHome',
-            //   builder: (context, state) => IssueHome(),
-            // ),
-            StatefulShellRoute.indexedStack(
-              parentNavigatorKey: _rootNavigatorKey,
-              builder: (context, state, navigationShell) {
-                return NestedNavigationCustom(navigationShell: navigationShell);
-              },
-              branches: [
-                StatefulShellBranch(
-                  navigatorKey: _shellNavigatorUsersKey,
-                  routes: [
-                    GoRoute(
-                      path: 'IssueHome',
-                      pageBuilder: (context, state) => NoTransitionPage(
-                        child: UserList(),
-                      ),
-                      // routes: [
-                      //   GoRoute(
-                      //     path: 'details',
-                      //     builder: (context, state) =>
-                      //         const UserDetailsScreen(label: 'User Details'),
-                      //   ),
-                      // ],
-                    ),
-                  ],
-                ),
-                StatefulShellBranch(
-                  navigatorKey: _shellNavigatorIssuesKey,
-                  routes: [
-                    // Shopping Cart
-                    GoRoute(
-                      path: 'Issues',
-                      pageBuilder: (context, state) => NoTransitionPage(
-                        child: IssueList(),
-                      ),
-                      // routes: [
-                      //   GoRoute(
-                      //     path: 'details',
-                      //     builder: (context, state) =>
-                      //         const IssueDetailsScreen(label: 'Issue Details'),
-                      //   ),
-                      // ],
-                    ),
-                  ],
-                ),
-              ],
+            GoRoute(
+              name: 'IssueHome',
+              path: 'IssueHome',
+              builder: (context, state) => IssueHome(),
             ),
+            // StatefulShellRoute.indexedStack(
+            //   parentNavigatorKey: _rootNavigatorKey,
+            //   builder: (context, state, navigationShell) {
+            //     return NestedNavigationCustom(navigationShell: navigationShell);
+            //   },
+            //   branches: [
+            //     StatefulShellBranch(
+            //       navigatorKey: _shellNavigatorUsersKey,
+            //       routes: [
+            //         GoRoute(
+            //           path: 'IssueHome',
+            //           pageBuilder: (context, state) => NoTransitionPage(
+            //             child: UserList(),
+            //           ),
+            //           // routes: [
+            //           //   GoRoute(
+            //           //     path: 'details',
+            //           //     builder: (context, state) =>
+            //           //         const UserDetailsScreen(label: 'User Details'),
+            //           //   ),
+            //           // ],
+            //         ),
+            //       ],
+            //     ),
+            //     StatefulShellBranch(
+            //       navigatorKey: _shellNavigatorIssuesKey,
+            //       routes: [
+            //         // Shopping Cart
+            //         GoRoute(
+            //           path: 'Issues',
+            //           pageBuilder: (context, state) => NoTransitionPage(
+            //             child: IssueList(),
+            //           ),
+            //           // routes: [
+            //           //   GoRoute(
+            //           //     path: 'details',
+            //           //     builder: (context, state) =>
+            //           //         const IssueDetailsScreen(label: 'Issue Details'),
+            //           //   ),
+            //           // ],
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ],

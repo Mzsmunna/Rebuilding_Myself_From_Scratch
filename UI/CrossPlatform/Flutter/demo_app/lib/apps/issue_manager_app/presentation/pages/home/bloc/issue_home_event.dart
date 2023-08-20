@@ -7,4 +7,10 @@ sealed class IssueHomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class IssueHomeGetUserEvent extends IssueHomeEvent {}
+class OnIssueHomeTabChangeEvent extends IssueHomeEvent {
+  final int tabIndex;
+  const OnIssueHomeTabChangeEvent({required this.tabIndex});
+
+  @override
+  List<Object> get props => [tabIndex];
+}
