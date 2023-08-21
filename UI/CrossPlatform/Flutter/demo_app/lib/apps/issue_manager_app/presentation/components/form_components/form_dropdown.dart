@@ -15,6 +15,17 @@ class FormDropdown extends StatefulWidget {
       required this.list,
       required this.onChanged}) {
     dropdownValue = list.first;
+    if (controller.text != "") {
+      var item = list
+          .where((element) =>
+              element.toLowerCase() == controller.text.toLowerCase())
+          .firstOrNull;
+      if (item != null) {
+        dropdownValue = item;
+      }
+      //"${controller.text[0].toUpperCase()}${controller.text.substring(1)}";
+    }
+    //dropdownValue = controller.text == "" ? list.first : controller.text.u;
   }
 
   @override

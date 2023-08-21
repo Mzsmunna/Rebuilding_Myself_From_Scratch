@@ -9,28 +9,48 @@ import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/user_det
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class UserDetailsPage extends StatelessWidget {
-  UserDetailsPage({super.key});
+  final UserModel userModel;
 
-  // text editing controllers
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final genderController = TextEditingController();
-  final dobController = TextEditingController();
-  final ageController = TextEditingController();
-  final phoneController = TextEditingController();
-  final addressController = TextEditingController();
-  final departmentController = TextEditingController();
-  final designationController = TextEditingController();
-  final positionController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
+// text editing controllers
+  late TextEditingController firstNameController;
+  late TextEditingController lastNameController;
+  late TextEditingController genderController;
+  late TextEditingController dobController;
+  late TextEditingController ageController;
+  late TextEditingController phoneController;
+  late TextEditingController addressController;
+  late TextEditingController departmentController;
+  late TextEditingController designationController;
+  late TextEditingController positionController;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
+
+  UserDetailsPage({super.key, required this.userModel}) {
+    firstNameController = TextEditingController(text: userModel.firstName);
+    lastNameController = TextEditingController(text: userModel.lastName);
+    genderController = TextEditingController(text: userModel.gender);
+    dobController = TextEditingController(
+        text: userModel.birthDate == null
+            ? ""
+            : DateFormat('yyyy-MM-dd').format(userModel.birthDate!));
+    ageController = TextEditingController(text: userModel.age.toString());
+    phoneController = TextEditingController(text: userModel.phone);
+    addressController = TextEditingController(text: userModel.address);
+    departmentController = TextEditingController(text: userModel.department);
+    designationController = TextEditingController(text: userModel.designation);
+    positionController = TextEditingController(text: userModel.position);
+    emailController = TextEditingController(text: userModel.email);
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+  }
 
   final userDetailsBloc = UserDetailsBloc();
   final formKey = GlobalKey<FormState>();
-  final UserModel userModel = UserModel();
 
   void updateUserInfo() {
     if (formKey.currentState!.validate()) {
@@ -177,10 +197,17 @@ class UserDetailsPage extends StatelessWidget {
                     children: [
                       const SizedBox(height: 10),
 
-                      // logo
-                      const Icon(
-                        Icons.lock,
-                        size: 100,
+                      // Image
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // google button
+                          FormSquareTile(
+                            imagePath:
+                                'lib/apps/issue_manager_app/application/assets/icons/google.png',
+                            height: 320,
+                          ),
+                        ],
                       ),
 
                       const SizedBox(height: 20),
@@ -257,7 +284,8 @@ class UserDetailsPage extends StatelessWidget {
                       FormNumberPicker(
                         hintText: 'Age',
                         axis: Axis.horizontal,
-                        currentValue: 30,
+                        currentValue:
+                            userModel.age == null ? 0 : userModel.age!,
                         minValue: 0,
                         maxValue: 150,
                         onChanged: onAgeChange,
@@ -294,7 +322,7 @@ class UserDetailsPage extends StatelessWidget {
 
                       // departments dropdown
                       FormDropdown(
-                        controller: genderController,
+                        controller: departmentController,
                         obscureText: false,
                         list: const <String>[
                           'Departments',
@@ -325,7 +353,7 @@ class UserDetailsPage extends StatelessWidget {
 
                       // Position dropdown
                       FormDropdown(
-                        controller: genderController,
+                        controller: positionController,
                         obscureText: false,
                         list: const <String>[
                           'Position',
@@ -408,91 +436,10 @@ class UserDetailsPage extends StatelessWidget {
 
                       // sign up button
                       FormButton(
-                        text: "Sign Up",
+                        text: "Update",
                         onTap: (state is ValidUserDetailsState)
                             ? updateUserInfo
                             : null,
-                      ),
-
-                      const SizedBox(height: 20),
-
-                      // or continue with
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                thickness: 0.5,
-                                color: Colors.grey[400],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Text(
-                                'Or continue with',
-                                style: TextStyle(color: Colors.grey[700]),
-                              ),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                thickness: 0.5,
-                                color: Colors.grey[400],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: 15),
-
-                      // google + apple sign in buttons
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // google button
-                          FormSquareTile(
-                            imagePath:
-                                'lib/apps/issue_manager_app/application/assets/icons/google.png',
-                            height: 20,
-                          ),
-
-                          SizedBox(width: 20),
-
-                          // apple button
-                          FormSquareTile(
-                            imagePath:
-                                'lib/apps/issue_manager_app/application/assets/icons/apple.png',
-                            height: 20,
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 20),
-
-                      // not a member? UserDetails now
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Already a member?',
-                            style: TextStyle(color: Colors.grey[700]),
-                          ),
-                          const SizedBox(width: 4),
-                          GestureDetector(
-                            child: const Text(
-                              'Login now',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            onTap: () {
-                              GoRouter.of(context).go("/IssueManager/Login");
-                            },
-                          ),
-                        ],
                       ),
 
                       const SizedBox(height: 20),

@@ -1,4 +1,5 @@
 import 'package:demo_app/apps/app_error.dart';
+import 'package:demo_app/apps/issue_manager_app/domain/entities/user_model.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/services/auth_service.dart';
 //import 'package:demo_app/apps/issue_manager_app/presentation/components/navigation_components/nested_navigation.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
@@ -55,18 +56,17 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
       routes: [
         GoRoute(
           path: '/IssueManager',
+          redirect: (context, state) => redirect(context, state),
           builder: (context, state) => LoginPage(),
           routes: [
             GoRoute(
               name: 'Login',
               path: 'Login',
-              redirect: (context, state) => redirect(context, state),
               builder: (context, state) => LoginPage(),
             ),
             GoRoute(
               name: 'Register',
               path: 'Register',
-              redirect: (context, state) => redirect(context, state),
               builder: (context, state) => RegisterPage(),
             ),
             GoRoute(
@@ -77,7 +77,11 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
                 GoRoute(
                   name: 'UsersDetails',
                   path: 'UsersDetails',
-                  builder: (context, state) => UserDetailsPage(),
+                  builder: (context, state) {
+                    UserModel user =
+                        state.extra as UserModel; // -> casting is important
+                    return UserDetailsPage(userModel: user);
+                  },
                 ),
               ],
             ),
@@ -144,11 +148,17 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
   String redirect(BuildContext context, GoRouterState state) {
     isLoggedIn = _authService.isAuthenticated(isConditional);
     if (isLoggedIn) {
-      return '/IssueManager/IssueHome';
-    } else if (state.fullPath != null) {
-      return state.fullPath!;
+      if (state.fullPath != null && state.fullPath!.contains("IssueHome")) {
+        return state.fullPath!;
+      } else {
+        return '/IssueManager/IssueHome';
+      }
     } else {
-      return '/IssueManager';
+      if (state.fullPath != null && !state.fullPath!.contains("IssueHome")) {
+        return state.fullPath!;
+      } else {
+        return '/IssueManager';
+      }
     }
   }
 }

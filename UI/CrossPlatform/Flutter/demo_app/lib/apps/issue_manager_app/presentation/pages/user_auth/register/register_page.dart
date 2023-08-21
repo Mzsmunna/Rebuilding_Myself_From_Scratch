@@ -292,7 +292,7 @@ class RegisterPage extends StatelessWidget {
 
                       // departments dropdown
                       FormDropdown(
-                        controller: genderController,
+                        controller: departmentController,
                         obscureText: false,
                         list: const <String>[
                           'Departments',
@@ -323,7 +323,7 @@ class RegisterPage extends StatelessWidget {
 
                       // Position dropdown
                       FormDropdown(
-                        controller: genderController,
+                        controller: positionController,
                         obscureText: false,
                         list: const <String>[
                           'Position',

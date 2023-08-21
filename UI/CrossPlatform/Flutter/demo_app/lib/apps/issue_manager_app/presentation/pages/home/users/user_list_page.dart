@@ -56,7 +56,7 @@ class _UserListState extends State<UserList> {
                     child: const Icon(Icons.arrow_forward),
                     onPressed: () {
                       GoRouter.of(context)
-                          .go("/IssueManager/IssueHome/UsersDetails");
+                          .pushNamed("UsersDetails", extra: user);
                     },
                   ),
                 ),
