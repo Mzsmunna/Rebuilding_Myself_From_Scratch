@@ -1,6 +1,7 @@
 import 'package:demo_app/apps/issue_manager_app/domain/entities/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import 'bloc/user_list_bloc.dart';
 
@@ -51,7 +52,13 @@ class _UserListState extends State<UserList> {
                       Text("${user?.isActive}"),
                     ],
                   ),
-                  trailing: const Icon(Icons.arrow_forward),
+                  trailing: ElevatedButton(
+                    child: const Icon(Icons.arrow_forward),
+                    onPressed: () {
+                      GoRouter.of(context)
+                          .go("/IssueManager/IssueHome/UsersDetails");
+                    },
+                  ),
                 ),
               );
             },

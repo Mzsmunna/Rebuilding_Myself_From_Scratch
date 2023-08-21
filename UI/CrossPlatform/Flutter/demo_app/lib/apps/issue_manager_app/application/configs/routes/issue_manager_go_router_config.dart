@@ -2,6 +2,7 @@ import 'package:demo_app/apps/app_error.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/services/auth_service.dart';
 //import 'package:demo_app/apps/issue_manager_app/presentation/components/navigation_components/nested_navigation.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
+import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/user_details/user_details_page.dart';
 //import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
 //import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issues/issue_list_page.dart';
 //import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/users/user_list_page.dart';
@@ -28,7 +29,7 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
       initialLocation: "/IssueManager",
       navigatorKey: _rootNavigatorKey,
       errorBuilder: (context, state) => const AppError(),
-      redirect: (context, state) => redirect(context, state),
+      //redirect: (context, state) => redirect(context, state),
       // redirect: (context, state) {
       //   if (isConditional) {
       //     var sharedPrefs = AppSharedPreferences.getSharedPreferenceInstance();
@@ -59,17 +60,26 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
             GoRoute(
               name: 'Login',
               path: 'Login',
+              redirect: (context, state) => redirect(context, state),
               builder: (context, state) => LoginPage(),
             ),
             GoRoute(
               name: 'Register',
               path: 'Register',
+              redirect: (context, state) => redirect(context, state),
               builder: (context, state) => RegisterPage(),
             ),
             GoRoute(
               name: 'IssueHome',
               path: 'IssueHome',
               builder: (context, state) => IssueHome(),
+              routes: [
+                GoRoute(
+                  name: 'UsersDetails',
+                  path: 'UsersDetails',
+                  builder: (context, state) => UserDetailsPage(),
+                ),
+              ],
             ),
             // StatefulShellRoute.indexedStack(
             //   parentNavigatorKey: _rootNavigatorKey,
