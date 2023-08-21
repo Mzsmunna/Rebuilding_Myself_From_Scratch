@@ -6,6 +6,7 @@ import 'bloc/user_list_bloc.dart';
 
 class UserList extends StatefulWidget {
   final userListBloc = UserListBloc();
+  final pageBucket = PageStorageBucket();
   UserList({super.key});
 
   @override
@@ -27,30 +28,34 @@ class _UserListState extends State<UserList> {
         // TODO: implement listener
       },
       builder: (context, state) {
-        return ListView.builder(
-          itemCount: state.userModels != null ? state.userModels?.length : 0,
-          itemBuilder: (context, index) {
-            UserModel? user = state.userModels?[index];
-            return Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 28,
-                  //backgroundImage: NetworkImage("${user?.img}"),
-                  child: Text("${user?.img}"),
+        return PageStorage(
+          bucket: widget.pageBucket,
+          child: ListView.builder(
+            key: const PageStorageKey<String>('Users'),
+            itemCount: state.userModels != null ? state.userModels?.length : 0,
+            itemBuilder: (context, index) {
+              UserModel? user = state.userModels?[index];
+              return Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 28,
+                    //backgroundImage: NetworkImage("${user?.img}"),
+                    child: Text("${user?.img}"),
+                  ),
+                  title: Text("${user?.firstName} ${user?.lastName}"),
+                  subtitle: Column(
+                    children: [
+                      Text("${user?.email}"),
+                      Text("${user?.designation}"),
+                      Text("${user?.department}"),
+                      Text("${user?.isActive}"),
+                    ],
+                  ),
+                  trailing: const Icon(Icons.arrow_forward),
                 ),
-                title: Text("${user?.firstName} ${user?.lastName}"),
-                subtitle: Column(
-                  children: [
-                    Text("${user?.email}"),
-                    Text("${user?.designation}"),
-                    Text("${user?.department}"),
-                    Text("${user?.isActive}"),
-                  ],
-                ),
-                trailing: const Icon(Icons.arrow_forward),
-              ),
-            );
-          },
+              );
+            },
+          ),
         );
       },
     );
