@@ -1,10 +1,10 @@
 import 'package:demo_app/apps/app_error.dart';
 import 'package:demo_app/apps/issue_manager_app/infrastructure/services/auth_service.dart';
-import 'package:demo_app/apps/issue_manager_app/presentation/components/navigation_components/nested_navigation.dart';
+//import 'package:demo_app/apps/issue_manager_app/presentation/components/navigation_components/nested_navigation.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
 //import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issue_home_page.dart';
-import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issues/issue_list_page.dart';
-import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/users/user_list_page.dart';
+//import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/issues/issue_list_page.dart';
+//import 'package:demo_app/apps/issue_manager_app/presentation/pages/home/users/user_list_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/login/login_page.dart';
 import 'package:demo_app/apps/issue_manager_app/presentation/pages/user_auth/register/register_page.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +28,7 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
       initialLocation: "/IssueManager",
       navigatorKey: _rootNavigatorKey,
       errorBuilder: (context, state) => const AppError(),
+      redirect: (context, state) => redirect(context, state),
       // redirect: (context, state) {
       //   if (isConditional) {
       //     var sharedPrefs = AppSharedPreferences.getSharedPreferenceInstance();
@@ -54,7 +55,6 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
         GoRoute(
           path: '/IssueManager',
           builder: (context, state) => LoginPage(),
-          redirect: (context, state) => redirect(),
           routes: [
             GoRoute(
               name: 'Login',
@@ -131,10 +131,12 @@ class IssueManagerGoRouterConfig extends StatelessWidget {
     );
   }
 
-  String redirect() {
+  String redirect(BuildContext context, GoRouterState state) {
     isLoggedIn = _authService.isAuthenticated(isConditional);
     if (isLoggedIn) {
       return '/IssueManager/IssueHome';
+    } else if (state.fullPath != null) {
+      return state.fullPath!;
     } else {
       return '/IssueManager';
     }
