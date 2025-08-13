@@ -4,26 +4,6 @@
     "type": "split",
     "children": [
       {
-        "id": "d968a9651314b759",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "a4efc0dec9c505f9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "R&D/rnd.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "rnd"
-            }
-          }
-        ]
-      },
-      {
         "id": "57a9fdc1caa3825f",
         "type": "tabs",
         "children": [
@@ -33,7 +13,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "R&D/rnd.md",
+                "file": "Design Patterns & Principles/Design Patterns.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -61,10 +41,53 @@
                 }
               },
               "icon": "lucide-git-fork",
-              "title": "Graph of rnd"
+              "title": "Graph of Design Patterns"
+            }
+          },
+          {
+            "id": "d999ad68baba1aa7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Design Patterns & Principles/Design Principles.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Design Principles"
+            }
+          },
+          {
+            "id": "9afd69c16e6bdc46",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mzs Brain.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Mzs Brain"
+            }
+          },
+          {
+            "id": "2ab7bc56d8bba44b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Design Patterns & Principles/Design Patterns.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Design Patterns"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -211,10 +234,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a4efc0dec9c505f9",
+  "active": "2ab7bc56d8bba44b",
   "lastOpenFiles": [
-    "Topic/Advanced Topic/advanced_topic.md",
+    "Mzs Brain.md",
+    "Design Patterns & Principles/Design Principles.md",
+    "Design Patterns & Principles/Design Patterns.md",
+    "Design Patterns & Principles/SOLID.md",
+    "Design Patterns & Principles/KISS.md",
+    "Design Patterns & Principles/DRY.md",
+    "[solid_principles.md",
+    "Bookmarks",
     "R&D/rnd.md",
+    "Topic/Advanced Topic/advanced_topic.md",
     "R&D",
     "Topic",
     "Data/Data Bases/SQL/sql.md",
@@ -235,19 +266,11 @@
     "Web Devs/web_devs.md",
     "Tutorials & Tech Talks/tutorials_and_tech_talks.md",
     "Tools/Dev Tools/dev_tools.md",
-    "Tools/AI Tools/ai_tools.md",
-    "Tools/tools.md",
-    "SaaS/saas.md",
-    "R&D/Research Papers/research_papers.md",
-    "Programming/Languages/programming_languages.md",
-    "Programming/Basics/programming_basics.md",
-    "Programming/programming.md",
     "Graphics Rendering/Blender",
     "Graphics Rendering",
     "Web Devs/Web Frameworks/Front End/Astro",
     "Web Devs/Web Frameworks/Front End/Vue",
     "Web Devs/Web Frameworks/Full Stack/Nuxt",
-    "Web Devs/Web Frameworks/Full Stack/SvelteKit",
-    "Web Devs/Web Frameworks/Full Stack/NextJS"
+    "Web Devs/Web Frameworks/Full Stack/SvelteKit"
   ]
 }

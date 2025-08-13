@@ -1,1 +1,1 @@
-This is your new *knowledge* [[data]]
+This is your new *knowledge* [[Data]], [[Design Patterns]], [[Design Principles]]
