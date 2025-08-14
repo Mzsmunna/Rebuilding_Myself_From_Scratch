@@ -13,7 +13,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Design Patterns & Principles/Design Patterns.md",
+                "file": "Web/Web Dev/Web Basics/JavaScript/Javascript Basics.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -41,7 +41,7 @@
                 }
               },
               "icon": "lucide-git-fork",
-              "title": "Graph of Design Patterns"
+              "title": "Graph of Javascript Basics"
             }
           },
           {
@@ -85,9 +85,37 @@
               "icon": "lucide-file",
               "title": "Design Patterns"
             }
+          },
+          {
+            "id": "a5cf54dc5334f58d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces/PrimeNG/prime_ng.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "prime_ng"
+            }
+          },
+          {
+            "id": "1b86f10049d24b6e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Web/Web Dev/Web Basics/JavaScript/Javascript Basics.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Javascript Basics"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -234,43 +262,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2ab7bc56d8bba44b",
+  "active": "1b86f10049d24b6e",
   "lastOpenFiles": [
-    "Mzs Brain.md",
+    "Web/Web Dev/Web Basics/JavaScript/JavaScript ES6 Basics.md",
+    "Web/Web Dev/Web Basics/JavaScript/Javascript Basics.md",
+    "Computer Science/Algorithms/Sorting Alogrithms.md",
+    "Web/Browsers/web_browsers.md",
     "Design Patterns & Principles/Design Principles.md",
-    "Design Patterns & Principles/Design Patterns.md",
-    "Design Patterns & Principles/SOLID.md",
-    "Design Patterns & Principles/KISS.md",
-    "Design Patterns & Principles/DRY.md",
-    "[solid_principles.md",
-    "Bookmarks",
-    "R&D/rnd.md",
-    "Topic/Advanced Topic/advanced_topic.md",
-    "R&D",
-    "Topic",
-    "Data/Data Bases/SQL/sql.md",
-    "Data/Data Bases/NoSQL/no_sql.md",
-    "Data/Data Bases/GraphQL/graph_ql.md",
-    "Web Devs/Web Designing/Adobe XD/adobe_xd.md",
-    "Programming/Languages/Untitled.md",
-    "Web Devs/Web Designing/Figma/figma.md",
-    "Web Devs/Web Designing/Adobe XD",
-    "Web Devs/Web Designing/Canva/canva.md",
-    "Web Devs/Web Frameworks/web_frameworks.md",
-    "create a link.md",
-    "Web Devs/Web Designing/web_designing.md",
-    "Web Devs/JS Runtimes/NodeJS/nodejs.md",
-    "Web Devs/JS Runtimes/Deno/deno.md",
-    "Web Devs/JS Runtimes/Bun/bun.md",
-    "Web Devs/JS Runtimes/js_runtimes.md",
-    "Web Devs/web_devs.md",
-    "Tutorials & Tech Talks/tutorials_and_tech_talks.md",
-    "Tools/Dev Tools/dev_tools.md",
-    "Graphics Rendering/Blender",
-    "Graphics Rendering",
-    "Web Devs/Web Frameworks/Front End/Astro",
-    "Web Devs/Web Frameworks/Front End/Vue",
-    "Web Devs/Web Frameworks/Full Stack/Nuxt",
-    "Web Devs/Web Frameworks/Full Stack/SvelteKit"
+    "Web/JS Runtimes/Bun/bun.md",
+    "Web/Web Dev/Web Framewroks/UI Frameworks/Shadcn UI/shadcn_ui.md",
+    "Web/Browsers",
+    "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces/prime_faces.md",
+    "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces/PrimeNG/prime_ng.md",
+    "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/AngularJS/angularJS.md",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/Vue/vue.md",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/Svelte/svelte.md",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/React/react.md",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/Astro/astro.md",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/Angular/angular_v18_v20.md",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/AngularJS",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/Angular/angular_v16_v17.md",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/Angular/angular.md",
+    "Web/Web Dev/Web Framewroks/Front End Frameworks/Angular/angular_v2_v15.md",
+    "Web/Web Dev/Web Framewroks/CSS Frameworks/Tailwind/tailwind.md",
+    "Web/Web Dev/Web Framewroks/CSS Frameworks/Bootstrap/bootstrap.md",
+    "Web/Web Dev/Web Framewroks/Back End Frameworks/Laravel/laravel.md",
+    "Web/Web Dev/Web Framewroks/Back End Frameworks/DotNet/DotNet Framework/dot_net_framework.md",
+    "Web/Web Dev/Web Framewroks/Back End Frameworks/DotNet/DotNet Core/dot_net_core.md",
+    "Web/Web Dev/Web Framewroks/Back End Frameworks/DotNet/dotnet.md",
+    "Web/Web Dev/Web Framewroks/Back End Frameworks/DJango/django.md",
+    "Web/Web Dev/Web Basics/Typescript/typescript.md",
+    "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces/PrimeNG",
+    "Web/Web Dev/Web Framewroks/UI Frameworks/Shadcn UI",
+    "Web/Web Dev/Web Framewroks/UI Frameworks",
+    "Web/Web Dev/Web Framewroks",
+    "Web/Web Dev/Web Basics/Typescript",
+    "Web/Web Dev/Web Basics/JavaScript",
+    "Web/Web Dev/Web Basics/JSON"
   ]
 }
