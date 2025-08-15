@@ -1,4 +1,4 @@
-[[NoSQL]] databases, also known as "not only SQL" or non-relational databases, are a category of database management systems that store and retrieve data in ways other than the tabular relations used by traditional relational databases ([[SQL Database]]). They were developed to address the scalability and flexibility challenges encountered by relational databases when dealing with large volumes of rapidly changing, unstructured, or semi-structured data, particularly in modern web applications and big data environments.
+[[NoSQL]] databases, also known as "not only SQL" or non-relational databases, are a category of database management systems that store and retrieve data in ways other than the tabular relations used by traditional relational databases ([SQL Database](../SQL/SQL Database)). They were developed to address the scalability and flexibility challenges encountered by relational databases when dealing with large volumes of rapidly changing, unstructured, or semi-structured data, particularly in modern web applications and big data environments.
 
 Key characteristics and types of [[NoSQL Database]] include:
 
