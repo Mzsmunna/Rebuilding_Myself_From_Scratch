@@ -13,17 +13,17 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Web/Web Dev/Web Basics/JavaScript/Javascript Basics.md",
+                "file": "Data/Data Bases/SQL/SQL.md",
                 "options": {
-                  "collapse-filter": true,
+                  "collapse-filter": false,
                   "search": "",
-                  "localJumps": 1,
+                  "localJumps": 5,
                   "localBacklinks": true,
                   "localForelinks": true,
-                  "localInterlinks": false,
-                  "showTags": false,
-                  "showAttachments": false,
-                  "hideUnresolved": false,
+                  "localInterlinks": true,
+                  "showTags": true,
+                  "showAttachments": true,
+                  "hideUnresolved": true,
                   "collapse-color-groups": true,
                   "colorGroups": [],
                   "collapse-display": true,
@@ -36,12 +36,12 @@
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 0.713275462622443,
+                  "scale": 0.5087618855792595,
                   "close": false
                 }
               },
               "icon": "lucide-git-fork",
-              "title": "Graph of Javascript Basics"
+              "title": "Graph of SQL"
             }
           },
           {
@@ -106,16 +106,100 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Web/Web Dev/Web Basics/JavaScript/Javascript Basics.md",
+                "file": "Mzs Brain.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Javascript Basics"
+              "title": "Mzs Brain"
+            }
+          },
+          {
+            "id": "1afe434b86330df1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mzs Brain.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Mzs Brain"
+            }
+          },
+          {
+            "id": "bbdd13bf2d7057ec",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mzs Brain.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Mzs Brain"
+            }
+          },
+          {
+            "id": "dd2d00901ba18bff",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data/Data Bases/Database.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Database"
+            }
+          },
+          {
+            "id": "3946afebe710b55f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mzs Brain.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Mzs Brain"
+            }
+          },
+          {
+            "id": "4e32c3b81d5d4f22",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mzs Brain.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Mzs Brain"
+            }
+          },
+          {
+            "id": "ae3b678ee1d79889",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data/Data Bases/SQL/SQL.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SQL"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 11
       }
     ],
     "direction": "vertical"
@@ -262,43 +346,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1b86f10049d24b6e",
+  "active": "ae3b678ee1d79889",
   "lastOpenFiles": [
-    "Web/Web Dev/Web Basics/JavaScript/JavaScript ES6 Basics.md",
-    "Web/Web Dev/Web Basics/JavaScript/Javascript Basics.md",
-    "Computer Science/Algorithms/Sorting Alogrithms.md",
-    "Web/Browsers/web_browsers.md",
-    "Design Patterns & Principles/Design Principles.md",
-    "Web/JS Runtimes/Bun/bun.md",
-    "Web/Web Dev/Web Framewroks/UI Frameworks/Shadcn UI/shadcn_ui.md",
-    "Web/Browsers",
-    "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces/prime_faces.md",
-    "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces/PrimeNG/prime_ng.md",
-    "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/AngularJS/angularJS.md",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/Vue/vue.md",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/Svelte/svelte.md",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/React/react.md",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/Astro/astro.md",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/Angular/angular_v18_v20.md",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/AngularJS",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/Angular/angular_v16_v17.md",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/Angular/angular.md",
-    "Web/Web Dev/Web Framewroks/Front End Frameworks/Angular/angular_v2_v15.md",
-    "Web/Web Dev/Web Framewroks/CSS Frameworks/Tailwind/tailwind.md",
-    "Web/Web Dev/Web Framewroks/CSS Frameworks/Bootstrap/bootstrap.md",
-    "Web/Web Dev/Web Framewroks/Back End Frameworks/Laravel/laravel.md",
-    "Web/Web Dev/Web Framewroks/Back End Frameworks/DotNet/DotNet Framework/dot_net_framework.md",
-    "Web/Web Dev/Web Framewroks/Back End Frameworks/DotNet/DotNet Core/dot_net_core.md",
-    "Web/Web Dev/Web Framewroks/Back End Frameworks/DotNet/dotnet.md",
-    "Web/Web Dev/Web Framewroks/Back End Frameworks/DJango/django.md",
-    "Web/Web Dev/Web Basics/Typescript/typescript.md",
-    "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces/PrimeNG",
-    "Web/Web Dev/Web Framewroks/UI Frameworks/Shadcn UI",
-    "Web/Web Dev/Web Framewroks/UI Frameworks",
-    "Web/Web Dev/Web Framewroks",
-    "Web/Web Dev/Web Basics/Typescript",
-    "Web/Web Dev/Web Basics/JavaScript",
-    "Web/Web Dev/Web Basics/JSON"
+    "Mzs Brain.md",
+    "Data/Data Bases/Database.md",
+    "Data/Data Bases/SQL/RDBMS.md",
+    "Data/Data Bases/SQL/SQL Interview Preparations.md",
+    "Data/Data Bases/SQL/SQL.md",
+    "Data/Data Bases/SQL/SQL Interview Questions.md",
+    "Data/Data Bases/SQL/SQL DBMS/SQLite.md",
+    "Data/Data Bases/NoSQL/NoSQL.md",
+    "Data/Data Bases/NoSQL/NoSQL Database.md",
+    "Data/Data Bases/SQL/SQL Database.md",
+    "Hosting & Deployment/Deployment.md",
+    "Hosting & Deployment/Hosting.md",
+    "Cloud/Providers/Google Cloud/DB/Firebase.md",
+    "Hosting & Deployment",
+    "Cloud/Providers/AWS/aws_cloud.md",
+    "Cloud/Providers/Google Cloud/DB",
+    "Cloud/Providers/Azure/DB",
+    "Cloud/Providers/AWS/DB/Amazon Neptune.md",
+    "Cloud/Providers/AWS/DB/Amazon DynamoDB.md",
+    "Cloud/Providers/AWS/DB",
+    "Data/Data Bases/NoSQL/NoSQL DBMS/MongoDB.md",
+    "Data/Data Bases/NoSQL/NoSQL DBMS/Neo4j.md",
+    "Data/Data Bases/NoSQL/NoSQL DBMS/HBase.md",
+    "Data/Data Bases/NoSQL/NoSQL DBMS/Cassandra.md",
+    "Cloud/Providers",
+    "Data/Data Formats/BSON.md",
+    "Data/Data Bases/NoSQL/NoSQL DBMS/Reddis.md",
+    "Data/Data Formats/JSON.md",
+    "Data/Data Bases/NoSQL/NoSQL DBMS/CouchDB.md",
+    "Programming/programming language.md",
+    "Data/Data Formats",
+    "Data/Data Bases/SQL/SQL DBMS/DuckDB.md",
+    "Data/Data Bases/SQL/SQL DBMS/DuckDB",
+    "Data/Data Bases/SQL/SQL DBMS",
+    "Data/Data Bases/NoSQL/NoSQL DBMS",
+    "Computer Science/Networking"
   ]
 }
