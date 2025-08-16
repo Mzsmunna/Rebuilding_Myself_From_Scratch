@@ -6,16 +6,38 @@
       {
         "id": "57a9fdc1caa3825f",
         "type": "tabs",
+        "dimension": 75.53986710963456,
         "children": [
           {
-            "id": "be60fd03ddb81803",
+            "id": "ae3b678ee1d79889",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Web/Web Dev/Web Basics/Typescript/Typescript Basics.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Typescript Basics"
+            }
+          }
+        ]
+      },
+      {
+        "id": "e1032f217ec0a5a8",
+        "type": "tabs",
+        "dimension": 24.46013289036545,
+        "children": [
+          {
+            "id": "57fd3551b67094bb",
             "type": "leaf",
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Data/Data Bases/SQL/SQL.md",
+                "file": "Web/Web Dev/Web Basics/Typescript/Typescript Basics.md",
                 "options": {
-                  "collapse-filter": false,
+                  "collapse-filter": true,
                   "search": "",
                   "localJumps": 5,
                   "localBacklinks": true,
@@ -41,165 +63,10 @@
                 }
               },
               "icon": "lucide-git-fork",
-              "title": "Graph of SQL"
-            }
-          },
-          {
-            "id": "d999ad68baba1aa7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Design Patterns & Principles/Design Principles.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Design Principles"
-            }
-          },
-          {
-            "id": "9afd69c16e6bdc46",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Mzs Brain.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mzs Brain"
-            }
-          },
-          {
-            "id": "2ab7bc56d8bba44b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Design Patterns & Principles/Design Patterns.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Design Patterns"
-            }
-          },
-          {
-            "id": "a5cf54dc5334f58d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Web/Web Dev/Web Framewroks/UI Frameworks/PrimeFaces/PrimeNG/prime_ng.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "prime_ng"
-            }
-          },
-          {
-            "id": "1b86f10049d24b6e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Mzs Brain.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mzs Brain"
-            }
-          },
-          {
-            "id": "1afe434b86330df1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Mzs Brain.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mzs Brain"
-            }
-          },
-          {
-            "id": "bbdd13bf2d7057ec",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Mzs Brain.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mzs Brain"
-            }
-          },
-          {
-            "id": "dd2d00901ba18bff",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data/Data Bases/Database.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Database"
-            }
-          },
-          {
-            "id": "3946afebe710b55f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Mzs Brain.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mzs Brain"
-            }
-          },
-          {
-            "id": "4e32c3b81d5d4f22",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Mzs Brain.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mzs Brain"
-            }
-          },
-          {
-            "id": "ae3b678ee1d79889",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data/Data Bases/SQL/SQL.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "SQL"
+              "title": "Graph of Typescript Basics"
             }
           }
-        ],
-        "currentTab": 11
+        ]
       }
     ],
     "direction": "vertical"
@@ -348,11 +215,17 @@
   },
   "active": "ae3b678ee1d79889",
   "lastOpenFiles": [
+    "Web/Web Dev/Web Basics/Typescript/Typescript.md",
+    "Web/Web Dev/Web Basics/Typescript/Typescript Basics.md",
+    "Web/Web Dev/Web Basics/JavaScript/JavaScript ES6 Basics.md",
+    "Web/Web Dev/Web Basics/JavaScript/Javascript Basics.md",
+    "Web/Web Dev/Web Basics/Typescript/Untitled.md",
+    "Web/Web Dev/Web Basics/Typescript/XYZ.md",
     "Mzs Brain.md",
+    "Data/Data Bases/SQL/SQL.md",
     "Data/Data Bases/Database.md",
     "Data/Data Bases/SQL/RDBMS.md",
     "Data/Data Bases/SQL/SQL Interview Preparations.md",
-    "Data/Data Bases/SQL/SQL.md",
     "Data/Data Bases/SQL/SQL Interview Questions.md",
     "Data/Data Bases/SQL/SQL DBMS/SQLite.md",
     "Data/Data Bases/NoSQL/NoSQL.md",
@@ -373,13 +246,7 @@
     "Data/Data Bases/NoSQL/NoSQL DBMS/HBase.md",
     "Data/Data Bases/NoSQL/NoSQL DBMS/Cassandra.md",
     "Cloud/Providers",
-    "Data/Data Formats/BSON.md",
-    "Data/Data Bases/NoSQL/NoSQL DBMS/Reddis.md",
-    "Data/Data Formats/JSON.md",
-    "Data/Data Bases/NoSQL/NoSQL DBMS/CouchDB.md",
-    "Programming/programming language.md",
     "Data/Data Formats",
-    "Data/Data Bases/SQL/SQL DBMS/DuckDB.md",
     "Data/Data Bases/SQL/SQL DBMS/DuckDB",
     "Data/Data Bases/SQL/SQL DBMS",
     "Data/Data Bases/NoSQL/NoSQL DBMS",
